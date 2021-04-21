@@ -84,28 +84,26 @@ x=femregion.dof(:,1);
 y=femregion.dof(:,2);
 
 
-w0 = eval(Data.initialw);
+w = eval(Data.initialw);
 
 %figure(1)
-u0 = eval(Data.initialcond);
+u = eval(Data.initialcond);
 
 for t=dt:dt:T
     
     f1=assemble_rhs(femregion,neighbour,Data,t);
-    [C] = assemble_nonlinear(femregion,Data,u0);
+    [C] = assemble_nonlinear(femregion,Data,u);
    
-    w1=1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*u0);
+    w=1/(1+epsilon*gamma*dt)*(w+epsilon*dt*u);
    
-    r=dt*(theta*f1+(1-theta)*f0)+(ChiM*Cm*M-dt*(1-theta)*(A+C))*u0+dt*ChiM*M*w1;
+    r=dt*(theta*f1+(1-theta)*f0)+(ChiM*Cm*M-dt*(1-theta)*(A+C))*u+dt*ChiM*M*w;
     
-    u1=(ChiM*Cm*M+dt*theta*(A+C))\r;
+    u=(ChiM*Cm*M+dt*theta*(A+C))\r;
     if (Data.snapshot=='Y' && ( (mod(round(t/dt),Data.leap)==0) || (t/dt)<=5))
 %         ODE_Snapshot(femregion,Data,w1,t)
-        DG_Par_Snapshot(femregion, Data, u0,t);
+        DG_Par_Snapshot(femregion, Data, u,t);
     end
     f0=f1;
-    u0=u1;
-    w0=w1;
 end
 
 
@@ -113,7 +111,7 @@ end
 % POST-PROCESSING OF THE SOLUTION
 %=========================================================================
 
-[solutions]= postprocessing(femregion,Data,u0,T);
+[solutions]= postprocessing(femregion,Data,u,T);
 
 %==========================================================================
 % ERROR ANALYSIS

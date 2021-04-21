@@ -34,7 +34,8 @@ figure
 stem3(femregion.dof(:,1),femregion.dof(:,2),u_ex,'-r*');
 hold on
 stem3(femregion.dof(:,1),femregion.dof(:,2),u_h,'-bo');
-legend('Exact Solution', 'Computed solution')
+legend('Exact Solution', 'Computed solution');
+title('Comparison at last time step');
 hold off
 
 figure;
