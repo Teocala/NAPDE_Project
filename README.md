@@ -7,7 +7,7 @@ At the moment, the goal is to improve two already implemented Matlab codes that 
 
 
 ------------------------------
-##GIT REMINDERS:
+## GIT REMINDERS:
 
 1. Only *master_matteo* and *master_fede* branches can have access and modify the repository
 
