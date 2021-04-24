@@ -78,7 +78,7 @@ elseif Dati.fem == 'P3'
 end
 
 title('u_h(x,y) - INTRACELLULAR POTENTIAL PHI_i'); xlabel('x-axis'); ylabel('y-axis');
-axis([x1,x2,y1,y2,m,M]); colorbar;
+%axis([x1,x2,y1,y2,m,M]); colorbar;
 
 
 solutions=struct('u_h',u_h,'u_ex',u_ex);

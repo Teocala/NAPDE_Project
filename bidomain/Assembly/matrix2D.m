@@ -181,9 +181,9 @@ end
 
 fprintf('--------End computing matrix for %s \n',Data.method);
 
-if(Data.method == 'SIP')
+if(Data.DG_method == 'SIP')
     teta = -1;
-elseif(Data.method == 'NIP')
+elseif(Data.DG_method == 'NIP')
     teta = 1;
 else
     teta = 0;
