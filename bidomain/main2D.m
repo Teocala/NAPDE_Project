@@ -183,10 +183,9 @@ elseif (Data.method == 'OS')
     
         w1 = w1(1:ll);
         %step3
-        Vm1 = u2(1:ll) - u2(ll+1:end);
-        w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm1);  % to be chosen if Vm0 or Vm1
+        w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm0);  % to be chosen if Vm0 or Vm1
         w2=cat(1,w2, w2);
-        r = f1 + ChiM*Cm/dt * MASS * u2 + ChiM * MASS_W *w2;
+        r = f1 + ChiM*Cm/dt * MASS * u1 + ChiM * MASS_W *w2;
         u3 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r;
     
         u3 = u2;
