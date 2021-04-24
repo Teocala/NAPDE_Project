@@ -186,7 +186,7 @@ else
     teta = 0;
 end
 
-Matrices=struct('A',V -transpose(I) + teta*I +S, 'f',f, 'S',S, 'M', M);
+Matrices=struct('A',V -transpose(I) + teta*I +sigma * S, 'f',f, 'S',S, 'M', M);
 
 
 

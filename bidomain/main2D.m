@@ -118,86 +118,86 @@ ll=length(u0_i);
 
 
 if (Data.method == 'SI')
-for t=dt:dt:T
+    for t=dt:dt:T
     
-    Vm0 = u0(1:ll) - u0(ll+1:end);
-    w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
-    w1=cat(1,w1, w1);
+        Vm0 = u0(1:ll) - u0(ll+1:end);
+        w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
+        w1=cat(1,w1, w1);
     
-    fi = assemble_rhs_i(femregion,neighbour,Data,t);
-    fe = assemble_rhs_e(femregion,neighbour,Data,t);
-    f1 = cat(1, fi, fe);
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, fe);
     
-    [C] = assemble_nonlinear(femregion,Data,Vm0);
-    NONLIN = [C -C; -C C];
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+        NONLIN = [C -C; -C C];
    
    
-    r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
     
-    u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
+        u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
     
-%   precondizionata con Jacobi
-    %block_matrix = (ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN));
-    %block_matrix = diag(diag(block_matrix)) * block_matrix;
-    %r = diag(diag(block_matrix)) .* r;
-    %u1 = block_matrix  \ r;
+    %   precondizionata con Jacobi
+        %block_matrix = (ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN));
+        %block_matrix = diag(diag(block_matrix)) * block_matrix;
+        %r = diag(diag(block_matrix)) .* r;
+        %u1 = block_matrix  \ r;
     
 
- %   u1=pcg(( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)),r,1e-7);
+    %   u1=pcg(( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)),r,1e-7);
 
 
-    if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-%         ODE_Snapshot(femregion,Data,w1,t)
-        DG_Par_Snapshot(femregion, Data, u1,t);
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+   %         ODE_Snapshot(femregion,Data,w1,t)
+             DG_Par_Snapshot(femregion, Data, u1,t);
+        end
+        f0 = f1;
+        u0 = u1;
+        w0 = w1(1:ll);
     end
-    f0 = f1;
-    u0 = u1;
-    w0 = w1(1:ll);
-end
 
 elseif (Data.method == 'OS')
-for t=dt:dt:T
+    for t=dt:dt:T
     
-    Vm0 = u0(1:ll) - u0(ll+1:end);
+        Vm0 = u0(1:ll) - u0(ll+1:end);
     
-    %step1
-    w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
-    w1=cat(1,w1, w1);
+        %step1
+        w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
+        w1=cat(1,w1, w1);
     
-    fi = assemble_rhs_i(femregion,neighbour,Data,t);
-    fe = assemble_rhs_e(femregion,neighbour,Data,t);
-    f1 = cat(1, fi, fe);
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, fe);
     
-    [C] = assemble_nonlinear(femregion,Data,Vm0);
-    NONLIN = [C -C; -C C];
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+        NONLIN = [C -C; -C C];
    
    
-    r = ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        r = ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
     
-    u1 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r; 
+        u1 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r; 
     
     
-    %step2
-    r = ChiM*Cm/dt * MASS * u1;
-    u2 = ( ChiM*Cm/dt * MASS + STIFFNESS) \ r;
+        %step2
+        r = ChiM*Cm/dt * MASS * u1;
+        u2 = ( ChiM*Cm/dt * MASS + STIFFNESS) \ r;
     
-    w1 = w1(1:ll);
-    %step3
-    Vm1 = u2(1:ll) - u2(ll+1:end);
-    w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm1);  % to be chosen if Vm0 or Vm1
-    w2=cat(1,w2, w2);
-    r = f1 + ChiM*Cm/dt * MASS * u2 + ChiM * MASS_W *w2;
-    u3 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r;
+        w1 = w1(1:ll);
+        %step3
+        w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm0);  % to be chosen if Vm0 or Vm1
+        w2=cat(1,w2, w2);
+        r = f1 + ChiM*Cm/dt * MASS * u1 + ChiM * MASS_W *w2;
+        u3 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r;
     
-
-    if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-%         ODE_Snapshot(femregion,Data,w1,t)
-        DG_Par_Snapshot(femregion, Data, u3,t);
+        u3 = u2;
+        w2  = w1;
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+  %         ODE_Snapshot(femregion,Data,w1,t)
+            DG_Par_Snapshot(femregion, Data, u3,t);
+        end
+        f0 = f1;
+        u0 = u3;
+        w0 = w2(1:ll);
     end
-    f0 = f1;
-    u0 = u3;
-    w0 = w2(1:ll);
-end
 end
 
 

@@ -1,0 +1,186 @@
+% !TEX encoding = UTF-8
+% !TEX program = pdflatex
+\documentclass[a4paper]{article}
+\usepackage[a4paper,top=3cm,bottom=4cm,left=3.8cm,right=3.8cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{comment}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{physics}
+\usepackage{bm}
+  
+\theoremstyle{definition}  
+\newtheorem*{defn}{Definizione}  
+\newtheorem*{prop}{Proposizione} 
+\newtheorem*{oss}{Osservazione}
+\newtheorem {prob}{Problema}
+
+
+\newenvironment{rcases}
+{\left.\begin{aligned}}
+	{\end{aligned}\right\rbrace}
+
+\begin{document}
+\title{Formulario per il progetto NAPDE}
+\author{Matteo Calafà}
+\maketitle
+\vspace{5mm}
+\section{Monodominio}
+\vspace{5mm}
+\subsection{Modelli analitici}
+\vspace{5mm}
+\paragraph{Modello del monodominio}
+	\begin{equation}
+	\begin{cases}
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma \nabla V_m) + \chi_m I_{ion}(V_m,w) = I^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	\pdv{w}{t} = g(V\ped{m}, w)  & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	\Sigma\nabla V\ped{m} \cdot n = b   & \text{on } \partial \Omega_{mus} \cross (0,T]
+	\end{cases}
+	\end{equation}
+	\vspace{4mm}\newline
+	dove le incognite sono:
+	\begin{itemize}
+		\item $V_m$ = $\Phi_i - \Phi_e$ (differenza tra potenziale interno e esterno)
+		\item $w$  ("\emph{gating variable}")
+	\end{itemize}
+    e sono date le costanti : $\chi_m, C_m, \Sigma$
+
+
+
+\paragraph{Modello di FitzHugh-Nagumo}
+\begin{equation}
+\begin{gathered}
+I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
+\\
+g(V_m,w) = \epsilon(V_m -\gamma w)
+\end{gathered}
+\end{equation}
+
+\vspace{5mm}
+
+\subsection{Modello numerico semi-discretizzato}
+
+	\vspace{5mm}
+	 \begin{equation}
+	 \begin{rcases}
+	 V_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \nabla \varphi_i 
+	 \\ I_{i,j}^T &= \sum_{F \in F_h^I} \int_{F} \{\{\nabla\varphi_j\}\} \cdot [[\varphi_i]] 
+	\\ I_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\nabla \varphi_i\}\}
+	 \\S_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma [[\varphi_j]] \cdot [[\varphi_i]]]
+	 \end{rcases}
+	 \quad A = \Sigma(V -I^T - \delta I + S)
+	\end{equation}
+	\begin{equation}
+	M_{ij} = \sum_{K \in \tau_h}\int_K
+	\varphi_j\varphi_i
+	\end{equation}
+	\begin{equation}
+	C(u_h)_{ij} = - \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
+	\end{equation}
+	\begin{equation}
+	F_i = \int_{\Omega} f\varphi_i - \sum_{F in F_h^B} \int_F b\varphi_i
+	\end{equation}
+	
+	\vspace{3mm}
+\paragraph{Problema semi-discretizzato} 
+
+\begin{equation*}
+\begin{gathered}
+\{\varphi_j\}_{j=1}^{N_h} \text{ base di } V_h^p = \{v_h \in L^2 : v_h|_K \in \mathbb{P}^{p_k}(K) \quad p_k \leq p \quad \forall K \in \tau_h \}
+\\
+u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)\varphi_j
+\end{gathered}
+\end{equation*}
+\vspace{3mm}
+\begin{equation}
+\Rightarrow \quad  \boxed{\chi_mC_m M \dot{u} +  A u + C(u_h) u -\chi_mMw=F}
+\end{equation}
+\vspace{5mm}
+\subsection{Modello numerico totalmente discretizzato}
+\vspace{5mm}
+\paragraph{Forma implicita $(\theta \in [0,1])$}
+\begin{enumerate}
+	\item
+	\begin{equation}
+	\begin{gathered}
+	\chi_mC_m M \frac{u^{k+1}-u^k}{\Delta t} +  A \left(\theta u^{k+1} + (1-\theta)u^k \right) + C(u^k)\left(\theta u^{k+1} + (1-\theta)u^k \right) +
+	\\ -\chi_mMw^{k+1}=\theta F^{k+1} + (1-\theta)F^k
+	\end{gathered}
+	\end{equation}
+	\item
+	\begin{equation}
+	\frac{w^{k+1}- w^{k}}{\Delta t} = \epsilon(u^k-\gamma w^{k+1})
+	\end{equation}
+\end{enumerate}
+\vspace{3mm}
+\paragraph{Forma esplicita $(\theta \in [0,1])$}
+\begin{enumerate}
+	\item
+	\begin{equation}
+	\begin{gathered}
+	\left[\chi_mC_mM+\theta \Delta t A + \theta \Delta t C(u^k) \right] \bm{u^{k+1}} = \theta\Delta t F^{k+1} + (1-\theta)\Delta tF^k +
+	\\
+	\left[\chi_mC_mM- (1-\theta)\Delta t A - (1-\theta)\Delta t C(u^k)\right] u^k +\chi_m\Delta t Mw^{k+1} 
+	\end{gathered}
+	\end{equation}
+	\item
+	\begin{equation}
+	\left[1+ \epsilon \gamma \Delta t\right] \bm{w^{k+1}} = w^k + (\epsilon \Delta t) u^k
+	\end{equation}
+\end{enumerate}
+
+
+
+
+
+
+
+\newpage
+
+\section{Bidominio}
+\vspace{5mm}
+\subsection{Modelli analitici}
+\vspace{5mm}
+\paragraph{Modello del bidominio}
+\begin{equation}
+\begin{cases}
+\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+\\
+-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+\\
+\pdv{w}{t} = g(V\ped{m}, w)  & \text{in } \Omega_{mus} \cross (0,T]
+\\
+\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
+\\
+\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial \Omega_{mus} \cross (0,T]
+\end{cases}
+\end{equation}
+\vspace{4mm}\newline
+dove le incognite sono:
+\begin{itemize}
+	\item $\phi_i, \phi_e$  $\quad (V_m = \phi_i-\phi_e$)
+	\item $w$  ("\emph{gating variable}")
+\end{itemize}
+e sono date le costanti : $\chi_m, C_m, \Sigma_i, \Sigma_e$
+
+\paragraph{Modello di FitzHugh-Nagumo}
+\begin{equation}
+\begin{gathered}
+I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
+\\
+g(V_m,w) = \epsilon(V_m -\gamma w)
+\end{gathered}
+\end{equation}
+
+\vspace{5mm}
+
+
+\end{document}
