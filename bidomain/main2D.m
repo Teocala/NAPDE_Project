@@ -149,29 +149,27 @@ if (Data.method == 'SI')
 
 elseif (Data.method == 'OS')
     
+        ZERO = zeros(ll);
+        
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
+         Q  = (ChiM*Cm/dt)*M + 2*C - (4*epsilon*ChiM*dt)/(1+2*epsilon*gamma*dt)*M;
+         T  = (ChiM*Cm/dt)*M*Vm0 + (2*ChiM)/(1+2*epsilon*gamma*dt)*M*w0;
         
-        A1 = sigma_i*A; 
-        A2 = ChiM*Cm*M/dt +2*C-2*ChiM*M*(2*epsilon*dt)/(1+2*epsilon*gamma*dt);
-        A3 = -sigma_e*A;
-        A4 = ChiM*Cm*M/dt +2*C-2*ChiM*M*(2*epsilon*dt)/(1+2*epsilon*gamma*dt);
-        AZ = [A1,A2;A3,A4];
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, fe);
     
-        
-        r = cat(1,ChiM*Cm*M*Vm0/dt + 2*ChiM*M*w0/(1+2*epsilon*gamma*dt),ChiM*Cm*M*Vm0/dt + 2*ChiM*M*w0/(1+2*epsilon*gamma*dt)) + f1;
+        B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
+        r = [T;T] + f1;
     
-        u1 = AZ \ r; 
-        u1(ll+1:end) = u1(1:ll) - u1(ll+1:end);
-        Vm1 = u1(1:ll) - u1(ll+1:end);
-        
+        u1 = B \ r; 
+        Vm1 = u1(1:ll)-u1(ll+1:end);
+
         w1 = (w0 + 2*epsilon*dt*Vm1)/(1+2*epsilon*gamma*dt);
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
@@ -183,8 +181,11 @@ elseif (Data.method == 'OS')
     end
 
     
-elseif (Data.method == 'GODUNOV')
-    A2 = [ChiM*Cm*M/dt + sigma_i*A, -ChiM*Cm*M/dt; sigma_i*A, sigma_e*A];
+elseif (Data.method == 'GO')
+    
+    MASS = (ChiM*Cm/dt)*[M, M; M -M];
+    ZERO = zeros(ll);
+    
     for t=dt:dt:T
         Vm0 = u0(1:ll) - u0(ll+1:end);
         
@@ -195,12 +196,11 @@ elseif (Data.method == 'GODUNOV')
     
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         
-        w1 = w0 + dt * (epsilon*Vm0 -epsilon*gamma*w0);
-        v_tmp = Vm0 -(dt/Cm)*(C*Vm0/ChiM - M*w0);
+        w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*Vm0;
    
-   
-        r = cat(1, ChiM*Cm/dt*M*v_tmp, zeros(ll,1)) + f1;
-        u1 = A2 \ r; 
+        B = MASS + [sigma_i*A, ZERO; ZERO, sigma_e*A];
+        r = ChiM*[M, ZERO; ZERO, M] * [w0; w0] + (MASS - [C, ZERO; ZERO, C])*[Vm0; Vm0] + f1;
+        u1 = B \ r; 
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             DG_Par_Snapshot(femregion, Data, u1,t);
