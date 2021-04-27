@@ -116,7 +116,6 @@ ll=length(u0_i);
 
 
 
-
 if (Data.method == 'SI')
     for t=dt:dt:T
     
@@ -156,47 +155,65 @@ if (Data.method == 'SI')
     end
 
 elseif (Data.method == 'OS')
+    
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
+        
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+        
+        A1 = sigma_i*A; 
+        A2 = ChiM*Cm*M/dt +2*C-2*ChiM*M*(2*epsilon*dt)/(1+2*epsilon*gamma*dt);
+        A3 = -sigma_e*A;
+        A4 = ChiM*Cm*M/dt +2*C-2*ChiM*M*(2*epsilon*dt)/(1+2*epsilon*gamma*dt);
+        AZ = [A1,A2;A3,A4];
     
-        %step1
-        w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
-        w1=cat(1,w1, w1);
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, fe);
+    
+        
+        r = cat(1,ChiM*Cm*M*Vm0/dt + 2*ChiM*M*w0/(1+2*epsilon*gamma*dt),ChiM*Cm*M*Vm0/dt + 2*ChiM*M*w0/(1+2*epsilon*gamma*dt)) + f1;
+    
+        u1 = AZ \ r; 
+        u1(ll+1:end) = u1(1:ll) - u1(ll+1:end);
+        Vm1 = u1(1:ll) - u1(ll+1:end);
+        
+        w1 = (w0 + 2*epsilon*dt*Vm1)/(1+2*epsilon*gamma*dt);
+    
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+            DG_Par_Snapshot(femregion, Data, u3,t);
+        end
+        f0 = f1;
+        u0 = u1;
+        w0 = w1;
+    end
+
+elseif (Data.method == 'GODUNOV')
+    A2 = [ChiM*Cm*M/dt + sigma_i*A, -ChiM*Cm*M/dt; sigma_i*A, sigma_e*A];
+    for t=dt:dt:T
+        Vm0 = u0(1:ll) - u0(ll+1:end);
+        
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, fe);
     
         [C] = assemble_nonlinear(femregion,Data,Vm0);
-        NONLIN = [C -C; -C C];
+        
+        w1 = w0 + dt * (epsilon*Vm0 -epsilon*gamma*w0);
+        v_tmp = Vm0 -(dt/Cm)*(C*Vm0/ChiM - M*w0);
    
    
-        r = ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        r = cat(1, ChiM*Cm/dt*M*v_tmp, zeros(ll,1)) + f1;
+        u1 = A2 \ r; 
     
-        u1 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r; 
-    
-    
-        %step2
-        r = ChiM*Cm/dt * MASS * u1;
-        u2 = ( ChiM*Cm/dt * MASS + STIFFNESS) \ r;
-    
-        w1 = w1(1:ll);
-        %step3
-        w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm0);  % to be chosen if Vm0 or Vm1
-        w2=cat(1,w2, w2);
-        r = f1 + ChiM*Cm/dt * MASS * u1 + ChiM * MASS_W *w2;
-        u3 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r;
-    
-        u3 = u2;
-        w2  = w1;
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-  %         ODE_Snapshot(femregion,Data,w1,t)
-            DG_Par_Snapshot(femregion, Data, u3,t);
+            DG_Par_Snapshot(femregion, Data, u1,t);
         end
         f0 = f1;
-        u0 = u3;
-        w0 = w2(1:ll);
+        u0 = u1;
+        w0 = w1;
     end
 end
 
