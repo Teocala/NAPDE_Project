@@ -81,11 +81,6 @@ f0=zeros(1,length(A));
 sigma_i = Data.Sigma_i;
 sigma_e = Data.Sigma_e;
 conv = sigma_e/sigma_i; %fattore di conversione per matrice di stiffness da A_i a A_e
-
-MASS = [M -M; -M M];
-ZERO=zeros(length(M));
-MASS_W = [M ZERO; ZERO -M];
-STIFFNESS = [A ZERO; ZERO  conv*A]; % A_i dipende linearmente da sigma_i, quindi convertiamo con conv
 %
 
 
@@ -117,6 +112,12 @@ ll=length(u0_i);
 
 
 if (Data.method == 'SI')
+    
+    MASS = [M -M; -M M];
+    ZERO=zeros(length(M));
+    MASS_W = [M ZERO; ZERO -M];
+    STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A]; 
+    
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
@@ -134,21 +135,13 @@ if (Data.method == 'SI')
         r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
     
         u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
-    
-    %   precondizionata con Jacobi
-        %block_matrix = (ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN));
-        %block_matrix = diag(diag(block_matrix)) * block_matrix;
-        %r = diag(diag(block_matrix)) .* r;
-        %u1 = block_matrix  \ r;
-    
-
-    %   u1=pcg(( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)),r,1e-7);
+   
 
 
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-   %         ODE_Snapshot(femregion,Data,w1,t)
              DG_Par_Snapshot(femregion, Data, u1,t);
         end
+        
         f0 = f1;
         u0 = u1;
         w0 = w1(1:ll);
@@ -189,6 +182,7 @@ elseif (Data.method == 'OS')
         w0 = w1;
     end
 
+    
 elseif (Data.method == 'GODUNOV')
     A2 = [ChiM*Cm*M/dt + sigma_i*A, -ChiM*Cm*M/dt; sigma_i*A, sigma_e*A];
     for t=dt:dt:T
