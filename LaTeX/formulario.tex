@@ -12,6 +12,7 @@
 \usepackage{amsfonts}
 \usepackage{amsthm}
 \usepackage{enumerate}
+\usepackage{enumitem}
 \usepackage{physics}
 \usepackage{bm}
   
@@ -22,13 +23,15 @@
 \newtheorem {prob}{Problema}
 
 
+\SetLabelAlign{Center}{\hfil#1\hfil}
+
 \newenvironment{rcases}
 {\left.\begin{aligned}}
 	{\end{aligned}\right\rbrace}
 
 \begin{document}
 \title{Formulario per il progetto NAPDE}
-\author{Matteo Calafà}
+\author{Matteo Calafà e Federica Botta}
 \maketitle
 \vspace{5mm}
 \section{Monodominio}
@@ -86,7 +89,7 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 	C(u_h)_{ij} = - \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
 	\end{equation}
 	\begin{equation}
-	F_i = \int_{\Omega} f\varphi_i - \sum_{F in F_h^B} \int_F b\varphi_i
+	F_i = \int_{\Omega} f\varphi_i - \sum_{F \in F_h^B} \int_F b\varphi_i
 	\end{equation}
 	
 	\vspace{3mm}
@@ -101,10 +104,13 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 \end{equation*}
 \vspace{3mm}
 \begin{equation}
-\Rightarrow \quad  \boxed{\chi_mC_m M \dot{u} +  A u + C(u_h) u -\chi_mMw=F}
+\Rightarrow \quad  \begin{gathered}\boxed{\chi_mC_m M \dot{u} +  A u + C(u_h) u -\chi_mMw=F}
+	\\
+	\boxed{\dot{w} = \epsilon(u-\gamma w)}
+	\end{gathered}
 \end{equation}
 \vspace{5mm}
-\subsection{Modello numerico totalmente discretizzato}
+\subsection{Modello numerico totalmente discretizzato ("$\bm{\theta-method}$")}
 \vspace{5mm}
 \paragraph{Forma implicita $(\theta \in [0,1])$}
 \begin{enumerate}
@@ -181,6 +187,257 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 \end{equation}
 
 \vspace{5mm}
+
+\subsection{Modello numerico semi-discretizzato}
+
+\vspace{5mm}
+\begin{equation}
+\begin{rcases}
+V_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \nabla \varphi_i 
+\\ I_{i,j}^T &= \sum_{F \in F_h^I} \int_{F} \{\{\nabla\varphi_j\}\} \cdot [[\varphi_i]] 
+\\ I_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\nabla \varphi_i\}\}
+\\S_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma [[\varphi_j]] \cdot [[\varphi_i]]]
+\end{rcases}
+\begin{gathered}
+\quad A = (V -I^T - \theta I + S)\\
+\quad A_i = \Sigma_iA \\
+\quad A_e = \Sigma_eA
+\end{gathered}
+\end{equation}
+\begin{equation}
+M_{ij} = \sum_{K \in \tau_h}\int_K
+\varphi_j\varphi_i
+\end{equation}
+\begin{equation}
+C(u_h)_{ij} = - \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
+\end{equation}
+\begin{equation}
+\begin{gathered}
+F_{i,k} = \int_{\Omega} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k
+\\
+F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k
+\end{gathered}
+\end{equation}
+
+
+	\vspace{3mm}
+\paragraph{Problema semi-discretizzato} 
+
+\begin{equation*}
+\begin{gathered}
+\{\varphi_j\}_{j=1}^{N_h} \text{ base di } V_h^k = \{v_h \in L^2 : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}
+\\
+\Phi_h(t) = \begin{bmatrix} \Phi_i^h(t) \\ \Phi_e^h(t) \end{bmatrix} = \begin {bmatrix}\sum_{j=1}^{N_h} \Phi_{i,j}(t)\varphi_j \\ \sum_{j=1}^{N_h} \Phi_{e,j}(t)\varphi_j \end{bmatrix},
+ \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)\varphi_j
+\end{gathered}
+\end{equation*}
+\vspace{3mm}
+\begin{equation}
+\Rightarrow \quad
+\boxed{
+\begin{gathered}
+ \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
+	\begin{bmatrix}\bm{\dot{\Phi}_i^h(t)} \\ \bm{\dot{\Phi}_e^h(t)} \end{bmatrix}
+	 + \begin{bmatrix}A_i & 0 \\ 0 & A_e \end{bmatrix}
+	 \begin{bmatrix}\bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)} \end{bmatrix} +\\
+	   \begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix} 
+	   \begin{bmatrix} \bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)}  \end{bmatrix} 
+	   -\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
+	   	\begin{bmatrix}w_h(t) \\ w_h(t) \end{bmatrix} = 
+	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}
+\end{gathered}
+}
+\end{equation}
+\begin{equation}
+\boxed{\dot{w}_h(t) = \epsilon(V_m^h(t) - \gamma w_h(t))}
+\end{equation}
+\vspace{5mm}
+
+\subsection{Modelli numerici totalmente discretizzati}
+\vspace{4mm}
+\subsubsection{Metodo semi-implicito}
+\paragraph{Forma implicita}
+\begin{equation}
+\begin{gathered}
+\chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
+\begin{bmatrix}\frac{\Phi_i^{k+1}-\Phi_i^k}{\Delta t} \\ \frac{\Phi_e^{k+1}-\Phi_e^k}{\Delta t} \end{bmatrix}
++ \begin{bmatrix}A_i & 0 \\ 0 & A_e \end{bmatrix}
+\begin{bmatrix}\Phi_i^{k+1} \\ \Phi_e^{k+1} \end{bmatrix} + \\
+ \begin{bmatrix}C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k) \end{bmatrix} 
+\begin{bmatrix} \Phi_i^{k+1} \\ \Phi_e^{k+1}  \end{bmatrix} 
+-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
+\begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix} = 
+\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}
+\end{gathered}
+\end{equation}
+\vspace{5mm}
+\begin{equation}
+\frac{w^{k+1}-w^k}{\Delta t} = \epsilon (V_m^k - \gamma w^{k+1})
+\end{equation}
+
+\paragraph{Forma esplicita}
+\begin{equation}
+\begin{gathered}
+\left( \frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M & -M \\ -M & M \end{bmatrix} + \begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix} + 
+\begin{bmatrix}
+C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
+\end{bmatrix}\right)
+\begin{bmatrix} \bm{\Phi_i^{k+1}} \\ \bm{\Phi_e^{k+1}} \end{bmatrix} = 
+\\
+\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1} \end{bmatrix} 
++ \chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix}
+\begin{bmatrix} w^{k+1} \\ w^{k+1} \end{bmatrix}
++ \frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ -M & M\end{bmatrix}
+\begin{bmatrix} \Phi_i^{k} \\ \Phi_e^{k} \end{bmatrix}
+\end{gathered}
+\end{equation}
+
+\vspace{5mm}
+\begin{equation}
+(1+\epsilon \gamma \Delta t)w^{k+1} = w^k + \epsilon \Delta t V_m^k
+\end{equation}
+
+\newpage
+\subsubsection{Operator Splitting implicito}
+\paragraph{Forma implicita}
+\begin{enumerate}[label = \Roman*, align = Center]
+	\item 
+	\begin{equation}
+	\begin{gathered}
+	\chi_m C_m M \frac{\tilde{V}_m^n-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
+	\\
+	 \frac{\tilde{w}^n - w^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
+	\end{gathered}
+	\end{equation}
+	\item 
+	\begin{equation}
+	\begin{gathered}
+	\chi_m C_m M \frac{\hat{V}_m^n-\tilde{V}_m^n}{\Delta t} + A_i \Phi_i^{n+1}= F_i^{n+1}
+	\\
+	- \chi_m C_m M \frac{\hat{V}_m^n-\tilde{V}_m^n}{\Delta t} + A_e \Phi_e^{n+1}= -F_e^{n+1}
+	\end{gathered}
+	\end{equation}
+	\item 
+	\begin{equation}
+	\begin{gathered}
+	\chi_m C_m M \frac{V_m^{n+1}-\hat{V}_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
+	\\
+	 \frac{w^{n+1} - \tilde{w}^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
+	\end{gathered}
+	\end{equation}
+\end{enumerate}
+\paragraph{Forma esplicita}
+\begin{equation}
+\begin{cases}
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) V_m^{n+1} - 2 \chi_m M w^{n+1} + A_i \Phi_i ^{n+1} = F_i^{n+1} \\
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) V_m^{n+1} - 2 \chi_m M w^{n+1} - A_e \Phi_e ^{n+1} =  F_e^{n+1} \\
+\frac{w^{n+1}-w^{n}}{\Delta t} = 2\cdot \epsilon(V_m^{n+1}-\gamma w^{n+1})
+\end{cases}
+\end{equation}
+
+ \begin{equation}
+ \begin{gathered}
+ \begin{aligned}
+ & \bullet \quad Q_n := \frac{\chi_m C_m}{\Delta t}M + 2 \cdot C(V_m^n) - \frac{4\epsilon\chi_m \Delta t}{1 + 2\epsilon \gamma \Delta t} M \\
+ & \bullet \quad T_n := \frac{\chi_mC_m}{\Delta t}MV_m^n + \frac{2\chi_m}{1+2\epsilon\gamma\Delta t}M w^n
+ \end{aligned}
+ \end{gathered}
+\end{equation}
+
+\begin{enumerate}
+	\item 
+	\begin{equation}
+	\begin{gathered}
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - 2 \chi_m M \left(\frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}   \right) + A_i \Phi_i ^{n+1} = F_i^{n+1} \\ \\
+     \Rightarrow \quad (Q_n + A_i) \Phi_i^{n+1} - Q_n \Phi_e^{n+1} =T_n +  F_i^{n+1}
+	\end{gathered}
+	\end{equation}
+	
+    \item 
+	\begin{equation}
+	\begin{gathered}
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - 2 \chi_m M \left(\frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}   \right) - A_e \Phi_e ^{n+1} = F_e^{n+1} \\ \\
+	\Rightarrow \quad Q_n \Phi_i^{n+1} - (Q_n+A_e) \Phi_e^{n+1} =T_n + F_e^{n+1}
+	\end{gathered}
+	\end{equation}
+	\vspace{3mm}
+	\item 
+	\begin{equation}
+	w^{n+1} = \frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}
+	\end{equation}
+\end{enumerate}
+
+
+\begin{equation}
+\Rightarrow \quad
+\begin{cases}
+\left(
+\begin{bmatrix} Q_n & -Q_n \\ Q_n & -Q_n \end{bmatrix} + 
+\begin{bmatrix} A_i & 0 \\ 0 & -A_e\end{bmatrix}
+\right)
+\begin{bmatrix}
+\bm{\Phi_i^{n+1}} \\ \bm{\Phi_e^{n+1}}
+\end{bmatrix}
+= \begin{bmatrix} T_n \\ T_n \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  F_e^{n+1}\end{bmatrix} \\ \\
+Q_n = \frac{\displaystyle \chi_m C_m}{\displaystyle \Delta t}M + 2 \cdot C(V_m^n) - \frac{\displaystyle 4\epsilon\chi_m \Delta t}{\displaystyle 1 + 2\epsilon \gamma \Delta t}M \\ \\
+T_n := \frac{\displaystyle \chi_mC_m}{\displaystyle \Delta t}MV_m^n + \frac{\displaystyle 2\chi_m}{\displaystyle 1+2\epsilon\gamma\Delta t}M w^n \\ \\
+w^{n+1} = \frac{\displaystyle w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{\displaystyle 1+2\epsilon \gamma \Delta t}
+\end{cases}
+\end{equation}
+
+
+\vspace{5mm}
+\subsubsection{Operator Splitting di Godunov}
+\paragraph{Forma implicita}
+\begin{enumerate}[label = \Roman*, align = Center]
+\item 
+   \begin{equation}
+   \begin{gathered}
+   \chi_m C_m M\frac{\hat{V}_m^n - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n = 0
+   \\
+   \frac{w^{n+1}-w^n}{\Delta t} = \epsilon (V_m^n - \gamma w^n)
+   \end{gathered}
+   \end{equation}
+\item 
+   \begin{equation}
+   \begin{gathered}
+   \chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^n}{\Delta t} + A_i\Phi_i^{n+1} = F_i^{n+1} \\
+   -\chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^n}{\Delta t} + A_e\Phi_e^{n+1} = -F_e^{n+1}
+   \end{gathered}
+   \end{equation}
+\end{enumerate}
+\vspace{5mm}
+\paragraph{Forma esplicita}
+
+\begin{equation}
+\begin{gathered}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n + A_i \Phi_i^{n+1}= F_i^{n+1} \\
+\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n - A_e \Phi_e^{n+1}= F_e^{n+1} \\
+w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon V_m^n
+\end{cases}
+\\ \\  \\
+\Rightarrow
+\begin{cases}
+\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \Phi_i^{n+1} - \frac{\chi_m C_m}{\Delta t} M \Phi_e^{n+1} = F_i^{n+1} + \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\ 
+\frac{\chi_m C_m}{\Delta t} M  \Phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \Phi_e^{n+1} =  F_e^{n+1} + \chi_m M w^n - \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\
+w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon V_m^n
+\end{cases}
+\\\\\\ \Rightarrow \quad
+\left(
+	\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
+	+ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
+	\right) \begin{bmatrix} \bm{\Phi_i^{n+1}} \\ \bm{\Phi_e^{n+1}}  \end{bmatrix} =
+	\begin{bmatrix} F_i^{n+1} \\ F_e^{n+1} \end{bmatrix} + \\
+	\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^n \\ w^n \end{bmatrix}
+	\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
+	- \begin{bmatrix} C(V_m^n) & 0 \\ 0 & C(V_m^n)\end{bmatrix} 
+	\right) \begin{bmatrix} V_m^n \\ V_m^n \end {bmatrix}
+	 \\ \\
+	w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon V_m^n
+\end{gathered}
+\end{equation}
+
 
 
 \end{document}

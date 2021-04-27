@@ -81,11 +81,6 @@ f0=zeros(1,length(A));
 sigma_i = Data.Sigma_i;
 sigma_e = Data.Sigma_e;
 conv = sigma_e/sigma_i; %fattore di conversione per matrice di stiffness da A_i a A_e
-
-MASS = [M -M; -M M];
-ZERO=zeros(length(M));
-MASS_W = [M ZERO; ZERO -M];
-STIFFNESS = [A ZERO; ZERO  conv*A]; % A_i dipende linearmente da sigma_i, quindi convertiamo con conv
 %
 
 
@@ -116,8 +111,13 @@ ll=length(u0_i);
 
 
 
-
 if (Data.method == 'SI')
+    
+    MASS = [M -M; -M M];
+    ZERO=zeros(length(M));
+    MASS_W = [M ZERO; ZERO -M];
+    STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A]; 
+    
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
@@ -135,68 +135,79 @@ if (Data.method == 'SI')
         r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
     
         u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
-    
-    %   precondizionata con Jacobi
-        %block_matrix = (ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN));
-        %block_matrix = diag(diag(block_matrix)) * block_matrix;
-        %r = diag(diag(block_matrix)) .* r;
-        %u1 = block_matrix  \ r;
-    
-
-    %   u1=pcg(( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)),r,1e-7);
+   
 
 
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-   %         ODE_Snapshot(femregion,Data,w1,t)
              DG_Par_Snapshot(femregion, Data, u1,t);
         end
+        
         f0 = f1;
         u0 = u1;
         w0 = w1(1:ll);
     end
 
 elseif (Data.method == 'OS')
+    
+        ZERO = zeros(ll);
+        
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
+        
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+         Q  = (ChiM*Cm/dt)*M + 2*C - (4*epsilon*ChiM*dt)/(1+2*epsilon*gamma*dt)*M;
+         T  = (ChiM*Cm/dt)*M*Vm0 + (2*ChiM)/(1+2*epsilon*gamma*dt)*M*w0;
+        
     
-        %step1
-        w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
-        w1=cat(1,w1, w1);
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, fe);
+    
+        B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
+        r = [T;T] + f1;
+    
+        u1 = B \ r; 
+        Vm1 = u1(1:ll)-u1(ll+1:end);
+
+        w1 = (w0 + 2*epsilon*dt*Vm1)/(1+2*epsilon*gamma*dt);
+    
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+            DG_Par_Snapshot(femregion, Data, u3,t);
+        end
+        f0 = f1;
+        u0 = u1;
+        w0 = w1;
+    end
+
+    
+elseif (Data.method == 'GO')
+    
+    MASS = (ChiM*Cm/dt)*[M, M; M -M];
+    ZERO = zeros(ll);
+    
+    for t=dt:dt:T
+        Vm0 = u0(1:ll) - u0(ll+1:end);
+        
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, fe);
     
         [C] = assemble_nonlinear(femregion,Data,Vm0);
-        NONLIN = [C -C; -C C];
+        
+        w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*Vm0;
    
-   
-        r = ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        B = MASS + [sigma_i*A, ZERO; ZERO, sigma_e*A];
+        r = ChiM*[M, ZERO; ZERO, M] * [w0; w0] + (MASS - [C, ZERO; ZERO, C])*[Vm0; Vm0] + f1;
+        u1 = B \ r; 
     
-        u1 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r; 
-    
-    
-        %step2
-        r = ChiM*Cm/dt * MASS * u1;
-        u2 = ( ChiM*Cm/dt * MASS + STIFFNESS) \ r;
-    
-        w1 = w1(1:ll);
-        %step3
-        w2 = 1/(1+epsilon*gamma*dt)*(w1+epsilon*dt*Vm0);  % to be chosen if Vm0 or Vm1
-        w2=cat(1,w2, w2);
-        r = f1 + ChiM*Cm/dt * MASS * u1 + ChiM * MASS_W *w2;
-        u3 = ( ChiM*Cm/dt * MASS +  NONLIN) \ r;
-    
-        u3 = u2;
-        w2  = w1;
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-  %         ODE_Snapshot(femregion,Data,w1,t)
-            DG_Par_Snapshot(femregion, Data, u3,t);
+            DG_Par_Snapshot(femregion, Data, u1,t);
         end
         f0 = f1;
-        u0 = u3;
-        w0 = w2(1:ll);
+        u0 = u1;
+        w0 = w1;
     end
 end
 

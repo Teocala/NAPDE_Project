@@ -110,7 +110,7 @@ for ie = 1:femregion.ne
             for j = 1 : femregion.nln
                 % assembly stiffness matrix
                 V(index(i),index(j)) = V(index(i),index(j)) ...
-                    + sigma_i*((Grad(k,:,i) * BJinv) * (Grad(k,:,j) * BJinv )') .*dx ;
+                    + ((Grad(k,:,i) * BJinv) * (Grad(k,:,j) * BJinv )') .*dx ;
                 % assembly mass matrix---> is it right?
                 M(index(i),index(j)) = M(index(i),index(j)) ...
                     + (dphiq(1,k,i))'*(dphiq(1,k,j))'.*dx;
@@ -152,12 +152,12 @@ for ie = 1:femregion.ne
                         
                         % I --> \int_{E_h} {grad v} . [u] ds
                         I(index(i),index(j)) = I(index(i),index(j)) ...
-                                        +  sigma_i*0.5 .* ((G_edge(k,:,i,iedg)*BJinv)*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
+                                        +  0.5 .* ((G_edge(k,:,i,iedg)*BJinv)*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
                         
                         % IN --> I for Neighbouring elements
                         % IN --> I for Neighbouring elements
                         IN(i,j,iedg) = IN(i,j,iedg) ...
-                                   - sigma_i* 0.5 .* ((G_edge(k,:,i,iedg)*BJinv)*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
+                                   -  0.5 .* ((G_edge(k,:,i,iedg)*BJinv)*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
                         SN(i,j,iedg) = SN(i,j,iedg) ...
                                    - penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
                                
