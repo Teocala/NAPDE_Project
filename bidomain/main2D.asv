@@ -165,7 +165,7 @@ elseif (Data.method == 'OS')
         f1 = cat(1, fi, -fe);
     
         B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
-        r = [R;R] + f1;
+        r = [T;T] + f1;
     
         u1 = B \ r; 
         Vm1 = u1(1:ll)-u1(ll+1:end);
