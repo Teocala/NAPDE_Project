@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  28 APR 2021 09:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  1 MAY 2021 13:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,11 +322,11 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
-Overfull \hbox (33.5713pt too wide) detected at line 439
+Overfull \hbox (33.5713pt too wide) detected at line 423
 [][]
  []
 
-[6] [7] (./formulario.aux) ) 
+[6] (./formulario.aux) ) 
 Here is how much of TeX's memory you used:
  5343 strings out of 482843
  75576 string characters out of 5956406
@@ -334,34 +334,34 @@ Here is how much of TeX's memory you used:
  20600 multiletter control sequences out of 15000+600000
  554903 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,18n,40p,796b,291s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecti1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
-four/jknappen/ec/tcrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/matteo/.texlive2020/texmf-var
-/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
-i5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/symbols/msbm10.pfb>
-Output written on formulario.pdf (7 pages, 196467 bytes).
+ 44i,23n,40p,796b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecti1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
+/jknappen/ec/tcrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts
+/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/matteo/.texlive2020/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/symbols/msbm10.pfb>
+Output written on formulario.pdf (6 pages, 195368 bytes).
 PDF statistics:
- 266 PDF objects out of 1000 (max. 8388607)
- 95 compressed objects within 1 object stream
+ 262 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

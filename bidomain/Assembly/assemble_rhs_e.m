@@ -86,7 +86,7 @@ for ie = 1:femregion.ne
         y = pphys_2D(k,2);
         F = eval(Data.source_e);
         for i = 1 : femregion.nln % assembly load vector
-            f(index(i)) = f(index(i)) + F*dphiq(1,k,i).*dx;
+            f(index(i)) = f(index(i)) - F*dphiq(1,k,i).*dx;
         end
     end
     

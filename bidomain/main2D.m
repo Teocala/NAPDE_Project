@@ -156,8 +156,8 @@ elseif (Data.method == 'OS')
         Vm0 = u0(1:ll) - u0(ll+1:end);
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
-         Q  = (ChiM*Cm/dt)*M + 2*C - (4*epsilon*ChiM*dt)/(1+2*epsilon*gamma*dt)*M;
-         R  = (ChiM*Cm/dt)*M*Vm0 + (2*ChiM)/(1+2*epsilon*gamma*dt)*M*w0;
+         Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+         R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
         
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
@@ -170,7 +170,7 @@ elseif (Data.method == 'OS')
         u1 = B \ r; 
         Vm1 = u1(1:ll)-u1(ll+1:end);
 
-        w1 = (w0 + 2*epsilon*dt*Vm1)/(1+2*epsilon*gamma*dt);
+        w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             DG_Par_Snapshot(femregion, Data, u3,t);
@@ -183,8 +183,10 @@ elseif (Data.method == 'OS')
     
 elseif (Data.method == 'GO')
     
-    MASS = (ChiM*Cm/dt)*[M, -M; M -M];
+    
     ZERO = zeros(ll);
+    MASS = (ChiM*Cm/dt)*[M, -M; M -M];
+    MASSW = ChiM*[M, ZERO; ZERO, M];
     
     for t=dt:dt:T
         Vm0 = u0(1:ll) - u0(ll+1:end);
@@ -197,15 +199,13 @@ elseif (Data.method == 'GO')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
-   
         B = MASS + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
-        r = ChiM*[M, ZERO; ZERO, M] * [w0; w0] + (MASS - [C, ZERO; ZERO, C])*[Vm0; Vm0] + f1;
+        r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         u1 = B \ r; 
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             DG_Par_Snapshot(femregion, Data, u1,t);
         end
-        f0 = f1;
         u0 = u1;
         w0 = w1;
     end
