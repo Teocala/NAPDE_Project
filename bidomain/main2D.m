@@ -156,8 +156,8 @@ elseif (Data.method == 'OS')
         Vm0 = u0(1:ll) - u0(ll+1:end);
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
-         Q  = (ChiM*Cm/dt)*M + 2*C - (4*epsilon*ChiM*dt)/(1+2*epsilon*gamma*dt)*M;
-         R  = (ChiM*Cm/dt)*M*Vm0 + (2*ChiM)/(1+2*epsilon*gamma*dt)*M*w0;
+         Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+         R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
         
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
@@ -170,7 +170,7 @@ elseif (Data.method == 'OS')
         u1 = B \ r; 
         Vm1 = u1(1:ll)-u1(ll+1:end);
 
-        w1 = (w0 + 2*epsilon*dt*Vm1)/(1+2*epsilon*gamma*dt);
+        w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             DG_Par_Snapshot(femregion, Data, u3,t);
