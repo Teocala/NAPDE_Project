@@ -199,8 +199,7 @@ elseif (Data.method == 'GO')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
-        Ai = sigma_i *A; Ae = -sigma_e*A;
-        B = MASS + [Ai, ZERO; ZERO, Ae];
+        B = MASS + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
         r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         u1 = B \ r; 
     
