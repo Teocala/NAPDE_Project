@@ -298,57 +298,53 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \end{equation}
 
 \newpage
-\subsubsection{Operator Splitting implicito}
+\subsubsection{Operator Splitting quasi-implicito}
 \paragraph{Forma implicita}
 \begin{enumerate}[label = \Roman*, align = Center]
 	\item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{\tilde{V}_m^n-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
+	\chi_m C_m M \frac{\tilde{V}_m^{n+1}-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
 	\\
-	 \frac{\tilde{w}^n - w^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
+	 \frac{w^{n+1} - w^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
 	\end{gathered}
 	\end{equation}
 	\item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{\hat{V}_m^n-\tilde{V}_m^n}{\Delta t} + A_i \Phi_i^{n+1}= F_i^{n+1}
+	\chi_m C_m M \frac{V_m^{n+1}-\tilde{V}_m^{n+1}}{\Delta t} + A_i \Phi_i^{n+1}= F_i^{n+1}
 	\\
-	- \chi_m C_m M \frac{\hat{V}_m^n-\tilde{V}_m^n}{\Delta t} + A_e \Phi_e^{n+1}= F_e^{n+1}
+	- \chi_m C_m M \frac{V_m^{n+1}-\tilde{V}_m^{n+1}}{\Delta t} + A_e \Phi_e^{n+1}= F_e^{n+1}
 	\end{gathered}
 	\end{equation}
-	\item 
-	\begin{equation}
-	\begin{gathered}
-	\chi_m C_m M \frac{V_m^{n+1}-\hat{V}_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
-	\\
-	 \frac{w^{n+1} - \tilde{w}^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
-	\end{gathered}
-	\end{equation}
+	
 \end{enumerate}
+\vspace{5mm}
 \paragraph{Forma esplicita}
 \begin{equation}
+\vspace{5mm}
 \begin{cases}
-\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) V_m^{n+1} - 2 \chi_m M w^{n+1} + A_i \Phi_i ^{n+1} = F_i^{n+1} \\
-\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) V_m^{n+1} - 2 \chi_m M w^{n+1} - A_e \Phi_e ^{n+1} =  -F_e^{n+1} \\
-\frac{w^{n+1}-w^{n}}{\Delta t} = 2\cdot \epsilon(V_m^{n+1}-\gamma w^{n+1})
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1} + A_i \Phi_i ^{n+1} = F_i^{n+1} \\
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1} - A_e \Phi_e ^{n+1} =  -F_e^{n+1} \\
+\frac{w^{n+1}-w^{n}}{\Delta t} = \epsilon(V_m^{n+1}-\gamma w^{n+1})
 \end{cases}
 \end{equation}
 
  \begin{equation}
  \begin{gathered}
  \begin{aligned}
- & \bullet \quad Q_n := \frac{\chi_m C_m}{\Delta t}M + 2 \cdot C(V_m^n) - \frac{4\epsilon\chi_m \Delta t}{1 + 2\epsilon \gamma \Delta t} M \\
- & \bullet \quad R_n := \frac{\chi_mC_m}{\Delta t}MV_m^n + \frac{2\chi_m}{1+2\epsilon\gamma\Delta t}M w^n
+ & \bullet \quad Q_n := \frac{\chi_m C_m}{\Delta t}M + C(V_m^n) - \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M \\
+ & \bullet \quad R_n := \frac{\chi_mC_m}{\Delta t}MV_m^n + \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^n
  \end{aligned}
  \end{gathered}
 \end{equation}
 
+\vspace{5mm}
 \begin{enumerate}
 	\item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - 2 \chi_m M \left(\frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}   \right) + A_i \Phi_i ^{n+1} = F_i^{n+1} \\ \\
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) + A_i \Phi_i ^{n+1} = F_i^{n+1} \\ \\
      \Rightarrow \quad (Q_n + A_i) \Phi_i^{n+1} - Q_n \Phi_e^{n+1} =R_n +  F_i^{n+1}
 	\end{gathered}
 	\end{equation}
@@ -356,14 +352,14 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
     \item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + 2\cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - 2 \chi_m M \left(\frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}   \right) - A_e \Phi_e ^{n+1} = -F_e^{n+1} \\ \\
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + \cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ -  \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) - A_e \Phi_e ^{n+1} = -F_e^{n+1} \\ \\
 	\Rightarrow \quad Q_n \Phi_i^{n+1} - (Q_n+A_e) \Phi_e^{n+1} =R_n - F_e^{n+1}
 	\end{gathered}
 	\end{equation}
 	\vspace{3mm}
 	\item 
 	\begin{equation}
-	w^{n+1} = \frac{w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+2\epsilon \gamma \Delta t}
+	w^{n+1} = \frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}
 	\end{equation}
 \end{enumerate}
 
@@ -379,9 +375,9 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \bm{\Phi_i^{n+1}} \\ \bm{\Phi_e^{n+1}}
 \end{bmatrix}
 = \begin{bmatrix} R_n \\ R_n \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  -F_e^{n+1}\end{bmatrix} \\ \\
-Q_n = \frac{\displaystyle \chi_m C_m}{\displaystyle \Delta t}M + 2 \cdot C(V_m^n) - \frac{\displaystyle 4\epsilon\chi_m \Delta t}{\displaystyle 1 + 2\epsilon \gamma \Delta t}M \\ \\
-R_n := \frac{\displaystyle \chi_mC_m}{\displaystyle \Delta t}MV_m^n + \frac{\displaystyle 2\chi_m}{\displaystyle 1+2\epsilon\gamma\Delta t}M w^n \\ \\
-w^{n+1} = \frac{\displaystyle w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{\displaystyle 1+2\epsilon \gamma \Delta t}
+Q_n = \frac{\displaystyle \chi_m C_m}{\displaystyle \Delta t}M +  \cdot C(V_m^n) - \frac{\displaystyle \epsilon\chi_m \Delta t}{\displaystyle 1 + \epsilon \gamma \Delta t}M \\ \\
+R_n := \frac{\displaystyle \chi_mC_m}{\displaystyle \Delta t}MV_m^n + \frac{\displaystyle \chi_m}{\displaystyle 1+\epsilon\gamma\Delta t}M w^n \\ \\
+w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{\displaystyle 1+\epsilon \gamma \Delta t}
 \end{cases}
 \end{equation}
 
@@ -393,7 +389,7 @@ w^{n+1} = \frac{\displaystyle w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1
 \item 
    \begin{equation}
    \begin{gathered}
-   \chi_m C_m M\frac{\hat{V}_m^n - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n = 0
+   \chi_m C_m M\frac{\hat{V}_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n = 0
    \\
    \frac{w^{n+1}-w^n}{\Delta t} = \epsilon (V_m^n - \gamma w^n)
    \end{gathered}
@@ -401,12 +397,12 @@ w^{n+1} = \frac{\displaystyle w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1
 \item 
    \begin{equation}
    \begin{gathered}
-   \chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^n}{\Delta t} + A_i\Phi_i^{n+1} = F_i^{n+1} \\
-   -\chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^n}{\Delta t} + A_e\Phi_e^{n+1} = F_e^{n+1}
+   \chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^{n+1}}{\Delta t} + A_i\Phi_i^{n+1} = F_i^{n+1} \\
+   -\chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^{n+1}}{\Delta t} + A_e\Phi_e^{n+1} = F_e^{n+1}
    \end{gathered}
    \end{equation}
 \end{enumerate}
-\vspace{5mm}
+\vspace{3mm}
 \paragraph{Forma esplicita}
 
 \begin{equation}
@@ -416,14 +412,20 @@ w^{n+1} = \frac{\displaystyle w^n + 2\epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1
 \chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n - A_e \Phi_e^{n+1}= -F_e^{n+1} \\
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta t V_m^n
 \end{cases}
-\\ \\  \\
+\\ \\  
 \Rightarrow
 \begin{cases}
 \left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \Phi_i^{n+1} - \frac{\chi_m C_m}{\Delta t} M \Phi_e^{n+1} = F_i^{n+1} + \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\ 
 \frac{\chi_m C_m}{\Delta t} M  \Phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \Phi_e^{n+1} =  -F_e^{n+1} + \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 \end{cases}
-\\\\\\ \Rightarrow \quad
+\end{gathered} 
+\end{equation}
+\vspace{3mm}
+\begin{equation}
+\Rightarrow \quad 
+\begin{cases}
+\begin{gathered}
 \left(
 	\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
 	+ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
@@ -433,9 +435,9 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
 	- \begin{bmatrix} C(V_m^n) & 0 \\ 0 & C(V_m^n)\end{bmatrix} 
 	\right) \begin{bmatrix} V_m^n \\ V_m^n \end {bmatrix}
-	 \\ \\
+	 \end{gathered} \\ \\
 	w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
-\end{gathered}
+\end{cases}
 \end{equation}
 
 
