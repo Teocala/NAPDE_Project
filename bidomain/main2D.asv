@@ -183,10 +183,8 @@ elseif (Data.method == 'OS')
     
 elseif (Data.method == 'GO')
     
-    
-    ZERO = zeros(ll);
     MASS = (ChiM*Cm/dt)*[M, -M; M -M];
-    MASSW = ChiM*[M, ZERO; ZERO, M];
+    ZERO = zeros(ll);
     
     for t=dt:dt:T
         Vm0 = u0(1:ll) - u0(ll+1:end);
@@ -200,13 +198,14 @@ elseif (Data.method == 'GO')
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
         Ai = sigma_i *A; Ae = -sigma_e*A;
-        B = MASS + [Ai, ZERO; ZERO, Ae];
-        r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
+        B = MASS + [si, ZERO; ZERO, -sigma_e*A];
+        r = ChiM*[M, ZERO; ZERO, M] * [w0; w0] + (MASS - [C, ZERO; ZERO, C])*[Vm0; Vm0] + f1;
         u1 = B \ r; 
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             DG_Par_Snapshot(femregion, Data, u1,t);
         end
+        f0 = f1;
         u0 = u1;
         w0 = w1;
     end
