@@ -58,9 +58,11 @@ Data = dati(TestName);
 %==========================================================================
 % BUILD FINITE ELEMENT MATRICES and RIGHT-HAND SIDE
 %==========================================================================
-
+if Data.fem == 'D1'
+[Matrices] = matrix2D_dubiner(femregion,neighbour,Data,0);
+else
 [Matrices] = matrix2D(femregion,neighbour,Data,0);
-
+end
 %==========================================================================
 % SOLVE THE LINEAR SYSTEM
 %==========================================================================

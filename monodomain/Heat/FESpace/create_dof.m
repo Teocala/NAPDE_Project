@@ -28,6 +28,7 @@ function [femregion]=create_dof(Dati,region)
 
 fprintf('Computing dof for elements %s\n',Dati.fem);
 
+    
 nln=(region.degree+1).*(region.degree+2)./2;
 ne=region.ne;
 nedge=region.nedge;
@@ -36,7 +37,7 @@ dof_hat =[];
 
 switch Dati.fem  % dof on the reference element
 
-    case{'P1'}
+    case{'P1','D1'}
         degree=1;
         dof_hat =[ 0 1 0
                    0 0 1]';
@@ -51,9 +52,9 @@ switch Dati.fem  % dof on the reference element
         dof_hat =[ 0   0.25   0.75  1   0.75  0.25  0  0    0    1/3
                    0   0      0     0   0.25  0.75  1  0.75 0.25 1/3]';               
                
-               
+         
+    
 end
-
 
 dof=[];
 

@@ -6,15 +6,22 @@ addpath Assembly
 
 
 % shape functions
+if (Data.fem(1) == 'P')
 [shape_basis] = basis_lagrange(femregion.fem);
+else
+[shape_basis] = basis_legendre_dubiner(femregion.fem);   
+end
 
 % quadrature nodes and weights for integrals
 [nodes_1D, w_1D, nodes_2D, w_2D] = quadrature(Data.nqn);
 nqn_1D = length(w_1D);
 
 % evaluation of shape functions on quadrature poiint
+if (Data.fem(1) == 'P')
 [dphiq, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
-
+else
+[dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_1D, nodes_2D,Data.nqn,femregion.nln);
+end
 % definition of penalty coefficient (note that is scaled only
 % wrt the polynomial degree
 penalty_coeff=Data.penalty_coeff.*(femregion.degree.^2);
