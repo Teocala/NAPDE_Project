@@ -439,7 +439,84 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 \end{cases}
 \end{equation}
+\newpage
+\section{Basis}
+\paragraph{Transformation}
+	On the reference triangle
+	\begin{equation}
+	\hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \}
+	\end{equation}
+	we consider the transformation between the reference square and the reference triangle given by
+	\begin{equation}
+	\xi:=\frac{(1+a)(1-b)}{4},  \eta:=\frac{(1+b)}{2}
+	\end{equation}
+	and the inverse transformation is
+	\begin{equation}
+	a:=\frac{2\xi-1+\eta}{1-\eta}=\frac{2\xi}{1-\eta}-1,	b:=2\eta-1
+	\end{equation}
 
+\paragraph{Dubiner Basis}
+	\begin{equation}
+	\begin{split}
+	\phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
+	\\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
+	\end{split}
+	\end{equation}
+	for i,j=1,....,p and i+j $\le$ p, where
+	\begin{equation}
+	c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
+	\end{equation}
+	and J$_i$$^{\alpha,\beta}$(.) is the i-th Jacobi polynomial
+\paragraph{Jacobian Basis}
+	J$_i$$^{\alpha,\beta}$(.) is orthogonal under the Jacobi weight w(x)=(1-x)$^\alpha$(1+x)$^\beta$ i.e. 
+	\begin{equation} 
+	\int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
+	\end{equation}
+	Evaluate the basis for a vector z of dimension n:
+	\begin{equation}
+	J_0^{\alpha,\beta}(z)=ones(1,n)
+	\end{equation}
+	\begin{equation}
+	J_1^{\alpha,\beta}(z)=\frac{1}{2}(\alpha-\beta+(\alpha+\beta+2)*z);
+	\end{equation}
+	for n $\ge$ 2
+	\newline
+	\begin{equation}
+	\begin{split}
+	J_n^{\alpha,\beta}(z)=&\sum_{k=2}^{n} (\frac{(2k+\alpha+\beta-1)(\alpha^{2}-\beta^{2})}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}+\frac{(2k+\alpha+\beta-2)(2k+\alpha+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}) J_{k-1}^{\alpha,\beta}(z)
+	\\&-\frac{2(k+\alpha-1)(k+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-2}^{\alpha,\beta}(z)
+	\end{split}
+	\end{equation}
 
+\paragraph{Gradient of Dubiner Basis}
+	for i=0 and j=0
+	\begin{equation}
+	\begin{split}
+	&\phi_{00}^{\xi}(\xi,\eta)=0
+	\\&\phi_{00}^{\eta}(\xi,\eta)=0
+	\end{split}
+	\end{equation}
+	for i=0 and j$\neq$0
+	\begin{equation}
+	\begin{split}
+	&\phi_{0j}^{\xi}=0
+	\\&\phi_{0j}^{\eta}=c_{0j} (j+2) J_{j-1}^{2,1}(b)
+	\end{split}
+	\end{equation}
+	for i$\neq$0 and j=0
+	\begin{equation}
+	\begin{split}
+	&\phi_{i0}^{\xi}(\xi,\eta)=c_{i0} 2^{i} (1-\eta)^{i-1} (i+1) J_{i-1}^{1,1}(a)
+	\\&\phi_{i0}^{\eta}(\xi,\eta)=c_{i0} 2^{i} (-i(1-\eta)^{i-1} J_{i}^{0,0}(a)+\xi(1-\eta)^{i-2}(i+1) J_{i-1}^{1,1}(a))
+	\end{split}
+	\end{equation}
+	for i$\neq$0 and j$\neq$0
+	\begin{equation}
+	\begin{split}
+	&\phi_{ij}^{\xi}(\xi,\eta)=c_{ij} 2^{i} (1-\eta)^{i-1} (i+1) J_{i-1}^{1,1}(a) J_{j}^{2i+1,0}(b)
+	\\&\phi_{ij}^{\eta}(\xi,\eta)=c_{ij} 2^{i} (-i(1-\eta)^{i-1} J_{i}^{0,0}(a) J_{j}^{2i+1,0}(b)+\xi(1-\eta)^{i-2}(i+1) J_{i-1}^{1,1}(a) J_{j}^{2i+1,0}(b)
+	\\&+(1-\eta)^{i}(2i+j+2) J_{i}^{0,0}(a) J_{j-1}^{2i+2,1}(b))
+	\end{split}
+	\end{equation}
 
 \end{document}
