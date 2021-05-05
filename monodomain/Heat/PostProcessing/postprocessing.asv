@@ -50,7 +50,7 @@ if (abs(m-M) < 0.1)
 end
 
 
-if Dati.fem == 'P1' | Dati.fem == 'D1'
+if Dati.fem == 'P1' || Dati.fem == 'D
     
     k = 1;
     for ie = 1 : femregion.ne
