@@ -84,7 +84,12 @@ y=femregion.dof(:,2);
 
 
 %figure(1)
+
 u0 = eval(Data.initialcond);
+
+if (Data.fem(1)=='D')
+   u0 = fem_to_dubiner (u0, femregion,Data);
+end
 
 for t=dt:dt:T
     
@@ -101,6 +106,11 @@ for t=dt:dt:T
     u0=u1;
 end
 
+
+% pass to fem coordinates before post-processing
+if (Data.fem(1)=='D')
+   u0 = dubiner_to_fem (u0, femregion,Data);
+end
 
 %==========================================================================
 % POST-PROCESSING OF THE SOLUTION
