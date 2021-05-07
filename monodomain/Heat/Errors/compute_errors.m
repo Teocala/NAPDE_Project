@@ -26,21 +26,16 @@ E_SEMI_H1=0;
 E_DG=0;
 
 % scalar shape functions
-if (Dati.fem(1) == 'P')
-[shape_basis]= basis_lagrange(Dati.fem);
-else
-[shape_basis]= basis_legendre_dubiner(Dati.fem);
-end
+
+[shape_basis]= basis_lagrange(append("P", femregion.fem(2)));
 
 % 1D and 2D quadrature nodes and weights 
 [nodes_1D, w_1D, nodes_2D, w_2D]=quadrature(Dati.nqn);
 
 % evaluation of shape functions
-if (Dati.fem(1) == 'P')
+
 [dphiq, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
-else
-[dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_1D, nodes_2D,Dati.nqn,femregion.nln);
-end
+
 
 for ie=1:ne % loop over elements
 

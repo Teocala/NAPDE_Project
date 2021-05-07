@@ -58,10 +58,10 @@ Data = dati(TestName);
 %==========================================================================
 % BUILD FINITE ELEMENT MATRICES and RIGHT-HAND SIDE
 %==========================================================================
-if Data.fem == 'D1'
-[Matrices] = matrix2D_dubiner(femregion,neighbour,Data,0);
+if (Data.fem(1) == 'D')
+   [Matrices] = matrix2D_dubiner(femregion,neighbour,Data,0);
 else
-[Matrices] = matrix2D(femregion,neighbour,Data,0);
+   [Matrices] = matrix2D(femregion,neighbour,Data,0);
 end
 %==========================================================================
 % SOLVE THE LINEAR SYSTEM
@@ -90,6 +90,7 @@ u0 = eval(Data.initialcond);
 if (Data.fem(1)=='D')
    u0 = fem_to_dubiner (u0, femregion,Data);
 end
+
 
 for t=dt:dt:T
     
