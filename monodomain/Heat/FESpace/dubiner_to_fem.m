@@ -6,12 +6,25 @@ function [u0] = dubiner_to_fem (uh, femregion, Data)
 deg=sscanf(Data.fem(2:end),'%f');
 s=0;
 
-if (deg==1)  % for the time being, implemented only for D1
+if (deg==1)  %D1
     csi = [0;1;0];
     eta = [0;0;1];
     a   = [-1; 1; -1];
     b   = [-1; -1; 1];
+    
+elseif (deg ==2) %D2
+    csi = [0; 0.5; 1; 0.5; 0; 0];
+    eta = [0; 0; 0; 0.5; 1; 0.5];
+    a   = [-1; 0; 1; 1; -1; -1];
+    b   = [-1; -1; -1; 0; 1; 0];
+
+elseif (deg==3) %D3
+    csi = [0; 0.25; 0.75; 1; 0.75; 0.25; 0; 0; 0; 1/3];
+    eta = [0; 0; 0; 0; 0.25; 0.75; 1; 0.75; 0.25; 1/3];
+    a   = [-1; -0.5; 0.5; 1; 1; 1; -1; -1; -1; 0];
+    b   = [-1; -1; -1; -1; -0.5; 0.5; 1; 0.5; -0.5; -1/3];   
 end
+
 
 for j=0:(deg)
     for i=0:(deg)

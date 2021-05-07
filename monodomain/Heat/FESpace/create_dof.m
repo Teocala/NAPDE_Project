@@ -42,12 +42,12 @@ switch Dati.fem  % dof on the reference element
         dof_hat =[ 0 1 0
                    0 0 1]';
 
-    case{'P2'}
+    case{'P2', 'D2'}
         degree=2;
         dof_hat =[ 0    0.5     1   0.5     0   0
                    0    0       0   0.5     1   0.5]';
                
-    case{'P3'}
+    case{'P3', 'D3'}
         degree=3;
         dof_hat =[ 0   0.25   0.75  1   0.75  0.25  0  0    0    1/3
                    0   0      0     0   0.25  0.75  1  0.75 0.25 1/3]';               
