@@ -70,7 +70,6 @@ end
 A=Matrices.A;
 f0=Matrices.f;
 M=Matrices.M;
-% M=masslumping(M);
 
 %time integration parameters
 t=0;
@@ -83,10 +82,10 @@ x=femregion.dof(:,1);
 y=femregion.dof(:,2);
 
 
-%figure(1)
-
 u0 = eval(Data.initialcond);
 
+% in the case of Dubiner basis transforms the initial condition wrt Dubiner
+% basis
 if (Data.fem(1)=='D')
    u0 = fem_to_dubiner (u0, femregion,Data);
 end
@@ -100,7 +99,6 @@ for t=dt:dt:T
     
     u1=(M+dt*theta*(A))\r;
     if (Data.snapshot=='Y' && ( (mod(round(t/dt),Data.leap)==0) || (t/dt)<=5))
-%         ODE_Snapshot(femregion,Data,w1,t)
         DG_Par_Snapshot(femregion, Data, u0,t);
     end
     f0=f1;
@@ -123,10 +121,6 @@ end
 % ERROR ANALYSIS
 %==========================================================================
  [errors]= compute_errors(Data,femregion,solutions,Matrices.S,T);
-
-%  solutionsW=struct('u_h',w0,'u_ex',eval(Data.exact_w));
-% 
-%  [errorsW]= compute_errors(Data,femregion,solutionsW,Matrices.S,T);
 
 
 

@@ -34,8 +34,6 @@ nqn_1D = length(w_1D);
 % wrt the polynomial degree
 penalty_coeff=Data.penalty_coeff.*(femregion.degree.^2);
 
-
-
 % Assembly begin ...
 V=sparse(femregion.ndof,femregion.ndof);  % \int_{\Omega} (grad(u) grad(v) dx
 I=sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} {grad v} . [u] ds
@@ -44,6 +42,12 @@ f=sparse(femregion.ndof,1);               % \int_{\Omega} f . v dx + boundary co
 M=sparse(femregion.ndof,femregion.ndof);  % \inr_{\Omega}
 
 % Define parameters in order to evaluate the forcing term
+a = Data.a;         
+ChiM=Data.ChiM;
+Cm=Data.Cm;
+kappa=Data.kappa;
+epsilon=Data.epsilon;
+gamma=Data.gamma;
 sigma = Data.Sigma;
 
 
@@ -180,7 +184,5 @@ else
     teta = 0;
 end
 
-Matrices=struct('A',V -transpose(I) + teta*I +S, 'f',f, 'S',S, 'M', M);
-
-
+Matrices=struct('A',V -transpose(I) + teta*I +sigma * S, 'f',f, 'S',S, 'M', M);
 

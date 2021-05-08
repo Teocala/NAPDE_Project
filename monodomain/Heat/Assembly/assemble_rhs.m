@@ -20,7 +20,7 @@ nqn_1D = length(w_1D);
 if (Data.fem(1) == 'P')
 [dphiq, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
 else
-[dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_1D, nodes_2D,Data.nqn,femregion.nln);
+[dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_2D, nodes_1D,Data.nqn,femregion.nln);
 end
 % definition of penalty coefficient (note that is scaled only
 % wrt the polynomial degree
