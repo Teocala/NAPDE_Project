@@ -14,7 +14,7 @@ function [basis]= basis_lagrange(fem)
 % fprintf('Compute the shape functions: %s  elements\n', fem);
 
 switch fem
-    case {'P1','D1'}
+    case 'P1'
         nln=3;
         [c]= matrix_coeff_P1(nln);
         basis=struct('num',nln,...
