@@ -127,5 +127,11 @@ end
 %==========================================================================
 % ERROR ANALYSIS
 %==========================================================================
- [errors]= compute_errors(Data,femregion,solutions,Matrices.S,T);
+
+    if (Data.fem(1) == 'D')
+       S = matrix_S(append("P", femregion.fem(2)),femregion,neighbour,Data,0);
+       [errors]= compute_errors(Data,femregion,solutions,S,T);
+    else
+       [errors]= compute_errors(Data,femregion,solutions,Matrices.S,T);
+    end
 end
