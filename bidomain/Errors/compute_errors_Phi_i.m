@@ -24,7 +24,7 @@ E_DG=0;
 E_inf=0;
 
 % scalar shape functions
-[shape_basis]= basis_lagrange(Dati.fem);
+[shape_basis]= basis_lagrange(append("P", femregion.fem(2)));
 
 % 1D and 2D quadrature nodes and weights 
 [nodes_1D, w_1D, nodes_2D, w_2D]=quadrature(Dati.nqn);
