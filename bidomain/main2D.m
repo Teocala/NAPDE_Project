@@ -121,7 +121,7 @@ ll=length(u0_i);
 if (Data.method == 'SI')
     
     MASS = [M -M; -M M];
-    ZERO=zeros(length(M));
+    ZERO=sparse(length(M), length(M));
     MASS_W = [M ZERO; ZERO -M];
     STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A]; 
     
@@ -156,7 +156,7 @@ if (Data.method == 'SI')
 
 elseif (Data.method == 'OS')
     
-        ZERO = zeros(ll);
+        ZERO = sparse(ll,ll);
         
     for t=dt:dt:T
     
@@ -191,7 +191,7 @@ elseif (Data.method == 'OS')
 elseif (Data.method == 'GO')
     
     
-    ZERO = zeros(ll);
+    ZERO = sparse(ll,ll);
     MASS = (ChiM*Cm/dt)*[M, -M; M -M];
     MASSW = ChiM*[M, ZERO; ZERO, M];
     
@@ -256,7 +256,6 @@ end
 solutionsW = struct('u_h',w0,'u_ex',eval(Data.exact_w));
 
 if (Data.fem(1) == 'D')
-    S = matrix_S(append("P", femregion.fem(2)),femregion,neighbour,Data,0);
     [errors_w] = compute_errors_w(Data,femregion,solutionsW,S,T);
 else
     [errors_w] = compute_errors_w(Data,femregion,solutionsW,Matrices.S,T);
