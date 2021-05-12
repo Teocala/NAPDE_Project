@@ -52,7 +52,7 @@ end
 
 
 
-if Dati.fem == 'P1'
+if Dati.fem(2) == '1'
     
     k = 1;
     for ie = 1 : femregion.ne
@@ -60,7 +60,7 @@ if Dati.fem == 'P1'
         hold on;
         k=k+3;
     end
-elseif Dati.fem == 'P2'
+elseif Dati.fem(2) == '2'
     k = 1;
     for ie = 1 : femregion.ne
         trisurf([1 2 3],femregion.dof([k,k+2,k+4],1),femregion.dof([k,k+2,k+4],2),full(u_h([k,k+2,k+4])))
@@ -68,13 +68,13 @@ elseif Dati.fem == 'P2'
         k=k+6;
     end   
     
-elseif Dati.fem == 'P3'
+elseif Dati.fem(2) == '3'
     k = 1;
     for ie = 1 : femregion.ne
         trisurf([1 2 3],femregion.dof([k,k+3,k+6],1),femregion.dof([k,k+3,k+6],2),full(u_h([k,k+3,k+6])))
         hold on;
         k=k+10;
-    end       
+    end 
 end
 
 title('u_h(x,y) - INTRACELLULAR POTENTIAL PHI_i'); xlabel('x-axis'); ylabel('y-axis');

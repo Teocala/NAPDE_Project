@@ -61,8 +61,11 @@ Data = dati(TestName);
 %==========================================================================
 % BUILD FINITE ELEMENT MATRICES and RIGHT-HAND SIDE
 %==========================================================================
-
-[Matrices] = matrix2D(femregion,neighbour,Data,0);
+if (Data.fem(1) == 'D')
+   [Matrices] = matrix2D_dubiner(femregion,neighbour,Data,0);
+else
+   [Matrices] = matrix2D(femregion,neighbour,Data,0);
+end
 
 %==========================================================================
 % SOLVE THE LINEAR SYSTEM
@@ -105,11 +108,15 @@ w0 = eval(Data.initialw);
 %figure(1)
 u0_i = eval(Data.initialcond_i);
 u0_e = eval(Data.initialcond_e);
+
+if (Data.fem(1)=='D')
+   u0_i = fem_to_dubiner (u0_i, femregion,Data);
+   u0_e = fem_to_dubiner (u0_e, femregion,Data);
+   w0 = fem_to_dubiner(w0,femregion,Data);
+end
+
 u0 = cat(1,u0_i, u0_e);
-
 ll=length(u0_i);
-
-
 
 if (Data.method == 'SI')
     
@@ -211,33 +218,46 @@ elseif (Data.method == 'GO')
     end
 end
 
+u0_i=u0(1:ll);
+u0_e=u0(ll+1:end);
 
-
-
-
-
-
-
+if (Data.fem(1)=='D')
+   u0_i = dubiner_to_fem (u0_i,femregion,Data);
+   u0_e = dubiner_to_fem (u0_e,femregion,Data);
+   w0 = dubiner_to_fem (w0,femregion,Data);
+end
 
 %==========================================================================
 % POST-PROCESSING OF THE SOLUTION OF POTENTIALS
 %=========================================================================
- uh = u0(1:ll)-u0(ll+1:end);
+ uh = u0_i-u0_e;
  [solutions]= postprocessing_Vm(femregion,Data,uh,T);
- [solutions_i]= postprocessing_Phi_i(femregion,Data,u0(1:ll),T);
- [solutions_e]= postprocessing_Phi_e(femregion,Data,u0(ll+1:end),T);
+ [solutions_i]= postprocessing_Phi_i(femregion,Data,u0_i,T);
+ [solutions_e]= postprocessing_Phi_e(femregion,Data,u0_e,T);
 
 %==========================================================================
 % ERROR ANALYSIS OF POTENTIALS
 %==========================================================================
- 
-[errors] = compute_errors_Vm(Data,femregion,solutions,Matrices.S,T) 
-[errors_i]= compute_errors_Phi_i(Data,femregion,solutions_i,Matrices.S,T)
-[errors_e]= compute_errors_Phi_e(Data,femregion,solutions_e,Matrices.S,T)
+if (Data.fem(1) == 'D')
+    S = matrix_S(append("P", femregion.fem(2)),femregion,neighbour,Data,0);
+    [errors] = compute_errors_Vm(Data,femregion,solutions,S,T); 
+    [errors_i]= compute_errors_Phi_i(Data,femregion,solutions_i,S,T);
+    [errors_e]= compute_errors_Phi_e(Data,femregion,solutions_e,S,T);
+else
+    [errors] = compute_errors_Vm(Data,femregion,solutions,Matrices.S,T);
+    [errors_i]= compute_errors_Phi_i(Data,femregion,solutions_i,Matrices.S,T);
+    [errors_e]= compute_errors_Phi_e(Data,femregion,solutions_e,Matrices.S,T);
+end
 
 %==========================================================================
 % SOLUTION AND ERROR ANALYSIS OF GATING VARIABLE
 %==========================================================================
  
 solutionsW = struct('u_h',w0,'u_ex',eval(Data.exact_w));
-[errors_w] = compute_errors_w(Data,femregion,solutionsW,Matrices.S,T);
+
+if (Data.fem(1) == 'D')
+    S = matrix_S(append("P", femregion.fem(2)),femregion,neighbour,Data,0);
+    [errors_w] = compute_errors_w(Data,femregion,solutionsW,S,T);
+else
+    [errors_w] = compute_errors_w(Data,femregion,solutionsW,Matrices.S,T);
+end
