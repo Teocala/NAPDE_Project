@@ -518,5 +518,31 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	\\&+(1-\eta)^{i}(2i+j+2) J_{i}^{0,0}(a) J_{j-1}^{2i+2,1}(b))
 	\end{split}
 	\end{equation}
+\paragraph{Problems}
+	One of the many advantages of the FEM basis is that the evaluation in a point of the mesh is a delta of Kronecker, so it's equal to 1 if that point is associated to the basis, 0 if not:
+	\begin{equation}
+	\hat{\psi}_i(x_j)=\delta_{ij}
+	\end{equation}
+	This property doesn't hold for the Dubiner basis, because its coefficients have another meaning and so they need a different evaluation.
+	For this reason we introduce two new functions that transform the coefficients between FEM basis and Dubiner basis, such that:
 
+	${\psi_{i}}$ is the FEM basis with coefficients $\hat{u_{i}}$ and ${\phi_{ij}}$ is the Dubiner basis with coefficients u$_i$
+	
+	To find the coefficients with respect to Dubiner basisi, first we evaluate both basis on the quadrature nodes, then
+	\begin{equation}
+	u_i=\hat{u_i} * (\sum_{j=1}^{nln} u_j \psi_j)=\int_{\hat{\Omega}} \hat{u_i} (\sum_{j=1}^{nln} u_j \psi_j) dx=\sum_{q=1}^{Nq} \hat{u_i} (\sum_{j=1}^{nln} u_j \psi_j(x_q)) w_q
+	\end{equation}
+	Instead, to compute the coefficients with respect FEM basis, we define the local degree of freedom of the reference square:
+	
+	-In 1D: a = [ -1; 1; -1] and b = [ -1; -1; 1]
+	
+	-In 2D: a = [-1; 0; 1; 1; -1; -1] and b = [-1; -1; -1; 0; 1; 0]
+	
+	-In 3D: a = [-1; -0.5; 0.5; 1; 1; 1; -1; -1; -1; 0] and b = [-1; -1; -1; -1; -0.5; 0.5; 1; 0.5; -0.5; -1/3]
+	
+	And the corresponding coordinates in the reference triangle using (37), using these we can calculate the Dubiner basis and so:
+	\begin{equation}
+	\hat{u_i}=\sum_{j=1}^{nln} u_i \phi_{ij}
+	\end{equation}
+	In conclusion, we use the first function to transform the initial condition with respect to Dubiner basis and the second one to convert the final solution to FEM to plot the solution and to compute the errors. 
 \end{document}
