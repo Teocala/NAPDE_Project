@@ -16,11 +16,11 @@
 \usepackage{physics}
 \usepackage{bm}
   
-\theoremstyle{definition}  
-\newtheorem*{defn}{Definizione}  
-\newtheorem*{prop}{Proposizione} 
-\newtheorem*{oss}{Osservazione}
-\newtheorem {prob}{Problema}
+%\theoremstyle{definition}  
+\newtheorem*{defn}{Definition}  
+\newtheorem*{prop}{Proposition} 
+\newtheorem*{oss}{Observation}
+\newtheorem {prob}{Problem}
 
 
 \SetLabelAlign{Center}{\hfil#1\hfil}
@@ -34,11 +34,11 @@
 \author{Matteo Calafà e Federica Botta}
 \maketitle
 \vspace{5mm}
-\section{Monodominio}
+\section{Monodomain}
 \vspace{5mm}
-\subsection{Modelli analitici}
+\subsection{Analytical models}
 \vspace{5mm}
-\paragraph{Modello del monodominio}
+\paragraph{Monodomain model}
 	\begin{equation}
 	\begin{cases}
 	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma \nabla V_m) + \chi_m I_{ion}(V_m,w) = I^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
@@ -49,16 +49,16 @@
 	\end{cases}
 	\end{equation}
 	\vspace{4mm}\newline
-	dove le incognite sono:
+	where the unknowns are:
 	\begin{itemize}
-		\item $V_m$ = $\Phi_i - \Phi_e$ (differenza tra potenziale interno e esterno)
+		\item $V_m$ = $\Phi_i - \Phi_e$ (difference between internal and external potential)
 		\item $w$  ("\emph{gating variable}")
 	\end{itemize}
-    e sono date le costanti : $\chi_m, C_m, \Sigma$
+    and these constants are given : $\chi_m, C_m, \Sigma$
 
 
 
-\paragraph{Modello di FitzHugh-Nagumo}
+\paragraph{FitzHugh-Nagumo model}
 \begin{equation}
 \begin{gathered}
 I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
@@ -69,7 +69,7 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 
 \vspace{5mm}
 
-\subsection{Modello numerico semi-discretizzato}
+\subsection{Semi-discretized numerical method}
 
 	\vspace{5mm}
 	 \begin{equation}
@@ -93,7 +93,7 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 	\end{equation}
 	
 	\vspace{3mm}
-\paragraph{Problema semi-discretizzato} 
+\paragraph{Semi-discretized problem} 
 
 \begin{equation*}
 \begin{gathered}
@@ -110,9 +110,9 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 	\end{gathered}
 \end{equation}
 \vspace{5mm}
-\subsection{Modello numerico totalmente discretizzato ("$\bm{\theta-method}$")}
+\subsection{Totally-discretized numerical method ("$\bm{\theta-method}$")}
 \vspace{5mm}
-\paragraph{Forma implicita $(\theta \in [0,1])$}
+\paragraph{Initial form $(\theta \in [0,1])$}
 \begin{enumerate}
 	\item
 	\begin{equation}
@@ -127,7 +127,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 	\end{equation}
 \end{enumerate}
 \vspace{3mm}
-\paragraph{Forma esplicita $(\theta \in [0,1])$}
+\paragraph{Expanded form $(\theta \in [0,1])$}
 \begin{enumerate}
 	\item
 	\begin{equation}
@@ -151,11 +151,11 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 
 \newpage
 
-\section{Bidominio}
+\section{Bidomain}
 \vspace{5mm}
-\subsection{Modelli analitici}
+\subsection{Analytical models}
 \vspace{5mm}
-\paragraph{Modello del bidominio}
+\paragraph{Bidomain model}
 \begin{equation}
 \begin{cases}
 \chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
@@ -170,14 +170,14 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 \end{cases}
 \end{equation}
 \vspace{4mm}\newline
-dove le incognite sono:
+where the unknowns are:
 \begin{itemize}
 	\item $\phi_i, \phi_e$  $\quad (V_m = \phi_i-\phi_e$)
 	\item $w$  ("\emph{gating variable}")
 \end{itemize}
-e sono date le costanti : $\chi_m, C_m, \Sigma_i, \Sigma_e$
+and these constants are given: $\chi_m, C_m, \Sigma_i, \Sigma_e$
 
-\paragraph{Modello di FitzHugh-Nagumo}
+\paragraph{FitzHugh-Nagumo model}
 \begin{equation}
 \begin{gathered}
 I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
@@ -188,7 +188,7 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 
 \vspace{5mm}
 
-\subsection{Modello numerico semi-discretizzato}
+\subsection{Semi-discretized numerical methods}
 
 \vspace{5mm}
 \begin{equation}
@@ -221,7 +221,7 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 
 
 	\vspace{3mm}
-\paragraph{Problema semi-discretizzato} 
+\paragraph{Semi-discretized problem} 
 
 \begin{equation*}
 \begin{gathered}
@@ -253,10 +253,10 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 \end{equation}
 \vspace{5mm}
 
-\subsection{Modelli numerici totalmente discretizzati}
+\subsection{Totally-discretized numerical methods}
 \vspace{4mm}
-\subsubsection{Metodo semi-implicito}
-\paragraph{Forma implicita}
+\subsubsection{Semi-implicit method}
+\paragraph{Initial form}
 \begin{equation}
 \begin{gathered}
 \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
@@ -275,7 +275,7 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 \frac{w^{k+1}-w^k}{\Delta t} = \epsilon (V_m^k - \gamma w^{k+1})
 \end{equation}
 
-\paragraph{Forma esplicita}
+\paragraph{Expanded form}
 \begin{equation}
 \begin{gathered}
 \left( \frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M & -M \\ -M & M \end{bmatrix} + \begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix} + 
@@ -298,8 +298,8 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \end{equation}
 
 \newpage
-\subsubsection{Operator Splitting quasi-implicito}
-\paragraph{Forma implicita}
+\subsubsection{Quasi-implicit Operator Splitting}
+\paragraph{Initial form}
 \begin{enumerate}[label = \Roman*, align = Center]
 	\item 
 	\begin{equation}
@@ -320,7 +320,7 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 	
 \end{enumerate}
 \vspace{5mm}
-\paragraph{Forma esplicita}
+\paragraph{Expanded form}
 \begin{equation}
 \vspace{5mm}
 \begin{cases}
@@ -383,8 +383,8 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1}
 
 
 \vspace{5mm}
-\subsubsection{Operator Splitting di Godunov}
-\paragraph{Forma implicita}
+\subsubsection{Godunov Operator Splitting}
+\paragraph{Initial form}
 \begin{enumerate}[label = \Roman*, align = Center]
 \item 
    \begin{equation}
@@ -403,7 +403,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1}
    \end{equation}
 \end{enumerate}
 \vspace{3mm}
-\paragraph{Forma esplicita}
+\paragraph{Expanded form}
 
 \begin{equation}
 \begin{gathered}
@@ -439,9 +439,17 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 \end{cases}
 \end{equation}
+
+
+
+
+
 \newpage
-\section{Basis}
-\paragraph{Transformation}
+\section{Dubiner basis} 
+\vspace{5mm}
+\subsection{Basis functions}
+\vspace{4mm}
+\subsubsection{Mapping transformation}
 	On the reference triangle
 	\begin{equation}
 	\hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \}
@@ -455,62 +463,80 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	a:=\frac{2\xi-1+\eta}{1-\eta}=\frac{2\xi}{1-\eta}-1,	b:=2\eta-1
 	\end{equation}
 
-\paragraph{Dubiner Basis}
+\vspace{4mm}
+
+\subsubsection{Jacobian polynomials}
+
+Evaluation of the polynomial in $z\in \mathbb{R}^n$:
+\begin{itemize}[label=\textendash]
+\item $n=0$
+\begin{equation}
+J_0^{\alpha,\beta}(z)=\overbrace{\begin{bmatrix} 1 & 1 &\dots &1 \end{bmatrix}}^{\text{n times}}
+\end{equation}
+\item $n=1$
+\begin{equation}
+J_1^{\alpha,\beta}(z)=\frac{1}{2}(\alpha-\beta+(\alpha+\beta+2)\cdot z);
+\end{equation}
+\item $n\ge2$
+\newline
+\begin{equation}
+\begin{gathered}
+\begin{aligned}
+J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-\beta^{2})}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}+ \\ &\frac{(2k+\alpha+\beta-2)(2k+\alpha+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-1}^{\alpha,\beta}(z) +
+\\-&\frac{2(k+\alpha-1)(k+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-2}^{\alpha,\beta}(z) \Big]
+\end{aligned}
+\end{gathered}
+\end{equation}
+\end{itemize}
+
+\begin{prop}
+	$J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
+	\begin{equation}  \label{ref2}
+	\int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
+	\end{equation}
+\end{prop}
+
+\vspace{4mm}
+
+\subsubsection{Dubiner Basis}
+\vspace{4mm}
 	\begin{equation}
 	\begin{split}
 	\phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
 	\\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
 	\end{split}
 	\end{equation}
-	for i,j=1,....,p and i+j $\le$ p, where
+	for $i,j=1,\dots,p$ and $i+j \le p$, where
 	\begin{equation}
 	c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
 	\end{equation}
-	and J$_i$$^{\alpha,\beta}$(.) is the i-th Jacobi polynomial
-\paragraph{Jacobian Basis}
-	J$_i$$^{\alpha,\beta}$(.) is orthogonal under the Jacobi weight w(x)=(1-x)$^\alpha$(1+x)$^\beta$ i.e. 
-	\begin{equation} 
-	\int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
-	\end{equation}
-	Evaluate the basis for a vector z of dimension n:
-	\begin{equation}
-	J_0^{\alpha,\beta}(z)=ones(1,n)
-	\end{equation}
-	\begin{equation}
-	J_1^{\alpha,\beta}(z)=\frac{1}{2}(\alpha-\beta+(\alpha+\beta+2)*z);
-	\end{equation}
-	for n $\ge$ 2
-	\newline
-	\begin{equation}
-	\begin{split}
-	J_n^{\alpha,\beta}(z)=&\sum_{k=2}^{n} (\frac{(2k+\alpha+\beta-1)(\alpha^{2}-\beta^{2})}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}+\frac{(2k+\alpha+\beta-2)(2k+\alpha+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}) J_{k-1}^{\alpha,\beta}(z)
-	\\&-\frac{2(k+\alpha-1)(k+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-2}^{\alpha,\beta}(z)
-	\end{split}
-	\end{equation}
+	and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial
 
-\paragraph{Gradient of Dubiner Basis}
-	for i=0 and j=0
+\vspace{4mm}
+\subsubsection{Gradient of Dubiner Basis}
+    \begin{itemize}[label=\textendash]
+	\item $i=0,j=0$
 	\begin{equation}
 	\begin{split}
 	&\phi_{00}^{\xi}(\xi,\eta)=0
 	\\&\phi_{00}^{\eta}(\xi,\eta)=0
 	\end{split}
 	\end{equation}
-	for i=0 and j$\neq$0
+	\item $i=0,j\neq0$
 	\begin{equation}
 	\begin{split}
 	&\phi_{0j}^{\xi}=0
 	\\&\phi_{0j}^{\eta}=c_{0j} (j+2) J_{j-1}^{2,1}(b)
 	\end{split}
 	\end{equation}
-	for i$\neq$0 and j=0
+	\item $i\neq0,j=0$
 	\begin{equation}
 	\begin{split}
 	&\phi_{i0}^{\xi}(\xi,\eta)=c_{i0} 2^{i} (1-\eta)^{i-1} (i+1) J_{i-1}^{1,1}(a)
 	\\&\phi_{i0}^{\eta}(\xi,\eta)=c_{i0} 2^{i} (-i(1-\eta)^{i-1} J_{i}^{0,0}(a)+\xi(1-\eta)^{i-2}(i+1) J_{i-1}^{1,1}(a))
 	\end{split}
 	\end{equation}
-	for i$\neq$0 and j$\neq$0
+	\item $i\neq0,j\neq0$
 	\begin{equation}
 	\begin{split}
 	&\phi_{ij}^{\xi}(\xi,\eta)=c_{ij} 2^{i} (1-\eta)^{i-1} (i+1) J_{i-1}^{1,1}(a) J_{j}^{2i+1,0}(b)
@@ -518,31 +544,59 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	\\&+(1-\eta)^{i}(2i+j+2) J_{i}^{0,0}(a) J_{j-1}^{2i+2,1}(b))
 	\end{split}
 	\end{equation}
-\paragraph{Problems}
-	One of the many advantages of the FEM basis is that the evaluation in a point of the mesh is a delta of Kronecker, so it's equal to 1 if that point is associated to the basis, 0 if not:
-	\begin{equation}
-	\hat{\psi}_i(x_j)=\delta_{ij}
+	\end{itemize}
+\vspace{5mm}
+\subsection{Transformation from FEM to Dubiner basis}
+	One of the many advantages of the FEM basis is that the evaluation of a basis function in a point of the mesh is equal to 1 only if that point is the one associated to the basis, 0 otherwise:
+	\begin{equation} \label{ref1}
+	\psi_i(x_j)=\delta_{ij}
 	\end{equation}
-	This property doesn't hold for the Dubiner basis, because its coefficients have another meaning and so they need a different evaluation.
-	For this reason we introduce two new functions that transform the coefficients between FEM basis and Dubiner basis, such that:
+	This property cannot be satisfied by Dubiner basis (although other good properties hold in this case, for instance regularity and especially \emph{orthogonality}). Indeed these basis have not localized support and they are neither normalized on the mesh edges. This means that the coefficients of the solution of the Dubiner system are \emph{not} the evaluation over the mesh points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
+	For this reason we introduced two new functions that best transform the coefficients of the solution w.r.t. FEM basis to the coefficients w.r.t. Dubiner basis and viceversa.\vspace{5mm}
+	
+	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
+	
+	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the property \ref{ref1}, i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
+	\begin{equation} \label{ref3}
+	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i)
+	\end{equation}
+	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm}
+	
+	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (property obtained thanks to \ref{ref2}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
+	\begin{equation}\label{ref4}
+	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i
+	\end{equation}
+	
+	\vspace{5mm}
+	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.
+	
+	\vspace{5mm}
+	\noindent For the sake of both simplicity and logic, we have decided to implement these transformations only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. Indeed, from one side, the degree of FEM is here less "important" since it contributes only to the number of points to which evaluate the computed solution. Then, increasing $n$ for P does not substantially improve the quality of the solution. On the other side, choosing the same degree for P and D means having the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are replaced with $nln$ in the code.	
+	
+	
+	\vspace{5mm}
+	\noindent Finally, these are the coordinates of the evaluation points over the reference square:
+	\begin{itemize}
+	\item n=1
+	\begin{equation*}
+	\begin{split}
+	a &= \begin{bmatrix} -1 & 1& -1\end{bmatrix}\\ b &= \begin{bmatrix} -1 &-1& 1\end{bmatrix}
+	\end{split}
+	\end{equation*} 
+	
+	\item n=2
+	\begin{equation*}
+	\begin{split}
+	a &= \begin{bmatrix} 1 &0& 1 &1 &-1& -1\end{bmatrix} \\ b &= \begin{bmatrix}-1& -1& -1& 0& 1& 0\end{bmatrix}
+	\end{split}
+	\end{equation*} 
+	
+	\item n=3
+	\begin{equation*}
+	\begin{split}
+	a &= \begin{bmatrix}-1& -0.5& 0.5& 1& 1& 1& -1& -1& -1& 0\end{bmatrix} \\ b&=\begin{bmatrix}-1& -1& -1& -1& -0.5& 0.5& 1& 0.5& -0.5& -1/3\end{bmatrix}
+	\end{split}
+	\end{equation*}
+	\end{itemize}
 
-	${\psi_{i}}$ is the FEM basis with coefficients $\hat{u_{i}}$ and ${\phi_{ij}}$ is the Dubiner basis with coefficients u$_i$
-	
-	To find the coefficients with respect to Dubiner basisi, first we evaluate both basis on the quadrature nodes, then
-	\begin{equation}
-	u_i=\hat{u_i} * (\sum_{j=1}^{nln} u_j \psi_j)=\int_{\hat{\Omega}} \hat{u_i} (\sum_{j=1}^{nln} u_j \psi_j) dx=\sum_{q=1}^{Nq} \hat{u_i} (\sum_{j=1}^{nln} u_j \psi_j(x_q)) w_q
-	\end{equation}
-	Instead, to compute the coefficients with respect FEM basis, we define the local degree of freedom of the reference square:
-	
-	-In 1D: a = [ -1; 1; -1] and b = [ -1; -1; 1]
-	
-	-In 2D: a = [-1; 0; 1; 1; -1; -1] and b = [-1; -1; -1; 0; 1; 0]
-	
-	-In 3D: a = [-1; -0.5; 0.5; 1; 1; 1; -1; -1; -1; 0] and b = [-1; -1; -1; -1; -0.5; 0.5; 1; 0.5; -0.5; -1/3]
-	
-	And the corresponding coordinates in the reference triangle using (37), using these we can calculate the Dubiner basis and so:
-	\begin{equation}
-	\hat{u_i}=\sum_{j=1}^{nln} u_i \phi_{ij}
-	\end{equation}
-	In conclusion, we use the first function to transform the initial condition with respect to Dubiner basis and the second one to convert the final solution to FEM to plot the solution and to compute the errors. 
 \end{document}
