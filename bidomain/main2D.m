@@ -124,6 +124,9 @@ if (Data.method == 'SI')
     ZERO=sparse(length(M), length(M));
     MASS_W = [M ZERO; ZERO -M];
     STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A]; 
+    temp=zeros(length(M), length(M));
+    L=zeros(length(M), length(M));
+    U=zeros(length(M),length(M));
     
     for t=dt:dt:T
     
@@ -138,13 +141,22 @@ if (Data.method == 'SI')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         NONLIN = [C -C; -C C];
    
-   
         r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
-    
-        u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
+        
+        temp=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
+        
+%        [L,U] = ilu(temp);
+%        L=ichol(temp);
+%        u1 = bicgstab(temp,r,1e-5,200,L');
+%        u1 = bicgstab(temp,r,1e-5,200,L,U);
+%        u1 = cgs(temp,r,1e-5,200,L);
+%        u1 = cgs(temp,r,1e-5,200,L,U);
+%        u1 = bicg(temp,r,1e-5,200,L');
+%        u1 = bicg(temp,r,1e-5,200,L,U);
+%        u1 = qmr(temp,r,1e-5,200,L');
+%        u1 = qmr(temp,r,1e-5,200,L,U);
+%        u1 = ( ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN)) \ r;
    
-
-
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
              DG_Par_Snapshot(femregion, Data, u1,t);
         end
