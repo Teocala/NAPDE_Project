@@ -105,7 +105,22 @@ for t=dt:dt:T
    
     r=dt*(theta*f1+(1-theta)*f0)+(ChiM*Cm*M-dt*(1-theta)*(A+C))*u+dt*ChiM*M*w;
     
-    u=(ChiM*Cm*M+dt*theta*(A+C))\r;
+    temp = ChiM*Cm*M+dt*theta*(A+C);
+    
+    
+%   FOR PRECONDITIONING        
+%   [L,U] = ilu(temp);
+%   L = ichol(temp);
+%   u = bicgstab(temp,r,1e-5,200,L');
+%   u = bicgstab(temp,r,1e-5,200,L,U);
+%   u = cgs(temp,r,1e-5,200,L);
+%   u = cgs(temp,r,1e-5,200,L,U);
+%   u = bicg(temp,r,1e-5,200,L');
+%   u = bicg(temp,r,1e-5,200,L,U);
+%   u = qmr(temp,r,1e-5,200,L');
+%   u = qmr(temp,r,1e-5,200,L,U);
+    u = temp\r;
+    
     if (Data.snapshot=='Y' && ( (mod(round(t/dt),Data.leap)==0) || (t/dt)<=5))
         DG_Par_Snapshot(femregion, Data, u,t);
     end
