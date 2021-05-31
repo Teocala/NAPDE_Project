@@ -104,7 +104,6 @@ y=femregion.dof(:,2);
 
 w0 = eval(Data.initialw);
 
-
 %figure(1)
 u0_i = eval(Data.initialcond_i);
 u0_e = eval(Data.initialcond_e);
@@ -123,10 +122,7 @@ if (Data.method == 'SI')
     MASS = [M -M; -M M];
     ZERO=sparse(length(M), length(M));
     MASS_W = [M ZERO; ZERO -M];
-    STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A]; 
-    temp=zeros(length(M), length(M));
-    L=zeros(length(M), length(M));
-    U=zeros(length(M),length(M));
+    STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A];
     
     for t=dt:dt:T
     
