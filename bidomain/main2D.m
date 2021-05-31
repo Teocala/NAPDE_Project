@@ -103,7 +103,6 @@ y=femregion.dof(:,2);
 
 
 w0 = eval(Data.initialw);
-i=0;
 
 %figure(1)
 u0_i = eval(Data.initialcond_i);
