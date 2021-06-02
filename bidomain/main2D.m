@@ -139,20 +139,20 @@ if (Data.method == 'SI')
    
         r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
         
-        temp=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
+        B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
 
 %       FOR PRECONDITIONING        
-%       [L,U] = ilu(temp);
-%       L=ichol(temp);
-%       u1 = bicgstab(temp,r,1e-5,200,L');
-%       u1 = bicgstab(temp,r,1e-5,200,L,U);
-%       u1 = cgs(temp,r,1e-5,200,L);
-%       u1 = cgs(temp,r,1e-5,200,L,U);
-%       u1 = bicg(temp,r,1e-5,200,L');
-%       u1 = bicg(temp,r,1e-5,200,L,U);
-%       u1 = qmr(temp,r,1e-5,200,L');
-%       u1 = qmr(temp,r,1e-5,200,L,U);
-        u1 = temp \ r;
+%       [L,U] = ilu(B);
+%       L=ichol(B);
+%       u1 = bicgstab(B,r,1e-5,200,L');
+%       u1 = bicgstab(B,r,1e-5,200,L,U);
+%       u1 = cgs(B,r,1e-5,200,L);
+%       u1 = cgs(B,r,1e-5,200,L,U);
+%       u1 = bicg(B,r,1e-5,200,L');
+%       u1 = bicg(B,r,1e-5,200,L,U);
+%       u1 = qmr(B,r,1e-5,200,L');
+%       u1 = qmr(B,r,1e-5,200,L,U);
+        u1 = B \ r;
    
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
              DG_Par_Snapshot(femregion, Data, u1,t);
