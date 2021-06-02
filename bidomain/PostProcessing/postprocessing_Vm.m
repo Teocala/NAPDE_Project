@@ -21,7 +21,7 @@ y=femregion.dof(:,2);
 %MODIFICA
 
 
-u_ex=eval(Dati.exact_sol_e);
+u_ex=eval(Dati.exact_sol_Vm);
 
 %sigma_ex(:,1)=eval(Dati.grad_exact_i(1) - Dati.grad_exact_e(1));
 %sigma_ex(:,2)=eval(Dati.grad_exact_i(2) - Dati.grad_exact_e(2));
