@@ -155,7 +155,8 @@ if (Data.method == 'SI')
         u1 = B \ r;
    
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-             DG_Par_Snapshot(femregion, Data, u1,t);
+             uh = u1(1:ll) - u1(ll+1:end);
+             DG_Par_Snapshot(femregion, Data, uh,t);
         end
         
         f0 = f1;
