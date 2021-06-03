@@ -598,5 +598,53 @@ J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-
 	\end{split}
 	\end{equation*}
 	\end{itemize}
+	
+\section{Coercivity}
+To have the well posedness of the problem, the bilinear form has to be coercive, namely:
+\begin{equation}
+a(u,u) \ge \alpha ||u||^2
+\end{equation}
+with $\alpha>0$
 
+In this case, the bilinear form depends on the mass matrix M, the stiffness matrix A and the non linear matrix C. Surely we can get that 
+\begin{equation}
+a_M(V_m,V_m)\ge \alpha_M ||V_m||^2
+\end{equation}
+\begin{equation}
+a_A(V_m,V_m)\ge \alpha_A ||V_m||^2
+\end{equation}
+with $\alpha_M>0$ and $\alpha_A>0$
+
+We have to check that we can do the same for the non linear matrix
+\begin{equation}
+C(V_m,V_m) = - \sum_{K \in \tau_h} \int_K \chi_m k(V_m-1)(V_m-a)V_m^2
+\end{equation}
+Considering the time discretization, we will treat the non linear term in explicit way, so for the instant t$^n$ $V_m^{n-1}$ is given.
+\begin{equation}
+\begin{split}
+C(V_m^n,V_m^n) &= - \sum_{K \in \tau_h} \int_K \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)(V_m^{n})^2 = \\
+&= - \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)\sum_{K \in \tau_h} \int_K (V_m^{n})^2  \ge \\
+&\ge - \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a) ||V_m^{n}||^2
+\end{split}
+\end{equation}
+We need to have:
+\begin{equation}
+- \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)>0
+\end{equation}
+Having the parameters: $0<\chi_m\le1$, $0<k\le1$ and $0<a\le1$, we have to check that:
+\begin{equation}
+(V_m^{n-1}-1)(V_m^{n-1}-a) < 0
+\end{equation}
+Finally, we can say that if $a < V_m^{n-1}< 1$ there is coercivity, almost always a is a very small number, hence we can generalize saying that we could have problem when $V_m$ reaches negative values.
+
+For the first simulations, indeed, we used the exact solution:
+\begin{equation}
+V_m(x,t)=sin(2 \pi x) sin(2 \pi y) e^{-5t}
+\end{equation}
+which its image is in [-1,1], therefore in some cases we obtained some instabilities. 
+
+Translating the exact solution, so that the image is in [0,1], we find better results:
+\begin{equation}
+V_m(x,t)=\frac{1}{2} sin(2 \pi x) sin(2 \pi y) e^{-5 t}+\frac{1}{2}
+\end{equation}
 \end{document}
