@@ -4,7 +4,7 @@
 \usepackage[a4paper,top=3cm,bottom=4cm,left=3.8cm,right=3.8cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[italian]{babel}
+\usepackage[english]{babel}
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{comment}
@@ -30,10 +30,14 @@
 	{\end{aligned}\right\rbrace}
 
 \begin{document}
-\title{Formulario per il progetto NAPDE}
-\author{Matteo Calafà e Federica Botta}
+\title{NAPDE project outline}
+\author{Matteo Calafà and Federica Botta}
 \maketitle
-\vspace{5mm}
+\vspace{20mm}
+\tableofcontents
+\newpage
+
+
 \section{Monodomain}
 \vspace{5mm}
 \subsection{Analytical models}
@@ -43,9 +47,9 @@
 	\begin{cases}
 	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma \nabla V_m) + \chi_m I_{ion}(V_m,w) = I^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
 	\\
-	\pdv{w}{t} = g(V\ped{m}, w)  & \text{in } \Omega_{mus} \cross (0,T]
+	\pdv{w}{t} = g(V_m, w)  & \text{in } \Omega_{mus} \cross (0,T]
 	\\
-	\Sigma\nabla V\ped{m} \cdot n = b   & \text{on } \partial \Omega_{mus} \cross (0,T]
+	\Sigma\nabla V_m \cdot n = b   & \text{on } \partial \Omega_{mus} \cross (0,T]
 	\end{cases}
 	\end{equation}
 	\vspace{4mm}\newline
@@ -162,7 +166,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 \\
 -\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
 \\
-\pdv{w}{t} = g(V\ped{m}, w)  & \text{in } \Omega_{mus} \cross (0,T]
+\pdv{w}{t} = g(V_m, w)  & \text{in } \Omega_{mus} \cross (0,T]
 \\
 \Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
 \\
@@ -232,7 +236,7 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 \end{gathered}
 \end{equation*}
 \vspace{3mm}
-\begin{equation}
+\begin{equation}\label{ref5}
 \Rightarrow \quad
 \boxed{
 \begin{gathered}
@@ -599,51 +603,38 @@ J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-
 	\end{equation*}
 	\end{itemize}
 	
-\section{Coercivity}
-To have the well posedness of the problem, the bilinear form has to be coercive, namely:
-\begin{equation}
-a(u,u) \ge \alpha ||u||^2
-\end{equation}
-with $\alpha>0$
+\section{Few considerations about well-posedness}
+All the previous Bidomain schemes treat the non-linear term in a semi-implicit way (see \ref{ref5}). It means that at time $t^{n+1}$ we can solve a linear problem if data at time $t^n$ are provided as parameters. From another perspective, at each time step $t^{n+1}$, we can fix the data of the previous time-step and solve a linear variational problem. In this case, the bilinear form at the left-hand side is the sum of some simpler bilinear forms: the standard mass $L^2$ inner product for the time derivative, the standard stiffness bilinear form and a pseudo-mass bilinear form for the non-linear term.
 
-In this case, the bilinear form depends on the mass matrix M, the stiffness matrix A and the non linear matrix C. Surely we can get that 
 \begin{equation}
-a_M(V_m,V_m)\ge \alpha_M ||V_m||^2
+a_c(u,v) = -\int_\Omega \chi_mk(V_m^{n}-a)(V_m^{n}-1)uv \, dx
 \end{equation}
-\begin{equation}
-a_A(V_m,V_m)\ge \alpha_A ||V_m||^2
-\end{equation}
-with $\alpha_M>0$ and $\alpha_A>0$
 
-We have to check that we can do the same for the non linear matrix
-\begin{equation}
-C(V_m,V_m) = - \sum_{K \in \tau_h} \int_K \chi_m k(V_m-1)(V_m-a)V_m^2
-\end{equation}
-Considering the time discretization, we will treat the non linear term in explicit way, so for the instant t$^n$ $V_m^{n-1}$ is given.
-\begin{equation}
-\begin{split}
-C(V_m^n,V_m^n) &= - \sum_{K \in \tau_h} \int_K \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)(V_m^{n})^2 = \\
-&= - \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)\sum_{K \in \tau_h} \int_K (V_m^{n})^2  \ge \\
-&\ge - \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a) ||V_m^{n}||^2
-\end{split}
-\end{equation}
-We need to have:
-\begin{equation}
-- \chi_m k(V_m^{n-1}-1)(V_m^{n-1}-a)>0
-\end{equation}
-Having the parameters: $0<\chi_m\le1$, $0<k\le1$ and $0<a\le1$, we have to check that:
-\begin{equation}
-(V_m^{n-1}-1)(V_m^{n-1}-a) < 0
-\end{equation}
-Finally, we can say that if $a < V_m^{n-1}< 1$ there is coercivity, almost always a is a very small number, hence we can generalize saying that we could have problem when $V_m$ reaches negative values.
+\noindent We want to check that this bilinear form is coercive w.r.t $L^2(\Omega)$ (without considering the others for now). That means to check that:
 
-For the first simulations, indeed, we used the exact solution:
+\begin{equation}
+\exists \, \alpha>0: a_c(u,u) \ge \alpha ||u||^2 \quad \forall u \in L^2(\Omega)
+\end{equation}
+
+
+Then:
+\begin{equation}
+a_c(u,u) = \int_\Omega -\chi_mk(V_m^{n}-a)(V_m^{n}-1)u^2 \, dx \ge \inf_{x \in \Omega} [-\chi_mk(V_m^{n}-a)(V_m^{n}-1)] ||u||_{L^2}^2
+\end{equation}
+\newline
+Since all parameters are positive and $a\ll1$, $\alpha =\inf_{x \in \Omega} [-\chi_mk(V_m^{n}-a)(V_m^{n}-1)]$ is positive only if:\newline
+\begin{equation}
+(V_m^{n}-1)(V_m^{n}-a) < 0 \Leftrightarrow a<V_m^n < 1
+\end{equation}
+\newline
+Finally, we can say that if the exact solution is between $a$ and 1, $a_c$ is coercive.\vspace{4mm}\newline
+Obviously, this is only a sufficient condition for the total coercivity (remember that the other bilinear forms can contribute for the positiveness of $a(u,u)$). However, if this property fails, there may be bad consequences for the stability, especially in presence of physiological parameters.
+For the first simulations, indeed, we considered the exact solution:
 \begin{equation}
 V_m(x,t)=sin(2 \pi x) sin(2 \pi y) e^{-5t}
 \end{equation}
-which its image is in [-1,1], therefore in some cases we obtained some instabilities. 
-
-Translating the exact solution, so that the image is in [0,1], we find better results:
+whose image is in [-1,1]. Choosing physiological parameters, we obtained some instabilities. 
+Translating the exact solution, in order to replace the image into [0,1] (remember that $a$ is a small parameter), we found instead convergence:
 \begin{equation}
 V_m(x,t)=\frac{1}{2} sin(2 \pi x) sin(2 \pi y) e^{-5 t}+\frac{1}{2}
 \end{equation}
