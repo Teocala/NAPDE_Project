@@ -21,6 +21,7 @@ if (Data.fem(1)=='P')
 elseif (Data.fem(1)=='D')
     x0=femregion.dof(3,1); % bottom-left corner of the first element
     y0=femregion.dof(3,2);
+    h=femregion.dof(1,1)-femregion.dof(3,1); % length of the element
 
     exact_coeff = 0;
     index = 1;
@@ -34,8 +35,8 @@ elseif (Data.fem(1)=='D')
     % basis function. To the get the right coefficient, we compute scalar product
     % between the exact solution and the first basis function
     for k = 1:length(w_2D) 
-       x = x0 + node_2D(k,1);  %physical coordinates of the integration point
-       y = y0 + node_2D(k,2);
+       x = x0 + h*node_2D(k,1);  %physical coordinates of the integration point
+       y = y0 + h*node_2D(k,2);
        exact_coeff = exact_coeff + eval(Data.exact_sol_i)*phi_dub(1,k,index).*w_2D(k);
     end
 
