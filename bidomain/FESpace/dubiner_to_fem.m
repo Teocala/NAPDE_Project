@@ -6,6 +6,8 @@ function [u0] = dubiner_to_fem (uh, femregion, Data)
 %basis to components with respect to FEM basis
 %Input: uh (components wrt Dubiner basis), femregion and Data
 %Output: u0 (components wrt FEM basis)
+%
+% Federica Botta, Matteo Calafà
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
          
