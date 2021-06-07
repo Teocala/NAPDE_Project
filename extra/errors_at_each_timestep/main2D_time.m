@@ -1,4 +1,4 @@
-function [errors,errors_i,errors_e,errors_w,solutions,solutions_i,solutions_e,femregion,Data]= main2D(TestName,nRef)
+function [errors]= main2D_time(TestName,nRef)
 %==========================================================================
 % Solution of the Bidomain problem with DG finite elements
 % (non homogeneous Neumann boundary conditions)
@@ -124,6 +124,8 @@ if (Data.method == 'SI')
     MASS_W = [M ZERO; ZERO -M];
     STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A];
     
+    i=0;
+    
     for t=dt:dt:T
     
         Vm0 = u0(1:ll) - u0(ll+1:end);
@@ -137,13 +139,10 @@ if (Data.method == 'SI')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         NONLIN = [C -C; -C C];
    
-        %r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
-        r = f1 + ChiM*Cm/dt * MASS * u0 - ChiM * MASS_W *w1;
+        r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
-        
-       [B, r] = assign_phi_i (B,r,t,Data,femregion);
-        
+
 %       FOR PRECONDITIONING        
 %       [L,U] = ilu(B);
 %       L=ichol(B);
@@ -156,6 +155,10 @@ if (Data.method == 'SI')
 %       u1 = qmr(B,r,1e-5,200,L');
 %       u1 = qmr(B,r,1e-5,200,L,U);
         u1 = B \ r;
+        
+        i=i+1;
+        u_h = u1(1:ll)-u1(ll+1:end);
+        errors(i) = errors_iterations(femregion,Data,u_h,t); 
    
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
              uh = u1(1:ll) - u1(ll+1:end);
@@ -177,8 +180,8 @@ elseif (Data.method == 'OS')
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
          Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
-         R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
-         %R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
+         R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
+        
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
@@ -186,17 +189,14 @@ elseif (Data.method == 'OS')
     
         B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
         r = [R;R] + f1;
-        
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
-        
+    
         u1 = B \ r; 
         Vm1 = u1(1:ll)-u1(ll+1:end);
 
         w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-            uh = u1(1:ll) - u1(ll+1:end);
-            DG_Par_Snapshot(femregion, Data, uh,t);
+            DG_Par_Snapshot(femregion, Data, u3,t);
         end
         f0 = f1;
         u0 = u1;
@@ -223,61 +223,13 @@ elseif (Data.method == 'GO')
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
         B = MASS + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
-        r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
-        %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
-        
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
-        
+        r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         u1 = B \ r; 
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
-            uh = u1(1:ll) - u1(ll+1:end);
-            DG_Par_Snapshot(femregion, Data, uh,t);
+            DG_Par_Snapshot(femregion, Data, u1,t);
         end
         u0 = u1;
         w0 = w1;
     end
-end
-
-u0_i=u0(1:ll);
-u0_e=u0(ll+1:end);
-
-if (Data.fem(1)=='D')
-   u0_i = dubiner_to_fem (u0_i,femregion,Data);
-   u0_e = dubiner_to_fem (u0_e,femregion,Data);
-   w0 = dubiner_to_fem (w0,femregion,Data);
-end
-
-%==========================================================================
-% POST-PROCESSING OF THE SOLUTION OF POTENTIALS
-%=========================================================================
- uh = u0_i-u0_e;
- [solutions]= postprocessing_Vm(femregion,Data,uh,T);
- [solutions_i]= postprocessing_Phi_i(femregion,Data,u0_i,T);
- [solutions_e]= postprocessing_Phi_e(femregion,Data,u0_e,T);
-
-%==========================================================================
-% ERROR ANALYSIS OF POTENTIALS
-%==========================================================================
-if (Data.fem(1) == 'D')
-    S = matrix_S(append("P", femregion.fem(2)),femregion,neighbour,Data,0);
-    [errors] = compute_errors_Vm(Data,femregion,solutions,S,T); 
-    [errors_i]= compute_errors_Phi_i(Data,femregion,solutions_i,S,T);
-    [errors_e]= compute_errors_Phi_e(Data,femregion,solutions_e,S,T);
-else
-    [errors] = compute_errors_Vm(Data,femregion,solutions,Matrices.S,T);
-    [errors_i]= compute_errors_Phi_i(Data,femregion,solutions_i,Matrices.S,T);
-    [errors_e]= compute_errors_Phi_e(Data,femregion,solutions_e,Matrices.S,T);
-end
-
-%==========================================================================
-% SOLUTION AND ERROR ANALYSIS OF GATING VARIABLE
-%==========================================================================
- 
-solutionsW = struct('u_h',w0,'u_ex',eval(Data.exact_w));
-
-if (Data.fem(1) == 'D')
-    [errors_w] = compute_errors_w(Data,femregion,solutionsW,S,T);
-else
-    [errors_w] = compute_errors_w(Data,femregion,solutionsW,Matrices.S,T);
 end

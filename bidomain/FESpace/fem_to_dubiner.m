@@ -5,18 +5,20 @@ function [u0] = fem_to_dubiner (uh, femregion, Data)
 %basis to components with respect to Dubiner basis
 %Input: uh (components wrt FEM basis), femregion and Data
 %Output: u0 (components wrt Dubiner basis)
+%
+% Federica Botta, Matteo Calafà
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 % quadrature nodes and weights for integrals
-[nodes_1D, w_1D, nodes_2D, w_2D] = quadrature(Data.nqn);
+[nodes_1D, ~, nodes_2D, w_2D] = quadrature(Data.nqn);
 
 % evaluation of shape functions on quadrature point both on FEM basis and
 % Dubiner basis
 [shape_basis] = basis_legendre_dubiner(femregion.fem);
-[phi_dub, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_2D, nodes_1D,Data.nqn,femregion.nln);
+[phi_dub, ~, ~, ~] = evalshape_tria_dubiner(shape_basis,nodes_2D, nodes_1D,Data.nqn,femregion.nln);
 [shape_basis] = basis_lagrange(append("P", femregion.fem(2)));
-[phi_fem, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
+[phi_fem, ~, ~, ~] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
 
 u0 = zeros(femregion.ndof,1);
 
