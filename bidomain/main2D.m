@@ -137,7 +137,8 @@ if (Data.method == 'SI')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         NONLIN = [C -C; -C C];
    
-        r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        %r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
+        r = f1 + ChiM*Cm/dt * MASS * u0 - ChiM * MASS_W *w1;
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
 
@@ -174,8 +175,8 @@ elseif (Data.method == 'OS')
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
          Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
-         R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
-        
+         R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
+         %R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
@@ -217,7 +218,8 @@ elseif (Data.method == 'GO')
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
         B = MASS + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
-        r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
+        r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
+        %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         u1 = B \ r; 
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))

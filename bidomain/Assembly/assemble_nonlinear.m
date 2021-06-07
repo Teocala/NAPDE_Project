@@ -86,6 +86,6 @@ for ie = 1:femregion.ne
         end
     end
 end
-C= - kappa*ChiM * C;
+%C= - kappa*ChiM * C;
+C= kappa*ChiM * C;
 end
-
