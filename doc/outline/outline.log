@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  3 JUN 2021 16:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  10 JUN 2021 21:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -347,48 +347,53 @@ Overfull \hbox (25.00003pt too wide) detected at line 550
 []
  []
 
-[9] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 623--626
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 607--609
 
  []
 
-[11] (./outline.aux) ) 
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 624--627
+
+ []
+
+[11] [12] (./outline.aux) ) 
 Here is how much of TeX's memory you used:
- 4971 strings out of 482843
- 71206 string characters out of 5956406
- 351317 words of memory out of 5000000
- 20229 multiletter control sequences out of 15000+600000
- 554903 words of font info for 84 fonts, out of 8000000 for 9000
+ 4982 strings out of 482843
+ 71364 string characters out of 5956406
+ 351336 words of memory out of 5000000
+ 20240 multiletter control sequences out of 15000+600000
+ 557368 words of font info for 93 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,23n,40p,628b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/ecrm0700.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecti1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
-/jknappen/ec/tcrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
-four/jknappen/ec/ecrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
-k/ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/matteo/.texlive2020/texmf-var/fon
-ts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/symbols/msbm10.pfb>
-Output written on outline.pdf (11 pages, 244820 bytes).
+ 44i,23n,40p,695b,313s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfou
+r/jknappen/ec/ecrm0700.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecti1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/l
+jfour/jknappen/ec/tcrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk
+/ljfour/jknappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/
+pk/ljfour/jknappen/ec/ecrm1000.600pk> </home/matteo/.texlive2020/texmf-var/font
+s/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fo
+nts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/
+fonts/pk/ljfour/jknappen/ec/ecrm1200.600pk> </home/matteo/.texlive2020/texmf-va
+r/fonts/pk/ljfour/jknappen/ec/ecrm1728.600pk></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on outline.pdf (12 pages, 256873 bytes).
 PDF statistics:
- 375 PDF objects out of 1000 (max. 8388607)
- 107 compressed objects within 2 object streams
+ 396 PDF objects out of 1000 (max. 8388607)
+ 109 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

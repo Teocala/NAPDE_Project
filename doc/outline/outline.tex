@@ -65,7 +65,7 @@
 \paragraph{FitzHugh-Nagumo model}
 \begin{equation}
 \begin{gathered}
-I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
+I_{ion}(V_m, w) = kV_m(V_m-a)(V_m-1) + w
 \\
 g(V_m,w) = \epsilon(V_m -\gamma w)
 \end{gathered}
@@ -90,7 +90,7 @@ g(V_m,w) = \epsilon(V_m -\gamma w)
 	\varphi_j\varphi_i
 	\end{equation}
 	\begin{equation}
-	C(u_h)_{ij} = - \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
+	C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
 	\end{equation}
 	\begin{equation}
 	F_i = \int_{\Omega} f\varphi_i - \sum_{F \in F_h^B} \int_F b\varphi_i
@@ -108,7 +108,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 \end{equation*}
 \vspace{3mm}
 \begin{equation}
-\Rightarrow \quad  \begin{gathered}\boxed{\chi_mC_m M \dot{u} +  A u + C(u_h) u -\chi_mMw=F}
+\Rightarrow \quad  \begin{gathered}\boxed{\chi_mC_m M \dot{u} +  A u + C(u_h) u +\chi_mMw=F}
 	\\
 	\boxed{\dot{w} = \epsilon(u-\gamma w)}
 	\end{gathered}
@@ -122,7 +122,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 	\begin{equation}
 	\begin{gathered}
 	\chi_mC_m M \frac{u^{k+1}-u^k}{\Delta t} +  A \left(\theta u^{k+1} + (1-\theta)u^k \right) + C(u^k)\left(\theta u^{k+1} + (1-\theta)u^k \right) +
-	\\ -\chi_mMw^{k+1}=\theta F^{k+1} + (1-\theta)F^k
+	\\ +\chi_mMw^{k+1}=\theta F^{k+1} + (1-\theta)F^k
 	\end{gathered}
 	\end{equation}
 	\item
@@ -138,7 +138,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 	\begin{gathered}
 	\left[\chi_mC_mM+\theta \Delta t A + \theta \Delta t C(u^k) \right] \bm{u^{k+1}} = \theta\Delta t F^{k+1} + (1-\theta)\Delta tF^k +
 	\\
-	\left[\chi_mC_mM- (1-\theta)\Delta t A - (1-\theta)\Delta t C(u^k)\right] u^k +\chi_m\Delta t Mw^{k+1} 
+	\left[\chi_mC_mM- (1-\theta)\Delta t A - (1-\theta)\Delta t C(u^k)\right] u^k -\chi_m\Delta t Mw^{k+1} 
 	\end{gathered}
 	\end{equation}
 	\item
@@ -160,7 +160,7 @@ u_h(t) = \sum_{j=1}^{N_h} u_j(t)\varphi_j, \quad w_h(t) = \sum_{j=1}^{N_h}w_j(t)
 \subsection{Analytical models}
 \vspace{5mm}
 \paragraph{Bidomain model}
-\begin{equation}
+\begin{equation}\label{ref6}
 \begin{cases}
 \chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
 \\
@@ -184,7 +184,7 @@ and these constants are given: $\chi_m, C_m, \Sigma_i, \Sigma_e$
 \paragraph{FitzHugh-Nagumo model}
 \begin{equation}
 \begin{gathered}
-I_{ion}(V_m, w) = -kV_m(V_m-a)(V_m-1) -w
+I_{ion}(V_m, w) = kV_m(V_m-a)(V_m-1) +w
 \\
 g(V_m,w) = \epsilon(V_m -\gamma w)
 \end{gathered}
@@ -213,7 +213,7 @@ M_{ij} = \sum_{K \in \tau_h}\int_K
 \varphi_j\varphi_i
 \end{equation}
 \begin{equation}
-C(u_h)_{ij} = - \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
+C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i
 \end{equation}
 \begin{equation}
 \begin{gathered}
@@ -246,7 +246,7 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 	 \begin{bmatrix}\bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)} \end{bmatrix} +\\
 	   \begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix} 
 	   \begin{bmatrix} \bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)}  \end{bmatrix} 
-	   -\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
+	   +\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
 	   	\begin{bmatrix}w_h(t) \\ w_h(t) \end{bmatrix} = 
 	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}
 \end{gathered}
@@ -269,7 +269,7 @@ F_{e,k} = - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\var
 \begin{bmatrix}\Phi_i^{k+1} \\ \Phi_e^{k+1} \end{bmatrix} + \\
  \begin{bmatrix}C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k) \end{bmatrix} 
 \begin{bmatrix} \Phi_i^{k+1} \\ \Phi_e^{k+1}  \end{bmatrix} 
--\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
++\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
 \begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix} = 
 \begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}
 \end{gathered}
@@ -289,7 +289,7 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \begin{bmatrix} \bm{\Phi_i^{k+1}} \\ \bm{\Phi_e^{k+1}} \end{bmatrix} = 
 \\
 \begin{bmatrix} F_i^{k+1} \\ F_e^{k+1} \end{bmatrix} 
-+ \chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix}
+- \chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix}
 \begin{bmatrix} w^{k+1} \\ w^{k+1} \end{bmatrix}
 + \frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ -M & M\end{bmatrix}
 \begin{bmatrix} \Phi_i^{k} \\ \Phi_e^{k} \end{bmatrix}
@@ -308,7 +308,7 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 	\item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{\tilde{V}_m^{n+1}-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1}= 0
+	\chi_m C_m M \frac{\tilde{V}_m^{n+1}-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} + \chi_m M w^{n+1}= 0
 	\\
 	 \frac{w^{n+1} - w^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1})
 	\end{gathered}
@@ -328,8 +328,8 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \begin{equation}
 \vspace{5mm}
 \begin{cases}
-\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1} + A_i \Phi_i ^{n+1} = F_i^{n+1} \\
-\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) V_m^{n+1} - \chi_m M w^{n+1} - A_e \Phi_e ^{n+1} =  -F_e^{n+1} \\
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} + C(V_m^n) V_m^{n+1} + \chi_m M w^{n+1} + A_i \Phi_i ^{n+1} = F_i^{n+1} \\
+\chi_m C_m M \frac{V_m^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) V_m^{n+1} + \chi_m M w^{n+1} - A_e \Phi_e ^{n+1} =  -F_e^{n+1} \\
 \frac{w^{n+1}-w^{n}}{\Delta t} = \epsilon(V_m^{n+1}-\gamma w^{n+1})
 \end{cases}
 \end{equation}
@@ -337,8 +337,8 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
  \begin{equation}
  \begin{gathered}
  \begin{aligned}
- & \bullet \quad Q_n := \frac{\chi_m C_m}{\Delta t}M + C(V_m^n) - \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M \\
- & \bullet \quad R_n := \frac{\chi_mC_m}{\Delta t}MV_m^n + \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^n
+ & \bullet \quad Q_n := \frac{\chi_m C_m}{\Delta t}M + C(V_m^n) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M \\
+ & \bullet \quad R_n := \frac{\chi_mC_m}{\Delta t}MV_m^n - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^n
  \end{aligned}
  \end{gathered}
 \end{equation}
@@ -348,7 +348,7 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 	\item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ - \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) + A_i \Phi_i ^{n+1} = F_i^{n+1} \\ \\
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\  \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) + A_i \Phi_i ^{n+1} = F_i^{n+1} \\ \\
      \Rightarrow \quad (Q_n + A_i) \Phi_i^{n+1} - Q_n \Phi_e^{n+1} =R_n +  F_i^{n+1}
 	\end{gathered}
 	\end{equation}
@@ -356,7 +356,7 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
     \item 
 	\begin{equation}
 	\begin{gathered}
-	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + \cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\ -  \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) - A_e \Phi_e ^{n+1} = -F_e^{n+1} \\ \\
+	\chi_m C_m M \frac{	\Phi_i^{n+1}-\Phi_e^{n+1}-V_m^{n}}{\Delta t} + \cdot C(V_m^n) (\Phi_i^{n+1}-\Phi_e^{n+1}) + \\   \chi_m M \left(\frac{w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right) - A_e \Phi_e ^{n+1} = -F_e^{n+1} \\ \\
 	\Rightarrow \quad Q_n \Phi_i^{n+1} - (Q_n+A_e) \Phi_e^{n+1} =R_n - F_e^{n+1}
 	\end{gathered}
 	\end{equation}
@@ -379,8 +379,8 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \bm{\Phi_i^{n+1}} \\ \bm{\Phi_e^{n+1}}
 \end{bmatrix}
 = \begin{bmatrix} R_n \\ R_n \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  -F_e^{n+1}\end{bmatrix} \\ \\
-Q_n = \frac{\displaystyle \chi_m C_m}{\displaystyle \Delta t}M +  \cdot C(V_m^n) - \frac{\displaystyle \epsilon\chi_m \Delta t}{\displaystyle 1 + \epsilon \gamma \Delta t}M \\ \\
-R_n := \frac{\displaystyle \chi_mC_m}{\displaystyle \Delta t}MV_m^n + \frac{\displaystyle \chi_m}{\displaystyle 1+\epsilon\gamma\Delta t}M w^n \\ \\
+Q_n = \frac{\displaystyle \chi_m C_m}{\displaystyle \Delta t}M +  \cdot C(V_m^n) + \frac{\displaystyle \epsilon\chi_m \Delta t}{\displaystyle 1 + \epsilon \gamma \Delta t}M \\ \\
+R_n := \frac{\displaystyle \chi_mC_m}{\displaystyle \Delta t}MV_m^n - \frac{\displaystyle \chi_m}{\displaystyle 1+\epsilon\gamma\Delta t}M w^n \\ \\
 w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1})}{\displaystyle 1+\epsilon \gamma \Delta t}
 \end{cases}
 \end{equation}
@@ -393,7 +393,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1}
 \item 
    \begin{equation}
    \begin{gathered}
-   \chi_m C_m M\frac{\hat{V}_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n = 0
+   \chi_m C_m M\frac{\hat{V}_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n = 0
    \\
    \frac{w^{n+1}-w^n}{\Delta t} = \epsilon (V_m^n - \gamma w^n)
    \end{gathered}
@@ -412,15 +412,15 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\Phi_i^{n+1}-\Phi_e^{n+1}
 \begin{equation}
 \begin{gathered}
 \begin{cases}
-\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n + A_i \Phi_i^{n+1}= F_i^{n+1} \\
-\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n -\chi_mMw^n - A_e \Phi_e^{n+1}= -F_e^{n+1} \\
+\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n + A_i \Phi_i^{n+1}= F_i^{n+1} \\
+\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n - A_e \Phi_e^{n+1}= -F_e^{n+1} \\
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta t V_m^n
 \end{cases}
 \\ \\  
 \Rightarrow
 \begin{cases}
-\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \Phi_i^{n+1} - \frac{\chi_m C_m}{\Delta t} M \Phi_e^{n+1} = F_i^{n+1} + \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\ 
-\frac{\chi_m C_m}{\Delta t} M  \Phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \Phi_e^{n+1} =  -F_e^{n+1} + \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\
+\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \Phi_i^{n+1} - \frac{\chi_m C_m}{\Delta t} M \Phi_e^{n+1} = F_i^{n+1} - \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\ 
+\frac{\chi_m C_m}{\Delta t} M  \Phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \Phi_e^{n+1} =  -F_e^{n+1} - \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n \\
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 \end{cases}
 \end{gathered} 
@@ -434,7 +434,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n
 	\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
 	+ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
 	\right) \begin{bmatrix} \bm{\Phi_i^{n+1}} \\ \bm{\Phi_e^{n+1}}  \end{bmatrix} =
-	\begin{bmatrix} F_i^{n+1} \\ -F_e^{n+1} \end{bmatrix} + \\
+	\begin{bmatrix} F_i^{n+1} \\ -F_e^{n+1} \end{bmatrix} + \\ -
 	\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^n \\ w^n \end{bmatrix} +
 	\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
 	- \begin{bmatrix} C(V_m^n) & 0 \\ 0 & C(V_m^n)\end{bmatrix} 
@@ -550,7 +550,7 @@ J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-
 	\end{equation}
 	\end{itemize}
 \vspace{5mm}
-\subsection{Transformation from FEM to Dubiner basis}
+\subsection{Transformation from FEM to Dubiner basis} \label{ref7}
 	One of the many advantages of the FEM basis is that the evaluation of a basis function in a point of the mesh is equal to 1 only if that point is the one associated to the basis, 0 otherwise:
 	\begin{equation} \label{ref1}
 	\psi_i(x_j)=\delta_{ij}
@@ -604,20 +604,21 @@ J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-
 	\end{itemize}
 	
 \section{Few considerations about well-posedness}
-All the previous Bidomain schemes treat the non-linear term in a semi-implicit way (see \ref{ref5}). It means that at time $t^{n+1}$ we can solve a linear problem if data at time $t^n$ are provided as parameters. From another perspective, at each time step $t^{n+1}$, we can fix the data of the previous time-step and solve a linear variational problem. In this case, the bilinear form at the left-hand side is the sum of some simpler bilinear forms: the standard mass $L^2$ inner product for the time derivative, the standard stiffness bilinear form and a pseudo-mass bilinear form for the non-linear term.
+A proof of the well-posedness of the system coupled with the FitzHugh-Nagumo model is already available in an article of \emph{Bourgault, Coudiere, Pierre}. However, the code was initially implemented with a wrong definition of the $I_{ion}$, due to an inverted sign. Using this formulation, we often found bad results that were probably caused by an ill-posedness of the problem. In this section we investigate a possible cause. \newline
+All the previous bidomain schemes treat the non-linear term in a semi-implicit way (see \ref{ref5}). It means that at time $t^{n+1}$ we can solve a linear problem if data at time $t^n$ are provided as parameters. From another perspective, at each time step $t^{n+1}$, we can fix the data of the previous time-step and solve a linear variational problem. In this case, the bilinear form at the left-hand side is the sum of some simpler bilinear forms: the standard mass $L^2$ inner product for the time derivative, the standard stiffness bilinear form and a pseudo-mass bilinear form for the non-linear term. With the inverted sign, this last bilinear form would be: \newline
 
 \begin{equation}
 a_c(u,v) = -\int_\Omega \chi_mk(V_m^{n}-a)(V_m^{n}-1)uv \, dx
 \end{equation}
 
-\noindent We want to check that this bilinear form is coercive w.r.t $L^2(\Omega)$ (without considering the others for now). That means to check that:
+\noindent Let us check that this bilinear form is coercive in $L^2(\Omega)$. That means to check that:
 
 \begin{equation}
-\exists \, \alpha>0: a_c(u,u) \ge \alpha ||u||^2 \quad \forall u \in L^2(\Omega)
+\exists \, \alpha>0: a_c(u,u) \ge \alpha ||u||^2_{L^2(\Omega)} \quad \forall u \in L^2(\Omega)
 \end{equation}
 
 
-Then:
+\noindent Then:
 \begin{equation}
 a_c(u,u) = \int_\Omega -\chi_mk(V_m^{n}-a)(V_m^{n}-1)u^2 \, dx \ge \inf_{x \in \Omega} [-\chi_mk(V_m^{n}-a)(V_m^{n}-1)] ||u||_{L^2}^2
 \end{equation}
@@ -627,15 +628,60 @@ Since all parameters are positive and $a\ll1$, $\alpha =\inf_{x \in \Omega} [-\c
 (V_m^{n}-1)(V_m^{n}-a) < 0 \Leftrightarrow a<V_m^n < 1
 \end{equation}
 \newline
-Finally, we can say that if the exact solution is between $a$ and 1, $a_c$ is coercive.\vspace{4mm}\newline
-Obviously, this is only a sufficient condition for the total coercivity (remember that the other bilinear forms can contribute for the positiveness of $a(u,u)$). However, if this property fails, there may be bad consequences for the stability, especially in presence of physiological parameters.
-For the first simulations, indeed, we considered the exact solution:
+Finally, we can say that if the exact solution is between $a$ and 1, $a_c$ is coercive in $L^2(\Omega)$.\newline
+Thanks to this result, the non-linear and the stiffness bilinear forms are together coercive in $H^1(\Omega)$ since the latter is coercive with respect to the $L^2$ semi-norm. \vspace{4mm}\newline
+Obviously, this is only a sufficient condition for the $H^1$ total coercivity (remember that there is still the time derivative bilinear form that can contribute for the positiveness of $a(u,u)$). However, if this property fails, there may be bad consequences for the stability, especially in presence of physiological parameters.
+For the first simulations, for instance, we considered the exact solution:
 \begin{equation}
 V_m(x,t)=sin(2 \pi x) sin(2 \pi y) e^{-5t}
 \end{equation}
-whose image is in [-1,1]. Choosing physiological parameters, we obtained some instabilities. 
-Translating the exact solution, in order to replace the image into [0,1] (remember that $a$ is a small parameter), we found instead convergence:
+whose image is in [-1,1]. Setting some physiological parameters, we obtained some instabilities. 
+Translating the exact solution, in order to replace the image into [0,1] (remember that $a$ is a small parameter), we reached instead convergence:
 \begin{equation}
 V_m(x,t)=\frac{1}{2} sin(2 \pi x) sin(2 \pi y) e^{-5 t}+\frac{1}{2}
 \end{equation}
+
+
+\newpage
+\section{Uniqueness of the $\bm{\phi}$ solutions}
+\noindent From the bidomain system (\ref{ref6}) a crucial fact can quickly be spotted: the internal and external potentials appear only through either their gradient or their difference $V_m$. It means that certainly, if $\phi_i,\phi_e$ are solutions, then also $\phi_i+k,\,\phi_e+k$ are solutions $\forall k \in \mathbb{R}$. Fortunately, this problem could be easily solved by just imposing a further assumption on one of the two potentials. The most common impositions are:
+
+\begin{equation}
+\begin{split}
+\int_{\Omega}\phi_i \,dx &= 0 \quad \quad \text{(Null mean)}  \\
+\phi_i(x_j)&=k \quad \quad \text{(Fixed value in a certain mesh point)}
+\end{split}
+\end{equation}
+\vspace{5mm}\newline
+\noindent However these choices would be tough to implement in a Dubiner context. In addition, it would be better to insert this condition directly in the system matrices avoiding to solve an ill-conditioned system. A simpler solution is certainly to fix one of the values of the solution vector, for instance the first. If $Au=b$ is the initial system to solve and $k\in\mathbb{R}$ is the chosen value for the coefficient, the problem can be modified as follows:
+
+\begin{equation}
+\tilde{A}=\begin{bmatrix}
+1 & 0 & \dots & 0 \\ 
+0 & a_{22} & \dots & a_{2N} \\ 
+0 &a_{32} & \dots & a_{3N} \\
+\dots & \dots & \dots & \dots \\
+0  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad
+\tilde{b}=\begin{bmatrix}
+k \\ b_2 -a_{21}k \\ b_3-a_{31}k \\ \dots \\ b_N-a_{N1}k
+\end{bmatrix}
+\end{equation} 
+\vspace{5mm}\newline
+This procedure is certainly correct both for FEM and Dubiner basis. However, if one needs to test the convergence of the scheme, it would be better to provide the right value of $k$, i.e. the one related to the exact solution. But in this case, as already shown in section \ref{ref7}, the Galerkin coefficients have different meanings when using different basis.
+\newline Summing up what have already been discussed, if $u\in H^1(\Omega)$ is the exact solution (sufficiently regular), then we can approximate it in the discretized space through the vector $u_h$ defined as:
+\begin{itemize}
+	\item FEM: the $i$-th coefficient is the value of $u$ in the $i$-th mesh point
+	\item Dubiner: the $i$-th coefficient is the $L^2$ scalar product of $u$ with the $i$-th Dubiner polynomial
+\end{itemize}
+
+\vspace{5mm}
+\noindent One can thus find in the code the evaluation of the exact solution in the first point of the mesh. For the latter case, instead, the code executes the integral over the first element of $u_{ex}$ times the first basis function using the \emph{Gauss-Legendre} quadrature nodes.
+\vspace{3mm}
+\newline In conclusion, two benefits are achieved:
+\begin{enumerate}
+	\item Even if the system was not singular, it was very ill-conditioned. This is because it discretized an ill-posed problem. With this slight modification, the condition number passed for instance from $\approx 10^{16-17}$ to $ \approx10^8$  
+	\item If the coefficient is correctly set, one can observe and study the convergence of the computed solution towards the exact solution, without any kind of spurious vertical translation.
+\end{enumerate}
+
 \end{document}

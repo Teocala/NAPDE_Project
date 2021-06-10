@@ -32,3 +32,4 @@
 \contentsline {subsubsection}{\numberline {3.1.4}Gradient of Dubiner Basis}{9}%
 \contentsline {subsection}{\numberline {3.2}Transformation from FEM to Dubiner basis}{9}%
 \contentsline {section}{\numberline {4}Few considerations about well-posedness}{11}%
+\contentsline {section}{\numberline {5}Uniqueness of the $\bm {\phi }$ solutions}{12}%
