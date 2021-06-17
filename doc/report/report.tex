@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[a4paper,top=5cm,bottom=4cm,left=3.6cm,right=3.6cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{setspace}
+\usepackage{caption}
+
+\usepackage[
+backend=biber,
+style=numeric,
+citestyle=numeric,
+]{biblatex}
+\addbibresource{./report_bib.bib}
+\usepackage[autostyle]{csquotes}
+
+\captionsetup{font=footnotesize}
+
+
+\newtheorem{definition}{Definition}
+
+
+
+\begin{document}
+	
+	%% FRONT PAGE
+	\begin{titlepage}
+	    \thispagestyle{empty}
+	    \newgeometry{left=2cm,right=2cm}
+	    \begin{center}
+	    	\includegraphics[width = 4cm]{./polimi-logo.png}\\ \vspace{3mm}
+	    	\normalsize{\textsc{Course of Numerical Analysis for Partial Differential Equations}}
+	    	
+	    	\vspace{20mm}
+	    	\rule{15cm}{0.1mm} \\ \vspace{4.5mm}
+	    	 \Huge{\textbf{DISCONTINUOUS GALERKIN APPROXIMATION FOR CARDIAC ELECTROPHYSIOLOGY}} \\
+	    	\rule{15cm}{0.1mm}
+	    	\vspace{20mm}
+	    	
+	    	\Large{
+	    	\begin{align*}
+	    	\emph{Authors:}& \hspace{5mm} \textsc{ Federica Botta, Matteo Calafà}\\
+	    	\emph{Supervisors:}& \hspace{5mm} \textsc{ Christian Vergara, Paola Antonietti}
+	    	\end{align*}
+	         } \\
+	    	\vspace{35mm}
+	    	\large{\textsc{A.Y. 2020/2021}}
+	    \end{center}
+	\end{titlepage}
+
+
+
+    \restoregeometry
+    
+    %% TABLE OF CONTENTS
+    \tableofcontents
+    \newpage
+    
+    %% ABSTRACT
+    \section{Introduction}
+    \subsection{Abstract}
+    The aim of the project is to study and implement a suitable numerical scheme for the resolution of the \emph{Bidomain Problem}, a famous system of equations that has been developed in the context of the electrophysiology of human heart. \\
+    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the very goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. In fact, even if a \emph{Discontinuous Galerkin} discretization has been successfully implemented, results are not satisfactory from the point of view of stability and convergence. We think this notice is noteworthy as this work is primarily based on these provided data and codes. Through this article, it will be illustrated how we managed to solve these problems extending, optimizing and correcting these past numerical strategies.
+    
+    %% PHYSICAL PROBLEM
+    \subsection{The physical problem}
+    We intend to present the physical meaning of the Bidomain equations very briefly since it has already been widely shown in the previous project (\citeauthor{marta}). For a more complete explanation, we instead refer to \cite{acta}.\\
+    The mechanical contraction and expansion of human heart has its origin in the \emph{electrical activation} of the cardiac cells. At every heart-beat, myocyties are activated and deactivated following a characteristic electrical cycle (fig \ref{potential_cycle}). 
+    
+    
+    \begin{figure}[h]
+    \begin{center}
+    \includegraphics[width = 7cm]{./potential_cycle.png}
+    \caption{Membrane potential in function of time (one cardiac cycle)}
+    \label{potential_cycle}
+    \end{center}
+    \end{figure}
+    
+    \noindent The cell is initially at rest ($-90mV$, step 4). At a certain point, its potential increases rapidly ($\approx2ms$) and reaches the value of $+20mV$: the cell is activated. Later, a plateau near $0mV$ is observed and then a slow repolarization to the initial potential. \\
+    From a microscopical point of view, we could study the dynamics acting in each single cell (as a consequence of the passage of chemical ions through specific channels, e.g. $Ca2+,Na+,K+$). From a macroscopical point of view, instead, one can think about it as a continuous electrical diffusion over the entire cardiac surface. Even if this consists in a very rapid phenomenon, the study of such propagation could be very interesting in order, for instance, to detect diseases in sick patients.
+    
+    \subsection{Mathematical models}
+    Starting from the circuit in figure \ref{electrical_circuit}, applying some general electromagnetism laws and some calculations, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete passages).
+    
+    \begin{figure}[h]
+    	\begin{center}
+    		\includegraphics[width = 7cm]{./electrical_circuit.png}
+    		\caption{Simplified circuit to model the intracellular and extracellular potentials dynamics}
+    		\label{electrical_circuit}
+    	\end{center}
+    \end{figure}
+    
+    \noindent The general formulation is then: \vspace{3mm}
+    \begin{definition}[Bidomain model]
+	\begin{equation*}
+	\begin{cases}
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion} = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\end{cases}
+	\end{equation*}
+    \end{definition}
+	\vspace{3mm}
+	
+	where:
+	\begin{itemize}[label=\textendash]
+		\item $\bm{\phi_i, \phi_e}$ are the \emph{Intracellular and Extracelllular Potentials} (unknowns)
+		\item $V_m = \phi_i-\phi_e$ is the \emph{Trans-membrane Potential}
+		\item $\chi_m,C_m, \Sigma_i, \Sigma_e$ are known constants
+		\item $I_i^{ext},I_e^{ext}$ are applied currents
+		\item $I_{ion}$ is the \emph{Ionic Current}
+		\item $\Omega_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
+	\end{itemize}
+    
+    \vspace{4mm}
+    \noindent Actually, this system is not complete since it misses boundary and initial conditions and a suitable model for $I_{ion}$. Initial conditions and Neumann boundary conditions for $\phi_i$ and $\phi_e$ are then imposed. For the definition of $I_{ion}$, instead, a \emph{reduced ionic model} is chosen, in particular the \emph{FitzHugh-Nagumo model}. Summing up:
+    
+    \begin{definition}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]\label{def1}
+    	\begin{equation*}
+    	\begin{cases}
+    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+    	\\
+    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+    	\\
+    	I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)-w & \text{in } \Omega_{mus} \cross (0,T]
+    	\\
+    	\pdv{w}{t} = \epsilon(V_m-\gamma w)  & \text{in } \Omega_{mus} \cross (0,T]
+    	\\
+    	\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
+    	\\
+    	\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial \Omega_{mus} \cross (0,T]
+    	\\
+    	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } \Omega_{mus}\cross\{t=0\}
+    	\end{cases}
+    	\end{equation*}
+    \end{definition}
+    \vspace{3mm}
+    where:
+    \begin{itemize}[label=\textendash]
+    	\item $\bm{w}$ is the \emph{gating variable} (unknown)
+    	\item $k,a,\epsilon,\gamma$ are known constants
+    	\item $b_i,b_e$ are the boundary conditions data
+    	\item $n$ is the outward normal vector
+    \end{itemize}
+
+    \vspace{4mm}
+    \noindent From now on, the system of definition \ref{def1} will be the reference analytical problem for the development of numerical schemes.\\
+    To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain.
+
+
+    
+	
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    \newpage
+    \printbibliography
+
+\end{document}
