@@ -50,7 +50,6 @@ elseif Data.fem(2) == '3'
 end
 
 title(['u_h(x,y) at time:' num2str(t)]); xlabel('x-axis'); ylabel('y-axis');
-axis([x1,x2,y1,y2,m,M]); 
 caxis([m M])
 colorbar;
 pause(0.1);
