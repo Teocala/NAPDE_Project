@@ -105,17 +105,16 @@ y=femregion.dof(:,2);
 w0 = eval(Data.initialw);
 
 %figure(1)
-u0_i = eval(Data.initialcond_i);
-u0_e = eval(Data.initialcond_e);
+Vm0 = eval(Data.initialcond);
+%u0_e = eval(Data.initialcond_e);
 
 if (Data.fem(1)=='D')
-   u0_i = fem_to_dubiner (u0_i, femregion,Data);
-   u0_e = fem_to_dubiner (u0_e, femregion,Data);
+   Vm0 = fem_to_dubiner (Vm0, femregion,Data);
    w0 = fem_to_dubiner(w0,femregion,Data);
 end
 
-u0 = cat(1,u0_i, u0_e);
-ll=length(u0_i);
+
+ll=length(Vm0);
 
 if (Data.method == 'SI')
     
@@ -125,10 +124,10 @@ if (Data.method == 'SI')
     STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A];
     
     for t=dt:dt:T
-    
-        Vm0 = u0(1:ll) - u0(ll+1:end);
+        
         w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
         w1=cat(1,w1, w1);
+        Vm0 = cat(1,Vm0,Vm0);
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
@@ -138,7 +137,7 @@ if (Data.method == 'SI')
         NONLIN = [C -C; -C C];
    
         %r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
-        r = f1 + ChiM*Cm/dt * MASS * u0 - ChiM * MASS_W *w1;
+        r = f1 + ChiM*Cm/dt * MASS_W * Vm0 - ChiM * MASS_W *w1;
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
         
@@ -163,6 +162,7 @@ if (Data.method == 'SI')
         end
         
         f0 = f1;
+        Vm0 = u1(1:ll)-u1(ll+1:end);
         u0 = u1;
         w0 = w1(1:ll);
     end
@@ -172,8 +172,6 @@ elseif (Data.method == 'OS')
         ZERO = sparse(ll,ll);
         
     for t=dt:dt:T
-    
-        Vm0 = u0(1:ll) - u0(ll+1:end);
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
          Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
@@ -199,6 +197,7 @@ elseif (Data.method == 'OS')
             DG_Par_Snapshot(femregion, Data, uh,t);
         end
         f0 = f1;
+        Vm0 = u1(1:ll) - u1(ll+1:end);
         u0 = u1;
         w0 = w1;
     end
@@ -212,9 +211,7 @@ elseif (Data.method == 'GO')
     MASSW = ChiM*[M, ZERO; ZERO, M];
     
     for t=dt:dt:T
-        Vm0 = u0(1:ll) - u0(ll+1:end);
         
-    
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, -fe);
@@ -234,6 +231,7 @@ elseif (Data.method == 'GO')
             uh = u1(1:ll) - u1(ll+1:end);
             DG_Par_Snapshot(femregion, Data, uh,t);
         end
+        Vm0 = u1(1:ll) - u1(ll+1:end);
         u0 = u1;
         w0 = w1;
     end
