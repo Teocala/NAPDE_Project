@@ -141,7 +141,12 @@ if (Data.method == 'SI')
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
         
-       [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
+       
         
 %       FOR PRECONDITIONING        
 %       [L,U] = ilu(B);
@@ -155,6 +160,10 @@ if (Data.method == 'SI')
 %       u1 = qmr(B,r,1e-5,200,L');
 %       u1 = qmr(B,r,1e-5,200,L,U);
         u1 = B \ r;
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
    
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
              uh = u1(1:ll) - u1(ll+1:end);
@@ -185,9 +194,18 @@ elseif (Data.method == 'OS')
         B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
         r = [R;R] + f1;
         
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
         
         u1 = B \ r; 
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
+        
         Vm1 = u1(1:ll)-u1(ll+1:end);
 
         w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
@@ -223,9 +241,17 @@ elseif (Data.method == 'GO')
         r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
         
         u1 = B \ r; 
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             uh = u1(1:ll) - u1(ll+1:end);
