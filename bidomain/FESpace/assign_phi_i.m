@@ -51,4 +51,5 @@ b(1) = exact_coeff;
 A(:,1) = zeros(Nh,1);
 A(1,:) = zeros(1,Nh);
 A(1,1) = 1;
+
    

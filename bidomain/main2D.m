@@ -105,17 +105,16 @@ y=femregion.dof(:,2);
 w0 = eval(Data.initialw);
 
 %figure(1)
-u0_i = eval(Data.initialcond_i);
-u0_e = eval(Data.initialcond_e);
+Vm0 = eval(Data.initialcond);
+%u0_e = eval(Data.initialcond_e);
 
 if (Data.fem(1)=='D')
-   u0_i = fem_to_dubiner (u0_i, femregion,Data);
-   u0_e = fem_to_dubiner (u0_e, femregion,Data);
+   Vm0 = fem_to_dubiner (Vm0, femregion,Data);
    w0 = fem_to_dubiner(w0,femregion,Data);
 end
 
-u0 = cat(1,u0_i, u0_e);
-ll=length(u0_i);
+
+ll=length(Vm0);
 
 if (Data.method == 'SI')
     
@@ -125,10 +124,10 @@ if (Data.method == 'SI')
     STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A];
     
     for t=dt:dt:T
-    
-        Vm0 = u0(1:ll) - u0(ll+1:end);
+        
         w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
         w1=cat(1,w1, w1);
+        Vm0 = cat(1,Vm0,Vm0);
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
@@ -138,11 +137,16 @@ if (Data.method == 'SI')
         NONLIN = [C -C; -C C];
    
         %r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
-        r = f1 + ChiM*Cm/dt * MASS * u0 - ChiM * MASS_W *w1;
+        r = f1 + ChiM*Cm/dt * MASS_W * Vm0 - ChiM * MASS_W *w1;
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
         
-       [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
+       
         
 %       FOR PRECONDITIONING        
 %       [L,U] = ilu(B);
@@ -156,6 +160,10 @@ if (Data.method == 'SI')
 %       u1 = qmr(B,r,1e-5,200,L');
 %       u1 = qmr(B,r,1e-5,200,L,U);
         u1 = B \ r;
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
    
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
              uh = u1(1:ll) - u1(ll+1:end);
@@ -163,6 +171,7 @@ if (Data.method == 'SI')
         end
         
         f0 = f1;
+        Vm0 = u1(1:ll)-u1(ll+1:end);
         u0 = u1;
         w0 = w1(1:ll);
     end
@@ -172,8 +181,6 @@ elseif (Data.method == 'OS')
         ZERO = sparse(ll,ll);
         
     for t=dt:dt:T
-    
-        Vm0 = u0(1:ll) - u0(ll+1:end);
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
          Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
@@ -187,9 +194,18 @@ elseif (Data.method == 'OS')
         B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
         r = [R;R] + f1;
         
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
         
         u1 = B \ r; 
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
+        
         Vm1 = u1(1:ll)-u1(ll+1:end);
 
         w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
@@ -199,6 +215,7 @@ elseif (Data.method == 'OS')
             DG_Par_Snapshot(femregion, Data, uh,t);
         end
         f0 = f1;
+        Vm0 = u1(1:ll) - u1(ll+1:end);
         u0 = u1;
         w0 = w1;
     end
@@ -212,9 +229,7 @@ elseif (Data.method == 'GO')
     MASSW = ChiM*[M, ZERO; ZERO, M];
     
     for t=dt:dt:T
-        Vm0 = u0(1:ll) - u0(ll+1:end);
         
-    
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, -fe);
@@ -226,14 +241,23 @@ elseif (Data.method == 'GO')
         r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         
-        [B, r] = assign_phi_i (B,r,t,Data,femregion);
+        if(Data.assign==1)
+           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+        elseif(Data.assign==2)
+           [B, r] = assign_null_average(B,r,Data,femregion);
+        end
         
         u1 = B \ r; 
+        
+        if(Data.assign==2)
+           u1=u1(1:end-1);
+        end
     
         if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
             uh = u1(1:ll) - u1(ll+1:end);
             DG_Par_Snapshot(femregion, Data, uh,t);
         end
+        Vm0 = u1(1:ll) - u1(ll+1:end);
         u0 = u1;
         w0 = w1;
     end
