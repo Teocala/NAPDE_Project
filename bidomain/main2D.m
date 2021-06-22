@@ -142,7 +142,7 @@ if (Data.method == 'SI')
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
         
         if(Data.assign==1)
-           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+           [B, r] = assign_phi_i (B, r, t, Data, femregion);
         elseif(Data.assign==2)
            [B, r] = assign_null_average(B,r,Data,femregion);
         end

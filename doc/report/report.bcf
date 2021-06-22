@@ -2192,6 +2192,8 @@
     <bcf:citekey order="8">acta</bcf:citekey>
     <bcf:citekey order="9">colli_franzone</bcf:citekey>
     <bcf:citekey order="10">andreotti</bcf:citekey>
+    <bcf:citekey order="11">marta</bcf:citekey>
+    <bcf:citekey order="12">antonietti</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
