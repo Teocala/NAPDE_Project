@@ -42,6 +42,8 @@ Ve = sparse(femregion.ndof,femregion.ndof);  % \int_{\Omega} (grad(u) grad(v) dx
 Ii = sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} {grad v} . [u] ds
 Ie = sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} {grad v} . [u] ds
 S = sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} penalty  h_e^(-1) [v].[u] ds
+Si = sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} penalty  h_e^(-1) [v].[u] ds
+Se = sparse(femregion.ndof,femregion.ndof);  % \int_{E_h} penalty  h_e^(-1) [v].[u] ds
 f_i = sparse(femregion.ndof,1);               % \int_{\Omega} f . v dx + boundary conditions
 f_e = f_i;
 M = sparse(femregion.ndof,femregion.ndof);  % \inr_{\Omega}
@@ -129,6 +131,8 @@ for ie = 1:femregion.ne
     INi = zeros(femregion.nln,femregion.nln,neighbour.nedges);
     INe = zeros(femregion.nln,femregion.nln,neighbour.nedges);
     SN = zeros(femregion.nln,femregion.nln,neighbour.nedges);
+    SNi = zeros(femregion.nln,femregion.nln,neighbour.nedges);
+    SNe = zeros(femregion.nln,femregion.nln,neighbour.nedges);
     
     for iedg = 1 : neighbour.nedges % Loop over the triangle's  edges
         
@@ -139,6 +143,8 @@ for ie = 1:femregion.ne
         % scaling of the penalty coefficient wrt the mesh size
         penalty_scaled = penalty_coeff./meshsize(iedg); 
         
+        sigma_i_penalty = max(eig(sigma_i));
+        sigma_e_penalty = max(eig(sigma_e));
         
         % assembly of interface matrices 
         for k = 1:nqn_1D   % loop over 1D quadrature nodes
@@ -152,8 +158,14 @@ for ie = 1:femregion.ne
                     % Internal faces                
                     if neigh_ie(iedg) ~= -1 
                         % S --> \int_{E_h} penalty  h_e^(-1) [v].[u] ds
+                        
+                       
                         S(index(i),index(j)) = S(index(i),index(j)) ...
                                         + penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
+                        Si(index(i),index(j)) = Si(index(i),index(j)) ...
+                                        + penalty_scaled .* sigma_i_penalty * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
+                        Se(index(i),index(j)) = Se(index(i),index(j)) ...
+                                        + penalty_scaled .* sigma_e_penalty * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
                         
                         % I --> \int_{E_h} {grad v} . [u] ds
                         Ii(index(i),index(j)) = Ii(index(i),index(j)) ...
@@ -169,6 +181,11 @@ for ie = 1:femregion.ne
                                    -  0.5 .* ((G_edge(k,:,i,iedg)*sigma_e'*BJinv)*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
                         SN(i,j,iedg) = SN(i,j,iedg) ...
                                    - penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
+                        SNi(i,j,iedg) = SNi(i,j,iedg) ...
+                                   - penalty_scaled .* sigma_i_penalty * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
+                        SNe(i,j,iedg) = SNe(i,j,iedg) ...
+                                   - penalty_scaled .* sigma_e_penalty * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
+                        
                                
                     % Boundary faces   
                     elseif neigh_ie(iedg) == -1 
@@ -186,6 +203,8 @@ for ie = 1:femregion.ne
     % Assembly phase
     [Ii] = assemble_neigh(Ii,index,neigh_ie,INi,femregion.nln,neighbour.nedges);
     [Ie] = assemble_neigh(Ie,index,neigh_ie,INe,femregion.nln,neighbour.nedges);
+    [Si] = assemble_neigh(Si,index,neigh_ie,SNi,femregion.nln,neighbour.nedges); 
+    [Se] = assemble_neigh(Se,index,neigh_ie,SNe,femregion.nln,neighbour.nedges); 
     [S] = assemble_neigh(S,index,neigh_ie,SN,femregion.nln,neighbour.nedges); 
 end
 
@@ -199,7 +218,7 @@ else
     teta = 0;
 end
 
-Matrices=struct('Ai',Vi - transpose(Ii) + teta*Ii + S,'Ae',Ve - transpose(Ie) + teta*Ie + S, 'f_i',f_i, 'f_e',f_e,  'S',S, 'M', M);
+Matrices=struct('Ai',Vi - transpose(Ii) + teta*Ii + Si,'Ae',Ve - transpose(Ie) + teta*Ie + Se, 'f_i',f_i, 'f_e',f_e,  'S',S, 'M', M);
 
 
 
