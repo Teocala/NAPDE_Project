@@ -71,13 +71,14 @@ end
 % SOLVE THE LINEAR SYSTEM
 %==========================================================================
 
-A = Matrices.A;  %A_intracellulare
+Ai = Matrices.Ai;  %A_intracellulare
+Ae = Matrices.Ae; %A_extracellulare
 M = Matrices.M;
 
 %f0_i = Matrices.f_i;
 %f0_e = Matrices.f_e;
 %f0=cat(1,f0_i, f0_e);
-f0=zeros(1,length(A));
+f0=zeros(1,length(Ai));
 
 
 %
@@ -121,7 +122,7 @@ if (Data.method == 'SI')
     MASS = [M -M; -M M];
     ZERO=sparse(length(M), length(M));
     MASS_W = [M ZERO; ZERO -M];
-    STIFFNESS = [sigma_i*A ZERO; ZERO  sigma_e*A];
+    STIFFNESS = [Ai ZERO; ZERO  Ae];
     
     for t=dt:dt:T
         
@@ -191,11 +192,11 @@ elseif (Data.method == 'OS')
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
         f1 = cat(1, fi, -fe);
     
-        B = [Q, -Q; Q, -Q] + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
+        B = [Q, -Q; Q, -Q] + [Ai, ZERO; ZERO, -Ae];
         r = [R;R] + f1;
         
         if(Data.assign==1)
-           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+           [B, r] = assign_phi_i (B, r, t, Data, femregion);
         elseif(Data.assign==2)
            [B, r] = assign_null_average(B,r,Data,femregion);
         end
@@ -237,12 +238,12 @@ elseif (Data.method == 'GO')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
-        B = MASS + [sigma_i*A, ZERO; ZERO, -sigma_e*A];
+        B = MASS + [Ai, ZERO; ZERO, -Ae];
         r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         
         if(Data.assign==1)
-           [B, r] = assign_phi_i (A, b, t, Data, femregion);
+           [B, r] = assign_phi_i (B, r, t, Data, femregion);
         elseif(Data.assign==2)
            [B, r] = assign_null_average(B,r,Data,femregion);
         end
