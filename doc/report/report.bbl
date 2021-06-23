@@ -42,11 +42,41 @@
       \strng{authornamehash}{35418aeb9ffe3c0d52c59cab047356dc}
       \strng{authorfullhash}{35418aeb9ffe3c0d52c59cab047356dc}
       \field{sortinit}{A}
-      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Discontinuous Galerkin approximation of the monodomain problem}
       \field{year}{2021}
+    \endentry
+    \entry{antonietti}{article}{}
+      \name{author}{2}{}{%
+        {{hash=1b4c8a787e9e26a49923153bb1623d36}{%
+           family={Antonietti},
+           familyi={A\bibinitperiod},
+           given={P.\bibnamedelimi F.},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=454976c35e33599dd6a81412197872b6}{%
+           family={Houston},
+           familyi={H\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{1ecc81699d1e24986a79daf4e08e604c}
+      \strng{fullhash}{1ecc81699d1e24986a79daf4e08e604c}
+      \strng{bibnamehash}{1ecc81699d1e24986a79daf4e08e604c}
+      \strng{authorbibnamehash}{1ecc81699d1e24986a79daf4e08e604c}
+      \strng{authornamehash}{1ecc81699d1e24986a79daf4e08e604c}
+      \strng{authorfullhash}{1ecc81699d1e24986a79daf4e08e604c}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Scientific Computing}
+      \field{title}{A Class of Domain decomposition Preconditioners for hp-Discontinuous Galerkin Finite Element Methods}
+      \field{volume}{46}
+      \field{year}{2011}
+      \field{pages}{124\bibrangedash 149}
+      \range{pages}{26}
     \endentry
     \entry{bagnara}{report}{}
       \name{author}{1}{}{%
@@ -66,7 +96,7 @@
       \strng{authornamehash}{17319b12ac394b652dd7b4a5a489326d}
       \strng{authorfullhash}{17319b12ac394b652dd7b4a5a489326d}
       \field{sortinit}{B}
-      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The Inverse Potential Problem of Electrocardiography Regularized with Optimal Control}
@@ -103,7 +133,7 @@
       \strng{authornamehash}{8fcb0354f41f2c5719ae598258a5ed43}
       \strng{authorfullhash}{8fcb0354f41f2c5719ae598258a5ed43}
       \field{sortinit}{C}
-      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Mathematical Cardiac Electrophysiology}
@@ -132,7 +162,7 @@
       \strng{authornamehash}{1fbd18bda851db8c72e4efbcfcbcfa9f}
       \strng{authorfullhash}{1fbd18bda851db8c72e4efbcfcbcfa9f}
       \field{sortinit}{M}
-      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Discontinuous Galerkin approximation of the bidomain system for cardiac electrophysiology}
@@ -163,7 +193,7 @@
       \strng{authornamehash}{7928d1fadec7c2f04c373453302c99ac}
       \strng{authorfullhash}{7928d1fadec7c2f04c373453302c99ac}
       \field{sortinit}{Q}
-      \field{sortinithash}{c54e16deb53fc904a621fa8fd8703b5a}
+      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Acta Numerica}
