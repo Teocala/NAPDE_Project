@@ -114,9 +114,9 @@ for ie = 1:femregion.ne
             for j = 1 : femregion.nln
                 % assembly stiffness matrix
                 Vi(index(i),index(j)) = Vi(index(i),index(j)) ...
-                    + ((Grad(k,:,i) * BJinv) * (Grad(k,:,j)*sigma_i' * BJinv )') .*dx ;
+                    + ((Grad(k,:,i) * BJinv) * (Grad(k,:,j) * BJinv * sigma_i')') .*dx ;
                 Ve(index(i),index(j)) = Ve(index(i),index(j)) ...
-                    + ((Grad(k,:,i) * BJinv) * (Grad(k,:,j)*sigma_e' * BJinv )') .*dx ;
+                    + ((Grad(k,:,i) * BJinv) * (Grad(k,:,j)* BJinv * sigma_e' )') .*dx ;
                 % assembly mass matrix---> is it right?
                 M(index(i),index(j)) = M(index(i),index(j)) ...
                     + (dphiq(1,k,i))'*(dphiq(1,k,j))'.*dx;
@@ -143,8 +143,8 @@ for ie = 1:femregion.ne
         % scaling of the penalty coefficient wrt the mesh size
         penalty_scaled = penalty_coeff./meshsize(iedg); 
         
-        sigma_i_penalty = max(eig(sigma_i));
-        sigma_e_penalty = max(eig(sigma_e));
+        sigma_i_penalty = abs(normals(:,iedg)'*sigma_i*normals(:,iedg));
+        sigma_e_penalty = abs(normals(:,iedg)'*sigma_e*normals(:,iedg));
         
         % assembly of interface matrices 
         for k = 1:nqn_1D   % loop over 1D quadrature nodes
@@ -169,16 +169,16 @@ for ie = 1:femregion.ne
                         
                         % I --> \int_{E_h} {grad v} . [u] ds
                         Ii(index(i),index(j)) = Ii(index(i),index(j)) ...
-                                        +  0.5 .* ((G_edge(k,:,i,iedg)*sigma_i'*BJinv)*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
+                                        +  0.5 .* ((G_edge(k,:,i,iedg)*BJinv*sigma_i')*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
                         Ie(index(i),index(j)) = Ie(index(i),index(j)) ...
-                                        +  0.5 .* ((G_edge(k,:,i,iedg)*sigma_e'*BJinv)*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
+                                        +  0.5 .* ((G_edge(k,:,i,iedg)*BJinv*sigma_e')*normals(:,iedg)) .* B_edge(j,k,iedg) .* ds;
                         
                         % IN --> I for Neighbouring elements
                         % IN --> I for Neighbouring elements
                         INi(i,j,iedg) = INi(i,j,iedg) ...
-                                   -  0.5 .* ((G_edge(k,:,i,iedg)*sigma_i'*BJinv)*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
+                                   -  0.5 .* ((G_edge(k,:,i,iedg)*BJinv*sigma_i')*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
                         INe(i,j,iedg) = INe(i,j,iedg) ...
-                                   -  0.5 .* ((G_edge(k,:,i,iedg)*sigma_e'*BJinv)*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
+                                   -  0.5 .* ((G_edge(k,:,i,iedg)*BJinv*sigma_e')*normals(:,iedg)) .* B_edge(j,kk,neigedge) .* ds;
                         SN(i,j,iedg) = SN(i,j,iedg) ...
                                    - penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
                         SNi(i,j,iedg) = SNi(i,j,iedg) ...
