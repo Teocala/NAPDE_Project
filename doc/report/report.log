@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.5.4)  22 JUN 2021 20:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.6.23)  23 JUN 2021 18:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -64,7 +64,7 @@ Package: babel 2020/07/13 3.47 The Babel package
 File: babel.def 2020/07/13 3.47 Babel common definitions
 \babel@savecnt=\count179
 \U@D=\dimen143
-\l@babelnohyphens=\language4
+\l@babelnohyphens=\language86
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def)
 \bbl@readstream=\read2
@@ -73,16 +73,12 @@ File: babel.def 2020/07/13 3.47 Babel common definitions
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
-Package babel Info: \l@british = using hyphenrules for english
-(babel)             (\language0) on input line 82.
-Package babel Info: \l@UKenglish = using hyphenrules for english
-(babel)             (\language0) on input line 83.
 Package babel Info: \l@canadian = using hyphenrules for english
 (babel)             (\language0) on input line 102.
-Package babel Info: \l@australian = using hyphenrules for english
-(babel)             (\language0) on input line 105.
-Package babel Info: \l@newzealand = using hyphenrules for english
-(babel)             (\language0) on input line 108.
+Package babel Info: \l@australian = using hyphenrules for ukenglish
+(babel)             (\language58) on input line 105.
+Package babel Info: \l@newzealand = using hyphenrules for ukenglish
+(babel)             (\language58) on input line 108.
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
@@ -279,7 +275,7 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 130.
 \xmathstrut@dim=\dimen172
 )
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
-Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
+Package: biblatex 2020/08/23 v3.15a programmable bibliographies (PK/MW)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -360,6 +356,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@parenlevel@foot=\count312
 \blx@sectionciteorder@0=\count313
 \blx@entrysetcounter=\count314
+\blx@biblioinstance=\count315
 \labelnumberwidth=\skip60
 \labelalphawidth=\skip61
 \biblabelsep=\skip62
@@ -370,88 +367,88 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \bibhang=\skip67
 \blx@bcfin=\read3
 \blx@bcfout=\write3
-\blx@langwohyphens=\language5
-\c@mincomprange=\count315
-\c@maxcomprange=\count316
-\c@mincompwidth=\count317
+\blx@langwohyphens=\language87
+\c@mincomprange=\count316
+\c@maxcomprange=\count317
+\c@mincompwidth=\count318
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
-File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
+File: blx-dm.def 2020/08/23 v3.15a biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count318
-\c@savedafterword=\count319
-\c@annotator=\count320
-\c@savedannotator=\count321
-\c@author=\count322
-\c@savedauthor=\count323
-\c@bookauthor=\count324
-\c@savedbookauthor=\count325
-\c@commentator=\count326
-\c@savedcommentator=\count327
-\c@editor=\count328
-\c@savededitor=\count329
-\c@editora=\count330
-\c@savededitora=\count331
-\c@editorb=\count332
-\c@savededitorb=\count333
-\c@editorc=\count334
-\c@savededitorc=\count335
-\c@foreword=\count336
-\c@savedforeword=\count337
-\c@holder=\count338
-\c@savedholder=\count339
-\c@introduction=\count340
-\c@savedintroduction=\count341
-\c@namea=\count342
-\c@savednamea=\count343
-\c@nameb=\count344
-\c@savednameb=\count345
-\c@namec=\count346
-\c@savednamec=\count347
-\c@translator=\count348
-\c@savedtranslator=\count349
-\c@shortauthor=\count350
-\c@savedshortauthor=\count351
-\c@shorteditor=\count352
-\c@savedshorteditor=\count353
-\c@labelname=\count354
-\c@savedlabelname=\count355
-\c@institution=\count356
-\c@savedinstitution=\count357
-\c@lista=\count358
-\c@savedlista=\count359
-\c@listb=\count360
-\c@savedlistb=\count361
-\c@listc=\count362
-\c@savedlistc=\count363
-\c@listd=\count364
-\c@savedlistd=\count365
-\c@liste=\count366
-\c@savedliste=\count367
-\c@listf=\count368
-\c@savedlistf=\count369
-\c@location=\count370
-\c@savedlocation=\count371
-\c@organization=\count372
-\c@savedorganization=\count373
-\c@origlocation=\count374
-\c@savedoriglocation=\count375
-\c@origpublisher=\count376
-\c@savedorigpublisher=\count377
-\c@publisher=\count378
-\c@savedpublisher=\count379
-\c@language=\count380
-\c@savedlanguage=\count381
-\c@origlanguage=\count382
-\c@savedoriglanguage=\count383
-\c@pageref=\count384
-\c@savedpageref=\count385
+\c@afterword=\count319
+\c@savedafterword=\count320
+\c@annotator=\count321
+\c@savedannotator=\count322
+\c@author=\count323
+\c@savedauthor=\count324
+\c@bookauthor=\count325
+\c@savedbookauthor=\count326
+\c@commentator=\count327
+\c@savedcommentator=\count328
+\c@editor=\count329
+\c@savededitor=\count330
+\c@editora=\count331
+\c@savededitora=\count332
+\c@editorb=\count333
+\c@savededitorb=\count334
+\c@editorc=\count335
+\c@savededitorc=\count336
+\c@foreword=\count337
+\c@savedforeword=\count338
+\c@holder=\count339
+\c@savedholder=\count340
+\c@introduction=\count341
+\c@savedintroduction=\count342
+\c@namea=\count343
+\c@savednamea=\count344
+\c@nameb=\count345
+\c@savednameb=\count346
+\c@namec=\count347
+\c@savednamec=\count348
+\c@translator=\count349
+\c@savedtranslator=\count350
+\c@shortauthor=\count351
+\c@savedshortauthor=\count352
+\c@shorteditor=\count353
+\c@savedshorteditor=\count354
+\c@labelname=\count355
+\c@savedlabelname=\count356
+\c@institution=\count357
+\c@savedinstitution=\count358
+\c@lista=\count359
+\c@savedlista=\count360
+\c@listb=\count361
+\c@savedlistb=\count362
+\c@listc=\count363
+\c@savedlistc=\count364
+\c@listd=\count365
+\c@savedlistd=\count366
+\c@liste=\count367
+\c@savedliste=\count368
+\c@listf=\count369
+\c@savedlistf=\count370
+\c@location=\count371
+\c@savedlocation=\count372
+\c@organization=\count373
+\c@savedorganization=\count374
+\c@origlocation=\count375
+\c@savedoriglocation=\count376
+\c@origpublisher=\count377
+\c@savedorigpublisher=\count378
+\c@publisher=\count379
+\c@savedpublisher=\count380
+\c@language=\count381
+\c@savedlanguage=\count382
+\c@origlanguage=\count383
+\c@savedoriglanguage=\count384
+\c@pageref=\count385
+\c@savedpageref=\count386
 \shorthandwidth=\skip68
 \shortjournalwidth=\skip69
 \shortserieswidth=\skip70
@@ -470,45 +467,51 @@ Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
-File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+File: blx-compat.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
 )
+Package biblatex Info: expl3
+(biblatex)             2020-07-17 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+Package biblatex Info: Trying to load expl3 case changing code...
+Package biblatex Info: ... file 'blx-case-expl3.def' not found.
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
-File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
-\c@textcitecount=\count386
-\c@textcitetotal=\count387
-\c@textcitemaxnames=\count388
-\c@biburlbigbreakpenalty=\count389
-\c@biburlbreakpenalty=\count390
-\c@biburlnumpenalty=\count391
-\c@biburlucpenalty=\count392
-\c@biburllcpenalty=\count393
+File: biblatex.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
+\c@textcitecount=\count387
+\c@textcitetotal=\count388
+\c@textcitemaxnames=\count389
+\c@biburlbigbreakpenalty=\count390
+\c@biburlbreakpenalty=\count391
+\c@biburlnumpenalty=\count392
+\c@biburlucpenalty=\count393
+\c@biburllcpenalty=\count394
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count394
+\c@smartand=\count395
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+File: numeric.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
-File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count395
-\c@bbx:relatedtotal=\count396
+File: standard.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count396
+\c@bbx:relatedtotal=\count397
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
+File: numeric.cbx 2020/08/23 v3.15a biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -529,12 +532,12 @@ File: biblatex.cfg
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count397
-\csq@gtype=\count398
-\csq@glevel=\count399
-\csq@qlevel=\count400
-\csq@maxlvl=\count401
-\csq@tshold=\count402
+\csq@reset=\count398
+\csq@gtype=\count399
+\csq@glevel=\count400
+\csq@qlevel=\count401
+\csq@maxlvl=\count402
+\csq@tshold=\count403
 \csq@ltx@everypar=\toks32
 
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
@@ -548,27 +551,27 @@ File: csquotes.cfg
 )
 Package csquotes Info: Enabling multilingual quotes.
 )
-\c@definition=\count403
-\c@prop=\count404
+\c@definition=\count404
+\c@prop=\count405
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -605,16 +608,16 @@ LaTeX Font Info:    ... okay on input line 34.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count405
+\scratchcounter=\count406
 \scratchdimen=\dimen173
 \scratchbox=\box50
-\nofMPsegments=\count406
-\nofMParguments=\count407
+\nofMPsegments=\count407
+\nofMParguments=\count408
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count408
+\MPscratchCnt=\count409
 \MPscratchDim=\dimen174
-\MPnumerator=\count409
-\makeMPintoPDFobject=\count410
+\MPnumerator=\count410
+\makeMPintoPDFobject=\count411
 \everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -642,7 +645,7 @@ Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
+File: english.lbx 2020/08/23 v3.15a biblatex localization (PK/MW)
 )
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
@@ -653,8 +656,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report.bbl' found.
 
 (./report.bbl)
-Package biblatex Info: Reference section=0 on input line 34.
-Package biblatex Info: Reference segment=0 on input line 34.
+Package biblatex Info: Reference section=0 on input line 35.
+Package biblatex Info: Reference segment=0 on input line 35.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -690,14 +693,14 @@ Package biblatex Info: Reference segment=0 on input line 34.
 <./polimi-logo.png, id=1, 1204.5pt x 880.28876pt>
 File: ./polimi-logo.png Graphic file (type png)
 <use ./polimi-logo.png>
-Package pdftex.def Info: ./polimi-logo.png  used on input line 41.
+Package pdftex.def Info: ./polimi-logo.png  used on input line 42.
 (pdftex.def)             Requested size: 113.81102pt x 83.1716pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 51.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -716,91 +719,115 @@ ort.toc)
 <./potential_cycle.png, id=19, 558.085pt x 328.22626pt>
 File: ./potential_cycle.png Graphic file (type png)
 <use ./potential_cycle.png>
-Package pdftex.def Info: ./potential_cycle.png  used on input line 83.
+Package pdftex.def Info: ./potential_cycle.png  used on input line 84.
 (pdftex.def)             Requested size: 199.16928pt x 117.13464pt.
 
 [2 <./potential_cycle.png>]
 <./electrical_circuit.png, id=31, 499.8675pt x 236.885pt>
 File: ./electrical_circuit.png Graphic file (type png)
 <use ./electrical_circuit.png>
-Package pdftex.def Info: ./electrical_circuit.png  used on input line 97.
+Package pdftex.def Info: ./electrical_circuit.png  used on input line 98.
 (pdftex.def)             Requested size: 199.16928pt x 94.38362pt.
  [3 <./electrical_circuit.png>] [4]
-Overfull \hbox (23.70808pt too wide) detected at line 176
+Overfull \hbox (25.65807pt too wide) detected at line 177
 [][]
  []
 
-[5] [6]
-
-LaTeX Warning: Citation 'antonietti' on page 7 undefined on input line 268.
-
-<./transformation.png, id=56, 485.815pt x 256.96pt>
-File: ./transformation.png Graphic file (type png)
-<use ./transformation.png>
-Package pdftex.def Info: ./transformation.png  used on input line 279.
-(pdftex.def)             Requested size: 199.16928pt x 105.34251pt.
-[7 <./transformation.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 297--299
+[5] [6] [7] [8]
+Underfull \hbox (badness 10000) in paragraph at lines 356--357
 
  []
 
-[8]
-<./mass_dubiner.jpg, id=66, 1854.93pt x 964.60374pt>
+
+Overfull \hbox (83.62842pt too wide) detected at line 368
+[][]
+ []
+
+
+Overfull \hbox (86.96176pt too wide) detected at line 376
+[][]
+ []
+
+[9]
+Overfull \hbox (51.4162pt too wide) detected at line 430
+[]
+ []
+
+[10]
+<./transformation.png, id=74, 485.815pt x 256.96pt>
+File: ./transformation.png Graphic file (type png)
+<use ./transformation.png>
+Package pdftex.def Info: ./transformation.png  used on input line 468.
+(pdftex.def)             Requested size: 199.16928pt x 105.34251pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 486--488
+
+ []
+
+[11 <./transformation.png>]
+<./mass_dubiner.jpg, id=80, 1854.93pt x 964.60374pt>
 File: ./mass_dubiner.jpg Graphic file (type jpg)
 <use ./mass_dubiner.jpg>
-Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 345.
+Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 534.
 (pdftex.def)             Requested size: 199.16928pt x 103.56041pt.
- [9 <./mass_dubiner.jpg>] [10] (./report.aux)
-
-LaTeX Warning: There were undefined references.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                report
-(biblatex)                and rerun LaTeX afterwards.
-
+ [12]
+! Undefined control sequence.
+<argument> \MakeCapital 
+                        {\csuse {\abx@str @\blx@tempa }}
+l.542 
+      
+? 
+! Undefined control sequence.
+<argument> \MakeCapital 
+                        {\csuse {\abx@str @\blx@tempa }}
+l.542 
+      
+? 
+[13 <./mass_dubiner.jpg>] (./report.aux)
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14586 strings out of 482843
- 253494 string characters out of 5956406
- 921730 words of memory out of 5000000
- 29730 multiletter control sequences out of 15000+600000
+ 14699 strings out of 480906
+ 256618 string characters out of 5910772
+ 956641 words of memory out of 5000000
+ 30091 multiletter control sequences out of 15000+600000
  561229 words of font info for 91 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 44i,16n,45p,828b,1675s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti0800.
-600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1
-200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-crm1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecti1200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecbx1440.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecrm1200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecbx1200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecbx1728.600pk> </home/federica/.texlive2020/texmf-var/fonts
-/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/federica/.texlive2020/texmf-var/f
-onts/pk/ljfour/jknappen/ec/eccc1728.600pk> </home/federica/.texlive2020/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/ecti1728.600pk> </home/federica/.texlive2020/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/federica/.texlive2020
-/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/
-cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (11 pages, 465642 bytes).
+ 1141 hyphenation exceptions out of 8191
+ 44i,23n,45p,803b,1699s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf/
+fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200
+.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/tex
+mf/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/publi
+c/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1200.
+pfb></usr/share/texmf/fonts/type1/public/cm-super/sfcc1440.pfb></usr/share/texm
+f/fonts/type1/public/cm-super/sfcc1728.pfb></usr/share/texmf/fonts/type1/public
+/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
+fb></usr/share/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf
+/fonts/type1/public/cm-super/sfti1200.pfb></usr/share/texmf/fonts/type1/public/
+cm-super/sfti1728.pfb>
+Output written on report.pdf (14 pages, 590870 bytes).
 PDF statistics:
- 481 PDF objects out of 1000 (max. 8388607)
- 118 compressed objects within 2 object streams
+ 185 PDF objects out of 1000 (max. 8388607)
+ 128 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

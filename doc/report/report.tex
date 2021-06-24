@@ -20,6 +20,7 @@ backend=biber,
 style=numeric,
 citestyle=numeric,
 ]{biblatex}
+
 \addbibresource{./report_bib.bib}
 \usepackage[autostyle]{csquotes}
 
@@ -104,9 +105,9 @@ citestyle=numeric,
     \begin{definition}[Bidomain model]
 	\begin{equation*}
 	\begin{cases}
-	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion} = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion} = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
 	\\
-	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
 	\end{cases}
 	\end{equation*}
     \end{definition}
@@ -119,7 +120,7 @@ citestyle=numeric,
 		\item $\chi_m,C_m, \Sigma_i, \Sigma_e$ are known constants
 		\item $I_i^{ext},I_e^{ext}$ are applied currents
 		\item $I_{ion}$ is the \emph{Ionic Current}
-		\item $\Omega_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
+		\item $w_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
 	\end{itemize}
     
     \vspace{4mm}
@@ -128,19 +129,19 @@ citestyle=numeric,
     \begin{definition}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]\label{def1}
     	\begin{equation*}
     	\begin{cases}
-    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
     	\\
-    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
     	\\
-    	I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)-w & \text{in } \Omega_{mus} \cross (0,T]
+    	I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)-w & \text{in } w_{mus} \cross (0,T]
     	\\
-    	\pdv{w}{t} = \epsilon(V_m-\gamma w)  & \text{in } \Omega_{mus} \cross (0,T]
+    	\pdv{w}{t} = \epsilon(V_m-\gamma w)  & \text{in } w_{mus} \cross (0,T]
     	\\
-    	\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
+    	\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial w_{mus} \cross (0,T]
     	\\
-    	\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial \Omega_{mus} \cross (0,T]
+    	\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial w_{mus} \cross (0,T]
     	\\
-    	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } \Omega_{mus}\cross\{t=0\}
+    	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } w_{mus}\cross\{t=0\}
     	\end{cases}
     	\end{equation*}
     \end{definition}
@@ -157,32 +158,32 @@ citestyle=numeric,
     \noindent From now on, the system of definition \ref{def1} will be the reference analytical problem for the development of numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain.
 
-    \subsection{Formulations}
+    \subsection{Semi discretized numerical methods}
     \subsubsection{DG discrete formulation}
-    We have seen the bidomain model in a complete form in \ref{def1}. We introduce now a triangulation $\tau_h$ over $\Omega$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2 : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuos polynomial.
+    We have seen the bidomain model in a complete form in definition \ref{def1}. We introduce now a triangulation $\tau_h$ over $w$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2 : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuos polynomial.
     
     We obtain the semi discrete DG formulation:
     \begin{equation*}
     \begin{gathered}
-    \text{For any time } t \in [0,T] \text{ find } \Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2 \text{ and } \omega_h(t) \in V_h^k:\\
-    \sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h d\omega}+a_i(\phi_i^h,v_h)+\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
-    +\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h d\omega}=(I_i^{ext},v_h) \qquad \forall v_h \in V_h^p\\
+    \text{For any time } t \in [0,T] \text{ find } \Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2 \text{ and } w_h(t) \in V_h^k:\\
+    \sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_i(\phi_i^h,v_h)+\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
+    +\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h dw}=(I_i^{ext},v_h) \qquad \forall v_h \in V_h^p\\
     \newline
-    -\sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h d\omega}+a_e(\phi_e^h,v_h)-\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
-    -\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h) \qquad \forall v_h \in V_h^p\\
+    -\sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_e(\phi_e^h,v_h)-\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
+    -\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h dw}=(-I_e^{ext},v_h) \qquad \forall v_h \in V_h^p\\
     \newline
-    \sum_{K \in \tau_h} \int_K{\pdv{w_h}{t}v_h d\omega}=\sum_{k \in \tau_h} \int_K{\epsilon (V_m^h-\gamma w_h) v_h d\omega} \qquad \forall v_h \in V_h^p\\
+    \sum_{K \in \tau_h} \int_K{\pdv{w_h}{t}v_h dw}=\sum_{k \in \tau_h} \int_K{\epsilon (V_m^h-\gamma w_h) v_h dw} \qquad \forall v_h \in V_h^p\\
     \end{gathered}
     \end{equation*}
     where:
     \begin{equation*}
     \begin{gathered}
-    a_k(\phi_k^h,v_h)=\sum_{K \in \tau_h} \int_K{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
+    a_k(\phi_k^h,v_h)=\sum_{K \in \tau_h} \int_K{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
     -\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_k \nabla_h v_h\}\} \cdot [[\phi_k^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\gamma [[\phi_k^h]] \cdot [[v_h]] d\sigma} \qquad \text{for k=i,e}\\
     \newline
-    (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b v_h d\sigma}\\
+    (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}\\
     \newline
-    (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h d\omega}+\int_{\partial \Omega}{b v_h d\sigma}
+    (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}
     \end{gathered}
     \end{equation*}
     
@@ -206,7 +207,7 @@ citestyle=numeric,
  Also we can introduce the matrices:
  \begin{equation}
 \begin{rcases}
-V_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \nabla \varphi_i 
+V_{ij} &= \int_{w}\nabla\varphi_j \cdot \nabla \varphi_i 
 \\ I_{i,j}^T &= \sum_{F \in F_h^I} \int_{F} \{\{\nabla\varphi_j\}\} \cdot [[\varphi_i]] 
 \\ I_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\nabla \varphi_i\}\}
 \\S_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma [[\varphi_j]] \cdot [[\varphi_i]]
@@ -229,37 +230,225 @@ M_{ij} = \sum_{K \in \tau_h}\int_K \qquad{\text{Mass matrix}}
 C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non linear matrix}}
 \end{equation}
 \begin{equation}
-F_k=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}
+F_k=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{w} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{w} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}
 \end{equation}
 
 Therefore our algebraic formulation is:
 \newline
-Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $\omega_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
-\begin{equation}
+Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+\begin{equation}\label{algebraic}
 \begin{gathered}
-\chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M \omega_h=F_i^h\\
--\chi_m Cm M \dot{V_m^h}+A_e \phi_e^h-C(V_m^h) V_m^h-\chi_m M \omega_h=F_e^h\\
-M \dot{\omega_h(t)}=\epsilon M (V_m^h(t)-\gamma \omega_h(t))
+\chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M w_h=F_i^h\\
+-\chi_m Cm M \dot{V_m^h}+A_e \phi_e^h-C(V_m^h) V_m^h-\chi_m M w_h=F_e^h\\
+M \dot{w_h(t)}=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
  
  Rewrite it with the block matrix and assuming that M is non singular:
  \newline
- Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $\omega_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
- \begin{equation}
+ Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+ \begin{equation}\label{block_matrix}
  \begin{gathered}
  \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
-	\begin{bmatrix}\bm{\dot{\Phi}_i^h(t)} \\ \bm{\dot{\Phi}_e^h(t)} \end{bmatrix}
+	\begin{bmatrix}\bm{\dot{\phi}_i^h(t)} \\ \bm{\dot{\phi}_e^h(t)} \end{bmatrix}
 	 + \begin{bmatrix}A_i & 0 \\ 0 & A_e \end{bmatrix}
-	 \begin{bmatrix}\bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)} \end{bmatrix} +\\
+	 \begin{bmatrix}\bm{\phi_i^h(t)} \\ \bm{\phi_e^h(t)} \end{bmatrix} +\\
 	   \begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix} 
-	   \begin{bmatrix} \bm{\Phi_i^h(t)} \\ \bm{\Phi_e^h(t)}  \end{bmatrix} 
+	   \begin{bmatrix} \bm{\phi_i^h(t)} \\ \bm{\phi_e^h(t)}  \end{bmatrix} 
 	   +\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
 	   	\begin{bmatrix}w_h(t) \\ w_h(t) \end{bmatrix} = 
 	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}\\
-	   \dot{\omega_h(t)}=\epsilon (V_m^h(t)-\gamma \omega_h(t))
+	   \dot{w_h(t)}=\epsilon (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
+
+\subsection{Totally discretized numerical methods}
+The system is time dependent, so we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \qquad \forall k=0,\cdots,K-1$ and so we consider $V_m^k\approx V_m(t^k)$.
+\subsubsection{Semi implicit method}
+At first, we consider an implicit method for the time discretization, meanwhile for the non linear contribution of $I^{ion}$ a semi implicit method, indeed we think about it as a cubic function, so we treat explicitely the quadratic term and the rest of the terms implicitly, that is:
+\begin{equation*}
+I_{ion}=k(V_m^k-a)(V_m^k-1)V_m^{k+1}+w^{k+1}
+\end{equation*}
+Moreover in the ODE of the model \ref{algebraic}, we evaluate $w$ implicitely and we consider $V_m$ at the previous temporal step $t^k$:
+\begin{equation*}
+M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
+\end{equation*}
+\vspace{5mm}
+Therefore we obtain:
+\begin{equation}
+ \begin{gathered}
+ \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
+	\begin{bmatrix}\bm{\frac{\phi_i^{k+1}-\phi_i^{k}}{\Delta t}} \\ \bm{\frac{\phi_e^{k+1}-\phi_e^{k}}{\Delta t}}  \end{bmatrix}
+	 + \begin{bmatrix}A_i & 0 \\ 0 & A_e \end{bmatrix}
+	 \begin{bmatrix}\bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}} \end{bmatrix} +\\
+	   \begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix} 
+	   \begin{bmatrix} \bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}}  \end{bmatrix} 
+	   +\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
+	   	\begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix} = 
+	   	\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}\\
+	   M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
+\end{gathered}
+\end{equation}
+where $V_m^k=\phi_i^k-\phi_e^k$.\newline
+\vspace{5mm}
+We can rewrite it as:
+\begin{equation}
+\begin{gathered}
+\left( \frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M & -M \\ -M & M \end{bmatrix} + \begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix} + 
+\begin{bmatrix}
+C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
+\end{bmatrix}\right)
+\begin{bmatrix} \bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}} \end{bmatrix} = 
+\\
+\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1} \end{bmatrix} 
+- \chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix}
+\begin{bmatrix} w^{k+1} \\ w^{k+1} \end{bmatrix}
++ \frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & 0 \\ 0 & -M\end{bmatrix}
+\begin{bmatrix} V_m^{k} \\ V_m^{k} \end{bmatrix}
+\end{gathered}
+\end{equation}
+\begin{equation}
+(\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k
+\end{equation}
+\vspace{5mm}
+Defining:
+\begin{itemize}
+\item $B=\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix}+\begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix}$
+\item $C_{nl}(V_m^k)=\begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix}$
+\item $r^{k+1}=\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^k \\ \phi_e^k \end{bmatrix}$
+\end{itemize}
+We get the final system:\newline
+Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
+\begin{equation}
+\begin{cases}
+(\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k \\
+(B+C_{nl}(\Phi^k)) \Phi^{k+1}=r^{k+1}
+\end{cases}
+\end{equation} 
+
+\subsubsection{Quasi implicit operator splitting}
+The main characteristic of an operator splitting is to divide the problem into two different systems with two different operators, such that $L(u)=L_1(u)+L_2(u)$, and, starting from $u^n$, we find $\tilde(u^{n+1})$ through the first system, then the solution $u^{n+1}$ through the second one.
+In the Quasi implicit operator splitting we treat in a explicit way any term, except the $V_m^n$ in the non linear term.\newline
+Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
+\begin{equation}
+\begin{cases}
+\chi_m C_m M \frac{\tilde{V}_m^{k+1}-V_m^k}{\Delta t} +  C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1}= 0\\
+\frac{w^{k+1} - w^k}{\Delta t} = \epsilon (V_m^{k+1}-\gamma w^{k+1})
+\end{cases}
+\end{equation}
+Find $V_m^{k+1}$ such that:
+\begin{equation}
+\begin{cases}
+\chi_m C_m M \frac{V_m^{k+1}-\tilde{V}_m^{k+1}}{\Delta t} + A_i \phi_i^{k+1}= F_i^{k+1}\\
+- \chi_m C_m M \frac{V_m^{k+1}-\tilde{V}_m^{k+1}}{\Delta t} + A_e \phi_e^{k+1}= F_e^{k+1}
+\end{cases}
+\end{equation}
+Put into a unique system:
+\begin{equation}\label{Quasi}
+\begin{cases}
+\chi_m C_m M \frac{V_m^{k+1}-V_m^{k}}{\Delta t} + C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1} + A_i \phi_i ^{k+1} = F_i^{k+1} \\
+\chi_m C_m M \frac{V_m^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1} - A_e \phi_e ^{k+1} =  -F_e^{k+1} \\
+\frac{w^{k+1}-w^{k}}{\Delta t} = \epsilon(V_m^{k+1}-\gamma w^{k+1})
+\end{cases}
+\end{equation}
+Defining:
+\begin{itemize}
+\item $Q_k = \frac{\chi_m C_m}{\Delta t}M + C(V_m^k) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$ \\
+\item $R_k = \frac{\chi_mC_m}{\Delta t}MV_m^k - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^k$
+\end{itemize}
+The equations in the system \ref{Quasi} can be written as:
+\begin{enumerate}
+\item
+\begin{equation*}
+\begin{gathered}
+\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right)+\\
++ A_i \phi_i ^{k+1} = F_i^{k+1} \\
+\Rightarrow \quad (Q_k + A_i) \phi_i^{k+1} - Q_k \phi_e^{k+1} =R_k +  F_i^{k+1}
+\end{gathered}
+\end{equation*}
+\item
+\begin{equation*}
+\begin{gathered}
+\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} + \cdot C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right) +\\
+- A_e \phi_e ^{k+1} = -F_e^{k+1} \\ \\
+\Rightarrow \quad Q_k \phi_i^{k+1} - (Q_k+A_e) \phi_e^{k+1} =R_k - F_e^{k+1}
+\end{gathered}
+\end{equation*}
+\item 
+\begin{equation*}
+w^{k+1} = \frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}
+\end{equation*}
+\end{enumerate}
+The final system becomes:\newline
+Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that:
+\begin{equation}
+\quad
+\begin{cases}
+\left(
+\begin{bmatrix} Q_k & -Q_k \\ Q_k & -Q_k \end{bmatrix} + 
+\begin{bmatrix} A_i & 0 \\ 0 & -A_e\end{bmatrix}
+\right)
+\begin{bmatrix}
+\bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}}
+\end{bmatrix}
+= \begin{bmatrix} R_k \\ R_k \end{bmatrix} + \begin{bmatrix} F_i^{k+1} \\  -F_e^{k+1}\end{bmatrix} \\ \\
+w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{\displaystyle 1+\epsilon \gamma \Delta t}
+\end{cases}
+\end{equation}
+
+\subsubsection{Godunov operator splitting}
+Another type of operator splitting is the Gudonov operator splitting where in this case the first system is written in an explicit way, meanwhile the second implicitly. Indeed:\newline
+Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{\hat{V}_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k = 0\\
+\frac{w^{k+1}-w^k}{\Delta t} = \epsilon (V_m^k - \gamma w^k)
+\end{cases}
+\end{equation*}
+Find $V_m^{k+1}$ such that:
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_i\phi_i^{k+1} = F_i^{k+1} \\
+-\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_e\phi_e^{k+1} = F_e^{k+1}
+\end{cases}
+\end{equation*}
+Put in a unique system:
+\begin{equation}\label{Godunov}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k + A_i \phi_i^{k+1}= F_i^{k+1} \\
+\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k - A_e \Phi_e^{k+1}= -F_e^{k+1} \\
+w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta t V_m^k
+\end{cases}
+\end{equation}
+The equations in the system \ref{Godunov} can be written as:
+\begin{equation*}
+\begin{cases}
+\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \phi_i^{k+1} - \frac{\chi_m C_m}{\Delta t} M \phi_e^{k+1} = F_i^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k\\
+\frac{\chi_m C_m}{\Delta t} M  \phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \phi_e^{k+1} =  -F_e^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k \\
+w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
+\end{cases}
+\end{equation*}
+
+In the end, find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that: 
+\begin{equation}
+\begin{cases}
+\begin{gathered}
+\left(
+	\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
+	+ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
+	\right) \begin{bmatrix} \bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}}  \end{bmatrix} =
+	\begin{bmatrix} F_i^{k+1} \\ -F_e^{k+1} \end{bmatrix} + \\ -
+	\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^k \\ w^k \end{bmatrix} +
+	\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
+	- \begin{bmatrix} C(V_m^k) & 0 \\ 0 & C(V_m^k)\end{bmatrix} 
+	\right) \begin{bmatrix} V_m^k \\ V_m^k \end {bmatrix}
+	 \end{gathered} \\ \\
+	w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
+\end{cases}
+\end{equation}
+
+
+
 \section{Dubiner Basis}
     The most popular orthonormal basis on the reference triangle
     \begin{equation}
