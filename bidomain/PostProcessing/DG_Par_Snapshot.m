@@ -18,8 +18,8 @@ x1=femregion.domain(1,1);
 x2=femregion.domain(1,2);
 y1=femregion.domain(2,1);
 y2=femregion.domain(2,2);
-M= 0.02;
-m=-0.09;
+M= 1.2;
+m=-0.2;
 
 
 if Data.fem(2) == '1'
