@@ -50,8 +50,8 @@ y2=femregion.domain(2,2);
 %    M=m+1;
 %end
 
-m=-1;
-M=1;
+m=min(u_h);
+M=max(u_h);
 
 if Dati.fem(2) == '1'
     
