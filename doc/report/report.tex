@@ -14,6 +14,8 @@
 \usepackage{setspace}
 \usepackage{caption}
 \usepackage{mathtools}
+\usepackage{subcaption}
+\captionsetup{compatibility=false}
 
 \usepackage[
 backend=biber,
@@ -44,7 +46,7 @@ citestyle=numeric,
 	    	
 	    	\vspace{20mm}
 	    	\rule{15cm}{0.1mm} \\ \vspace{4.5mm}
-	    	 \Huge{\textbf{DISCONTINUOUS GALERKIN APPROXIMATION FOR CARDIAC ELECTROPHYSIOLOGY}} \\
+	    	 \Huge{\textbf{HIGH-ORDER DISCONTINUOS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}} \\
 	    	\rule{15cm}{0.1mm}
 	    	\vspace{20mm}
 	    	
@@ -54,7 +56,7 @@ citestyle=numeric,
 	    	\emph{Supervisors:}& \hspace{5mm} \textsc{ Christian Vergara, Paola Antonietti}
 	    	\end{align*}
 	         } \\
-	    	\vspace{35mm}
+	    	\vspace{20mm}
 	    	\large{\textsc{A.Y. 2020/2021}}
 	    \end{center}
 	\end{titlepage}
@@ -158,8 +160,40 @@ citestyle=numeric,
     \noindent From now on, the system of definition \ref{def1} will be the reference analytical problem for the development of numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain.
 
-    \subsection{Semi discretized numerical methods}
-    \subsubsection{DG discrete formulation}
+\subsection{Previous project}
+As we have already said, our project aims to continue the work of a previous project, \citeauthor{marta} (\parencite{marta}). Their goal was to implement a Discontinuos Galerkin method for the bidomain problem.\newline
+Their result using unitary parameters, namely $\chi_m =1, \Sigma_i=1, \Sigma_e=1, C_m=1, k=1, \epsilon=1, \gamma=1 and a=1$, were quite good, but the problem comes when the parameters utilized are more realistic, as $\chi_m =10^5, \Sigma_i=0.12, \Sigma_e=0.12, C_m=0.01, k=19.5, \epsilon=1.2, \gamma=0.1$ and a=0.013, indeed we can observe in figure \ref{convergence_test_marta_fisio} the presence of instabilites for the solution of $\phi_i$ and $\phi_e$.
+\begin{figure}[h]
+\centering
+         \begin{subfigure}[b]{0.5\textwidth}
+    		\includegraphics[width = 7cm]{./phi_i_Marta_Perego.jpg}
+    		\caption{Convergence test of $\phi_i$}
+    	\end{subfigure}%
+    	\hfill
+     \begin{subfigure}[b]{0.5\textwidth}
+    		\includegraphics[width = 7cm]{./phi_e_Marta_Perego.jpg}
+    		\caption{Convergence test of $\phi_e$}
+    	 \end{subfigure}
+    	 \caption{Convergence test using physiological parameters}\label{convergence_test_marta_fisio}
+\end{figure}
+
+This result limits the use of the code, because it cannot be used to study physiological cases.\newline
+
+\subsubsection{The main error}
+We have done many changes in their code, but the main one regards the implementation of the very own model. Indeed, in the paper (\cite{acta}) we can find the equation for the Fitz-Hugh Nagumo model for the ionic current $I_{ion}(V_m,w)=-kV_m(V_m-a)(V_m-1)-w$, having the model:
+\begin{equation*}
+    	\begin{cases}
+    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
+    	\\
+    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
+    	\end{cases}
+\end{equation*}
+Instead if we see the most important paper regarding this model, \cite{bourgault} of \citeauthor{bourgault}, the equations of the bidomain model are the same, but the Fitz-Hugh Nagumo model has opposite sign, namely $I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)+w$.
+
+This error was the principal contributor to the instabilities of the results of (\cite{marta}), because in some cases there wasn't coercivity of the bilinear form and so the stability wasn't always assured.\newline
+Whereas in (\cite{bourgault}) the well posedness of the problem, using the right Fitz-Hugh Nagumo equation, is proved.
+    \section{Semi discretized numerical methods}
+    \subsection{DG discrete formulation}
     We have seen the bidomain model in a complete form in definition \ref{def1}. We introduce now a triangulation $\tau_h$ over $w$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2 : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuos polynomial.
     
     We obtain the semi discrete DG formulation:
@@ -195,7 +229,7 @@ citestyle=numeric,
     \end{itemize} 
     To see in more detail the procedure see \cite{marta}.
     
-    \subsubsection{Algebraic formulation}
+    \subsection{Algebraic formulation}
     Taking $\{\varphi_j\}_{j=1}^{N_h}$ base of $V_h^k$, so that we can write
     \begin{equation*}
     \begin{gathered}
@@ -205,7 +239,7 @@ citestyle=numeric,
  \end{gathered}
  \end{equation*}
  Also we can introduce the matrices:
- \begin{equation}
+ \begin{equation}\label{matrices}
 \begin{rcases}
 V_{ij} &= \int_{w}\nabla\varphi_j \cdot \nabla \varphi_i 
 \\ I_{i,j}^T &= \sum_{F \in F_h^I} \int_{F} \{\{\nabla\varphi_j\}\} \cdot [[\varphi_i]] 
@@ -233,8 +267,7 @@ C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi
 F_k=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{w} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{w} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}
 \end{equation}
 
-Therefore our algebraic formulation is:
-\newline
+Therefore our algebraic formulation is:\newline
 Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
 \begin{equation}\label{algebraic}
 \begin{gathered}
@@ -244,8 +277,7 @@ M \dot{w_h(t)}=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
  
- Rewrite it with the block matrix and assuming that M is non singular:
- \newline
+ Rewrite it with the block matrix and assuming that M is non singular:\newline
  Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
  \begin{equation}\label{block_matrix}
  \begin{gathered}
@@ -262,9 +294,213 @@ M \dot{w_h(t)}=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
 
-\subsection{Totally discretized numerical methods}
+\section{Dubiner Basis}
+We implemented another type of basis, the Dubiner basis, instead of the classic FEM basis.
+    The most popular orthonormal basis on the reference triangle
+    \begin{equation}
+    \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \}
+    \end{equation}
+    is the Dubiner polynomial basis \cite{antonietti}. We consider the transformation in figure \ref{transformation} between the reference square
+    \begin{equation}
+    \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}
+    \end{equation}
+    and the reference triangle given by
+    \begin{equation}
+    \xi:=\frac{(1+a)(1-b)}{4},  \eta:=\frac{(1+b)}{2}
+    \end{equation}
+    
+    \begin{figure}[h]
+    \begin{center}
+    \includegraphics[width = 7cm]{./transformation.png}
+    	\caption{Transformation between the reference square to the reference triangle}
+    	\label{transformation}
+    \end{center}
+    \end{figure}
+    
+    The Dubiner basis is then constructed by a generalized tensor product of the Jacobi polynomials on the interval (-1, 1) to form a basis on the reference square, which is then transformed by the above “collapsing” mapping to a basis on the reference triangle.
+    \begin{definition}[Jacobi polynomials]
+    The Jacobi polynomials evaluated in $z\in \mathbb{R}^n$ are:
+    \begin{itemize}[label=\textendash]
+    \item $n=0$
+    \begin{equation}
+    J_0^{\alpha,\beta}(z)=\overbrace{\begin{bmatrix} 1 & 1 &\dots &1 \end{bmatrix}}^{\text{n times}}
+    \end{equation}
+    \item $n=1$
+    \begin{equation}
+    J_1^{\alpha,\beta}(z)=\frac{1}{2}(\alpha-\beta+(\alpha+\beta+2)\cdot z);
+    \end{equation}
+    \item $n\ge2$
+    \newline
+    \begin{equation}
+    \begin{gathered}
+    \begin{aligned}
+    J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-\beta^{2})}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}+ \\ &\frac{(2k+\alpha+\beta-2)(2k+\alpha+\beta-1)(2k+\alpha \beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-1}^{\alpha,\beta}(z) +
+    \\-&\frac{2(k+\alpha-1)(k+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-2}^{\alpha,\beta}(z) \Big]
+    \end{aligned}
+    \end{gathered}
+    \end{equation}
+    \end{itemize}
+    \end{definition}
+    
+    An important property of this polynomials is:
+    \begin{prop}\label{jac}
+    $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
+    \begin{equation}
+    \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
+    \end{equation}
+    \end{prop}
+    
+    Thanks to this definition, we can now look more accurately the formula of the Dubiner basis
+    \begin{definition}[Dubiner Basis]
+    \begin{equation}
+    \begin{split}
+    \phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
+    \\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
+    \end{split}
+    \end{equation}
+    for $i,j=1,\dots,p$ and $i+j \le p$, where
+    \begin{equation}
+    c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
+    \end{equation}
+    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial
+    \end{definition}
+    
+    We note that
+    \begin{prop}
+    $\phi_{ij}(\xi,\eta)$ is orthogonal w.r.t. Legendre internal product:
+    \begin{equation}
+    \iint_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq}
+    \end{equation}
+    \end{prop}
+    
+    Indeed, we obtain a mass matrix diagonal as we can see in figure \ref{mass}
+    
+    \begin{figure}[ht]
+    \begin{center}
+    \includegraphics[width = 7cm]{./mass_dubiner.jpg}
+    	\caption{Elements non zero in the mass matrix w.r.t Dubiner basis}
+    	\label{mass}
+    \end{center}
+    \end{figure}
+    
+    \subsection{Implementation}
+    Some of the codes that we used were written by professor Antonietti as eval\_jacobi\_polynomial.m, used to evaluate the Jacobi polynomial $J_n^{\alpha,\beta}$ in the vector z, basis\_legendre\_dubiner.m, that generates the basis functions of legendre Qp--Pp on the reference element [-1,1] x [-1,1], and evalshape\_tria\_dubiner.m, it creates the Dubiner basis (dphiq) and its gradient (Grad) on the volume terms and on the edges (B\_edge and G\_edge). So we used these ones as starting point for the functions that we needed.\newline
+    Other simply changes in the code of (\ref{marta}), that we won't cover in this relation, were made in order to call the right function according to basis we have chosen (Dubiner or FEM).
+    (METTERE CODICE DI QUESTE FUNZIONI?)
+    \subsubsection{matrix2D\_dubiner.m}
+    At first we implemented a function that assembles the matrices that we have defined in (\ref{matrices}):
+    METTERE CODICE?
+\subsubsection{dubiner\_to\_fem.m and fem\_to\_dubiner.m}
+One of the many advantages of the FEM basis is that the evaluation of a basis function in a point of the mesh is equal to 1 only if that point is the one associated to the basis, 0 otherwise:
+	\begin{equation} \label{ref1}
+	\psi_i(x_j)=\delta_{ij}
+	\end{equation}
+	This property cannot be satisfied by Dubiner basis (although other good properties hold in this case, for instance regularity and especially \emph{orthogonality}). Indeed these basis have not localized support and they are neither normalized on the mesh edges. This means that the coefficients of the solution of the Dubiner system are \emph{not} the evaluation over the mesh points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
+	For this reason we introduced two new functions that best transform the coefficients of the solution w.r.t. FEM basis to the coefficients w.r.t. Dubiner basis and viceversa.\vspace{5mm}
+	
+	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
+	
+	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the property \ref{ref1}, i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
+	\begin{equation} \label{ref3}
+	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i)
+	\end{equation}
+	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm}
+	
+	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (property obtained thanks to \ref{jac}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
+	\begin{equation}\label{ref4}
+	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i
+	\end{equation}
+	
+	\vspace{5mm}
+	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.
+	
+	\vspace{5mm}
+	\noindent For the sake of both simplicity and logic, we have decided to implement these transformations only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. Indeed, from one side, the degree of FEM is here less "important" since it contributes only to the number of points to which evaluate the computed solution. Then, increasing $n$ for P does not substantially improve the quality of the solution. On the other side, choosing the same degree for P and D means having the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are replaced with $nln$ in the code.	
+	Finally, we see the first transformation associated to \ref{ref3}:
+	\begin{verbatim}
+	function [u0] = dubiner_to_fem (uh, femregion, Data)         
+deg=sscanf(Data.fem(2:end),'%f');
+s=0;
+
+% define the coordinates of the degree of freedom in the reference triangle
+% adn square
+if (deg==1)  %D1
+    a   = [-1; 1; -1];
+    b   = [-1; -1; 1];
+    
+elseif (deg ==2) %D2
+    a   = [-1; 0; 1; 1; -1; -1];
+    b   = [-1; -1; -1; 0; 1; 0];
+
+elseif (deg==3) %D3
+    a   = [-1; -0.5; 0.5; 1; 1; 1; -1; -1; -1; 0];
+    b   = [-1; -1; -1; -1; -0.5; 0.5; 1; 0.5; -0.5; -1/3];   
+end
+
+csi=(1+a).*(1-b)/4;
+eta=(1+b)/2;
+
+% evaluate the Dubiner basis on these points
+for j=0:(deg)
+    for i=0:(deg)
+        if (i+j) <= deg
+           s=s+1;
+           [pi] = eval_jacobi_polynomial(i,0,0,a);
+           [pj] = eval_jacobi_polynomial(j,2.*i+1,0,b);
+           cij=sqrt((2.*i +1).*2.*(i+j+1)./4.^i);
+           phi(1,:,s)=cij.*(2.^i).*((1-eta).^i).*pi.*pj;
+        end
+    end
+end
+
+u0 = zeros(femregion.ndof,1);
+
+for ie = 1:femregion.ne
+    
+   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+   
+   for i = 1 : femregion.nln
+       for j = 1: femregion.nln
+         u0(index(i)) = u0(index(i)) +  uh(index(j))*phi(1,i,j);
+       end
+   end
+    
+end
+\end{verbatim}
+And the second one associated to \ref{ref4}:
+\begin{verbatim}
+function [u0] = fem_to_dubiner (uh, femregion, Data)
+
+% quadrature nodes and weights for integrals
+[nodes_1D, ~, nodes_2D, w_2D] = quadrature(Data.nqn);
+
+% evaluation of shape functions on quadrature point both on FEM basis and
+% Dubiner basis
+[shape_basis] = basis_legendre_dubiner(femregion.fem);
+[phi_dub, ~, ~, ~] = evalshape_tria_dubiner(shape_basis,nodes_2D, nodes_1D,
+Data.nqn,femregion.nln);
+[shape_basis] = basis_lagrange(append("P", femregion.fem(2)));
+[phi_fem, ~, ~, ~] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
+
+u0 = zeros(femregion.ndof,1);
+
+for ie = 1:femregion.ne
+    index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+    for i = 1 : femregion.nln
+        for k = 1:length(w_2D) 
+            uh_eval_k = 0;
+            for j = 1:femregion.nln
+                uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
+            end
+            u0(index(i)) = u0(index(i)) + uh_eval_k*phi_dub(1,k,i).*w_2D(k);
+        end
+    end    
+end
+\end{verbatim}
+
+\section{Totally discretized numerical methods}
 The system is time dependent, so we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \qquad \forall k=0,\cdots,K-1$ and so we consider $V_m^k\approx V_m(t^k)$.
-\subsubsection{Semi implicit method}
+\subsection{Semi implicit method}
 At first, we consider an implicit method for the time discretization, meanwhile for the non linear contribution of $I^{ion}$ a semi implicit method, indeed we think about it as a cubic function, so we treat explicitely the quadratic term and the rest of the terms implicitly, that is:
 \begin{equation*}
 I_{ion}=k(V_m^k-a)(V_m^k-1)V_m^{k+1}+w^{k+1}
@@ -326,7 +562,11 @@ Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdot
 \end{cases}
 \end{equation} 
 
-\subsubsection{Quasi implicit operator splitting}
+\subsubsection{Results}
+Same method for the time discretization used in (\ref{marta})
+PLOT
+
+\subsection{Quasi implicit operator splitting}
 The main characteristic of an operator splitting is to divide the problem into two different systems with two different operators, such that $L(u)=L_1(u)+L_2(u)$, and, starting from $u^n$, we find $\tilde(u^{n+1})$ through the first system, then the solution $u^{n+1}$ through the second one.
 In the Quasi implicit operator splitting we treat in a explicit way any term, except the $V_m^n$ in the non linear term.\newline
 Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
@@ -396,7 +636,39 @@ w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1}
 \end{cases}
 \end{equation}
 
-\subsubsection{Godunov operator splitting}
+\subsubsection{Implementation}
+\begin{verbatim}
+ ZERO = sparse(ll,ll);
+        
+    for t=dt:dt:T
+        
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+         Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+         R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
+    
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, -fe);
+    
+        B = [Q, -Q; Q, -Q] + [Ai, ZERO; ZERO, -Ae];
+        r = [R;R] + f1;
+        
+        u1 = B \ r; 
+        
+        Vm1 = u1(1:ll)-u1(ll+1:end);
+
+        w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
+    
+        f0 = f1;
+        Vm0 = u1(1:ll) - u1(ll+1:end);
+        u0 = u1;
+        w0 = w1;
+    end
+\end{verbatim}
+\subsubsection{Results}
+PLOT
+
+\subsection{Godunov operator splitting}
 Another type of operator splitting is the Gudonov operator splitting where in this case the first system is written in an explicit way, meanwhile the second implicitly. Indeed:\newline
 Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
 \begin{equation*}
@@ -446,97 +718,32 @@ In the end, find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad 
 	w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{cases}
 \end{equation}
-
-
-
-\section{Dubiner Basis}
-    The most popular orthonormal basis on the reference triangle
-    \begin{equation}
-    \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \}
-    \end{equation}
-    is the Dubiner polynomial basis \cite{antonietti}. We consider the transformation in figure \ref{transformation} between the reference square
-    \begin{equation}
-    \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}
-    \end{equation}
-    and the reference triangle given by
-    \begin{equation}
-    \xi:=\frac{(1+a)(1-b)}{4},  \eta:=\frac{(1+b)}{2}
-    \end{equation}
+\subsubsection{Implementation}
+\begin{verbatim}
+ZERO = sparse(ll,ll);
+    MASS = (ChiM*Cm/dt)*[M, -M; M -M];
+    MASSW = ChiM*[M, ZERO; ZERO, M];
     
-    \begin{figure}[h]
-    \begin{center}
-    \includegraphics[width = 7cm]{./transformation.png}
-    	\caption{Transformation between the reference square to the reference triangle}
-    	\label{transformation}
-    \end{center}
-    \end{figure}
+    for t=dt:dt:T
+        
+        fi = assemble_rhs_i(femregion,neighbour,Data,t);
+        fe = assemble_rhs_e(femregion,neighbour,Data,t);
+        f1 = cat(1, fi, -fe);
     
-    The Dubiner basis is then constructed by a generalized tensor product of the Jacobi polynomials on the interval (-1, 1) to form a basis on the reference square, which is then transformed by the above “collapsing” mapping to a basis on the reference triangle.
-    \begin{definition}[Jacobi polynomials]
-    The Jacobi polynomials evaluated in $z\in \mathbb{R}^n$ are:
-    \begin{itemize}[label=\textendash]
-    \item $n=0$
-    \begin{equation}
-    J_0^{\alpha,\beta}(z)=\overbrace{\begin{bmatrix} 1 & 1 &\dots &1 \end{bmatrix}}^{\text{n times}}
-    \end{equation}
-    \item $n=1$
-    \begin{equation}
-    J_1^{\alpha,\beta}(z)=\frac{1}{2}(\alpha-\beta+(\alpha+\beta+2)\cdot z);
-    \end{equation}
-    \item $n\ge2$
-    \newline
-    \begin{equation}
-    \begin{gathered}
-    \begin{aligned}
-    J_n^{\alpha,\beta}(z)=\sum_{k=2}^{n} \Big[&\frac{(2k+\alpha+\beta-1)(\alpha^{2}-\beta^{2})}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)}+ \\ &\frac{(2k+\alpha+\beta-2)(2k+\alpha+\beta-1)(2k+\alpha \beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-1}^{\alpha,\beta}(z) +
-    \\-&\frac{2(k+\alpha-1)(k+\beta-1)(2k+\alpha+\beta)}{2k(k+\alpha+\beta)(2k+\alpha+\beta-2)} J_{k-2}^{\alpha,\beta}(z) \Big]
-    \end{aligned}
-    \end{gathered}
-    \end{equation}
-    \end{itemize}
-    \end{definition}
-    
-    An important property of this polynomials is:
-    \begin{prop}
-    $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
-    \begin{equation}
-    \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
-    \end{equation}
-    \end{prop}
-    
-    Thanks to this definition, we can now look more accurately the formula of the Dubiner basis
-    \begin{definition}[Dubiner Basis]
-    \begin{equation}
-    \begin{split}
-    \phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
-    \\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
-    \end{split}
-    \end{equation}
-    for $i,j=1,\dots,p$ and $i+j \le p$, where
-    \begin{equation}
-    c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
-    \end{equation}
-    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial
-    \end{definition}
-    
-    We note that
-    \begin{prop}
-    $\phi_{ij}(\xi,\eta)$ is orthogonal w.r.t. Legendre internal product:
-    \begin{equation}
-    \iint_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq}
-    \end{equation}
-    \end{prop}
-    
-    Indeed, we obtain a mass matrix diagonal as we can see in figure \ref{mass}
-    
-    \begin{figure}[ht]
-    \begin{center}
-    \includegraphics[width = 7cm]{./mass_dubiner.jpg}
-    	\caption{Elements non zero in the mass matrix w.r.t Dubiner basis}
-    	\label{mass}
-    \end{center}
-    \end{figure}
-    
+        [C] = assemble_nonlinear(femregion,Data,Vm0);
+        
+        w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
+        B = MASS + [Ai, ZERO; ZERO, -Ae];
+        r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])
+        *[Vm0;Vm0] + f1;
+ 
+        Vm0 = u1(1:ll) - u1(ll+1:end);
+        u0 = u1;
+        w0 = w1;
+    end
+    \end{verbatim}
+    \subsubsection{Results}
+    PLOT
     \newpage
     \printbibliography
 
