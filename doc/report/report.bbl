@@ -102,6 +102,41 @@
       \field{title}{The Inverse Potential Problem of Electrocardiography Regularized with Optimal Control}
       \field{year}{2020}
     \endentry
+    \entry{bourgault}{article}{}
+      \name{author}{3}{}{%
+        {{hash=d727681f124ad64f9979998385bb7bd5}{%
+           family={Bourgault},
+           familyi={B\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=55bc194d19559b19b4969dd95162b8fe}{%
+           family={Coudière},
+           familyi={C\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d3ebc18cf759fd774e3cda322838d962}{%
+           family={Pierre},
+           familyi={P\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \strng{fullhash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \strng{bibnamehash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \strng{authorbibnamehash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \strng{authornamehash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \strng{authorfullhash}{ad4654cb1b75bb10d2166fa137cd9f1e}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nonlinear Analysis: Real World Applications}
+      \field{title}{Existence and uniqueness of the solution for the bidomain model used in cardiac electrophysiology}
+      \field{volume}{10}
+      \field{year}{2009}
+      \field{pages}{458\bibrangedash 482}
+      \range{pages}{25}
+    \endentry
     \entry{colli_franzone}{book}{}
       \name{author}{3}{}{%
         {{hash=36cb417b3e2bca9311869b8f5524ccf0}{%
