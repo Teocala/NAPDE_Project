@@ -42,7 +42,7 @@
       \strng{authornamehash}{35418aeb9ffe3c0d52c59cab047356dc}
       \strng{authorfullhash}{35418aeb9ffe3c0d52c59cab047356dc}
       \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Discontinuous Galerkin approximation of the monodomain problem}
@@ -68,7 +68,7 @@
       \strng{authornamehash}{1ecc81699d1e24986a79daf4e08e604c}
       \strng{authorfullhash}{1ecc81699d1e24986a79daf4e08e604c}
       \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{sortinithash}{a3dcedd53b04d1adfd5ac303ecd5e6fa}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Journal of Scientific Computing}
@@ -96,7 +96,7 @@
       \strng{authornamehash}{17319b12ac394b652dd7b4a5a489326d}
       \strng{authorfullhash}{17319b12ac394b652dd7b4a5a489326d}
       \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{The Inverse Potential Problem of Electrocardiography Regularized with Optimal Control}
@@ -127,7 +127,7 @@
       \strng{authornamehash}{ad4654cb1b75bb10d2166fa137cd9f1e}
       \strng{authorfullhash}{ad4654cb1b75bb10d2166fa137cd9f1e}
       \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Nonlinear Analysis: Real World Applications}
@@ -168,11 +168,36 @@
       \strng{authornamehash}{8fcb0354f41f2c5719ae598258a5ed43}
       \strng{authorfullhash}{8fcb0354f41f2c5719ae598258a5ed43}
       \field{sortinit}{C}
-      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Mathematical Cardiac Electrophysiology}
       \field{year}{2014}
+    \endentry
+    \entry{dubiner}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ea9ad47fb29af8a4559916bce66536e7}{%
+           family={Dubiner},
+           familyi={D\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{ea9ad47fb29af8a4559916bce66536e7}
+      \strng{fullhash}{ea9ad47fb29af8a4559916bce66536e7}
+      \strng{bibnamehash}{ea9ad47fb29af8a4559916bce66536e7}
+      \strng{authorbibnamehash}{ea9ad47fb29af8a4559916bce66536e7}
+      \strng{authornamehash}{ea9ad47fb29af8a4559916bce66536e7}
+      \strng{authorfullhash}{ea9ad47fb29af8a4559916bce66536e7}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Scientific Computing}
+      \field{title}{Spectral Methods on Triangles and Other Domains}
+      \field{volume}{6}
+      \field{year}{1991}
+      \field{pages}{345\bibrangedash 390}
+      \range{pages}{46}
     \endentry
     \entry{marta}{report}{}
       \name{author}{2}{}{%
@@ -197,11 +222,38 @@
       \strng{authornamehash}{1fbd18bda851db8c72e4efbcfcbcfa9f}
       \strng{authorfullhash}{1fbd18bda851db8c72e4efbcfcbcfa9f}
       \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Discontinuous Galerkin approximation of the bidomain system for cardiac electrophysiology}
       \field{year}{2021}
+    \endentry
+    \entry{napde}{book}{}
+      \name{author}{1}{}{%
+        {{hash=73f4d8cda5e3d8e5c354cf8ed81b734d}{%
+           family={Quarteroni},
+           familyi={Q\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Milan}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \strng{fullhash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \strng{bibnamehash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \strng{authorbibnamehash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \strng{authornamehash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \strng{authorfullhash}{73f4d8cda5e3d8e5c354cf8ed81b734d}
+      \field{sortinit}{Q}
+      \field{sortinithash}{c54e16deb53fc904a621fa8fd8703b5a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Modellistica Numerica per Problemi Differenziali}
+      \field{year}{2016}
     \endentry
     \entry{acta}{article}{}
       \name{author}{3}{}{%
@@ -228,7 +280,7 @@
       \strng{authornamehash}{7928d1fadec7c2f04c373453302c99ac}
       \strng{authorfullhash}{7928d1fadec7c2f04c373453302c99ac}
       \field{sortinit}{Q}
-      \field{sortinithash}{ce69a400a872ddd02ee7fdb3b38c6abd}
+      \field{sortinithash}{c54e16deb53fc904a621fa8fd8703b5a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Acta Numerica}
@@ -236,6 +288,36 @@
       \field{year}{2017}
       \field{pages}{365\bibrangedash 590}
       \range{pages}{226}
+    \endentry
+    \entry{sherwin}{article}{}
+      \name{author}{2}{}{%
+        {{hash=bf57a1386f8be0742ed725994988544e}{%
+           family={Sherwin},
+           familyi={S\bibinitperiod},
+           given={S.\bibnamedelimi J.},
+           giveni={S\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=1c2f5930e36485e8d38a87746769fdcc}{%
+           family={Karniadakis},
+           familyi={K\bibinitperiod},
+           given={G.\bibnamedelimi E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \strng{fullhash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \strng{bibnamehash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \strng{authorbibnamehash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \strng{authornamehash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \strng{authorfullhash}{fa2f0c6f960a42a6f3648fb7de46b13d}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Internation journal for numerical methods in engineering}
+      \field{title}{A new triangular and tetrahedral basis for high-order finite element methods}
+      \field{volume}{38}
+      \field{year}{1995}
+      \field{pages}{3775\bibrangedash 3802}
+      \range{pages}{28}
     \endentry
   \enddatalist
 \endrefsection

@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,11pt]{article}
 \usepackage[a4paper,top=5cm,bottom=4cm,left=3.6cm,right=3.6cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -48,15 +48,17 @@ citestyle=numeric,
 	    	\rule{15cm}{0.1mm} \\ \vspace{4.5mm}
 	    	 \Huge{\textbf{HIGH-ORDER DISCONTINUOS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}} \\
 	    	\rule{15cm}{0.1mm}
-	    	\vspace{20mm}
+	    \end{center}
+	    	\vspace{25mm}
 	    	
 	    	\Large{
-	    	\begin{align*}
-	    	\emph{Authors:}& \hspace{5mm} \textsc{ Federica Botta, Matteo Calafà}\\
-	    	\emph{Supervisors:}& \hspace{5mm} \textsc{ Christian Vergara, Paola Antonietti}
-	    	\end{align*}
-	         } \\
+	    	\hspace{11mm} \emph{Authors:} \hspace{5mm} \textsc{ \quad Federica Botta, Matteo Calafà}} \newline
+	    	 
+	    	\large{\vspace{3mm} 
+	    	 \qquad \emph{Supervisors:} \hspace{12mm} \textsc{ Christian Vergara, Paola Antonietti}}
+	          \\
 	    	\vspace{20mm}
+	    \begin{center}
 	    	\large{\textsc{A.Y. 2020/2021}}
 	    \end{center}
 	\end{titlepage}
@@ -77,7 +79,7 @@ citestyle=numeric,
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
-    We intend to present the physical meaning of the Bidomain equations very briefly since it has already been widely shown in the previous project (\citeauthor{marta}). For a more complete explanation, we instead refer to \cite{acta}.\\
+    We intend to present the physical meaning of the Bidomain equations only briefly since it has already been widely shown in the previous project (\citeauthor{marta}). For a more complete explanation, we instead refer to \cite{acta}.\\
     The mechanical contraction and expansion of human heart has its origin in the \emph{electrical activation} of the cardiac cells. At every heart-beat, myocyties are activated and deactivated following a characteristic electrical cycle (fig \ref{potential_cycle}). 
     
     
@@ -90,7 +92,7 @@ citestyle=numeric,
     \end{figure}
     
     \noindent The cell is initially at rest ($-90mV$, step 4). At a certain point, its potential increases rapidly ($\approx2ms$) and reaches the value of $+20mV$: the cell is activated. Later, a plateau near $0mV$ is observed and then a slow repolarization to the initial potential. \\
-    From a microscopical point of view, we could study the dynamics acting in each single cell (as a consequence of the passage of chemical ions through specific channels, e.g. $Ca2+,Na+,K+$). From a macroscopical point of view, instead, one can think about it as a continuous electrical diffusion over the entire cardiac surface. Even if this consists in a very rapid phenomenon, the study of such propagation could be very interesting in order, for instance, to detect diseases in sick patients.
+    From a microscopical point of view, we could study the dynamics acting in each single cell (as a consequence of the passage of chemical ions through specific channels, e.g. $Ca2+,Na+,K+$). From a macroscopical point of view, instead, one can observe it as a continuous electrical diffusion over the entire cardiac surface. Even if this consists in a very rapid phenomenon, the study of such propagation could be very interesting in order, for instance, to detect diseases in sick patients.
     
     \subsection{Mathematical models}
     Starting from the circuit in figure \ref{electrical_circuit}, applying some general electromagnetism laws and some calculations, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete passages).
@@ -107,9 +109,9 @@ citestyle=numeric,
     \begin{definition}[Bidomain model]
 	\begin{equation*}
 	\begin{cases}
-	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion} = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion} = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
 	\\
-	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
+	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
 	\end{cases}
 	\end{equation*}
     \end{definition}
@@ -119,10 +121,10 @@ citestyle=numeric,
 	\begin{itemize}[label=\textendash]
 		\item $\bm{\phi_i, \phi_e}$ are the \emph{Intracellular and Extracelllular Potentials} (unknowns)
 		\item $V_m = \phi_i-\phi_e$ is the \emph{Trans-membrane Potential}
-		\item $\chi_m,C_m, \Sigma_i, \Sigma_e$ are known constants
+		\item $\chi_m,C_m$ are known constants and $\Sigma_i, \Sigma_e$ are known constant tensors 
 		\item $I_i^{ext},I_e^{ext}$ are applied currents
 		\item $I_{ion}$ is the \emph{Ionic Current}
-		\item $w_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
+		\item $\Omega_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
 	\end{itemize}
     
     \vspace{4mm}
@@ -131,19 +133,19 @@ citestyle=numeric,
     \begin{definition}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]\label{def1}
     	\begin{equation*}
     	\begin{cases}
-    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
+    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
     	\\
-    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
+    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
     	\\
-    	I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)-w & \text{in } w_{mus} \cross (0,T]
+    	I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)+w & \text{in } \Omega_{mus} \cross (0,T]
     	\\
-    	\pdv{w}{t} = \epsilon(V_m-\gamma w)  & \text{in } w_{mus} \cross (0,T]
+    	\pdv{w}{t} = \epsilon(V_m-\gamma w)  & \text{in } \Omega_{mus} \cross (0,T]
     	\\
-    	\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial w_{mus} \cross (0,T]
+    	\Sigma_i\nabla \phi_i \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
     	\\
-    	\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial w_{mus} \cross (0,T]
+    	\Sigma_e\nabla \phi_e \cdot n = b_e   & \text{on } \partial \Omega_{mus} \cross (0,T]
     	\\
-    	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } w_{mus}\cross\{t=0\}
+    	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } \Omega_{mus}\cross\{t=0\}
     	\end{cases}
     	\end{equation*}
     \end{definition}
@@ -160,75 +162,82 @@ citestyle=numeric,
     \noindent From now on, the system of definition \ref{def1} will be the reference analytical problem for the development of numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain.
 
-\subsection{Previous project}
-As we have already said, our project aims to continue the work of a previous project, \citeauthor{marta} (\parencite{marta}). Their goal was to implement a Discontinuos Galerkin method for the bidomain problem.\newline
-Their result using unitary parameters, namely $\chi_m =1, \Sigma_i=1, \Sigma_e=1, C_m=1, k=1, \epsilon=1, \gamma=1 and a=1$, were quite good, but the problem comes when the parameters utilized are more realistic, as $\chi_m =10^5, \Sigma_i=0.12, \Sigma_e=0.12, C_m=0.01, k=19.5, \epsilon=1.2, \gamma=0.1$ and a=0.013, indeed we can observe in figure \ref{convergence_test_marta_fisio} the presence of instabilites for the solution of $\phi_i$ and $\phi_e$.
+    \subsection{A short discussion about the past works issue}
+    As we have already introduced, our project initially aimed to continue and improve the work of a previous project (\parencite{marta}). \\
+    Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. Instead, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes.
+    This issue heavily limits the use of the code for research and/or experimental simulations as it guarantees convergence to the right solution only in few and non-realistic problems.  \\
+
+    \noindent After a while, we realized that an inverted sign of the FitzHugh-Nagumo model formula occurred in \cite{acta}. \\
+
+    \noindent This oversight was not only essential for the fidelity to the real phenomena but also crucial for the well-posedness of the problem.\\ 
+    We could give two motivations to reinforce this last statement: first of all, if we consider the well known study of \citeauthor{bourgault} (\cite{bourgault}), the conditions required for the well-posedness of the Bidomain problem are not satisfied if the sign is inverted (neither for the existence, hypothesis H4, nor for the uniqueness).\\ Secondly, suppose to discretize the Bidomain problem in time and to treat the non-linear term semi-implicitly, as it will be done in the following sections. Then, if we fix the timestep and if data from the previous timestep are given, we achieve a linear problem that can be easily switched into a weak formulation. From this analysis, we could observe that if $V_m<a$ or $V_m>1$ and $C_m$ is sufficiently small, the associated bilinear form is not coercive. \\
+
+    \noindent This second motivation, even if not very formal and with a mixed approach, is particularly interesting since a few confirmations occurred during simulations, as shown for instance in figure \ref{sol_ill_posed}.
+
+
 \begin{figure}[h]
-\centering
-         \begin{subfigure}[b]{0.5\textwidth}
-    		\includegraphics[width = 7cm]{./phi_i_Marta_Perego.jpg}
-    		\caption{Convergence test of $\phi_i$}
-    	\end{subfigure}%
-    	\hfill
-     \begin{subfigure}[b]{0.5\textwidth}
-    		\includegraphics[width = 7cm]{./phi_e_Marta_Perego.jpg}
-    		\caption{Convergence test of $\phi_e$}
-    	 \end{subfigure}
-    	 \caption{Convergence test using physiological parameters}\label{convergence_test_marta_fisio}
+	\begin{center}
+		\includegraphics[width = 11cm]{./sol_ill_posed.jpg}
+		\caption{Comparison between exact and computed solution with inverted FitzHugh-Nagumo model: huge errors arise only when $Vm<0$}
+		\label{sol_ill_posed}
+	\end{center}
 \end{figure}
+    
+    \noindent In conclusion, the issue of the past works \cite{andreotti}, \cite{marta} had not a numerical nature as expected, but instead an analytical origin due to an ill-posed problem.
 
-This result limits the use of the code, because it cannot be used to study physiological cases.\newline
 
-\subsubsection{The main error}
-We have done many changes in their code, but the main one regards the implementation of the very own model. Indeed, in the paper (\cite{acta}) we can find the equation for the Fitz-Hugh Nagumo model for the ionic current $I_{ion}(V_m,w)=-kV_m(V_m-a)(V_m-1)-w$, having the model:
-\begin{equation*}
-    	\begin{cases}
-    	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } w_{mus} \cross (0,T]
-    	\\
-    	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion}(V_m,w) = -I_e^{ext}    & \text{in } w_{mus} \cross (0,T]
-    	\end{cases}
-\end{equation*}
-Instead if we see the most important paper regarding this model, \cite{bourgault} of \citeauthor{bourgault}, the equations of the bidomain model are the same, but the Fitz-Hugh Nagumo model has opposite sign, namely $I_{ion}(V_m,w)=kV_m(V_m-a)(V_m-1)+w$.
 
-This error was the principal contributor to the instabilities of the results of (\cite{marta}), because in some cases there wasn't coercivity of the bilinear form and so the stability wasn't always assured.\newline
-Whereas in (\cite{bourgault}) the well posedness of the problem, using the right Fitz-Hugh Nagumo equation, is proved.
     \section{Semi discretized numerical methods}
     \subsection{DG discrete formulation}
-    We have seen the bidomain model in a complete form in definition \ref{def1}. We introduce now a triangulation $\tau_h$ over $w$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2 : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuos polynomial.
-    
-    We obtain the semi discrete DG formulation:
+    We have seen the Bidomain model in a complete form in definition \ref{def1}. We now introduce a triangulation $\tau_h$ over $\Omega$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuous polynomial. We obtain the semi discrete DG formulation:\vspace{4mm}
+    \begin{equation*}
+    \text{For any time } t \in [0,T] \text{ find } \Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2 \text{ and } w_h(t) \in V_h^k \text{ such that}\vspace{5mm} \\
+    \end{equation*}
+    \begin{enumerate}
+    \item 
     \begin{equation*}
     \begin{gathered}
-    \text{For any time } t \in [0,T] \text{ find } \Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2 \text{ and } w_h(t) \in V_h^k:\\
     \sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_i(\phi_i^h,v_h)+\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
     +\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h dw}=(I_i^{ext},v_h) \qquad \forall v_h \in V_h^p\\
-    \newline
-    -\sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_e(\phi_e^h,v_h)-\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
-    -\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h dw}=(-I_e^{ext},v_h) \qquad \forall v_h \in V_h^p\\
-    \newline
-    \sum_{K \in \tau_h} \int_K{\pdv{w_h}{t}v_h dw}=\sum_{k \in \tau_h} \int_K{\epsilon (V_m^h-\gamma w_h) v_h dw} \qquad \forall v_h \in V_h^p\\
     \end{gathered}
     \end{equation*}
-    where:
+    \item
     \begin{equation*}
     \begin{gathered}
-    a_k(\phi_k^h,v_h)=\sum_{K \in \tau_h} \int_K{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
-    -\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_k \nabla_h v_h\}\} \cdot [[\phi_k^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\gamma [[\phi_k^h]] \cdot [[v_h]] d\sigma} \qquad \text{for k=i,e}\\
-    \newline
-    (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}\\
-    \newline
-    (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}
+    -\sum_{K \in \tau_h} \int_K{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_e(\phi_e^h,v_h)-\sum_{K \in \tau_h} \int_K{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
+    -\sum_{K \in \tau_h} \int_K{ \chi_m w_h v_h dw}=(-I_e^{ext},v_h) \qquad \forall v_h \in V_h^p\\
     \end{gathered}
     \end{equation*}
+    \item
+    \begin{equation*}
+    \sum_{K \in \tau_h} \int_K{\pdv{w_h}{t}v_h dw}=\sum_{k \in \tau_h} \int_K{\epsilon (V_m^h-\gamma w_h) v_h dw} \qquad \forall v_h \in V_h^p\\
+    \end{equation*}
+    \end{enumerate}
+    \vspace{5mm}
+    where:
+    \vspace{3mm}
+    \begin{equation*}
+    \begin{aligned}
+    \bullet& \quad a_k(\phi_k^h,v_h)=\sum_{K \in \tau_h} \int_K{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
+    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_k \nabla_h v_h\}\} \cdot [[\phi_k^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\gamma [[\phi_k^h]] \cdot [[v_h]] d\sigma} \qquad k=i,e\\
+    \newline
+    \bullet& \quad (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}\\
+    \newline
+    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}
+    \end{aligned}
+    \end{equation*}
     
-    Moreover, according to the choice of the coefficient $\delta$ we can define:
+    \noindent Moreover, according to the choice of the coefficient $\delta$, we can define:
     \begin{itemize}
     \item $\delta=1$: Symmetric Interior Penalty method (SIP)
     \item $\delta=0$: Incomplete Interior Penalty method (IIP)
     \item $\delta=-1$: Non Symmetric Interior Penalty method (NIP) 
-    \end{itemize} 
-    To see in more detail the procedure see \cite{marta}.
+    \end{itemize}
+     \vspace{2mm}
+    \noindent And $\gamma := \alpha \frac{k^2}{h}$ (\emph{"Stabilization parameter"}),$ \quad \alpha \in \mathbb{R}$ to be chosen high enough. \\
     
+    \noindent To analyze the formulation more in details see \cite{marta}.
+    \vspace{4mm}
     \subsection{Algebraic formulation}
     Taking $\{\varphi_j\}_{j=1}^{N_h}$ base of $V_h^k$, so that we can write
     \begin{equation*}
@@ -238,47 +247,51 @@ Whereas in (\cite{bourgault}) the well posedness of the problem, using the right
     V_m^h(t)=\sum_{j=1}^{N_h} V_{m,j}(t) \phi_j=\sum_{j=1}^{N_h}(\phi_{i,j}(t)-\phi_{e,j}(t))\varphi_j
  \end{gathered}
  \end{equation*}
- Also we can introduce the matrices:
+ Then, we introduce the matrices:
  \begin{equation}\label{matrices}
 \begin{rcases}
-V_{ij} &= \int_{w}\nabla\varphi_j \cdot \nabla \varphi_i 
-\\ I_{i,j}^T &= \sum_{F \in F_h^I} \int_{F} \{\{\nabla\varphi_j\}\} \cdot [[\varphi_i]] 
-\\ I_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\nabla \varphi_i\}\}
-\\S_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma [[\varphi_j]] \cdot [[\varphi_i]]
+(V_k)_{ij} &= \int_{w}\nabla\varphi_j \cdot \Sigma_k \nabla \varphi_i 
+\\ (I_k^T)_{ij} &= \sum_{F \in F_h^I} \int_{F} \{\{\Sigma_k \nabla\varphi_j\}\} \cdot [[\varphi_i]] 
+\\ (I_k)_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_k \nabla \varphi_i\}\}
+\\(S_k)_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma_k[[\varphi_j]] \cdot [[\varphi_i]]
 \end{rcases}
 \begin{gathered}
-\quad A = (V -I^T - \theta I + S)\\
+\quad A_k = (V_k -I_k^T - \theta I_k + S_k)\\
+k=i,e \\
 \end{gathered}
 \end{equation}
+\begin{equation*}
+\gamma_k\vert_F = (n_F^T \, \Sigma_k \, n_F) \,\gamma, \quad n_F \text{ outward normal vector of F}
+\end{equation*}
+
 \begin{equation}
-A_i=\Sigma_i A \qquad{\text{Intra-cellular stiffness matrix}}
+A_i \qquad{\text{Intra-cellular stiffness matrix}}
 \end{equation}
 \begin{equation}
-A_e=\Sigma_e A \qquad{\text{Extra-cellular stiffness matrix}}
+A_e \qquad{\text{Extra-cellular stiffness matrix}}
 \end{equation}
 \begin{equation}
-M_{ij} = \sum_{K \in \tau_h}\int_K \qquad{\text{Mass matrix}}
-\varphi_j\varphi_i
+M_{ij} = \sum_{K \in \tau_h}\int_K\varphi_j\varphi_i \qquad{\text{Mass matrix}}
 \end{equation}
 \begin{equation}
-C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non linear matrix}}
+C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non-linear matrix}}
 \end{equation}
 \begin{equation}
 F_k=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{w} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{w} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}
 \end{equation}
-
-Therefore our algebraic formulation is:\newline
-Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+\vspace{3mm} \\
+Therefore, our semi-discrete algebraic formulation is: \vspace{3mm} \newline
+find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
 \begin{equation}\label{algebraic}
 \begin{gathered}
 \chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M w_h=F_i^h\\
 -\chi_m Cm M \dot{V_m^h}+A_e \phi_e^h-C(V_m^h) V_m^h-\chi_m M w_h=F_e^h\\
-M \dot{w_h(t)}=\epsilon M (V_m^h(t)-\gamma w_h(t))
+M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
- 
- Rewrite it with the block matrix and assuming that M is non singular:\newline
- Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+ \vspace{5mm} \\
+ Rewriting it with block matrices: \vspace{5mm} \newline
+ find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
  \begin{equation}\label{block_matrix}
  \begin{gathered}
  \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
@@ -290,22 +303,22 @@ M \dot{w_h(t)}=\epsilon M (V_m^h(t)-\gamma w_h(t))
 	   +\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
 	   	\begin{bmatrix}w_h(t) \\ w_h(t) \end{bmatrix} = 
 	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}\\
-	   \dot{w_h(t)}=\epsilon (V_m^h(t)-\gamma w_h(t))
+	   \dot{w}_h(t)=\epsilon (V_m^h(t)-\gamma w_h(t))
 \end{gathered}
 \end{equation}
-
+\vspace{5mm}
 \section{Dubiner Basis}
-We implemented another type of basis, the Dubiner basis, instead of the classic FEM basis.
-    The most popular orthonormal basis on the reference triangle
+    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^k$ space. Usually, the common choice consists in the classical hat functions from FEM, even if they need to be modified in order to be used in a discontinuous context. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner Basis}" \cite{dubiner}. \\
+    How we will soon see, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
     \begin{equation}
     \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \}
     \end{equation}
-    is the Dubiner polynomial basis \cite{antonietti}. We consider the transformation in figure \ref{transformation} between the reference square
+    and not on the reference square
     \begin{equation}
-    \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}
+    \quad \quad \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}
     \end{equation}
-    and the reference triangle given by
-    \begin{equation}
+    Formally, if we consider the transformation from $\hat{Q}$ to $\hat{K}$
+    \begin{equation}\label{transformation_formula}
     \xi:=\frac{(1+a)(1-b)}{4},  \eta:=\frac{(1+b)}{2}
     \end{equation}
     
@@ -317,13 +330,13 @@ We implemented another type of basis, the Dubiner basis, instead of the classic 
     \end{center}
     \end{figure}
     
-    The Dubiner basis is then constructed by a generalized tensor product of the Jacobi polynomials on the interval (-1, 1) to form a basis on the reference square, which is then transformed by the above “collapsing” mapping to a basis on the reference triangle.
+    \noindent the Dubiner basis is the transformation of a suitable basis initially defined on the reference square. This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$.
     \begin{definition}[Jacobi polynomials]
-    The Jacobi polynomials evaluated in $z\in \mathbb{R}^n$ are:
+    The Jacobi polynomials of coefficients $\alpha,\beta \in \mathbb{R}$ evaluated in $z\in (-1,1)$ are:
     \begin{itemize}[label=\textendash]
     \item $n=0$
     \begin{equation}
-    J_0^{\alpha,\beta}(z)=\overbrace{\begin{bmatrix} 1 & 1 &\dots &1 \end{bmatrix}}^{\text{n times}}
+    J_0^{\alpha,\beta}(z)=1
     \end{equation}
     \item $n=1$
     \begin{equation}
@@ -341,8 +354,8 @@ We implemented another type of basis, the Dubiner basis, instead of the classic 
     \end{equation}
     \end{itemize}
     \end{definition}
-    
-    An important property of this polynomials is:
+    \vspace{5mm}
+    \noindent An important property of these polynomials is:
     \begin{prop}\label{jac}
     $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
     \begin{equation}
@@ -350,10 +363,12 @@ We implemented another type of basis, the Dubiner basis, instead of the classic 
     \end{equation}
     \end{prop}
     
-    Thanks to this definition, we can now look more accurately the formula of the Dubiner basis
-    \begin{definition}[Dubiner Basis]
+    \noindent Thanks to this definition, we can now define explicitly the Dubiner basis.
+    \begin{definition}[Dubiner Basis] \label{dubiner}
+    The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of the polynomials of degree $p$ over the reference triangle is the set of functions:
     \begin{equation}
     \begin{split}
+    & \quad \quad \quad \phi_{ij}: \hat{K} \rightarrow \mathbb{R} \\
     \phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
     \\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
     \end{split}
@@ -365,25 +380,39 @@ We implemented another type of basis, the Dubiner basis, instead of the classic 
     and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial
     \end{definition}
     
-    We note that
+    \vspace{4mm}
+    \noindent As we have anticipated
     \begin{prop}
-    $\phi_{ij}(\xi,\eta)$ is orthogonal w.r.t. Legendre internal product:
+    The Dubiner basis is orthonormal in $L^2(\hat{K})$ $\forall p$:
     \begin{equation}
-    \iint_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq}
+    \int_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq}
     \end{equation}
     \end{prop}
-    
-    Indeed, we obtain a mass matrix diagonal as we can see in figure \ref{mass}
+    \vspace{4mm}
+    \noindent As a consequence, after we successfully implemented the code with Dubiner basis and computed the matrixes, we obtained a diagonal mass matrix (figure \ref{mass})
     
     \begin{figure}[ht]
     \begin{center}
     \includegraphics[width = 7cm]{./mass_dubiner.jpg}
-    	\caption{Elements non zero in the mass matrix w.r.t Dubiner basis}
+    	\caption{Non-zero elements in the mass matrix when adopting Dubiner basis}
     	\label{mass}
     \end{center}
     \end{figure}
+
+    \noindent It is noteworthy to point out that transformation \ref{transformation_formula} is bijective, it can be inverted but it needs some care. The natural inverse would be:
     
-    \subsection{Implementation}
+    \begin{equation}
+    a = \frac{2\xi}{1-\eta}-1 \quad \quad b = 2\eta-1
+    \end{equation}
+    \vspace{2mm} \\
+    \noindent that has already been used for the definition \ref{dubiner}. However, it is not defined for $\eta=1$, that means for the sole point $(0,1)$ of the reference triangle. To solve this issue, it is enough to prolong the function with continuity to this special point. For the code implementation, it is suggested avoiding evaluations in the exact point or adding an \emph{if} condition. We opted for the second solution. \\
+    
+    \noindent In general, the orthogonality property implies some good numerical properties, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the conditional number can be viewed. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
+    However, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the paragraph \ref{subsection_implementation}. Secondly, one can notice that these functions are not boundary conditions friendly. What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We refer to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation boundary conditions (both Dirichlet and Neumann) are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
+    
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and so the definition of the Dubiner Basis with tetrahedra, thus in dimension $n=3$.
+    
+    \subsection{Implementation}\label{subsection_implementation}
     Some of the codes that we used were written by professor Antonietti as eval\_jacobi\_polynomial.m, used to evaluate the Jacobi polynomial $J_n^{\alpha,\beta}$ in the vector z, basis\_legendre\_dubiner.m, that generates the basis functions of legendre Qp--Pp on the reference element [-1,1] x [-1,1], and evalshape\_tria\_dubiner.m, it creates the Dubiner basis (dphiq) and its gradient (Grad) on the volume terms and on the edges (B\_edge and G\_edge). So we used these ones as starting point for the functions that we needed.\newline
     Other simply changes in the code of (\ref{marta}), that we won't cover in this relation, were made in order to call the right function according to basis we have chosen (Dubiner or FEM).
     (METTERE CODICE DI QUESTE FUNZIONI?)
