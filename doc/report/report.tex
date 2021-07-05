@@ -46,7 +46,7 @@ citestyle=numeric,
 	    	
 	    	\vspace{20mm}
 	    	\rule{15cm}{0.1mm} \\ \vspace{4.5mm}
-	    	 \Huge{\textbf{HIGH-ORDER DISCONTINUOS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}} \\
+	    	 \Huge{\textbf{A HIGH-ORDER DISCONTINUOUS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}} \\
 	    	\rule{15cm}{0.1mm}
 	    \end{center}
 	    	\vspace{25mm}
@@ -221,9 +221,9 @@ citestyle=numeric,
     \bullet& \quad a_k(\phi_k^h,v_h)=\sum_{K \in \tau_h} \int_K{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
     &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_k \nabla_h v_h\}\} \cdot [[\phi_k^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\gamma [[\phi_k^h]] \cdot [[v_h]] d\sigma} \qquad k=i,e\\
     \newline
-    \bullet& \quad (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}\\
+    \bullet& \quad (I_i^{ext},v_h)=\sum_{K \in \tau_h} \int_K {I_i^{ext} v_h dw}+\int_{\partial w}{b_i v_h d\sigma}\\
     \newline
-    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h dw}+\int_{\partial w}{b v_h d\sigma}
+    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{K \in \tau_h} \int_K {I_e^{ext} v_h dw}+\int_{\partial w}{b_e v_h d\sigma}
     \end{aligned}
     \end{equation*}
     
@@ -308,6 +308,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{equation}
 \vspace{5mm}
 \section{Dubiner Basis}
+    \subsection{Analytical aspects}\label{analytical_aspects}
     So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^k$ space. Usually, the common choice consists in the classical hat functions from FEM, even if they need to be modified in order to be used in a discontinuous context. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner Basis}" \cite{dubiner}. \\
     How we will soon see, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
     \begin{equation}
@@ -356,7 +357,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \end{definition}
     \vspace{5mm}
     \noindent An important property of these polynomials is:
-    \begin{prop}\label{jac}
+    \begin{prop}
     $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
     \begin{equation}
     \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
@@ -368,11 +369,13 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of the polynomials of degree $p$ over the reference triangle is the set of functions:
     \begin{equation}
     \begin{split}
-    & \quad \quad \quad \phi_{ij}: \hat{K} \rightarrow \mathbb{R} \\
+    \\
+    & \quad \quad\quad  \quad \phi_{ij}: \hat{K} \rightarrow \mathbb{R} \\ \\
     \phi_{ij}(\xi,\eta) :&= c_{ij}(1-b)^j J_i^{0,0}(a) J_j^{2i+1,0}(b)=
-    \\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1)
+    \\&=c_{ij} 2^j (1-\eta)^j J_i^{0,0}(\frac{2\xi}{1-\eta}-1) J_j^{2i+1,0} (2\eta-1) 
     \end{split}
     \end{equation}
+    \vspace{3mm} \\
     for $i,j=1,\dots,p$ and $i+j \le p$, where
     \begin{equation}
     c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
@@ -380,16 +383,16 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial
     \end{definition}
     
-    \vspace{4mm}
+    \vspace{5mm}
     \noindent As we have anticipated
-    \begin{prop}
+    \begin{prop}\label{l2_ortho}
     The Dubiner basis is orthonormal in $L^2(\hat{K})$ $\forall p$:
     \begin{equation}
     \int_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq}
     \end{equation}
     \end{prop}
     \vspace{4mm}
-    \noindent As a consequence, after we successfully implemented the code with Dubiner basis and computed the matrixes, we obtained a diagonal mass matrix (figure \ref{mass})
+    \noindent As a consequence, after we successfully implemented the code with Dubiner basis and computed the matrices, we obtained a diagonal mass matrix (figure \ref{mass})
     
     \begin{figure}[ht]
     \begin{center}
@@ -408,23 +411,24 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \noindent that has already been used for the definition \ref{dubiner}. However, it is not defined for $\eta=1$, that means for the sole point $(0,1)$ of the reference triangle. To solve this issue, it is enough to prolong the function with continuity to this special point. For the code implementation, it is suggested avoiding evaluations in the exact point or adding an \emph{if} condition. We opted for the second solution. \\
     
     \noindent In general, the orthogonality property implies some good numerical properties, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the conditional number can be viewed. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
-    However, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the paragraph \ref{subsection_implementation}. Secondly, one can notice that these functions are not boundary conditions friendly. What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We refer to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation boundary conditions (both Dirichlet and Neumann) are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
     
-    \noindent To conclude, we refer to \cite{sherwin} for the transformation and so the definition of the Dubiner Basis with tetrahedra, thus in dimension $n=3$.
+    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the paragraph \ref{subsection_implementation}. Secondly, one can notice that these functions are not boundary conditions friendly. What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation boundary conditions (both Dirichlet and Neumann) are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
+    
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.
     
     \subsection{Implementation}\label{subsection_implementation}
-    Some of the codes that we used were written by professor Antonietti as eval\_jacobi\_polynomial.m, used to evaluate the Jacobi polynomial $J_n^{\alpha,\beta}$ in the vector z, basis\_legendre\_dubiner.m, that generates the basis functions of legendre Qp--Pp on the reference element [-1,1] x [-1,1], and evalshape\_tria\_dubiner.m, it creates the Dubiner basis (dphiq) and its gradient (Grad) on the volume terms and on the edges (B\_edge and G\_edge). So we used these ones as starting point for the functions that we needed.\newline
-    Other simply changes in the code of (\ref{marta}), that we won't cover in this relation, were made in order to call the right function according to basis we have chosen (Dubiner or FEM).
-    (METTERE CODICE DI QUESTE FUNZIONI?)
-    \subsubsection{matrix2D\_dubiner.m}
-    At first we implemented a function that assembles the matrices that we have defined in (\ref{matrices}):
-    METTERE CODICE?
-\subsubsection{dubiner\_to\_fem.m and fem\_to\_dubiner.m}
-One of the many advantages of the FEM basis is that the evaluation of a basis function in a point of the mesh is equal to 1 only if that point is the one associated to the basis, 0 otherwise:
+    Our code let the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until the order 3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis.\\
+    The starting point was the implementation of some functions to evaluate the Dubiner basis functions and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of section \ref{analytical_aspects} with the addition of some technicalities. These mentioned scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
+    
+    \noindent Moreover, some conditional statements and some extra methods (as the script \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
+    
+    \noindent More interesting are instead the scripts \texttt{dubiner\_to\_fem.m} and \texttt{fem\_to\_dubiner.m}, used to convert the Dubiner modal coefficients of the vector solution to the nodal values of the approximated function and viceversa. For this reason, they deserve some further explanations.
+\subsubsection{Switch from the modal coefficients to the nodal values}
+One of the many advantages of the FEM basis is that there exists a bijection between the basis functions and some particular spacial points in such a way that the evaluation of a basis function in one of these points is equal to 1 only if that point is the one associated to the function, 0 otherwise:
 	\begin{equation} \label{ref1}
 	\psi_i(x_j)=\delta_{ij}
 	\end{equation}
-	This property cannot be satisfied by Dubiner basis (although other good properties hold in this case, for instance regularity and especially \emph{orthogonality}). Indeed these basis have not localized support and they are neither normalized on the mesh edges. This means that the coefficients of the solution of the Dubiner system are \emph{not} the evaluation over the mesh points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
+	Obviously, this property does not hold when we work with Dubiner basis. Indeed, these functions are not normalized on the mesh edges and they neither have an associated mesh point. This implies that the Dubiner coefficients of a function $u\in V_h^p$ are not the evaluation over these points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
 	For this reason we introduced two new functions that best transform the coefficients of the solution w.r.t. FEM basis to the coefficients w.r.t. Dubiner basis and viceversa.\vspace{5mm}
 	
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
@@ -435,57 +439,30 @@ One of the many advantages of the FEM basis is that the evaluation of a basis fu
 	\end{equation}
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm}
 	
-	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (property obtained thanks to \ref{jac}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
+	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i
 	\end{equation}
 	
 	\vspace{5mm}
-	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.
+	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
-	\vspace{5mm}
-	\noindent For the sake of both simplicity and logic, we have decided to implement these transformations only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. Indeed, from one side, the degree of FEM is here less "important" since it contributes only to the number of points to which evaluate the computed solution. Then, increasing $n$ for P does not substantially improve the quality of the solution. On the other side, choosing the same degree for P and D means having the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are replaced with $nln$ in the code.	
-	Finally, we see the first transformation associated to \ref{ref3}:
+	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. With this choice, the two basis generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.\\
+	
+	\noindent To conclude, formula \ref{ref3} to get nodal values has then been implemented in the following lines from the \texttt{dubiner\_to\_fem.m} script. 
 	\begin{verbatim}
-	function [u0] = dubiner_to_fem (uh, femregion, Data)         
-deg=sscanf(Data.fem(2:end),'%f');
-s=0;
-
-% define the coordinates of the degree of freedom in the reference triangle
-% adn square
-if (deg==1)  %D1
-    a   = [-1; 1; -1];
-    b   = [-1; -1; 1];
-    
-elseif (deg ==2) %D2
-    a   = [-1; 0; 1; 1; -1; -1];
-    b   = [-1; -1; -1; 0; 1; 0];
-
-elseif (deg==3) %D3
-    a   = [-1; -0.5; 0.5; 1; 1; 1; -1; -1; -1; 0];
-    b   = [-1; -1; -1; -1; -0.5; 0.5; 1; 0.5; -0.5; -1/3];   
-end
-
-csi=(1+a).*(1-b)/4;
-eta=(1+b)/2;
-
-% evaluate the Dubiner basis on these points
-for j=0:(deg)
-    for i=0:(deg)
-        if (i+j) <= deg
-           s=s+1;
-           [pi] = eval_jacobi_polynomial(i,0,0,a);
-           [pj] = eval_jacobi_polynomial(j,2.*i+1,0,b);
-           cij=sqrt((2.*i +1).*2.*(i+j+1)./4.^i);
-           phi(1,:,s)=cij.*(2.^i).*((1-eta).^i).*pi.*pj;
-        end
-    end
-end
+	function [u0] = dubiner_to_fem (uh, femregion, Data)  
+	       
+...
+...
+...
 
 u0 = zeros(femregion.ndof,1);
 
+% loop over all the elements
 for ie = 1:femregion.ne
-    
+   
+   % to get the global indexes for the nodes of ie 
    index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
    
    for i = 1 : femregion.nln
@@ -496,28 +473,28 @@ for ie = 1:femregion.ne
     
 end
 \end{verbatim}
-And the second one associated to \ref{ref4}:
+\vspace{5mm}
+\noindent On the other hand, the slightly more difficult formula \ref{ref4} have been reproduced in \texttt{fem\_to\_dubiner.m} using \emph{Gauss-Legendre-Lobatto} quadrature integration formulas. The main steps are the following:
 \begin{verbatim}
 function [u0] = fem_to_dubiner (uh, femregion, Data)
 
-% quadrature nodes and weights for integrals
-[nodes_1D, ~, nodes_2D, w_2D] = quadrature(Data.nqn);
-
-% evaluation of shape functions on quadrature point both on FEM basis and
-% Dubiner basis
-[shape_basis] = basis_legendre_dubiner(femregion.fem);
-[phi_dub, ~, ~, ~] = evalshape_tria_dubiner(shape_basis,nodes_2D, nodes_1D,
-Data.nqn,femregion.nln);
-[shape_basis] = basis_lagrange(append("P", femregion.fem(2)));
-[phi_fem, ~, ~, ~] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
+...
+...
+...
 
 u0 = zeros(femregion.ndof,1);
 
+% loop over all the elements
 for ie = 1:femregion.ne
+
+    % to get the global indexes for the nodes of ie 
     index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+    % loop over local degrees of freedom
     for i = 1 : femregion.nln
+        % loop over 2D quadrature points
         for k = 1:length(w_2D) 
             uh_eval_k = 0;
+            % loop to evaluate uh in a quadrature point
             for j = 1:femregion.nln
                 uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
             end
@@ -526,20 +503,21 @@ for ie = 1:femregion.ne
     end    
 end
 \end{verbatim}
-
-\section{Totally discretized numerical methods}
-The system is time dependent, so we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \qquad \forall k=0,\cdots,K-1$ and so we consider $V_m^k\approx V_m(t^k)$.
-\subsection{Semi implicit method}
-At first, we consider an implicit method for the time discretization, meanwhile for the non linear contribution of $I^{ion}$ a semi implicit method, indeed we think about it as a cubic function, so we treat explicitely the quadratic term and the rest of the terms implicitly, that is:
+\newpage
+\section{Temporal discretization}
+The problem is time dependent: after the spacial discretization, we then need to divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$ assuming $V_m^k\approx V_m(t^k)$. We have developed, implemented and tested 3 different temporal strategies: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
+\subsection{Semi-implicit method}
+One of the most famous and used temporal scheme for a non-linear problem such as the Bidomain is certainly the \emph{Semi-Implicit} scheme \cite{acta}. The basic idea is to treat most of the terms implicitly while in fact treating the non-linear term semi-implicitly. Since the non-linear is cubic, the best choice is to treat only one of these $V_m$ terms implicitly, in this way:
 \begin{equation*}
-I_{ion}=k(V_m^k-a)(V_m^k-1)V_m^{k+1}+w^{k+1}
+I_{ion}^{k+1}=k(V_m^k-a)(V_m^k-1)V_m^{k+1}+w^{k+1}
 \end{equation*}
-Moreover in the ODE of the model \ref{algebraic}, we evaluate $w$ implicitely and we consider $V_m$ at the previous temporal step $t^k$:
+at each time-step $k$ (different from the $k$ parameter). 
+Moreover, the gating variable ODE is treated implicitly with the exception of the term $V_m$:
 \begin{equation*}
 M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
 \end{equation*}
-\vspace{5mm}
-Therefore we obtain:
+\vspace{5mm} \\
+Therefore, we obtain:
 \begin{equation}
  \begin{gathered}
  \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
@@ -553,10 +531,10 @@ Therefore we obtain:
 	   	\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}\\
 	   M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
 \end{gathered}
-\end{equation}
-where $V_m^k=\phi_i^k-\phi_e^k$.\newline
-\vspace{5mm}
-We can rewrite it as:
+\end{equation}\\
+reminding that $V_m^k=\phi_i^k-\phi_e^k$.\newline
+\vspace{3mm} \\
+We can reformulate in this way:
 \begin{equation}
 \begin{gathered}
 \left( \frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M & -M \\ -M & M \end{bmatrix} + \begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix} + 
@@ -575,15 +553,15 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \begin{equation}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k
 \end{equation}
-\vspace{5mm}
-Defining:
+\vspace{5mm} \\
+If we define:
 \begin{itemize}
 \item $B=\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix}+\begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix}$
 \item $C_{nl}(V_m^k)=\begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix}$
 \item $r^{k+1}=\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^k \\ \phi_e^k \end{bmatrix}$
-\end{itemize}
-We get the final system:\newline
-Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
+\end{itemize} \vspace{4mm}
+we get the final system:\\ \\
+find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
 \begin{equation}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k \\
@@ -591,28 +569,107 @@ Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdot
 \end{cases}
 \end{equation} 
 
-\subsubsection{Results}
-Same method for the time discretization used in (\ref{marta})
-PLOT
+\subsection{Godunov operator-splitting}
+The main feature of a general operator-splitting method is the division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
+Two operator-splitting methods have been implemented, the first is of \emph{Godunov} type and a detailed study together with its properties can be found in \cite{spiteri}. The formulation becomes: \\
+\begin{center}find $\hat{V}_m^{k+1},\phi_i^{k+1},\phi_e^{k+1},w^{k+1}$ such that:\end{center}
+\begin{enumerate}[label = \Roman*]
+\item
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{\hat{V}_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k = 0\\
+\frac{w^{k+1}-w^k}{\Delta t} = \epsilon (V_m^k - \gamma w^k)
+\end{cases}
+\end{equation*}
+\item
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_i\phi_i^{k+1} = F_i^{k+1} \\
+-\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_e\phi_e^{k+1} = F_e^{k+1}
+\end{cases}
+\end{equation*}
+\end{enumerate}
+\noindent Putting in a unique system:
+\begin{equation}\label{Godunov}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k + A_i \phi_i^{k+1}= F_i^{k+1} \\
+\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k - A_e \Phi_e^{k+1}= -F_e^{k+1} \\
+w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta t V_m^k
+\end{cases}
+\end{equation}
+The equations in the system \ref{Godunov} can be rewritten as:
+\begin{equation*}
+\begin{cases}
+\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \phi_i^{k+1} - \frac{\chi_m C_m}{\Delta t} M \phi_e^{k+1} = F_i^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k\\
+\frac{\chi_m C_m}{\Delta t} M  \phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \phi_e^{k+1} =  -F_e^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k \\
+w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
+\end{cases}
+\end{equation*}
 
-\subsection{Quasi implicit operator splitting}
-The main characteristic of an operator splitting is to divide the problem into two different systems with two different operators, such that $L(u)=L_1(u)+L_2(u)$, and, starting from $u^n$, we find $\tilde(u^{n+1})$ through the first system, then the solution $u^{n+1}$ through the second one.
-In the Quasi implicit operator splitting we treat in a explicit way any term, except the $V_m^n$ in the non linear term.\newline
-Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
+\noindent In the end, one can compute $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ from: 
 \begin{equation}
+\begin{cases}
+\begin{gathered}
+\left(
+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
++ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
+\right) \begin{bmatrix} \bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}}  \end{bmatrix} =
+\begin{bmatrix} F_i^{k+1} \\ -F_e^{k+1} \end{bmatrix} + \\ -
+\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^k \\ w^k \end{bmatrix} +
+\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
+- \begin{bmatrix} C(V_m^k) & 0 \\ 0 & C(V_m^k)\end{bmatrix} 
+\right) \begin{bmatrix} V_m^k \\ V_m^k \end {bmatrix}
+\end{gathered} \\ \\
+w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
+\end{cases}
+\end{equation}
+\subsubsection{Implementation}
+\begin{verbatim}
+ZERO = sparse(ll,ll);
+MASS = (ChiM*Cm/dt)*[M, -M; M -M];
+MASSW = ChiM*[M, ZERO; ZERO, M];
+
+for t=dt:dt:T
+
+fi = assemble_rhs_i(femregion,neighbour,Data,t);
+fe = assemble_rhs_e(femregion,neighbour,Data,t);
+f1 = cat(1, fi, -fe);
+
+[C] = assemble_nonlinear(femregion,Data,Vm0);
+
+w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
+B = MASS + [Ai, ZERO; ZERO, -Ae];
+r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])
+*[Vm0;Vm0] + f1;
+
+Vm0 = u1(1:ll) - u1(ll+1:end);
+u0 = u1;
+w0 = w1;
+end
+\end{verbatim}
+
+\subsection{Quasi-implicit operator-splitting}
+The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a full implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme.\newline
+
+\begin{center} find $\tilde{V}_m^{k+1}, \phi_i^{k+1}, \phi_e^{k+1},w^{k+1}$ such that: \end{center}
+\begin{enumerate}[label = \Roman*]
+\item
+\begin{equation*}
 \begin{cases}
 \chi_m C_m M \frac{\tilde{V}_m^{k+1}-V_m^k}{\Delta t} +  C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1}= 0\\
 \frac{w^{k+1} - w^k}{\Delta t} = \epsilon (V_m^{k+1}-\gamma w^{k+1})
 \end{cases}
-\end{equation}
-Find $V_m^{k+1}$ such that:
-\begin{equation}
+\end{equation*}
+\item
+\begin{equation*}
 \begin{cases}
 \chi_m C_m M \frac{V_m^{k+1}-\tilde{V}_m^{k+1}}{\Delta t} + A_i \phi_i^{k+1}= F_i^{k+1}\\
 - \chi_m C_m M \frac{V_m^{k+1}-\tilde{V}_m^{k+1}}{\Delta t} + A_e \phi_e^{k+1}= F_e^{k+1}
 \end{cases}
-\end{equation}
-Put into a unique system:
+\end{equation*}
+\end{enumerate}
+\vspace{3mm}
+Putting into a unique system:
 \begin{equation}\label{Quasi}
 \begin{cases}
 \chi_m C_m M \frac{V_m^{k+1}-V_m^{k}}{\Delta t} + C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1} + A_i \phi_i ^{k+1} = F_i^{k+1} \\
@@ -620,12 +677,13 @@ Put into a unique system:
 \frac{w^{k+1}-w^{k}}{\Delta t} = \epsilon(V_m^{k+1}-\gamma w^{k+1})
 \end{cases}
 \end{equation}
-Defining:
+If we define:
 \begin{itemize}
-\item $Q_k = \frac{\chi_m C_m}{\Delta t}M + C(V_m^k) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$ \\
+\item $Q_k = \frac{\chi_m C_m}{\Delta t}M + C(V_m^k) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$ 
 \item $R_k = \frac{\chi_mC_m}{\Delta t}MV_m^k - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^k$
 \end{itemize}
-The equations in the system \ref{Quasi} can be written as:
+\vspace{4mm}
+the equations in the system \ref{Quasi} can be written as:
 \begin{enumerate}
 \item
 \begin{equation*}
@@ -648,8 +706,9 @@ The equations in the system \ref{Quasi} can be written as:
 w^{k+1} = \frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}
 \end{equation*}
 \end{enumerate}
-The final system becomes:\newline
-Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that:
+\vspace{4mm}
+The final system becomes:\\ \\
+find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that:
 \begin{equation}
 \quad
 \begin{cases}
@@ -694,85 +753,8 @@ w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1}
         w0 = w1;
     end
 \end{verbatim}
-\subsubsection{Results}
-PLOT
 
-\subsection{Godunov operator splitting}
-Another type of operator splitting is the Gudonov operator splitting where in this case the first system is written in an explicit way, meanwhile the second implicitly. Indeed:\newline
-Find $\tilde{V}_m^{k+1}$ and $w^{k+1}$ such that:
-\begin{equation*}
-\begin{cases}
-\chi_m C_m M\frac{\hat{V}_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k = 0\\
-\frac{w^{k+1}-w^k}{\Delta t} = \epsilon (V_m^k - \gamma w^k)
-\end{cases}
-\end{equation*}
-Find $V_m^{k+1}$ such that:
-\begin{equation*}
-\begin{cases}
-\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_i\phi_i^{k+1} = F_i^{k+1} \\
--\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_e\phi_e^{k+1} = F_e^{k+1}
-\end{cases}
-\end{equation*}
-Put in a unique system:
-\begin{equation}\label{Godunov}
-\begin{cases}
-\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k + A_i \phi_i^{k+1}= F_i^{k+1} \\
-\chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k - A_e \Phi_e^{k+1}= -F_e^{k+1} \\
-w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta t V_m^k
-\end{cases}
-\end{equation}
-The equations in the system \ref{Godunov} can be written as:
-\begin{equation*}
-\begin{cases}
-\left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \phi_i^{k+1} - \frac{\chi_m C_m}{\Delta t} M \phi_e^{k+1} = F_i^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k\\
-\frac{\chi_m C_m}{\Delta t} M  \phi_i^{n+1} - \left(\frac{\chi_m C_m}{\Delta t} M + A_e \right) \phi_e^{k+1} =  -F_e^{k+1} - \chi_m M w^k + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^k)\right) V_m^k \\
-w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
-\end{cases}
-\end{equation*}
 
-In the end, find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that: 
-\begin{equation}
-\begin{cases}
-\begin{gathered}
-\left(
-	\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
-	+ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
-	\right) \begin{bmatrix} \bm{\phi_i^{k+1}} \\ \bm{\phi_e^{k+1}}  \end{bmatrix} =
-	\begin{bmatrix} F_i^{k+1} \\ -F_e^{k+1} \end{bmatrix} + \\ -
-	\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^k \\ w^k \end{bmatrix} +
-	\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
-	- \begin{bmatrix} C(V_m^k) & 0 \\ 0 & C(V_m^k)\end{bmatrix} 
-	\right) \begin{bmatrix} V_m^k \\ V_m^k \end {bmatrix}
-	 \end{gathered} \\ \\
-	w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
-\end{cases}
-\end{equation}
-\subsubsection{Implementation}
-\begin{verbatim}
-ZERO = sparse(ll,ll);
-    MASS = (ChiM*Cm/dt)*[M, -M; M -M];
-    MASSW = ChiM*[M, ZERO; ZERO, M];
-    
-    for t=dt:dt:T
-        
-        fi = assemble_rhs_i(femregion,neighbour,Data,t);
-        fe = assemble_rhs_e(femregion,neighbour,Data,t);
-        f1 = cat(1, fi, -fe);
-    
-        [C] = assemble_nonlinear(femregion,Data,Vm0);
-        
-        w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
-        B = MASS + [Ai, ZERO; ZERO, -Ae];
-        r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])
-        *[Vm0;Vm0] + f1;
- 
-        Vm0 = u1(1:ll) - u1(ll+1:end);
-        u0 = u1;
-        w0 = w1;
-    end
-    \end{verbatim}
-    \subsubsection{Results}
-    PLOT
     \newpage
     \printbibliography
 

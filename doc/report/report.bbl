@@ -319,6 +319,36 @@
       \field{pages}{3775\bibrangedash 3802}
       \range{pages}{28}
     \endentry
+    \entry{spiteri}{article}{}
+      \name{author}{2}{}{%
+        {{hash=557c3e8e092ffc7140ec7638f502f3c9}{%
+           family={Spiteri},
+           familyi={S\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c3e732660716793537223c6a0399267a}{%
+           family={Torabi\bibnamedelima Ziaratgahi},
+           familyi={T\bibinitperiod\bibinitdelim Z\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \strng{fullhash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \strng{bibnamehash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \strng{authorbibnamehash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \strng{authornamehash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \strng{authorfullhash}{deb38e05e777b4b7c35966ab36ac4bb6}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Computational and applied Mathematics}
+      \field{title}{Operator splitting for the bidomain model revisited}
+      \field{volume}{296}
+      \field{year}{2016}
+      \field{pages}{550\bibrangedash 563}
+      \range{pages}{14}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
