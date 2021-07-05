@@ -143,8 +143,8 @@ for ie = 1:femregion.ne
         % scaling of the penalty coefficient wrt the mesh size
         penalty_scaled = penalty_coeff./meshsize(iedg); 
         
-        sigma_i_penalty = abs(normals(:,iedg)'*sigma_i*normals(:,iedg));
-        sigma_e_penalty = abs(normals(:,iedg)'*sigma_e*normals(:,iedg));
+        penalty_sigma_i = abs(normals(:,iedg)'*sigma_i*normals(:,iedg));
+        penalty_sigma_e = abs(normals(:,iedg)'*sigma_e*normals(:,iedg));
         
         % assembly of interface matrices 
         for k = 1:nqn_1D   % loop over 1D quadrature nodes
@@ -163,9 +163,9 @@ for ie = 1:femregion.ne
                         S(index(i),index(j)) = S(index(i),index(j)) ...
                                         + penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
                         Si(index(i),index(j)) = Si(index(i),index(j)) ...
-                                        + penalty_scaled .* sigma_i_penalty * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
+                                        + penalty_scaled .* penalty_sigma_i * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
                         Se(index(i),index(j)) = Se(index(i),index(j)) ...
-                                        + penalty_scaled .* sigma_e_penalty * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
+                                        + penalty_scaled .* penalty_sigma_e * B_edge(i,k,iedg) .* B_edge(j,k,iedg) .* ds;
                         
                         % I --> \int_{E_h} {grad v} . [u] ds
                         Ii(index(i),index(j)) = Ii(index(i),index(j)) ...
@@ -182,9 +182,9 @@ for ie = 1:femregion.ne
                         SN(i,j,iedg) = SN(i,j,iedg) ...
                                    - penalty_scaled .* B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
                         SNi(i,j,iedg) = SNi(i,j,iedg) ...
-                                   - penalty_scaled .* sigma_i_penalty * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
+                                   - penalty_scaled .* penalty_sigma_i * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
                         SNe(i,j,iedg) = SNe(i,j,iedg) ...
-                                   - penalty_scaled .* sigma_e_penalty * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
+                                   - penalty_scaled .* penalty_sigma_e * B_edge(i,k,iedg) .* B_edge(j,kk,neigedge) .* ds;
                         
                                
                     % Boundary faces   
