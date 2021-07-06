@@ -289,6 +289,33 @@
       \field{pages}{365\bibrangedash 590}
       \range{pages}{226}
     \endentry
+    \entry{salsa}{book}{}
+      \name{author}{1}{}{%
+        {{hash=bdad62c23efc185c2fbc01b794bac206}{%
+           family={Salsa},
+           familyi={S\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Milan}%
+      }
+      \list{publisher}{1}{%
+        {Springer-Verlag}%
+      }
+      \strng{namehash}{bdad62c23efc185c2fbc01b794bac206}
+      \strng{fullhash}{bdad62c23efc185c2fbc01b794bac206}
+      \strng{bibnamehash}{bdad62c23efc185c2fbc01b794bac206}
+      \strng{authorbibnamehash}{bdad62c23efc185c2fbc01b794bac206}
+      \strng{authornamehash}{bdad62c23efc185c2fbc01b794bac206}
+      \strng{authorfullhash}{bdad62c23efc185c2fbc01b794bac206}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Equazioni a derivate parziali}
+      \field{year}{2016}
+    \endentry
     \entry{sherwin}{article}{}
       \name{author}{2}{}{%
         {{hash=bf57a1386f8be0742ed725994988544e}{%

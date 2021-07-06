@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  5 JUL 2021 15:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  6 JUL 2021 20:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -554,26 +554,29 @@ File: csquotes.cfg
 Package csquotes Info: Enabling multilingual quotes.
 )
 \c@definition=\count405
-\c@prop=\count406
+\c@theo=\count406
+\c@prop=\count407
+\c@problem=\count408
+\c@corollary=\count409
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 37.
-LaTeX Font Info:    ... okay on input line 37.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 41.
+LaTeX Font Info:    ... okay on input line 41.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -610,16 +613,16 @@ LaTeX Font Info:    ... okay on input line 37.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count407
+\scratchcounter=\count410
 \scratchdimen=\dimen173
 \scratchbox=\box50
-\nofMPsegments=\count408
-\nofMParguments=\count409
+\nofMPsegments=\count411
+\nofMParguments=\count412
 \everyMPshowfont=\toks33
-\MPscratchCnt=\count410
+\MPscratchCnt=\count413
 \MPscratchDim=\dimen174
-\MPnumerator=\count411
-\makeMPintoPDFobject=\count412
+\MPnumerator=\count414
+\makeMPintoPDFobject=\count415
 \everyMPtoPDFconversion=\toks34
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -658,8 +661,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report.bbl' found.
 
 (./report.bbl)
-Package biblatex Info: Reference section=0 on input line 37.
-Package biblatex Info: Reference segment=0 on input line 37.
+Package biblatex Info: Reference section=0 on input line 41.
+Package biblatex Info: Reference segment=0 on input line 41.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -695,10 +698,10 @@ Package biblatex Info: Reference segment=0 on input line 37.
 <./polimi-logo.png, id=1, 1204.5pt x 880.28876pt>
 File: ./polimi-logo.png Graphic file (type png)
 <use ./polimi-logo.png>
-Package pdftex.def Info: ./polimi-logo.png  used on input line 44.
+Package pdftex.def Info: ./polimi-logo.png  used on input line 48.
 (pdftex.def)             Requested size: 113.81102pt x 83.1716pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
 
  []
 
@@ -722,204 +725,217 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  [1
 
 ]
-<./potential_cycle.png, id=20, 558.085pt x 328.22626pt>
+<./potential_cycle.png, id=19, 558.085pt x 328.22626pt>
 File: ./potential_cycle.png Graphic file (type png)
 <use ./potential_cycle.png>
-Package pdftex.def Info: ./potential_cycle.png  used on input line 88.
+Package pdftex.def Info: ./potential_cycle.png  used on input line 92.
 (pdftex.def)             Requested size: 199.16928pt x 117.13464pt.
  [2 <./potential_cycle.png>]
-<./electrical_circuit.png, id=32, 499.8675pt x 236.885pt>
+<./electrical_circuit.png, id=31, 499.8675pt x 236.885pt>
 File: ./electrical_circuit.png Graphic file (type png)
 <use ./electrical_circuit.png>
-Package pdftex.def Info: ./electrical_circuit.png  used on input line 102.
+Package pdftex.def Info: ./electrical_circuit.png  used on input line 106.
 (pdftex.def)             Requested size: 199.16928pt x 94.38362pt.
  [3 <./electrical_circuit.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 166--169
+Underfull \hbox (badness 10000) in paragraph at lines 170--173
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--171
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--174
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
 [4]
-<./sol_ill_posed.jpg, id=48, 1854.93pt x 964.60374pt>
+<./sol_ill_posed.jpg, id=47, 1854.93pt x 964.60374pt>
 File: ./sol_ill_posed.jpg Graphic file (type jpg)
 <use ./sol_ill_posed.jpg>
-Package pdftex.def Info: ./sol_ill_posed.jpg  used on input line 180.
+Package pdftex.def Info: ./sol_ill_posed.jpg  used on input line 184.
 (pdftex.def)             Requested size: 312.9803pt x 162.7441pt.
  [5 <./sol_ill_posed.jpg>]
-Overfull \hbox (10.24661pt too wide) detected at line 195
-[]\OML/cmm/m/it/10.95 t \OMS/cmsy/m/n/10.95 2 \OT1/cmr/m/n/10.95 [0\OML/cmm/m/i
-t/10.95 ; T\OT1/cmr/m/n/10.95 ][]^^H[](\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 
-) = [\OML/cmm/m/it/10.95 ^^^[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1/cmr
-/m/n/10.95 )\OML/cmm/m/it/10.95 ; ^^^[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 
-t\OT1/cmr/m/n/10.95 )][] \OMS/cmsy/m/n/10.95 2 \OT1/cmr/m/n/10.95 [\OML/cmm/m/i
-t/10.95 V[]\OT1/cmr/m/n/10.95 ][][]\OML/cmm/m/it/10.95 w[]\OT1/cmr/m/n/10.95 (\
-OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10.95 ) \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10
-.95 V[][][] 
+Overfull \hbox (2.91249pt too wide) in paragraph at lines 199--201
+\T1/cmr/bx/n/10.95 Problem 1 \T1/cmr/m/n/10.95 (DG weak for-mu-la-tion)\T1/cmr/
+bx/n/10.95 . \T1/cmr/m/it/10.95 For any $\OML/cmm/m/it/10.95 t \OMS/cmsy/m/n/10
+.95 2 \OT1/cmr/m/n/10.95 [0\OML/cmm/m/it/10.95 ; T\OT1/cmr/m/n/10.95 ]$ \T1/cmr
+/m/it/10.95 find $\OT1/cmr/m/n/10.95 ^^H[](\OML/cmm/m/it/10.95 t\OT1/cmr/m/n/10
+.95 ) = [\OML/cmm/m/it/10.95 ^^^[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 t\OT1
+/cmr/m/n/10.95 )\OML/cmm/m/it/10.95 ; ^^^[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10
+.95 t\OT1/cmr/m/n/10.95 )][] \OMS/cmsy/m/n/10.95 2
  []
 
 
-Overfull \hbox (18.48839pt too wide) detected at line 203
+Underfull \hbox (badness 10000) in paragraph at lines 199--201
+
+ []
+
+
+Overfull \hbox (18.48839pt too wide) detected at line 207
 [][]
  []
 
 
-Overfull \hbox (29.87921pt too wide) detected at line 210
+Overfull \hbox (29.87921pt too wide) detected at line 214
 [][]
  []
 
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
-
- []
-
-[7] [8]
-<./transformation.png, id=68, 485.815pt x 256.96pt>
+[6] [7] [8]
+<./transformation.png, id=67, 485.815pt x 256.96pt>
 File: ./transformation.png Graphic file (type png)
 <use ./transformation.png>
-Package pdftex.def Info: ./transformation.png  used on input line 328.
+Package pdftex.def Info: ./transformation.png  used on input line 342.
 (pdftex.def)             Requested size: 199.16928pt x 105.34251pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 346--348
+ [9 <./transformation.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 361--363
 
  []
 
-[9 <./transformation.png>]
-<./mass_dubiner.jpg, id=73, 1854.93pt x 964.60374pt>
+[10]
+<./mass_dubiner.jpg, id=75, 1854.93pt x 964.60374pt>
 File: ./mass_dubiner.jpg Graphic file (type jpg)
 <use ./mass_dubiner.jpg>
-Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 399.
+Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 414.
 (pdftex.def)             Requested size: 199.16928pt x 103.56041pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--412
-
- []
-
-[10 <./mass_dubiner.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 413--414
+Underfull \hbox (badness 10000) in paragraph at lines 424--427
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 415--416
+Underfull \hbox (badness 10000) in paragraph at lines 428--429
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 430--431
+
+ []
+
+[11 <./mass_dubiner.jpg>]
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
-21.
+36.
+
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-Overfull \hbox (29.1601pt too wide) in paragraph at lines 420--422
+Overfull \hbox (29.1601pt too wide) in paragraph at lines 435--437
 \T1/cmtt/m/n/10.95 eval_jacobi_polynomial.m\T1/cmr/m/n/10.95 , \T1/cmtt/m/n/10.
 95 basis_legendre_dubiner.m\T1/cmr/m/n/10.95 , \T1/cmtt/m/n/10.95 evalshape_tri
 a_dubiner.m\T1/cmr/m/n/10.95 . 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 420--422
+Underfull \hbox (badness 10000) in paragraph at lines 435--437
 
  []
 
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 423--424
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 448--449
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 450--451
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
 
  []
 
-
-Overfull \hbox (31.73012pt too wide) in paragraph at lines 475--475
+[13]
+Overfull \hbox (31.73012pt too wide) in paragraph at lines 490--490
 []   \T1/cmtt/m/n/10.95 index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1
 :femregion.nln]';[] 
  []
 
-[13]
-Overfull \hbox (37.38849pt too wide) in paragraph at lines 505--505
+[14]
+Overfull \hbox (37.38849pt too wide) in paragraph at lines 520--520
 []    \T1/cmtt/m/n/10.95 index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [
 1:femregion.nln]';[] 
  []
 
 
-Overfull \hbox (37.38849pt too wide) in paragraph at lines 505--505
+Overfull \hbox (37.38849pt too wide) in paragraph at lines 520--520
 []            \T1/cmtt/m/n/10.95 u0(index(i)) = u0(index(i)) + uh_eval_k*phi_du
 b(1,k,i).*w_2D(k);[] 
  []
 
-[14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 563--565
+[15] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 621--623
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 573--575
+Underfull \hbox (badness 10000) in paragraph at lines 621--623
 
  []
 
-
-Overfull \hbox (36.73196pt too wide) detected at line 607
+[17]
+Overfull \hbox (36.73196pt too wide) detected at line 655
 []
  []
 
-[16] [17]
-Underfull \hbox (badness 10000) in paragraph at lines 652--653
 
- []
-
-
-Overfull \hbox (60.84883pt too wide) detected at line 695
-[][]
- []
-
-
-Overfull \hbox (63.8905pt too wide) detected at line 703
-[][]
+Overfull \hbox (19.31622pt too wide) in paragraph at lines 659--660
+\T1/cmr/bx/n/10.95 Problem 5 \T1/cmr/m/n/10.95 (Go-dunov op-er-a-tor-s-plit-tin
+g dis-cretized sys-tem)\T1/cmr/bx/n/10.95 . \T1/cmr/m/it/10.95 Find $\OT1/cmr/m
+/n/10.95 ^^H[] = [\OML/cmm/m/it/10.95 ^^^[]^^^[]\OT1/cmr/m/n/10.95 ][]$
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 710--712
+Underfull \hbox (badness 10000) in paragraph at lines 704--705
 
  []
 
-
-Overfull \hbox (37.38849pt too wide) in paragraph at lines 755--755
-[]         \T1/cmtt/m/n/10.95 Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+ep
-silon*gamma*dt)*M;[] 
+[19]
+Overfull \hbox (60.84883pt too wide) detected at line 748
+[][]
  []
 
-[19] [20]
-Overfull \hbox (15.4979pt too wide) in paragraph at lines 760--760
+
+Overfull \hbox (63.8905pt too wide) detected at line 756
+[][]
+ []
+
+
+Overfull \hbox (3.43826pt too wide) in paragraph at lines 810--810
+[]   \T1/cmtt/m/n/10.95 Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*
+gamma*dt)*M;[] 
+ []
+
+[20]
+Underfull \hbox (badness 10000) in paragraph at lines 822--823
+
+ []
+
+[21]
+Underfull \hbox (badness 10000) in paragraph at lines 824--825
+
+ []
+
+[22] [23]
+Overfull \hbox (15.4979pt too wide) in paragraph at lines 888--888
 []\T1/cmr/m/n/10.95 A. Quar-teroni. \T1/cmr/m/it/10.95 Mod-el-lis-tica Nu-mer-i
 ca per Prob-lemi Dif-feren-ziali\T1/cmr/m/n/10.95 . Mi-lan: Springer-
  []
 
-[21] (./report.aux)
+[24] (./report.aux)
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14706 strings out of 482843
- 255883 string characters out of 5956406
- 924232 words of memory out of 5000000
- 29836 multiletter control sequences out of 15000+600000
- 561124 words of font info for 92 fonts, out of 8000000 for 9000
+ 14727 strings out of 482843
+ 256126 string characters out of 5956406
+ 926423 words of memory out of 5000000
+ 29858 multiletter control sequences out of 15000+600000
+ 560440 words of font info for 91 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,23n,45p,1456b,1688s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.60
@@ -932,33 +948,32 @@ crm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec
 /ecbx1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
 ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappe
 n/ec/eccc1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecti1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
-/jknappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (22 pages, 826935 bytes).
+pen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
+/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on report.pdf (25 pages, 836714 bytes).
 PDF statistics:
- 660 PDF objects out of 1000 (max. 8388607)
- 167 compressed objects within 2 object streams
+ 672 PDF objects out of 1000 (max. 8388607)
+ 170 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

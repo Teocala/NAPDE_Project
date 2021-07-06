@@ -30,8 +30,12 @@ citestyle=numeric,
 
 
 \newtheorem{definition}{Definition}
+\newtheorem{theo}{Theorem}
 \newtheorem{prop}{Proposition} 
-
+\newtheorem{problem}{Problem}
+\newtheorem*{remark}{Remark}
+\newtheorem{corollary}{Corollary}
+\def\proof{\paragraph{Proof: }}
 
 
 \begin{document}
@@ -54,8 +58,8 @@ citestyle=numeric,
 	    	\Large{
 	    	\hspace{11mm} \emph{Authors:} \hspace{5mm} \textsc{ \quad Federica Botta, Matteo Calafà}} \newline
 	    	 
-	    	\large{\vspace{3mm} 
-	    	 \qquad \emph{Supervisors:} \hspace{12mm} \textsc{ Christian Vergara, Paola Antonietti}}
+	    	\Large{\vspace{3mm} 
+	    	 \hspace{4mm} \emph{Supervisors:} \hspace{3mm} \textsc{ Christian Vergara, Paola Antonietti}}
 	          \\
 	    	\vspace{20mm}
 	    \begin{center}
@@ -164,7 +168,7 @@ citestyle=numeric,
 
     \subsection{A short discussion about the past works issue}
     As we have already introduced, our project initially aimed to continue and improve the work of a previous project (\parencite{marta}). \\
-    Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. Instead, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes.
+    Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. On the other hand, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes.
     This issue heavily limits the use of the code for research and/or experimental simulations as it guarantees convergence to the right solution only in few and non-realistic problems.  \\
 
     \noindent After a while, we realized that an inverted sign of the FitzHugh-Nagumo model formula occurred in \cite{acta}. \\
@@ -189,10 +193,10 @@ citestyle=numeric,
 
     \section{Semi discretized numerical methods}
     \subsection{DG discrete formulation}
-    We have seen the Bidomain model in a complete form in definition \ref{def1}. We now introduce a triangulation $\tau_h$ over $\Omega$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where k is the degree of the piecewise continuous polynomial. We obtain the semi discrete DG formulation:\vspace{4mm}
-    \begin{equation*}
-    \text{For any time } t \in [0,T] \text{ find } \Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2 \text{ and } w_h(t) \in V_h^k \text{ such that}\vspace{5mm} \\
-    \end{equation*}
+    Starting from the strong form in definition \ref{def1}, the next step is the achievement of a suitable Discontinuous Galerkin weak formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
+    Let us introduce a triangulation $\tau_h$ over $\Omega$, with $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ set of the faces of the elements, which includes the internal and boundary faces respectively, and the DG space $V_h^k = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{k}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $k$ is the degree of the piecewise continuous polynomial. Moreover, we define $N_h=dim(V_h^k)<\infty$. \vspace{4mm}
+    \begin{problem}[DG weak formulation]
+    For any $t\in[0,T]$ find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$  and  $w_h(t) \in V_h^k$ such that: \\
     \begin{enumerate}
     \item 
     \begin{equation*}
@@ -234,9 +238,9 @@ citestyle=numeric,
     \item $\delta=-1$: Non Symmetric Interior Penalty method (NIP) 
     \end{itemize}
      \vspace{2mm}
-    \noindent And $\gamma := \alpha \frac{k^2}{h}$ (\emph{"Stabilization parameter"}),$ \quad \alpha \in \mathbb{R}$ to be chosen high enough. \\
-    
-    \noindent To analyze the formulation more in details see \cite{marta}.
+    \noindent And $\gamma := \alpha \frac{k^2}{h}$ ("Stabilization parameter"),$ \quad \alpha \in \mathbb{R}$ to be chosen high enough.
+    \end{problem}
+
     \vspace{4mm}
     \subsection{Algebraic formulation}
     Taking $\{\varphi_j\}_{j=1}^{N_h}$ base of $V_h^k$, so that we can write
@@ -280,19 +284,24 @@ C(u_h)_{ij} =  \sum_{K \in \tau_h} \int_K \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi
 F_k=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{w} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{w} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}
 \end{equation}
 \vspace{3mm} \\
-Therefore, our semi-discrete algebraic formulation is: \vspace{3mm} \newline
-find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
-\begin{equation}\label{algebraic}
-\begin{gathered}
-\chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M w_h=F_i^h\\
--\chi_m Cm M \dot{V_m^h}+A_e \phi_e^h-C(V_m^h) V_m^h-\chi_m M w_h=F_e^h\\
+Therefore, our semi-discrete algebraic formulation is: \vspace{3mm}
+\begin{problem}[DG algebraic formulation]\label{algebraic}
+Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+\begin{equation*}
+\begin{cases}
+\chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M w_h=F_i^h \vspace{2mm} \\ 
+-\chi_m Cm M \dot{V_m^h}+A_e \phi_e^h-C(V_m^h) V_m^h-\chi_m M w_h=F_e^h \vspace{2mm} \\ 
 M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
-\end{gathered}
-\end{equation}
- \vspace{5mm} \\
- Rewriting it with block matrices: \vspace{5mm} \newline
- find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
- \begin{equation}\label{block_matrix}
+\end{cases}
+\end{equation*}
+\end{problem}
+ \vspace{5mm}
+ \noindent An alternative and more compact version with block matrices: \vspace{3mm}
+ \begin{problem}[DG algebraic formulation - 2] \label{block_matrix}
+ Find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^k]^2$ and $w_h(t) \in V_h^k$ for any $t \in (0;T]$ such that:
+ \begin{enumerate}[label=\Roman*]
+ \item
+ \begin{equation*}
  \begin{gathered}
  \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
 	\begin{bmatrix}\bm{\dot{\phi}_i^h(t)} \\ \bm{\dot{\phi}_e^h(t)} \end{bmatrix}
@@ -302,10 +311,15 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
 	   \begin{bmatrix} \bm{\phi_i^h(t)} \\ \bm{\phi_e^h(t)}  \end{bmatrix} 
 	   +\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} 
 	   	\begin{bmatrix}w_h(t) \\ w_h(t) \end{bmatrix} = 
-	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}\\
+	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix}
+ \end{gathered}
+ \end{equation*}
+ \item
+ \begin{equation*}
 	   \dot{w}_h(t)=\epsilon (V_m^h(t)-\gamma w_h(t))
-\end{gathered}
-\end{equation}
+\end{equation*}
+\end{enumerate}
+\end{problem}
 \vspace{5mm}
 \section{Dubiner Basis}
     \subsection{Analytical aspects}\label{analytical_aspects}
@@ -332,6 +346,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \end{figure}
     
     \noindent the Dubiner basis is the transformation of a suitable basis initially defined on the reference square. This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$.
+    \newpage
     \begin{definition}[Jacobi polynomials]
     The Jacobi polynomials of coefficients $\alpha,\beta \in \mathbb{R}$ evaluated in $z\in (-1,1)$ are:
     \begin{itemize}[label=\textendash]
@@ -503,11 +518,12 @@ for ie = 1:femregion.ne
     end    
 end
 \end{verbatim}
-\newpage
+\vspace{5mm}
 \section{Temporal discretization}
-The problem is time dependent: after the spacial discretization, we then need to divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$ assuming $V_m^k\approx V_m(t^k)$. We have developed, implemented and tested 3 different temporal strategies: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
+So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$, we then assume that $V_m^k\approx V_m(t^k)$. \\
+We have developed, implemented and tested 3 different temporal strategies that we will refer to as: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
 \subsection{Semi-implicit method}
-One of the most famous and used temporal scheme for a non-linear problem such as the Bidomain is certainly the \emph{Semi-Implicit} scheme \cite{acta}. The basic idea is to treat most of the terms implicitly while in fact treating the non-linear term semi-implicitly. Since the non-linear is cubic, the best choice is to treat only one of these $V_m$ terms implicitly, in this way:
+One of the most famous and used temporal scheme for a non-linear problem such as the Bidomain is certainly the \emph{Semi-Implicit} scheme \cite{acta}. The basic idea is to treat most of the terms implicitly while in fact treating the non-linear term semi-implicitly. Since the non-linear is cubic, the best choice is to treat only one of these $V_m$ terms implicitly, i.e.:
 \begin{equation*}
 I_{ion}^{k+1}=k(V_m^k-a)(V_m^k-1)V_m^{k+1}+w^{k+1}
 \end{equation*}
@@ -517,7 +533,7 @@ Moreover, the gating variable ODE is treated implicitly with the exception of th
 M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
 \end{equation*}
 \vspace{5mm} \\
-Therefore, we obtain:
+Therefore, we can transform the semi-discrete problem \ref{block_matrix} into:
 \begin{equation}
  \begin{gathered}
  \chi_mC_m \begin{bmatrix}M &-M \\ -M & M \end{bmatrix}
@@ -532,9 +548,7 @@ Therefore, we obtain:
 	   M \frac{w^{k+1}-w^k}{\Delta t}=\epsilon M (V_m^k-\gamma w^{k+1})
 \end{gathered}
 \end{equation}\\
-reminding that $V_m^k=\phi_i^k-\phi_e^k$.\newline
-\vspace{3mm} \\
-We can reformulate in this way:
+We remind that $V_m^k=\phi_i^k-\phi_e^k$. Separating known and unknown terms, we obtain: \vspace{3mm}
 \begin{equation}
 \begin{gathered}
 \left( \frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M & -M \\ -M & M \end{bmatrix} + \begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix} + 
@@ -547,32 +561,66 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 - \chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix}
 \begin{bmatrix} w^{k+1} \\ w^{k+1} \end{bmatrix}
 + \frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & 0 \\ 0 & -M\end{bmatrix}
-\begin{bmatrix} V_m^{k} \\ V_m^{k} \end{bmatrix}
+\begin{bmatrix} V_m^{k} \\ V_m^{k} \end{bmatrix} \\
+(\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k
 \end{gathered}
 \end{equation}
-\begin{equation}
-(\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k
-\end{equation}
-\vspace{5mm} \\
-If we define:
+
+\vspace{5mm}
+\noindent If we define:
 \begin{itemize}
 \item $B=\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix}+\begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix}$
 \item $C_{nl}(V_m^k)=\begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix}$
 \item $r^{k+1}=\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^k \\ \phi_e^k \end{bmatrix}$
-\end{itemize} \vspace{4mm}
-we get the final system:\\ \\
-find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
+\end{itemize} \vspace{5mm}
+we get the system in the final form: 
+\begin{problem}[Semi-implicit discretized system]
+Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
 \begin{equation}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k \\
 (B+C_{nl}(\Phi^k)) \Phi^{k+1}=r^{k+1}
 \end{cases}
 \end{equation} 
+\end{problem}
 
+\subsubsection{Implementation}
+\begin{verbatim}
+MASS = [M -M; -M M];
+ZERO = sparse(length(M), length(M));
+MASS_W = [M ZERO; ZERO -M];
+STIFFNESS = [Ai ZERO; ZERO  Ae];
+
+for t=dt:dt:T
+
+   w1 = 1/(1+epsilon*gamma*dt)*(w0+epsilon*dt*Vm0);
+   w1=cat(1,w1, w1);
+   Vm0 = cat(1,Vm0,Vm0);
+
+   fi = assemble_rhs_i(femregion,neighbour,Data,t);
+   fe = assemble_rhs_e(femregion,neighbour,Data,t);
+   f1 = cat(1, fi, fe);
+
+   [C] = assemble_nonlinear(femregion,Data,Vm0);
+   NONLIN = [C -C; -C C];
+
+   r = f1 + ChiM*Cm/dt * MASS_W * Vm0 - ChiM * MASS_W *w1;
+
+   B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
+
+   u1 = B \ r;
+
+   f0 = f1;
+   Vm0 = u1(1:ll)-u1(ll+1:end);
+   u0 = u1;
+   w0 = w1(1:ll);
+end
+\end{verbatim}
+\vspace{4mm}
 \subsection{Godunov operator-splitting}
 The main feature of a general operator-splitting method is the division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
-Two operator-splitting methods have been implemented, the first is of \emph{Godunov} type and a detailed study together with its properties can be found in \cite{spiteri}. The formulation becomes: \\
-\begin{center}find $\hat{V}_m^{k+1},\phi_i^{k+1},\phi_e^{k+1},w^{k+1}$ such that:\end{center}
+Two operator-splitting methods have been implemented, the first is of \emph{Godunov} type and a detailed study together with its properties can be found in \cite{spiteri}. The formulation is: \\ \\
+\begin{center}Find $\hat{V}_m^{k+1},\phi_i^{k+1},\phi_e^{k+1},w^{k+1}$ such that:\end{center}
 \begin{enumerate}[label = \Roman*]
 \item
 \begin{equation*}
@@ -606,7 +654,9 @@ w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{cases}
 \end{equation*}
 
-\noindent In the end, one can compute $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ from: 
+\noindent And then, we obtain the final form:
+\begin{problem}[Godunov operator-splitting discretized system] 
+	Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ such that: 
 \begin{equation}
 \begin{cases}
 \begin{gathered}
@@ -623,6 +673,8 @@ w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{cases}
 \end{equation}
+\end{problem}
+
 \subsubsection{Implementation}
 \begin{verbatim}
 ZERO = sparse(ll,ll);
@@ -631,27 +683,27 @@ MASSW = ChiM*[M, ZERO; ZERO, M];
 
 for t=dt:dt:T
 
-fi = assemble_rhs_i(femregion,neighbour,Data,t);
-fe = assemble_rhs_e(femregion,neighbour,Data,t);
-f1 = cat(1, fi, -fe);
+   fi = assemble_rhs_i(femregion,neighbour,Data,t);
+   fe = assemble_rhs_e(femregion,neighbour,Data,t);
+   f1 = cat(1, fi, -fe);
 
-[C] = assemble_nonlinear(femregion,Data,Vm0);
+   [C] = assemble_nonlinear(femregion,Data,Vm0);
 
-w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
-B = MASS + [Ai, ZERO; ZERO, -Ae];
-r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])
-*[Vm0;Vm0] + f1;
+   w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
+   B = MASS + [Ai, ZERO; ZERO, -Ae];
+   r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])
+   *[Vm0;Vm0] + f1;
 
-Vm0 = u1(1:ll) - u1(ll+1:end);
-u0 = u1;
-w0 = w1;
+   Vm0 = u1(1:ll) - u1(ll+1:end);
+   u0 = u1;
+   w0 = w1;
 end
 \end{verbatim}
-
+\vspace{4mm}
 \subsection{Quasi-implicit operator-splitting}
-The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a full implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme.\newline
+The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a full implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
 
-\begin{center} find $\tilde{V}_m^{k+1}, \phi_i^{k+1}, \phi_e^{k+1},w^{k+1}$ such that: \end{center}
+\begin{center} Find $\tilde{V}_m^{k+1}, \phi_i^{k+1}, \phi_e^{k+1},w^{k+1}$ such that: \end{center}
 \begin{enumerate}[label = \Roman*]
 \item
 \begin{equation*}
@@ -676,14 +728,15 @@ Putting into a unique system:
 \chi_m C_m M \frac{V_m^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) V_m^{k+1} + \chi_m M w^{k+1} - A_e \phi_e ^{k+1} =  -F_e^{k+1} \\
 \frac{w^{k+1}-w^{k}}{\Delta t} = \epsilon(V_m^{k+1}-\gamma w^{k+1})
 \end{cases}
-\end{equation}
+\end{equation} 
+\vspace{14mm} \\
 If we define:
 \begin{itemize}
 \item $Q_k = \frac{\chi_m C_m}{\Delta t}M + C(V_m^k) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$ 
 \item $R_k = \frac{\chi_mC_m}{\Delta t}MV_m^k - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^k$
 \end{itemize}
 \vspace{4mm}
-the equations in the system \ref{Quasi} can be written as:
+the equations in system \ref{Quasi} can be written as:
 \begin{enumerate}
 \item
 \begin{equation*}
@@ -707,8 +760,9 @@ w^{k+1} = \frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon 
 \end{equation*}
 \end{enumerate}
 \vspace{4mm}
-The final system becomes:\\ \\
-find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0, \cdots, K-1$ such that:
+The final system becomes:
+\begin{problem} [Quasi-implicit operator-splitting discretized system]
+Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ such that:
 \begin{equation}
 \quad
 \begin{cases}
@@ -723,37 +777,111 @@ find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \qquad \forall k=0,
 w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{\displaystyle 1+\epsilon \gamma \Delta t}
 \end{cases}
 \end{equation}
+\end{problem}
 
 \subsubsection{Implementation}
 \begin{verbatim}
- ZERO = sparse(ll,ll);
+ZERO = sparse(ll,ll);
         
-    for t=dt:dt:T
+for t=dt:dt:T
         
-        [C] = assemble_nonlinear(femregion,Data,Vm0);
-         Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
-         R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
+   [C] = assemble_nonlinear(femregion,Data,Vm0);
+   Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+   R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
     
-        fi = assemble_rhs_i(femregion,neighbour,Data,t);
-        fe = assemble_rhs_e(femregion,neighbour,Data,t);
-        f1 = cat(1, fi, -fe);
+   fi = assemble_rhs_i(femregion,neighbour,Data,t);
+   fe = assemble_rhs_e(femregion,neighbour,Data,t);
+   f1 = cat(1, fi, -fe);
     
-        B = [Q, -Q; Q, -Q] + [Ai, ZERO; ZERO, -Ae];
-        r = [R;R] + f1;
+   B = [Q, -Q; Q, -Q] + [Ai, ZERO; ZERO, -Ae];
+   r = [R;R] + f1;
         
-        u1 = B \ r; 
+   u1 = B \ r; 
         
-        Vm1 = u1(1:ll)-u1(ll+1:end);
+   Vm1 = u1(1:ll)-u1(ll+1:end);
 
-        w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
+   w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
     
-        f0 = f1;
-        Vm0 = u1(1:ll) - u1(ll+1:end);
-        u0 = u1;
-        w0 = w1;
-    end
+   f0 = f1;
+   Vm0 = u1(1:ll) - u1(ll+1:end);
+   u0 = u1;
+   w0 = w1;
+end
 \end{verbatim}
 
+\section{About the potentials uniqueness}
+\noindent Observing for a moment the Bidomain problem analytical formulation (definition \ref{def1}), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
+\begin{equation}\label{phi_uniqueness}
+\begin{gathered}
+\phi_i,\phi_e \text{ classical solutions of Bidomain} \Rightarrow \phi_i+\varphi,\,\phi_e+\varphi \text{ are solutions as well } \\
+ \forall \varphi: [0,T] \rightarrow \mathbb{R} \quad \text{ sufficiently regular}
+\end{gathered}
+\end{equation}
+
+\vspace{4mm}
+\noindent However, this fact should not surprise nor confuse the reader. First of all, we remind again that in \cite{bourgault} and \cite{colli_franzone} there are proofs for the $V_m$ and $w$ uniqueness, then this is taken for granted. Secondly, this statement reflects the physical intuition of the problem: cellular dynamics is not involved by potentials exact values but instead from their difference, in addition a potential value is nonsense if a convention value to compare it with has not been set. The dependence on time can be interpreted as follows: if, at any time instant, we change the conventional potential value, the dynamics of the problem does not change. \\
+
+\noindent Moreover, we can give this simple result to show that the solutions of the form of equation \ref{phi_uniqueness} are also the only admissible:\\
+\begin{theo}
+	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (definition \ref{def1}), the $\phi_i,\phi_e$ solutions are unique minus a constant depending only on time. 
+\end{theo}
+
+\begin{proof}
+	\vspace{2mm} We remind that existence and uniqueness for $V_m$ and $w$ have already been proved in \cite{bourgault}. 
+	Suppose now there exist two couples $(\phi_i^1,\phi_e^1)$,$(\phi_i^2,\phi_e^2)$ of potentials solutions of the Bidomain problem. If $V_m$ uniqueness holds, there must exist a unique value of $V_m$ such that:
+	\begin{equation*}
+	\phi_i^1-\phi_e^1 = \phi_i^2-\phi_e^2 = V_m
+	\end{equation*}\\
+	Then, we define a function $\varphi:\Omega \cross [0,T] \rightarrow \mathbb{R}$ as:
+	\begin{equation*}
+	\varphi := \phi_i^1-\phi_i^2 = \phi_e^1-\phi_e^2
+	\end{equation*}\\
+	If we consider the starting problem in definition \ref{def1}, the following equations must hold:
+	\begin{equation*}
+	\begin{cases}
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i^1) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i^2) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	\Sigma_i\nabla \phi_i^1 \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
+	\\
+	\Sigma_i\nabla \phi_i^2 \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T]
+	\end{cases}
+	\end{equation*}\\
+	Subtracting:
+	\begin{equation*}
+	\begin{cases}
+	- \nabla \cdot (\Sigma_i \nabla \varphi) = 0    & \text{in } \Omega_{mus} \cross (0,T]
+	\\
+	\Sigma_i\nabla \varphi \cdot n = 0   & \text{on } \partial \Omega_{mus} \cross (0,T]
+	\end{cases}
+	\end{equation*} \\
+	That is a classical \emph{Laplace problem} with homogeneous Neumann boundary conditions. From theory \cite{salsa}, we know that the solution is represented by all constant terms. However, we must pay attention to the fact that $\varphi$ is a time-dependent function, even if time does not compare in the system. Thus, we can state:
+	
+	\begin{equation*}
+	\exists \tilde{\varphi}:[0,T]\rightarrow \mathbb{R} \text{ such that } \varphi(x,t) = \tilde{\varphi}(t) \quad \forall x \in \Omega,\forall t \in [0,T] 
+	\end{equation*}\\
+	To conclude, we can observe now that if these two couples of solutions exist, then:
+	\begin{equation*}
+	\phi_i^1-\phi_i^2 = \phi_e^1-\phi_e^2=\tilde{\varphi} \quad \forall x \in \Omega, \forall t \in [0,T]
+	\end{equation*}
+\end{proof}
+
+\begin{remark}
+For what concerns the regularity of $\varphi$, we can certainly state that, as a difference of two sufficiently regular functions, it belongs to the same class of regularity of the potentials if restricted to the sole time variable.
+\end{remark}
+
+\vspace{4mm}
+\noindent We can conclude this analytical digression with an accomplished necessary and sufficient condition for the potentials solutions. \vspace{4mm}
+
+\begin{corollary}
+Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of definition \ref{def1} (for a certain $w$). The couple ($\tilde{\phi}_i,\tilde{\phi}_e$) of sufficiently regular real functions defined in $\Omega\cross[0,T]$ is another couple solution if and only if both $\tilde{\phi}_i,\tilde{\phi}_e$ differ respectively from $\phi_i,\phi_e$ for a time-dependent function $\varphi$ that belongs to the union of the regularity classes of the previous functions if restricted to time variable.
+\end{corollary}
+
+\begin{proof}
+	The regularity statement is trivial and already discussed. The right implication is due to the previous theorem. Finally, the left implication follows what has been shown in equation \ref{phi_uniqueness}: it is enough to insert $\phi_i+\varphi$ and $\phi_e+\varphi$ in the Bidomain system to find out that $\varphi$ disappears and the remaining system is the same as the one with $\phi_i,\phi_e$, thus solved by hypothesis.
+\end{proof}
+	
 
     \newpage
     \printbibliography
