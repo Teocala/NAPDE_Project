@@ -199,6 +199,43 @@
       \field{pages}{345\bibrangedash 390}
       \range{pages}{46}
     \endentry
+    \entry{gazzola}{book}{}
+      \name{author}{3}{}{%
+        {{hash=8812cacc552b58d502d3a771a4c2ea1f}{%
+           family={Ferrero},
+           familyi={F\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=7ed3c1b9968bde77d4419aa14cbfc844}{%
+           family={Gazzola},
+           familyi={G\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=60471b9c4c37e5d1b60bd0e9ca5d35af}{%
+           family={Zanotti},
+           familyi={Z\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Bologna}%
+      }
+      \list{publisher}{1}{%
+        {Società editrice Esculapio}%
+      }
+      \strng{namehash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \strng{fullhash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \strng{bibnamehash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \strng{authorbibnamehash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \strng{authornamehash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \strng{authorfullhash}{3079a62b02581cadc163e6f0d81ea8cd}
+      \field{sortinit}{F}
+      \field{sortinithash}{fb0c0faa89eb6abae8213bf60e6799ea}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Elementi di analisi superiore per la fisica e l'ingegneria}
+      \field{year}{2015}
+    \endentry
     \entry{marta}{report}{}
       \name{author}{2}{}{%
         {{hash=f03fc358bbb8d5a10c6a62e11920a5f6}{%

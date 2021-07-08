@@ -15,6 +15,7 @@
 \usepackage{caption}
 \usepackage{mathtools}
 \usepackage{subcaption}
+\usepackage{relsize}
 \captionsetup{compatibility=false}
 
 \usepackage[
@@ -35,7 +36,8 @@ citestyle=numeric,
 \newtheorem{problem}{Problem}
 \newtheorem*{remark}{Remark}
 \newtheorem{corollary}{Corollary}
-\def\proof{\paragraph{Proof: }}
+\newtheorem{lemma}{Lemma}
+\def\proof{\paragraph{Proof. }}
 
 
 \begin{document}
@@ -125,7 +127,8 @@ citestyle=numeric,
 	\begin{itemize}[label=\textendash]
 		\item $\bm{\phi_i, \phi_e}$ are the \emph{Intracellular and Extracelllular Potentials} (unknowns)
 		\item $V_m = \phi_i-\phi_e$ is the \emph{Trans-membrane Potential}
-		\item $\chi_m,C_m$ are known constants and $\Sigma_i, \Sigma_e$ are known constant tensors 
+		\item $\chi_m,C_m$ are known positive constants
+		\item $\Sigma_i, \Sigma_e$ are known positive definite tensors 
 		\item $I_i^{ext},I_e^{ext}$ are applied currents
 		\item $I_{ion}$ is the \emph{Ionic Current}
 		\item $\Omega_{mus}$ is the cardiac domain (myocardium + endocardium + epicardium)
@@ -371,7 +374,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \end{itemize}
     \end{definition}
     \vspace{5mm}
-    \noindent An important property of these polynomials is:
+    \noindent The main property of these polynomials is:
     \begin{prop}
     $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
     \begin{equation}
@@ -399,7 +402,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \end{definition}
     
     \vspace{5mm}
-    \noindent As we have anticipated
+    \noindent As we have anticipated \cite{sherwin}
     \begin{prop}\label{l2_ortho}
     The Dubiner basis is orthonormal in $L^2(\hat{K})$ $\forall p$:
     \begin{equation}
@@ -438,7 +441,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \noindent Moreover, some conditional statements and some extra methods (as the script \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
     \noindent More interesting are instead the scripts \texttt{dubiner\_to\_fem.m} and \texttt{fem\_to\_dubiner.m}, used to convert the Dubiner modal coefficients of the vector solution to the nodal values of the approximated function and viceversa. For this reason, they deserve some further explanations.
-\subsubsection{Switch from the modal coefficients to the nodal values}
+\subsection{Switch from the modal coefficients to the nodal values}
 One of the many advantages of the FEM basis is that there exists a bijection between the basis functions and some particular spacial points in such a way that the evaluation of a basis function in one of these points is equal to 1 only if that point is the one associated to the function, 0 otherwise:
 	\begin{equation} \label{ref1}
 	\psi_i(x_j)=\delta_{ij}
@@ -448,76 +451,80 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
 	
+	\subsubsection{\texttt{dubiner\_to\_fem.m}}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the property \ref{ref1}, i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i)
 	\end{equation}
-	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm}
+	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm} \\
+	This formula has then been implemented in the following lines from the \texttt{dubiner\_to\_fem.m} script. 
+	\begin{verbatim}
+	function [u0] = dubiner_to_fem (uh, femregion, Data)  
 	
+	...
+	...
+	...
+	
+	u0 = zeros(femregion.ndof,1);
+	
+	% loop over all the elements
+	for ie = 1:femregion.ne
+	
+	   % to get the global indexes for the nodes of ie 
+	   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+	
+	   for i = 1 : femregion.nln
+	      for j = 1: femregion.nln
+	         u0(index(i)) = u0(index(i)) +  uh(index(j))*phi(1,i,j);
+	      end
+	   end
+	end
+	\end{verbatim} \vspace{4mm}
+	\subsubsection{\texttt{fem\_to\_dubiner.m}}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i
 	\end{equation}
+	\vspace{2mm} \\
+	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} using \emph{Gauss-Legendre-Lobatto} quadrature integration formulas. The main steps are the following:
+	\begin{verbatim}
+	function [u0] = fem_to_dubiner (uh, femregion, Data)
+	
+	...
+	...
+	...
+	
+	u0 = zeros(femregion.ndof,1);
+	
+	% loop over all the elements
+	for ie = 1:femregion.ne
+	
+	   % to get the global indexes for the nodes of ie 
+	   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+	   % loop over local degrees of freedom
+	   for i = 1 : femregion.nln
+	      % loop over 2D quadrature points
+	      for k = 1:length(w_2D) 
+	         uh_eval_k = 0;
+	         % loop to evaluate uh in a quadrature point
+	         for j = 1:femregion.nln
+	            uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
+	         end
+	         u0(index(i)) = u0(index(i)) + uh_eval_k*phi_dub(1,k,i).*w_2D(k);
+	      end
+	   end    
+	end
+	\end{verbatim}
 	
 	\vspace{5mm}
+	\subsubsection{Final remarks}
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
 	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. With this choice, the two basis generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.\\
 	
-	\noindent To conclude, formula \ref{ref3} to get nodal values has then been implemented in the following lines from the \texttt{dubiner\_to\_fem.m} script. 
-	\begin{verbatim}
-	function [u0] = dubiner_to_fem (uh, femregion, Data)  
-	       
-...
-...
-...
-
-u0 = zeros(femregion.ndof,1);
-
-% loop over all the elements
-for ie = 1:femregion.ne
-   
-   % to get the global indexes for the nodes of ie 
-   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
-   
-   for i = 1 : femregion.nln
-       for j = 1: femregion.nln
-         u0(index(i)) = u0(index(i)) +  uh(index(j))*phi(1,i,j);
-       end
-   end
-    
-end
-\end{verbatim}
+	
 \vspace{5mm}
-\noindent On the other hand, the slightly more difficult formula \ref{ref4} have been reproduced in \texttt{fem\_to\_dubiner.m} using \emph{Gauss-Legendre-Lobatto} quadrature integration formulas. The main steps are the following:
-\begin{verbatim}
-function [u0] = fem_to_dubiner (uh, femregion, Data)
 
-...
-...
-...
-
-u0 = zeros(femregion.ndof,1);
-
-% loop over all the elements
-for ie = 1:femregion.ne
-
-    % to get the global indexes for the nodes of ie 
-    index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
-    % loop over local degrees of freedom
-    for i = 1 : femregion.nln
-        % loop over 2D quadrature points
-        for k = 1:length(w_2D) 
-            uh_eval_k = 0;
-            % loop to evaluate uh in a quadrature point
-            for j = 1:femregion.nln
-                uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
-            end
-            u0(index(i)) = u0(index(i)) + uh_eval_k*phi_dub(1,k,i).*w_2D(k);
-        end
-    end    
-end
-\end{verbatim}
 \vspace{5mm}
 \section{Temporal discretization}
 So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$, we then assume that $V_m^k\approx V_m(t^k)$. \\
@@ -742,7 +749,7 @@ the equations in system \ref{Quasi} can be written as:
 \begin{equation*}
 \begin{gathered}
 \chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right)+\\
-+ A_i \phi_i ^{k+1} = F_i^{k+1} \\
++ A_i \phi_i ^{k+1} = F_i^{k+1} \\ \\
 \Rightarrow \quad (Q_k + A_i) \phi_i^{k+1} - Q_k \phi_e^{k+1} =R_k +  F_i^{k+1}
 \end{gathered}
 \end{equation*}
@@ -810,6 +817,7 @@ end
 \end{verbatim}
 
 \section{About the potentials uniqueness}
+\subsection{Analytical concepts}
 \noindent Observing for a moment the Bidomain problem analytical formulation (definition \ref{def1}), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
 \begin{equation}\label{phi_uniqueness}
 \begin{gathered}
@@ -856,7 +864,7 @@ end
 	\Sigma_i\nabla \varphi \cdot n = 0   & \text{on } \partial \Omega_{mus} \cross (0,T]
 	\end{cases}
 	\end{equation*} \\
-	That is a classical \emph{Laplace problem} with homogeneous Neumann boundary conditions. From theory \cite{salsa}, we know that the solution is represented by all constant terms. However, we must pay attention to the fact that $\varphi$ is a time-dependent function, even if time does not compare in the system. Thus, we can state:
+	That is a classical \emph{Laplace problem} with homogeneous Neumann boundary conditions. From theory \cite{salsa}, we know that the solution set is composed by all constant terms (remember that $\Sigma_i$ is positive definite). However, we must pay attention to the fact that $\varphi$ is a time-dependent function, even if time does not compare in the system. Thus, we can state:
 	
 	\begin{equation*}
 	\exists \tilde{\varphi}:[0,T]\rightarrow \mathbb{R} \text{ such that } \varphi(x,t) = \tilde{\varphi}(t) \quad \forall x \in \Omega,\forall t \in [0,T] 
@@ -864,7 +872,7 @@ end
 	To conclude, we can observe now that if these two couples of solutions exist, then:
 	\begin{equation*}
 	\phi_i^1-\phi_i^2 = \phi_e^1-\phi_e^2=\tilde{\varphi} \quad \forall x \in \Omega, \forall t \in [0,T]
-	\end{equation*}
+	\end{equation*} \qed
 \end{proof}
 
 \begin{remark}
@@ -879,9 +887,368 @@ Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of d
 \end{corollary}
 
 \begin{proof}
-	The regularity statement is trivial and already discussed. The right implication is due to the previous theorem. Finally, the left implication follows what has been shown in equation \ref{phi_uniqueness}: it is enough to insert $\phi_i+\varphi$ and $\phi_e+\varphi$ in the Bidomain system to find out that $\varphi$ disappears and the remaining system is the same as the one with $\phi_i,\phi_e$, thus solved by hypothesis.
+	The regularity statement is trivial and already discussed. The right implication is due to the previous theorem. Finally, the left implication follows what has been shown in equation \ref{phi_uniqueness}: it is enough to insert $\phi_i+\varphi$ and $\phi_e+\varphi$ in the Bidomain system to find out that $\varphi$ disappears and the remaining system is the same as the one with $\phi_i,\phi_e$, thus solved by hypothesis. \qed
 \end{proof}
+\vspace{4mm}
+\subsection{Numerical correction}
+Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi$ unknowns for the following two reasons:
+\begin{enumerate}
+	\item To pursue the achievement of the exact $\phi_i,\phi_e$ and not their values minus a constant. Useful for instance for the error analysis.
+	\item To strengthen our Galerkin formulation that currently derives from a ill-posed problem and, for this reason, may show bad features as the generation of a ill-conditioned system or even a non-solvable system.
+\end{enumerate}
+
+\vspace{3mm}
+\noindent We firstly observe that the additional condition should be applied only to one of the potentials, for instance to $\phi_i$. Indeed, the difference of the two possible solutions is $\varphi$ for both intracellular and extracellular potentials. Imposing $\varphi$ at each time-step implies the uniqueness imposition for both $\phi_i,\phi_e$. \\
+
+\noindent The most common and simple strategies are the following:
+\begin{enumerate}
+	\item Imposition of the value of the function in a specific point.
+	\begin{equation*}
+	\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T]
+	\end{equation*}
+	\item Imposition of the function mean value.
+	\begin{equation*}
+	\int_\Omega \phi_i(x,t)\,dx = \varphi(t) \quad \forall t \in [0,T]
+	\end{equation*}
+\end{enumerate}
+
+\noindent Notice that the first strategy would be useless if we keep working with an analytical and abstract weak formulation in Sobolev spaces. However, in the numerical context, we can assume certain regularities for the solution that let it makes sense and be the most common choice for numerical implementations. \\
+
+\noindent As we will examine later on, it is demanding to implement the first strategy in a Dubiner context without losing the main system properties. Thus, we slightly change the first strategy and we instead opt for the imposition of a vector solution coefficient. For what concerns the FEM basis, this has the same meaning as before, provided that $\bar{x}$ is not a whatever point but a \emph{dof} point. On the other hand, for Dubiner basis, this has a completely different and abstract meaning: we remind that this time it has the role of modal coefficient. \\
+
+\noindent Consider $\{u_j\}_{j=1 \dots N_h}$ as the list of the vector solution. As a consequence, we give the numerical version of the previous strategies:
+\begin{enumerate}
+	\item Imposition of a coefficient of the vector solution.
+	\begin{equation*}
+	u_l^k = \varphi(t^k) \quad \forall k \in \{1,K\}
+	\end{equation*}
+	\item Imposition of the function mean value.
+	\begin{equation*}
+	\sum_{j=1\dots N_h} u_j^k \, w_j = \varphi(t^k)\quad \forall k \in \{1,K\}
+	\end{equation*}
+\end{enumerate}	
+where $l$ is a fixed value $\in \{1,N_h\}$ and $w_j$ stands for a suitable weight (that depends on the mesh geometry, the basis choice and the quadrature formula choice). \\
+
+\noindent We remind that our aim is to impose such conditions \emph{directly} into the system. The easiest way would certainly be to impose these conditions \emph{after} the system resolution, as it has been reproduced in other past works. However, in this case, some issues related to the ill-posedness arise, especially ill-conditioning. Then, in the next sections we will illustrate how we managed to impose potential uniqueness only changing matrices and vectors coefficients before the resolution.
+
+\subsubsection{Implementation of the first coefficient imposition} \label{first_coeff_implementation}
+For simplicity, we choose $l=1$. Then, $u_l^k$ has the meaning of:
+\begin{itemize}
+	\item Value of $u$ in the first dof point, $\forall$ timestep $k$ (FEM)
+	\item Fourier coefficient of $u$ w.r.t. the first Dubiner basis function, $\forall$ timestep $k$ (Dubiner)
+\end{itemize}
+
+\noindent What follows will be independent from basis choice. Suppose $c\in \mathbb{R}$ is the value to impose in the system $Au=\vec{b}$ for a certain timestep $k$. Since first coefficient occupies the first cell in the unknown vector and influences other coefficient values only through the first matrix column, we can switch the system from: \\
+
+\begin{equation*}
+A=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} \\ 
+a_{21} & a_{22} & \dots & a_{2N} \\ 
+a_{31} &a_{32} & \dots & a_{3N} \\
+\dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad
+b=\begin{bmatrix}
+b_1 \\ b_2 \\ b_3 \\ \dots \\ b_N
+\end{bmatrix}
+\end{equation*}
+
+to:
+
+\begin{equation*}
+\quad \quad  \quad \, \tilde{A}=\begin{bmatrix}
+1 & 0 & \dots & 0 \\ 
+0 & a_{22} & \dots & a_{2N} \\ 
+0 &a_{32} & \dots & a_{3N} \\
+\dots & \dots & \dots & \dots \\
+0  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad
+\tilde{b}=\begin{bmatrix}
+c \\ b_2 -a_{21}c \\ b_3-a_{31}c \\ \dots \\ b_N-a_{N1}c
+\end{bmatrix}
+\end{equation*}
+\vspace{4mm} \\
+\noindent This is certainly correct since in the first system line $u_1=c$ is automatically imposed and, in the other lines, $u_1$ is no more treated as unknown but as a known data and then moved to the r.h.s. of the system. \\
+The very advantage of this procedure is the conservation of $A$ symmetry. As we have previously anticipated, we discarded the nodal value strategy because, using Dubiner basis, we would have lost this crucial property. \\
+Moreover, the value $c$ can be freely chosen, for instance from the exact solution (when error analysis needs to be executed) or a conventional fixed value as zero. \\ 
+
+\noindent On the other hand, there are two main disadvantages. First of all, the system first line information has been deleted during this procedure. However, if the mesh is composed by many elements, this information is not essential and the solution behavior is practically the same as this information were provided. \\
+Secondly, if the system is hugely ill-conditioned or even non-solvable (this is the case when we have homogeneous boundary conditions and/or homogeneous forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and that is the reason why we implemented the more complicated mean value imposition strategy.\\
+
+\noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} that takes the $c$ value from the exact solution: \\
+
+\begin{verbatim}
+function [A, b] = assign_phi_i (A, b, t, Data, femregion)
+
+...
+...
+...
+
+if (Data.fem(1)=='P')
+
+   x = femregion.dof(1,1); % x-coordinate of the first dof point
+   y = femregion.dof(1,2); % y-coordinate of the first dof point
+   exact_coeff = eval(Data.exact_sol_i); % evaluation of the exact solution
+
+
+elseif (Data.fem(1)=='D')
+   x0=femregion.dof(3,1); % bottom-left corner of the first element
+   y0=femregion.dof(3,2);
+   h=femregion.dof(1,1)-femregion.dof(3,1); % length of the element
+
+   exact_coeff = 0;
+   index = 1;
+   
+   ...
+   ...
+   ...
+
+   % the first coefficient is the L2 scalar product of uh with the first
+   % basis function. To the get the right coefficient, we compute the scalar 
+   % product between the exact solution and the first basis function
+   
+   for k = 1:length(w_2D) % loop over 2D quadrature points
+      x = x0 + h*node_2D(k,1);  %physical coords of the integration point
+      y = y0 + h*node_2D(k,2);
+      exact_coeff = exact_coeff 
+      + eval(Data.exact_sol_i)*phi_dub(1,k,index).*w_2D(k);
+   end
+
+end
+
+
+% we now change the system coefficients in order to impose u(1)=exact_coeff
+Nh = length(b);
+b = b - A(:,1)*exact_coeff;
+b(1) = exact_coeff;  
+A(:,1) = zeros(Nh,1);
+A(1,:) = zeros(1,Nh);
+A(1,1) = 1;
+
+\end{verbatim}
+
+\subsubsection{An analytical motivation for the mean value imposition method}
+\noindent It is easy to realize that the procedure in section \ref{first_coeff_implementation} cannot be replicated for the mean unless losing symmetry. For instance, in the case of FEM basis and zero mean, a first line full of ones would imply also a first column full of ones and thus the resolution would be compromised. We should look for a different strategy. Let us start with a simple reference problem: \\
+\begin{problem}[Reference zero-mean problem]  \label{reference_problem} If $f\in C^0(\bar{\Omega})$, find $u\in C^2(\Omega)\cap C^1(\bar{\Omega})$ such that:
+\begin{equation*}
+\begin{cases}
+-\Delta{u}=f & \text{in } \Omega\\
+\int_{\Omega} u = 0 & \text{in } \Omega \\
+\nabla u \cdot n = 0 & \text{on } \partial \Omega \\
+\end{cases}
+\end{equation*}
+\end{problem}
+\vspace{6mm}
+\begin{lemma}
+	Suppose $f$ is a sufficiently regular function. Then problem \ref{reference_problem} admits a classical solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
+\end{lemma} \vspace{3mm}
+\begin{proof}
+	Consider for the moment the problem composed by first and third equations only. It is the Laplace problem with homogeneous Neumann boundary conditions. In a more general form, it is equivalent to a specific reaction-diffusion problem:
+	\begin{equation*}
+	\begin{cases}
+	-\Delta{u} + \alpha u =f & \text{in } \Omega\\
+	\nabla u \cdot n = 0 & \text{on } \partial \Omega \\
+	\end{cases}
+	\end{equation*}
+	\begin{center}
+		with $\alpha = 0$
+	\end{center}
+     We have already discussed that $\alpha=0$ is an eigenvalue of the Laplace operator with Neumann boundary conditions and its eigenspace is composed by all and only constant terms. From theorem 7.1.14 in \cite{gazzola}, we can state that, since $\alpha$ belongs to the spectrum and $f$ surely $\in L^2(\Omega)$, existence of the weak solution holds if and only if the compatibility condition:
+     \begin{equation*}
+     \int_{\Omega}f = \int_{\partial \Omega} g = \int_{\partial_\Omega} 0 = 0 
+     \end{equation*}
+     holds. Moreover, thanks to elliptic regularity and $f$ regularity, a weak solution is necessarily a strong solution too and if no weak solutions exist, then no strong solutions exist as well. Then we solved the point about existence of the classical solution. \\
+     
+     \noindent For what concerns the uniqueness, we know from the same theorem that $u$ is unique except for other functions that differ from $u$ for an eigenfunction associated to $\alpha=0$. Since the eigenfunctions of zero are the functions that are constant \emph{a.e.}, we can state that the classical solution is unique minus a constant term. Then, if we add the second equation $\int_{\Omega}u = 0$, we achieve existence and uniqueness of the solution. \\
+     
+     \noindent Suppose now $u$ is the solution (and then also the weak solution) and $v$ another function (in general, $\in H^1(\Omega)$). Then:
+     \begin{equation*}
+     \begin{gathered}
+     \exists w \in H^1(\Omega): \quad v = w+u \\
+     \Rightarrow J(v)=J(u+w)= \frac{1}{2}\int_{\Omega}|\nabla u + \nabla w|^2 - \int_{\Omega}{fu}- \int_{\Omega}{fw} = \\
+     = \overbrace{\frac{1}{2}\int_{\Omega}|\nabla u|^2 - \int_{\Omega}{fu}}^{J(u)} + \frac{1}{2}\int_{\Omega}|\nabla w|^2 + \overbrace{\int_{\Omega}\nabla u \cdot \nabla w - \int_{\Omega}{fw}}^{=0, \text { by def of weak solution}} =\\
+     = J(u) + \frac{1}{2}\int_{\Omega}|\nabla w| ^2 \geq J(u)
+     \end{gathered}
+     \end{equation*}
+     \qed
+\end{proof}
+
+\begin{remark}
+	The minimization of the functional $J$ for the Laplace problem is a known fact. However, in this case where the sole Laplace-Neumann problem is not well-posed, this result was not trivial and thus it needed a check. Indeed, it is noteworthy to underline that minimization property holds but in a slightly different way: $u$ is not the absolute minimum point, every $u+k, k\in\mathbb{R}$ reaches the same minimum.
+\end{remark}
+
+\noindent Previous well-posedness and minimization results implies that, if $u$ solves problem \ref{reference_problem}, then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform problem \ref{reference_problem} in another formulation:
+
+\begin{problem}[Reference mean-value problem - 2] \label{reference_problem_2} Find $u\in H^1(\Omega)$ such that
+	\begin{equation*}
+	\begin{cases}
+	J(u)=\displaystyle \min_{v\in H^1(\Omega)} J(v)\\
+	I(u) = 0
+	\end{cases}
+	\end{equation*}
+ where $f\in L^2(\Omega)$ and  \vspace{2mm}
+	\begin{itemize}
+		\item $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
+		\item $I(u) = \int_{\Omega} u $
+	\end{itemize}
+\end{problem}
+
+\noindent Surely a solution of problem \ref{reference_problem} is a solution of problem \ref{reference_problem_2}. The converse implication could be easily proved too. Then, the two problems are well-posed and completely equivalent. The advantage of the second form is that it consists in a minimization problem with constraints, a kind of problem that can be solved with generalized \emph{Lagrange Multipliers}. It means that:
+
+\begin{equation*}
+\exists \lambda \in \mathbb{R} \text{ such that} \quad <J'(u),v>+\lambda <I'(u),v>=0 \quad \forall v \in H^1(\Omega)
+\end{equation*}\\
+\noindent where $J',I'$ are the \emph{Frechét derivatives} of the two operators $J,I$ and $<\cdot,\cdot>$ represents the $H^1$ duality. Computing the derivatives, we indeed obtain:
+\begin{equation*}
+\exists \lambda \in \mathbb{R} \text{ such that} \quad \int_{\Omega}\nabla u \cdot \nabla v + \lambda \int_\Omega v = \int_{\Omega} fv \quad \forall v \in H^1(\Omega)
+\end{equation*}\\
+
+\noindent We can then formulate a third and last version of the reference problem:
+\begin{problem}[Reference mean-value problem - 3]\label{reference_problem_3} Find $ u \in H^1(\Omega), \lambda \in \mathbb{R}$ such that:
+	\begin{equation*}
+	\begin{cases}
+	\mathlarger{\int}_{\Omega}\nabla u \cdot \nabla v + \lambda \mathlarger{\int}_\Omega v = \mathlarger{\int}_{\Omega} fv \quad \forall v \in H^1(\Omega) \\[3ex]
+	\mathlarger{\int}_{\Omega}u= 0
+	\end{cases}
+	\end{equation*}
+\end{problem}
+
+\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved.
+\begin{lemma} \label{lemma_lagrange}
+	Suppose previous assumptions on data are satisfied. Then there exists a couple solution $(u,\lambda)$ to the problem \ref{reference_problem_3}. Moreover, $\lambda=0$ and $u$ is unique.
+\end{lemma}
+\begin{proof}
+	For what concerns existence, we can immediately realize that the solution $u$ of problem \ref{reference_problem} solves the problem \ref{reference_problem_3} with $\lambda=0$. Then the existence property holds because existence of problem \ref{reference_problem} has already been proved. \\
 	
+	\noindent Suppose now there exist two couples $(u_1,0), (u_2,\lambda)$ solutions of the problem and define $\varphi=u_2-u_1$. Then:
+	
+	\begin{equation*}
+	\begin{cases}
+	\int_{\Omega}\nabla u_1 \cdot \nabla v = \int_{\Omega} fv \quad \forall v \in H^1(\Omega) \\
+	\int_{\Omega}\nabla u_2 \cdot \nabla v + \lambda \int_\Omega v = \int_{\Omega} fv \quad \forall v \in H^1(\Omega) \\
+	\int_{\Omega}u_1 = \int_{\Omega}u_2 = 0
+	\end{cases}
+	\end{equation*}
+		Subtracting:
+	\begin{equation*}
+	\begin{cases}
+	\int_{\Omega}\nabla \varphi \cdot \nabla v + \lambda \int_\Omega v = 0 \quad \forall v \in H^1(\Omega) \\
+	\int_{\Omega}\varphi = 0
+	\end{cases}
+	\end{equation*}
+	
+	\noindent If we assign $v=\varphi \in H^1(\Omega)$, then:
+	\begin{equation*}
+	\begin{cases}
+	\int_{\Omega}|\nabla \varphi|^2 + \lambda \int_\Omega \varphi = \int_{\Omega}|\nabla \varphi|^2 = 0 \quad \forall v \in H^1(\Omega) \\
+	\int_{\Omega}\varphi = 0
+	\end{cases}
+	\end{equation*}
+	Then, $\norm{\nabla \varphi}_{L^2} = 0 $ implies $\varphi$ constant. But, since it has zero mean,  $\varphi = 0$ a.e.  \\
+	To conclude, if $u_1=u_2$ a.e. as just proved, the previous system becomes:
+	\begin{equation*}
+	\lambda \int_{\Omega}v = 0 \quad \forall v \in H^1(\Omega)
+	\end{equation*}
+	that trivially imply $\lambda=0$	
+\end{proof}
+	\qed
+	\vspace{3mm} \\
+	\noindent This analytical digression was intended as a clarification of how problem \ref{reference_problem_3} can be considered as equivalent to the original problem \ref{reference_problem} (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
+
+
+
+\subsubsection{Implementation of the mean value imposition} \label{mean_value_implementation}
+\noindent Following the problem \ref{reference_problem_3} new formulation, the basic idea is to consider $\lambda$ as a new coefficient of the vector solution, for instance the last one. The vector $u$ is now of dimension $N_h+1$. Let us define $d_i=\int_\Omega \varphi_i$ where $\varphi_i$ is the $i$-th basis function (both for FEM and Dubiner). Moreover, define $c$ as the imposed value for the mean. Then the discretized problem at a certain time-step turns to be:
+
+\begin{problem}[Discretized mean-value imposition problem]
+	Find $\{u_i\}_{i=1\dots N_h+1}$ such that:
+	\begin{equation*}
+	\begin{cases}
+	\mathlarger{\sum}_{i=1}^{N_h} u_i \mathlarger{\int}_{\Omega}\nabla\varphi_i \cdot \nabla \varphi_j + \lambda \,d_j=\mathlarger{\int}_{\Omega}f\phi_j \quad \forall j=1\dots N_h \\[3ex]
+	\mathlarger{\sum}_{i=1}^{N_h} u_i \,d_i = c
+	\end{cases}
+	\end{equation*}
+\end{problem}
+\vspace{3mm}
+\noindent Reminding that $\lambda=u_{N_h+1}$, the previous problem consists in the system transformation from: \\
+\begin{equation*}
+A=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} \\ 
+a_{21} & a_{22} & \dots & a_{2N} \\ 
+\dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad
+b=\begin{bmatrix}
+b_1 \\ b_2 \\ \dots \\ b_N
+\end{bmatrix}
+\end{equation*}
+
+to:
+
+\begin{equation*}
+\quad \quad  \quad \, \tilde{A}=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} & d_1\\ 
+a_{21} & a_{22} & \dots & a_{2N} & d_2 \\ 
+\dots & \dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN} & d_N \\
+d_1 & d_2 & \dots & d_N & 0
+\end{bmatrix} \quad \quad
+\tilde{b}=\begin{bmatrix}
+b_1 \\ b_2 \\ \dots \\ b_N \\ c
+\end{bmatrix}
+\end{equation*}
+\vspace{3mm} \\
+\noindent First of all, observe that this time no line has been deleted, all the information is conserved. Secondly, we remind from lemma \ref{lemma_lagrange} that $\lambda$ is a fake unknown, its value is always zero and, if it is not, there is some issue. \\
+
+\noindent The implementation of such transformation is located in the \texttt{assign\_null\_average.m} script. Some lines follow:
+
+\begin{verbatim}
+function [A, b] = assign_null_average (A, b, Data, femregion)
+
+Nh = length(b)/2;
+
+if (Data.fem(1)=='P')
+
+   for i = 1:Nh
+      A(i,2*Nh+1)=1;
+      A(2*Nh+1,i)=1;
+   end
+   
+   ...
+   ...
+   ...
+
+elseif (Data.fem(1)=='D')
+
+   ...
+   ...
+   ...
+     % this loop is needed to compute the d_i values of Dubiner
+     for p = 1:femregion.nln
+         p_int = 0;
+         for k = 1:length(w_2D)
+             p_int = p_int + phi_dub(1,k,p).*w_2D(k);
+         end
+         coeff(p)=p_int;
+     end
+
+     for i = 1:femregion.nln:Nh
+         A(2*Nh+1,i:i+femregion.nln-1)=coeff';
+         A(i:i+femregion.nln-1,2*Nh+1)=coeff;
+     end
+
+end
+
+b = [b;0];
+\end{verbatim}
+
+\noindent Some comments:
+\begin{itemize}
+	\item \texttt{Nh = length(b)/2} because the original system is a block matrix system. We remind that this transformation concerns only $\phi_i$, then it applies to the first half of the system only.
+	\item $c$ is chosen to be zero, its value does not come from an exact solution because the mean-value strategy has been adopted only for realistic simulation with no exact solutions. 
+	\item We avoided to compute all $d_i$ for FEM basis as they all have the same value and, since $\lambda=0$, every value could be set. We opted to assign  the value $1$.
+	\item On the other hand, for Dubiner basis, $d_i$ values are different. However, it is not needed to compute these values for all the global polynomials as they repeat for every element. For this reason, we only iterate over the local degrees of freedom.
+\end{itemize}
 
     \newpage
     \printbibliography
