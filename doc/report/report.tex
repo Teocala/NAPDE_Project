@@ -1,5 +1,5 @@
 \documentclass[a4paper,11pt]{article}
-\usepackage[a4paper,top=5cm,bottom=4cm,left=3.6cm,right=3.6cm]{geometry}
+\usepackage[a4paper,top=4cm,bottom=4cm,left=3.2cm,right=3.2cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -192,7 +192,7 @@ citestyle=numeric,
     
     \noindent In conclusion, the issue of the past works \cite{andreotti}, \cite{marta} had not a numerical nature as expected, but instead an analytical origin due to an ill-posed problem.
 
-
+\newpage
 
     \section{Semi discretized numerical methods}
     \subsection{DG discrete formulation}
@@ -323,7 +323,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
 \end{equation*}
 \end{enumerate}
 \end{problem}
-\vspace{5mm}
+\vspace{10mm}
 \section{Dubiner Basis}
     \subsection{Analytical aspects}\label{analytical_aspects}
     So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^k$ space. Usually, the common choice consists in the classical hat functions from FEM, even if they need to be modified in order to be used in a discontinuous context. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner Basis}" \cite{dubiner}. \\
@@ -348,8 +348,8 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \end{center}
     \end{figure}
     
-    \noindent the Dubiner basis is the transformation of a suitable basis initially defined on the reference square. This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$.
-    \newpage
+    \noindent the Dubiner basis is the transformation of a suitable basis initially defined on the reference square. This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$. \\
+
     \begin{definition}[Jacobi polynomials]
     The Jacobi polynomials of coefficients $\alpha,\beta \in \mathbb{R}$ evaluated in $z\in (-1,1)$ are:
     \begin{itemize}[label=\textendash]
@@ -376,13 +376,13 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \vspace{5mm}
     \noindent The main property of these polynomials is:
     \begin{prop}
-    $J_i^{\alpha,\beta}(\cdot)$ is orthogonal w.r.t. the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
+    $\{J_i^{\alpha,\beta}, \, i=0,1,2 \dots\}$ is orthogonal with respect to the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$:
     \begin{equation}
     \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta} J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} 
     \end{equation}
     \end{prop}
     
-    \noindent Thanks to this definition, we can now define explicitly the Dubiner basis.
+    \noindent We can now define explicitly the Dubiner basis.
     \begin{definition}[Dubiner Basis] \label{dubiner}
     The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of the polynomials of degree $p$ over the reference triangle is the set of functions:
     \begin{equation}
@@ -432,7 +432,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     
     \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the paragraph \ref{subsection_implementation}. Secondly, one can notice that these functions are not boundary conditions friendly. What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation boundary conditions (both Dirichlet and Neumann) are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
     
-    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.\\ \\
     
     \subsection{Implementation}\label{subsection_implementation}
     Our code let the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until the order 3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis.\\
@@ -517,15 +517,13 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\end{verbatim}
 	
 	\vspace{5mm}
-	\subsubsection{Final remarks}
+	\subsubsection{Final remarks} 
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
 	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. With this choice, the two basis generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.\\
 	
-	
-\vspace{5mm}
 
-\vspace{5mm}
+\newpage 
 \section{Temporal discretization}
 So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$, we then assume that $V_m^k\approx V_m(t^k)$. \\
 We have developed, implemented and tested 3 different temporal strategies that we will refer to as: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
@@ -580,16 +578,16 @@ C(V_m^k) & -C(V_m^k) \\ -C(V_m^k) & C(V_m^k)
 \item $C_{nl}(V_m^k)=\begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix}$
 \item $r^{k+1}=\begin{bmatrix} F_i^{k+1} \\ F_e^{k+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{k+1} \\ w^{k+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^k \\ \phi_e^k \end{bmatrix}$
 \end{itemize} \vspace{5mm}
-we get the system in the final form: 
+we get the system in the final form:  \\
 \begin{problem}[Semi-implicit discretized system]
 Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdots,T-1$ such that:
-\begin{equation}
+\begin{equation*}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{k+1}=\epsilon M V_m^k+\frac{M}{\Delta t} w^k \\
 (B+C_{nl}(\Phi^k)) \Phi^{k+1}=r^{k+1}
 \end{cases}
-\end{equation} 
-\end{problem}
+\end{equation*} 
+\end{problem}\vspace{4mm}
 
 \subsubsection{Implementation}
 \begin{verbatim}
@@ -643,7 +641,7 @@ Two operator-splitting methods have been implemented, the first is of \emph{Godu
 -\chi_m C_m M\frac{V_m^{k+1} - \hat{V}_m^{k+1}}{\Delta t} + A_e\phi_e^{k+1} = F_e^{k+1}
 \end{cases}
 \end{equation*}
-\end{enumerate}
+\end{enumerate}\vspace{3mm}
 \noindent Putting in a unique system:
 \begin{equation}\label{Godunov}
 \begin{cases}
@@ -664,7 +662,7 @@ w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \noindent And then, we obtain the final form:
 \begin{problem}[Godunov operator-splitting discretized system] 
 	Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ such that: 
-\begin{equation}
+\begin{equation*}
 \begin{cases}
 \begin{gathered}
 \left(
@@ -679,8 +677,8 @@ w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{gathered} \\ \\
 w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{cases}
-\end{equation}
-\end{problem}
+\end{equation*}
+\end{problem}\vspace{4mm}
 
 \subsubsection{Implementation}
 \begin{verbatim}
@@ -748,7 +746,8 @@ the equations in system \ref{Quasi} can be written as:
 \item
 \begin{equation*}
 \begin{gathered}
-\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right)+\\
+\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} +  C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \\
+ +\chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right)
 + A_i \phi_i ^{k+1} = F_i^{k+1} \\ \\
 \Rightarrow \quad (Q_k + A_i) \phi_i^{k+1} - Q_k \phi_e^{k+1} =R_k +  F_i^{k+1}
 \end{gathered}
@@ -756,7 +755,8 @@ the equations in system \ref{Quasi} can be written as:
 \item
 \begin{equation*}
 \begin{gathered}
-\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} + \cdot C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) + \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right) +\\
+\chi_m C_m M \frac{	\phi_i^{k+1}-\phi_e^{k+1}-V_m^{k}}{\Delta t} + \cdot C(V_m^k) (\phi_i^{k+1}-\phi_e^{k+1}) +\\ 
++ \chi_m M \left(\frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon \gamma \Delta t}   \right)
 - A_e \phi_e ^{k+1} = -F_e^{k+1} \\ \\
 \Rightarrow \quad Q_k \phi_i^{k+1} - (Q_k+A_e) \phi_e^{k+1} =R_k - F_e^{k+1}
 \end{gathered}
@@ -767,10 +767,10 @@ w^{k+1} = \frac{w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{1+\epsilon 
 \end{equation*}
 \end{enumerate}
 \vspace{4mm}
-The final system becomes:
+The final system becomes: \\
 \begin{problem} [Quasi-implicit operator-splitting discretized system]
 Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, \cdots, K-1$ such that:
-\begin{equation}
+\begin{equation*}
 \quad
 \begin{cases}
 \left(
@@ -783,9 +783,9 @@ Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1} \quad \forall k=0, 
 = \begin{bmatrix} R_k \\ R_k \end{bmatrix} + \begin{bmatrix} F_i^{k+1} \\  -F_e^{k+1}\end{bmatrix} \\ \\
 w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1})}{\displaystyle 1+\epsilon \gamma \Delta t}
 \end{cases}
-\end{equation}
+\end{equation*}
 \end{problem}
-
+\vspace{4mm}
 \subsubsection{Implementation}
 \begin{verbatim}
 ZERO = sparse(ll,ll);
@@ -1010,8 +1010,8 @@ elseif (Data.fem(1)=='D')
    for k = 1:length(w_2D) % loop over 2D quadrature points
       x = x0 + h*node_2D(k,1);  %physical coords of the integration point
       y = y0 + h*node_2D(k,2);
-      exact_coeff = exact_coeff 
-      + eval(Data.exact_sol_i)*phi_dub(1,k,index).*w_2D(k);
+      eval_sol = eval(Data.exact_sol_i);
+      exact_coeff = exact_coeff + eval_sol*phi_dub(1,k,index).*w_2D(k);
    end
 
 end
@@ -1026,10 +1026,11 @@ A(1,:) = zeros(1,Nh);
 A(1,1) = 1;
 
 \end{verbatim}
+\noindent To conclude this section, it is interesting to observe that the numerical imposition is done at \emph{every} time-step. This is confirmed from previous analytical theory as the difference $\varphi$ is a constant but depending on time: therefore, it is needed to fix it at every time-step.
 
 \subsubsection{An analytical motivation for the mean value imposition method}
 \noindent It is easy to realize that the procedure in section \ref{first_coeff_implementation} cannot be replicated for the mean unless losing symmetry. For instance, in the case of FEM basis and zero mean, a first line full of ones would imply also a first column full of ones and thus the resolution would be compromised. We should look for a different strategy. Let us start with a simple reference problem: \\
-\begin{problem}[Reference zero-mean problem]  \label{reference_problem} If $f\in C^0(\bar{\Omega})$, find $u\in C^2(\Omega)\cap C^1(\bar{\Omega})$ such that:
+\begin{problem}[Reference zero-mean problem - strong form] If $\Omega$ open, bounded and sufficiently regular set, $f\in C^0(\bar{\Omega})$, find $u\in C^2(\Omega)\cap C^1(\bar{\Omega})$ such that:
 \begin{equation*}
 \begin{cases}
 -\Delta{u}=f & \text{in } \Omega\\
@@ -1037,13 +1038,22 @@ A(1,1) = 1;
 \nabla u \cdot n = 0 & \text{on } \partial \Omega \\
 \end{cases}
 \end{equation*}
+\end{problem}\vspace{3mm}
+\noindent For our scopes, it is convenient to move to the variational formulation:
+\begin{problem}[Reference zero-mean problem - weak form]  \label{reference_problem} If $\Omega$ open and bounded set, $f\in L^2(\Omega)$, find $u\in H^1(\Omega)$ such that:
+	\begin{equation*}
+	\begin{cases}
+	\mathlarger{\int}_{\Omega}\nabla u \cdot \nabla v = \mathlarger{\int}_{\Omega} fv \quad \forall v \in H^(\Omega)\\[2ex]
+	\mathlarger{\int}_{\Omega}u = 0
+	\end{cases}
+	\end{equation*}
 \end{problem}
-\vspace{6mm}
+\noindent As usual, elliptic regularity and $f,\Omega$ regularities implies that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
 \begin{lemma}
-	Suppose $f$ is a sufficiently regular function. Then problem \ref{reference_problem} admits a classical solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
-\end{lemma} \vspace{3mm}
+	The problem \ref{reference_problem} admits a weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
+\end{lemma} \vspace{1mm}
 \begin{proof}
-	Consider for the moment the problem composed by first and third equations only. It is the Laplace problem with homogeneous Neumann boundary conditions. In a more general form, it is equivalent to a specific reaction-diffusion problem:
+	Consider for the moment the first equation only. It is the Laplace problem with homogeneous Neumann boundary conditions. In a more general form, it is equivalent to a specific reaction-diffusion problem:
 	\begin{equation*}
 	\begin{cases}
 	-\Delta{u} + \alpha u =f & \text{in } \Omega\\
@@ -1053,15 +1063,15 @@ A(1,1) = 1;
 	\begin{center}
 		with $\alpha = 0$
 	\end{center}
-     We have already discussed that $\alpha=0$ is an eigenvalue of the Laplace operator with Neumann boundary conditions and its eigenspace is composed by all and only constant terms. From theorem 7.1.14 in \cite{gazzola}, we can state that, since $\alpha$ belongs to the spectrum and $f$ surely $\in L^2(\Omega)$, existence of the weak solution holds if and only if the compatibility condition:
+     We have already discussed that $\alpha=0$ is an eigenvalue of the Laplace operator with Neumann boundary conditions and its eigenspace is composed by all and only constant terms. From theorem 7.1.14 in \cite{gazzola}, we can state that, since $\alpha$ belongs to the spectrum and $f\in L^2(\Omega)$, existence of the weak solution holds if and only if the compatibility condition:
      \begin{equation*}
      \int_{\Omega}f = \int_{\partial \Omega} g = \int_{\partial_\Omega} 0 = 0 
      \end{equation*}
-     holds. Moreover, thanks to elliptic regularity and $f$ regularity, a weak solution is necessarily a strong solution too and if no weak solutions exist, then no strong solutions exist as well. Then we solved the point about existence of the classical solution. \\
+     holds. Then we solved the point about existence of the weak solution. \\
      
-     \noindent For what concerns the uniqueness, we know from the same theorem that $u$ is unique except for other functions that differ from $u$ for an eigenfunction associated to $\alpha=0$. Since the eigenfunctions of zero are the functions that are constant \emph{a.e.}, we can state that the classical solution is unique minus a constant term. Then, if we add the second equation $\int_{\Omega}u = 0$, we achieve existence and uniqueness of the solution. \\
+     \noindent For what concerns the uniqueness, we know from the same theorem that $u$ is unique except for other functions that differ from $u$ for an eigenfunction associated to $\alpha=0$. Since the eigenfunctions of zero are the functions that are constant \emph{a.e.}, we can state that the weak solution is unique minus a constant term. Then, if we add the second equation $\int_{\Omega}u = 0$, we achieve existence and uniqueness of the solution. \\
      
-     \noindent Suppose now $u$ is the solution (and then also the weak solution) and $v$ another function (in general, $\in H^1(\Omega)$). Then:
+     \noindent Suppose now $u$ is the weak solution and $v$ another function $\in H^1(\Omega)$. Then:
      \begin{equation*}
      \begin{gathered}
      \exists w \in H^1(\Omega): \quad v = w+u \\
@@ -1075,9 +1085,9 @@ A(1,1) = 1;
 
 \begin{remark}
 	The minimization of the functional $J$ for the Laplace problem is a known fact. However, in this case where the sole Laplace-Neumann problem is not well-posed, this result was not trivial and thus it needed a check. Indeed, it is noteworthy to underline that minimization property holds but in a slightly different way: $u$ is not the absolute minimum point, every $u+k, k\in\mathbb{R}$ reaches the same minimum.
-\end{remark}
+\end{remark}\vspace{4mm}
 
-\noindent Previous well-posedness and minimization results implies that, if $u$ solves problem \ref{reference_problem}, then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform problem \ref{reference_problem} in another formulation:
+\noindent Previous well-posedness and minimization results implies that, if $u$ solves problem \ref{reference_problem}, then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform problem \ref{reference_problem} in another formulation:\\
 
 \begin{problem}[Reference mean-value problem - 2] \label{reference_problem_2} Find $u\in H^1(\Omega)$ such that
 	\begin{equation*}
@@ -1091,7 +1101,7 @@ A(1,1) = 1;
 		\item $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
 		\item $I(u) = \int_{\Omega} u $
 	\end{itemize}
-\end{problem}
+\end{problem}\vspace{3mm}
 
 \noindent Surely a solution of problem \ref{reference_problem} is a solution of problem \ref{reference_problem_2}. The converse implication could be easily proved too. Then, the two problems are well-posed and completely equivalent. The advantage of the second form is that it consists in a minimization problem with constraints, a kind of problem that can be solved with generalized \emph{Lagrange Multipliers}. It means that:
 
@@ -1149,13 +1159,13 @@ A(1,1) = 1;
 	\begin{equation*}
 	\lambda \int_{\Omega}v = 0 \quad \forall v \in H^1(\Omega)
 	\end{equation*}
-	that trivially imply $\lambda=0$	
+	that trivially implies $\lambda=0$	
 \end{proof}
 	\qed
 	\vspace{3mm} \\
 	\noindent This analytical digression was intended as a clarification of how problem \ref{reference_problem_3} can be considered as equivalent to the original problem \ref{reference_problem} (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
 
-
+\vspace{8mm}
 
 \subsubsection{Implementation of the mean value imposition} \label{mean_value_implementation}
 \noindent Following the problem \ref{reference_problem_3} new formulation, the basic idea is to consider $\lambda$ as a new coefficient of the vector solution, for instance the last one. The vector $u$ is now of dimension $N_h+1$. Let us define $d_i=\int_\Omega \varphi_i$ where $\varphi_i$ is the $i$-th basis function (both for FEM and Dubiner). Moreover, define $c$ as the imposed value for the mean. Then the discretized problem at a certain time-step turns to be:
@@ -1198,57 +1208,77 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \end{bmatrix}
 \end{equation*}
 \vspace{3mm} \\
-\noindent First of all, observe that this time no line has been deleted, all the information is conserved. Secondly, we remind from lemma \ref{lemma_lagrange} that $\lambda$ is a fake unknown, its value is always zero and, if it is not, there is some issue. \\
+\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, all the information is conserved. To conclude, we remind from lemma \ref{lemma_lagrange} that $\lambda$ is a fake unknown, its value is always zero and, if it is not, there is some issue. \\
 
 \noindent The implementation of such transformation is located in the \texttt{assign\_null\_average.m} script. Some lines follow:
 
 \begin{verbatim}
 function [A, b] = assign_null_average (A, b, Data, femregion)
 
-Nh = length(b)/2;
+ll = length(b)/2;
 
 if (Data.fem(1)=='P')
 
-   for i = 1:Nh
-      A(i,2*Nh+1)=1;
-      A(2*Nh+1,i)=1;
+   ...
+   ...
+   ...
+
+   for k = 1:length(w_2D)
+      coeff = coeff + phi_fem(1,k,1).*w_2D(k);
    end
-   
-   ...
-   ...
-   ...
+
+   for i = 1:ll
+      A(i,2*ll+1)=coeff;
+      A(2*ll+1,i)=coeff;
+   end
+
 
 elseif (Data.fem(1)=='D')
 
    ...
    ...
    ...
-     % this loop is needed to compute the d_i values of Dubiner
-     for p = 1:femregion.nln
-         p_int = 0;
-         for k = 1:length(w_2D)
-             p_int = p_int + phi_dub(1,k,p).*w_2D(k);
-         end
-         coeff(p)=p_int;
-     end
 
-     for i = 1:femregion.nln:Nh
-         A(2*Nh+1,i:i+femregion.nln-1)=coeff';
-         A(i:i+femregion.nln-1,2*Nh+1)=coeff;
-     end
+   for p = 1:femregion.nln
+      p_int = 0;
+      for k = 1:length(w_2D)
+         p_int = p_int + phi_dub(1,k,p).*w_2D(k);
+      end
+      coeff(p)=p_int;
+   end
+
+   for i = 1:femregion.nln:ll
+      A(2*ll+1,i:i+femregion.nln-1)=coeff';
+      A(i:i+femregion.nln-1,2*ll+1)=coeff;
+   end
 
 end
 
 b = [b;0];
+
 \end{verbatim}
 
 \noindent Some comments:
 \begin{itemize}
 	\item \texttt{Nh = length(b)/2} because the original system is a block matrix system. We remind that this transformation concerns only $\phi_i$, then it applies to the first half of the system only.
-	\item $c$ is chosen to be zero, its value does not come from an exact solution because the mean-value strategy has been adopted only for realistic simulation with no exact solutions. 
-	\item We avoided to compute all $d_i$ for FEM basis as they all have the same value and, since $\lambda=0$, every value could be set. We opted to assign  the value $1$.
+	\item $c$ is chosen to be zero, its value does not come from an exact solution because the mean-value strategy has been adopted only for realistic simulation with no exact solutions (see \ref{uniqueness_results}). 
+	\item We avoided to compute all $d_i$ for FEM basis as they all have the same value.
 	\item On the other hand, for Dubiner basis, $d_i$ values are different. However, it is not needed to compute these values for all the global polynomials as they repeat for every element. For this reason, we only iterate over the local degrees of freedom.
 \end{itemize}
+\vspace{6mm}
+
+\subsubsection{Results} \label{uniqueness_results}
+\noindent As already discussed, the mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
+\begin{itemize}
+	\item the coefficient imposition for error analysis simulations (as boundary conditions and forcing terms were never homogeneous)
+	\item the mean value imposition for realistic simulations (as boundary conditions and forcing terms were essentially homogeneous)
+\end{itemize}\vspace{2mm}
+
+\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system. For what concerns our two initial objectives, we achieved both them since:
+\begin{itemize}
+	\item Error analysis studies demonstrated that $\phi_i,\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do.
+	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
+\end{itemize} 
 
     \newpage
     \printbibliography
