@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  9 JUL 2021 11:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  12 JUL 2021 17:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -286,6 +286,31 @@ Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
 (/usr/share/texlive/texmf-dist/tex/latex/relsize/relsize.sty
 Package: relsize 2013/03/29 ver 4.1
 )
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count274
+\lst@gtempboxa=\box50
+\lst@token=\toks32
+\lst@length=\count275
+\lst@currlwidth=\dimen173
+\lst@column=\count276
+\lst@pos=\count277
+\lst@lostspace=\dimen174
+\lst@width=\dimen175
+\lst@newlines=\count278
+\lst@lineno=\count279
+\lst@maxwidth=\dimen176
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count280
+\lst@skipnumbers=\count281
+\lst@framebox=\box51
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
 Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
 
@@ -305,7 +330,7 @@ Package pdftexcmds Info: \pdfdraftmode found.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/07/15 v2.5i e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count274
+\etb@tempcnta=\count282
 )
 (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
@@ -315,7 +340,7 @@ Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.sty
 Package: logreq 2010/08/04 v1.0 xml request logger
-\lrq@indent=\count275
+\lrq@indent=\count283
 
 (/usr/share/texlive/texmf-dist/tex/latex/logreq/logreq.def
 File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
@@ -327,47 +352,47 @@ Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-\c@tabx@nest=\count276
-\c@listtotal=\count277
-\c@listcount=\count278
-\c@liststart=\count279
-\c@liststop=\count280
-\c@citecount=\count281
-\c@citetotal=\count282
-\c@multicitecount=\count283
-\c@multicitetotal=\count284
-\c@instcount=\count285
-\c@maxnames=\count286
-\c@minnames=\count287
-\c@maxitems=\count288
-\c@minitems=\count289
-\c@citecounter=\count290
-\c@maxcitecounter=\count291
-\c@savedcitecounter=\count292
-\c@uniquelist=\count293
-\c@uniquename=\count294
-\c@refsection=\count295
-\c@refsegment=\count296
-\c@maxextratitle=\count297
-\c@maxextratitleyear=\count298
-\c@maxextraname=\count299
-\c@maxextradate=\count300
-\c@maxextraalpha=\count301
-\c@abbrvpenalty=\count302
-\c@highnamepenalty=\count303
-\c@lownamepenalty=\count304
-\c@maxparens=\count305
-\c@parenlevel=\count306
-\blx@tempcnta=\count307
-\blx@tempcntb=\count308
-\blx@tempcntc=\count309
-\blx@maxsection=\count310
-\blx@maxsegment@0=\count311
-\blx@notetype=\count312
-\blx@parenlevel@text=\count313
-\blx@parenlevel@foot=\count314
-\blx@sectionciteorder@0=\count315
-\blx@entrysetcounter=\count316
+\c@tabx@nest=\count284
+\c@listtotal=\count285
+\c@listcount=\count286
+\c@liststart=\count287
+\c@liststop=\count288
+\c@citecount=\count289
+\c@citetotal=\count290
+\c@multicitecount=\count291
+\c@multicitetotal=\count292
+\c@instcount=\count293
+\c@maxnames=\count294
+\c@minnames=\count295
+\c@maxitems=\count296
+\c@minitems=\count297
+\c@citecounter=\count298
+\c@maxcitecounter=\count299
+\c@savedcitecounter=\count300
+\c@uniquelist=\count301
+\c@uniquename=\count302
+\c@refsection=\count303
+\c@refsegment=\count304
+\c@maxextratitle=\count305
+\c@maxextratitleyear=\count306
+\c@maxextraname=\count307
+\c@maxextradate=\count308
+\c@maxextraalpha=\count309
+\c@abbrvpenalty=\count310
+\c@highnamepenalty=\count311
+\c@lownamepenalty=\count312
+\c@maxparens=\count313
+\c@parenlevel=\count314
+\blx@tempcnta=\count315
+\blx@tempcntb=\count316
+\blx@tempcntc=\count317
+\blx@maxsection=\count318
+\blx@maxsegment@0=\count319
+\blx@notetype=\count320
+\blx@parenlevel@text=\count321
+\blx@parenlevel@foot=\count322
+\blx@sectionciteorder@0=\count323
+\blx@entrysetcounter=\count324
 \labelnumberwidth=\skip60
 \labelalphawidth=\skip61
 \biblabelsep=\skip62
@@ -379,9 +404,9 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read3
 \blx@bcfout=\write3
 \blx@langwohyphens=\language5
-\c@mincomprange=\count317
-\c@maxcomprange=\count318
-\c@mincompwidth=\count319
+\c@mincomprange=\count325
+\c@maxcomprange=\count326
+\c@mincompwidth=\count327
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
@@ -392,74 +417,74 @@ Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count320
-\c@savedafterword=\count321
-\c@annotator=\count322
-\c@savedannotator=\count323
-\c@author=\count324
-\c@savedauthor=\count325
-\c@bookauthor=\count326
-\c@savedbookauthor=\count327
-\c@commentator=\count328
-\c@savedcommentator=\count329
-\c@editor=\count330
-\c@savededitor=\count331
-\c@editora=\count332
-\c@savededitora=\count333
-\c@editorb=\count334
-\c@savededitorb=\count335
-\c@editorc=\count336
-\c@savededitorc=\count337
-\c@foreword=\count338
-\c@savedforeword=\count339
-\c@holder=\count340
-\c@savedholder=\count341
-\c@introduction=\count342
-\c@savedintroduction=\count343
-\c@namea=\count344
-\c@savednamea=\count345
-\c@nameb=\count346
-\c@savednameb=\count347
-\c@namec=\count348
-\c@savednamec=\count349
-\c@translator=\count350
-\c@savedtranslator=\count351
-\c@shortauthor=\count352
-\c@savedshortauthor=\count353
-\c@shorteditor=\count354
-\c@savedshorteditor=\count355
-\c@labelname=\count356
-\c@savedlabelname=\count357
-\c@institution=\count358
-\c@savedinstitution=\count359
-\c@lista=\count360
-\c@savedlista=\count361
-\c@listb=\count362
-\c@savedlistb=\count363
-\c@listc=\count364
-\c@savedlistc=\count365
-\c@listd=\count366
-\c@savedlistd=\count367
-\c@liste=\count368
-\c@savedliste=\count369
-\c@listf=\count370
-\c@savedlistf=\count371
-\c@location=\count372
-\c@savedlocation=\count373
-\c@organization=\count374
-\c@savedorganization=\count375
-\c@origlocation=\count376
-\c@savedoriglocation=\count377
-\c@origpublisher=\count378
-\c@savedorigpublisher=\count379
-\c@publisher=\count380
-\c@savedpublisher=\count381
-\c@language=\count382
-\c@savedlanguage=\count383
-\c@origlanguage=\count384
-\c@savedoriglanguage=\count385
-\c@pageref=\count386
-\c@savedpageref=\count387
+\c@afterword=\count328
+\c@savedafterword=\count329
+\c@annotator=\count330
+\c@savedannotator=\count331
+\c@author=\count332
+\c@savedauthor=\count333
+\c@bookauthor=\count334
+\c@savedbookauthor=\count335
+\c@commentator=\count336
+\c@savedcommentator=\count337
+\c@editor=\count338
+\c@savededitor=\count339
+\c@editora=\count340
+\c@savededitora=\count341
+\c@editorb=\count342
+\c@savededitorb=\count343
+\c@editorc=\count344
+\c@savededitorc=\count345
+\c@foreword=\count346
+\c@savedforeword=\count347
+\c@holder=\count348
+\c@savedholder=\count349
+\c@introduction=\count350
+\c@savedintroduction=\count351
+\c@namea=\count352
+\c@savednamea=\count353
+\c@nameb=\count354
+\c@savednameb=\count355
+\c@namec=\count356
+\c@savednamec=\count357
+\c@translator=\count358
+\c@savedtranslator=\count359
+\c@shortauthor=\count360
+\c@savedshortauthor=\count361
+\c@shorteditor=\count362
+\c@savedshorteditor=\count363
+\c@labelname=\count364
+\c@savedlabelname=\count365
+\c@institution=\count366
+\c@savedinstitution=\count367
+\c@lista=\count368
+\c@savedlista=\count369
+\c@listb=\count370
+\c@savedlistb=\count371
+\c@listc=\count372
+\c@savedlistc=\count373
+\c@listd=\count374
+\c@savedlistd=\count375
+\c@liste=\count376
+\c@savedliste=\count377
+\c@listf=\count378
+\c@savedlistf=\count379
+\c@location=\count380
+\c@savedlocation=\count381
+\c@organization=\count382
+\c@savedorganization=\count383
+\c@origlocation=\count384
+\c@savedoriglocation=\count385
+\c@origpublisher=\count386
+\c@savedorigpublisher=\count387
+\c@publisher=\count388
+\c@savedpublisher=\count389
+\c@language=\count390
+\c@savedlanguage=\count391
+\c@origlanguage=\count392
+\c@savedoriglanguage=\count393
+\c@pageref=\count394
+\c@savedpageref=\count395
 \shorthandwidth=\skip68
 \shortjournalwidth=\skip69
 \shortserieswidth=\skip70
@@ -485,19 +510,19 @@ Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
 File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
-\c@textcitecount=\count388
-\c@textcitetotal=\count389
-\c@textcitemaxnames=\count390
-\c@biburlbigbreakpenalty=\count391
-\c@biburlbreakpenalty=\count392
-\c@biburlnumpenalty=\count393
-\c@biburlucpenalty=\count394
-\c@biburllcpenalty=\count395
+\c@textcitecount=\count396
+\c@textcitetotal=\count397
+\c@textcitemaxnames=\count398
+\c@biburlbigbreakpenalty=\count399
+\c@biburlbreakpenalty=\count400
+\c@biburlnumpenalty=\count401
+\c@biburlucpenalty=\count402
+\c@biburllcpenalty=\count403
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count396
+\c@smartand=\count404
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
@@ -509,8 +534,8 @@ Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
 File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count397
-\c@bbx:relatedtotal=\count398
+\c@bbx:relatedcount=\count405
+\c@bbx:relatedtotal=\count406
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
@@ -537,13 +562,13 @@ File: biblatex.cfg
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count399
-\csq@gtype=\count400
-\csq@glevel=\count401
-\csq@qlevel=\count402
-\csq@maxlvl=\count403
-\csq@tshold=\count404
-\csq@ltx@everypar=\toks32
+\csq@reset=\count407
+\csq@gtype=\count408
+\csq@glevel=\count409
+\csq@qlevel=\count410
+\csq@maxlvl=\count411
+\csq@tshold=\count412
+\csq@ltx@everypar=\toks33
 
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2019-12-06 v5.2j csquotes generic definitions (JAW)
@@ -556,31 +581,31 @@ File: csquotes.cfg
 )
 Package csquotes Info: Enabling multilingual quotes.
 )
-\c@definition=\count405
-\c@theo=\count406
-\c@prop=\count407
-\c@problem=\count408
-\c@corollary=\count409
-\c@lemma=\count410
+\c@definition=\count413
+\c@theo=\count414
+\c@prop=\count415
+\c@problem=\count416
+\c@corollary=\count417
+\c@lemma=\count418
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -617,17 +642,17 @@ LaTeX Font Info:    ... okay on input line 43.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count411
-\scratchdimen=\dimen173
-\scratchbox=\box50
-\nofMPsegments=\count412
-\nofMParguments=\count413
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count414
-\MPscratchDim=\dimen174
-\MPnumerator=\count415
-\makeMPintoPDFobject=\count416
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count419
+\scratchdimen=\dimen177
+\scratchbox=\box52
+\nofMPsegments=\count420
+\nofMParguments=\count421
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count422
+\MPscratchDim=\dimen178
+\MPnumerator=\count423
+\makeMPintoPDFobject=\count424
+\everyMPtoPDFconversion=\toks35
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 
@@ -649,7 +674,9 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count425
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
@@ -665,8 +692,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'report.bbl' found.
 
 (./report.bbl)
-Package biblatex Info: Reference section=0 on input line 43.
-Package biblatex Info: Reference segment=0 on input line 43.
+Package biblatex Info: Reference section=0 on input line 45.
+Package biblatex Info: Reference segment=0 on input line 45.
 *geometry* verbose mode - [ newgeometry ] result:
 * driver: pdftex
 * paper: a4paper
@@ -702,10 +729,10 @@ Package biblatex Info: Reference segment=0 on input line 43.
 <./polimi-logo.png, id=1, 1204.5pt x 880.28876pt>
 File: ./polimi-logo.png Graphic file (type png)
 <use ./polimi-logo.png>
-Package pdftex.def Info: ./polimi-logo.png  used on input line 50.
+Package pdftex.def Info: ./polimi-logo.png  used on input line 52.
 (pdftex.def)             Requested size: 113.81102pt x 83.1716pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 63--64
 
  []
 
@@ -732,297 +759,304 @@ File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 \tf@toc=\write4
 \openout4 = `report.toc'.
 
- [1
+ (./report.lol)
+\tf@lol=\write5
+\openout5 = `report.lol'.
+
+
+[1
 
 ]
 <./potential_cycle.png, id=20, 558.085pt x 328.22626pt>
 File: ./potential_cycle.png Graphic file (type png)
 <use ./potential_cycle.png>
-Package pdftex.def Info: ./potential_cycle.png  used on input line 94.
+Package pdftex.def Info: ./potential_cycle.png  used on input line 97.
 (pdftex.def)             Requested size: 199.16928pt x 117.13464pt.
  [2 <./potential_cycle.png>]
-<./electrical_circuit.png, id=32, 499.8675pt x 236.885pt>
+<./electrical_circuit.png, id=33, 499.8675pt x 236.885pt>
 File: ./electrical_circuit.png Graphic file (type png)
 <use ./electrical_circuit.png>
-Package pdftex.def Info: ./electrical_circuit.png  used on input line 108.
+Package pdftex.def Info: ./electrical_circuit.png  used on input line 111.
 (pdftex.def)             Requested size: 199.16928pt x 94.38362pt.
  [3 <./electrical_circuit.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 173--176
+Underfull \hbox (badness 10000) in paragraph at lines 176--179
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--178
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 179--181
+Underfull \hbox (badness 10000) in paragraph at lines 182--184
 
  []
 
 [4]
-<./sol_ill_posed.jpg, id=48, 1854.93pt x 964.60374pt>
+<./sol_ill_posed.jpg, id=49, 1854.93pt x 964.60374pt>
 File: ./sol_ill_posed.jpg Graphic file (type jpg)
 <use ./sol_ill_posed.jpg>
 Package pdftex.def Info: ./sol_ill_posed.jpg  used on input line 187.
 (pdftex.def)             Requested size: 312.9803pt x 162.7441pt.
  [5 <./sol_ill_posed.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 202--204
+Underfull \hbox (badness 10000) in paragraph at lines 203--205
 
  []
 
 
-Overfull \hbox (7.11649pt too wide) detected at line 217
+Overfull \hbox (7.11649pt too wide) detected at line 218
 [][]
  []
 
 [6] [7]
-<./transformation.png, id=64, 485.815pt x 256.96pt>
+<./transformation.png, id=65, 485.815pt x 256.96pt>
 File: ./transformation.png Graphic file (type png)
 <use ./transformation.png>
-Package pdftex.def Info: ./transformation.png  used on input line 345.
+Package pdftex.def Info: ./transformation.png  used on input line 346.
 (pdftex.def)             Requested size: 199.16928pt x 105.34251pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 351--352
+Underfull \hbox (badness 10000) in paragraph at lines 352--353
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 364--366
+Underfull \hbox (badness 10000) in paragraph at lines 365--367
 
  []
 
 [9 <./transformation.png>]
-<./mass_dubiner.jpg, id=73, 1854.93pt x 964.60374pt>
+<./mass_dubiner.jpg, id=74, 1854.93pt x 964.60374pt>
 File: ./mass_dubiner.jpg Graphic file (type jpg)
 <use ./mass_dubiner.jpg>
-Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 417.
+Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 418.
 (pdftex.def)             Requested size: 199.16928pt x 103.56041pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 427--430
+Underfull \hbox (badness 10000) in paragraph at lines 428--431
 
  []
 
 [10 <./mass_dubiner.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 431--432
+Underfull \hbox (badness 10000) in paragraph at lines 432--433
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 433--434
+Underfull \hbox (badness 10000) in paragraph at lines 434--435
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 435--436
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 438--440
+Underfull \hbox (badness 10000) in paragraph at lines 439--441
 
  []
 
 
-Overfull \hbox (53.99924pt too wide) in paragraph at lines 441--442
+Overfull \hbox (7.35368pt too wide) in paragraph at lines 442--443
 \T1/cmr/m/n/10.95 Moreover, some con-di-tional state-ments and some ex-tra meth
--ods (as the script \T1/cmtt/m/n/10.95 matrix2D_dubiner.m\T1/cmr/m/n/10.95 )
+-ods (as \T1/cmtt/m/n/10.95 matrix2D_dubiner.m\T1/cmr/m/n/10.95 )
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 441--442
+Underfull \hbox (badness 10000) in paragraph at lines 442--443
 
  []
 
 [11]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 454.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 455.
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2020/03/24 1.8d listings language file
+)
+Underfull \hbox (badness 10000) in paragraph at lines 459--462
 
-Overfull \hbox (6.51595pt too wide) in paragraph at lines 458--461
-\T1/cmr/m/n/10.95 This for-mula has then been im-ple-mented in the fol-low-ing 
-lines from the \T1/cmtt/m/n/10.95 dubiner_to_fem.m
  []
 
 [12]
-Overfull \hbox (8.96739pt too wide) in paragraph at lines 482--482
-[]   \T1/cmtt/m/n/10.95 index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1
-:femregion.nln]';[] 
- []
+Underfull \hbox (badness 10000) in paragraph at lines 489--492
 
-
-Overfull \hbox (8.96739pt too wide) in paragraph at lines 517--517
-[]   \T1/cmtt/m/n/10.95 index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1
-:femregion.nln]';[] 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 521--522
+Underfull \hbox (badness 10000) in paragraph at lines 524--525
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 523--524
+Underfull \hbox (badness 10000) in paragraph at lines 526--527
 
  []
 
 [14] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 581--582
+Underfull \hbox (badness 10000) in paragraph at lines 584--585
 
  []
 
 [16]
-Underfull \hbox (badness 10000) in paragraph at lines 626--628
+Underfull \hbox (badness 10000) in paragraph at lines 629--631
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--628
+Underfull \hbox (badness 10000) in paragraph at lines 629--631
 
  []
 
 
-Overfull \hbox (13.96924pt too wide) detected at line 660
+Overfull \hbox (13.96924pt too wide) detected at line 663
 []
  []
 
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 709--710
+Underfull \hbox (badness 10000) in paragraph at lines 712--713
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 770--771
+Underfull \hbox (badness 10000) in paragraph at lines 773--774
 
  []
 
 [19]
-Overfull \hbox (20.44186pt too wide) in paragraph at lines 772--773
+Overfull \hbox (20.44186pt too wide) in paragraph at lines 775--776
 \T1/cmr/bx/n/10.95 Problem 6 \T1/cmr/m/n/10.95 (Quasi-im-plicit op-er-a-tor-s-p
 lit-ting dis-cretized sys-tem)\T1/cmr/bx/n/10.95 . \T1/cmr/m/it/10.95 Find $\OT
 1/cmr/m/n/10.95 ^^H[] = [\OML/cmm/m/it/10.95 ^^^[]^^^[]\OT1/cmr/m/n/10.95 ][]$
  []
 
+
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 799--800
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] 
+ []
+
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 830--831
+Underfull \hbox (badness 10000) in paragraph at lines 833--834
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 832--833
+Underfull \hbox (badness 10000) in paragraph at lines 835--836
 
  []
 
 [21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 901--902
+Underfull \hbox (badness 10000) in paragraph at lines 904--905
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 915--916
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 917--918
+Underfull \hbox (badness 10000) in paragraph at lines 920--921
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 930--931
+Underfull \hbox (badness 10000) in paragraph at lines 933--934
 
  []
 
 [23]
-Underfull \hbox (badness 10000) in paragraph at lines 941--942
+Underfull \hbox (badness 10000) in paragraph at lines 944--945
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 969--974
+Underfull \hbox (badness 10000) in paragraph at lines 972--977
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 975--977
+Underfull \hbox (badness 10000) in paragraph at lines 978--980
 
  []
 
 [24]
-Overfull \hbox (0.3409pt too wide) in paragraph at lines 978--979
+Overfull \hbox (0.3409pt too wide) in paragraph at lines 981--982
 \T1/cmr/m/n/10.95 The co-ef-fi-cient im-po-si-tion pro-ce-dure has been im-ple-
 mented in the script \T1/cmtt/m/n/10.95 assign_phi_i.m
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 978--979
+Underfull \hbox (badness 10000) in paragraph at lines 981--982
 
  []
 
 
-Overfull \hbox (8.96739pt too wide) in paragraph at lines 1028--1028
-[]   \T1/cmtt/m/n/10.95 exact_coeff = eval(Data.exact_sol_i); % evaluation of t
-he exact solution[] 
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 1010--1011
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (14.62576pt too wide) in paragraph at lines 1028--1028
-[]   \T1/cmtt/m/n/10.95 % basis function. To the get the right coefficient, we 
-compute the scalar[] 
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 1018--1019
+[][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [25]
-Overfull \hbox (8.96739pt too wide) in paragraph at lines 1028--1028
-[]\T1/cmtt/m/n/10.95 % we now change the system coefficients in order to impose
- u(1)=exact_coeff[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1032--1033
+Underfull \hbox (badness 10000) in paragraph at lines 1036--1037
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 1069--1071
+Underfull \hbox (badness 10000) in paragraph at lines 1073--1075
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1072--1073
+Underfull \hbox (badness 10000) in paragraph at lines 1076--1077
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1095
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1090--1091
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1114--1115
+Underfull \hbox (badness 10000) in paragraph at lines 1118--1119
 
  []
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 1131--1132
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1133
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1135--1136
 
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 1183--1184
+Underfull \hbox (badness 10000) in paragraph at lines 1187--1188
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1209--1212
+Underfull \hbox (badness 10000) in paragraph at lines 1213--1216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1217--1218
 
  []
 
@@ -1032,50 +1066,58 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 14816 strings out of 482843
- 257348 string characters out of 5956406
- 926486 words of memory out of 5000000
- 29939 multiletter control sequences out of 15000+600000
- 563589 words of font info for 101 fonts, out of 8000000 for 9000
+ 17088 strings out of 482843
+ 286093 string characters out of 5956406
+ 963654 words of memory out of 5000000
+ 32185 multiletter control sequences out of 15000+600000
+ 567203 words of font info for 108 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,23n,45p,1456b,1703s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,23n,45p,1456b,2189s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.60
-0pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.
-600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm090
+0pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1000.
+600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm100
 0.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1
-095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecb
-x1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-ctt1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec
-/ecrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappe
-n/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/eccc1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
-appen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
-/jknappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy1
-0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (34 pages, 874547 bytes).
+000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecr
+m1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecrm0600.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
+ec/tcrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm0900.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/tcrm0800.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecti1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ectt1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbx1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
+k/ljfour/jknappen/ec/eccc1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts
+/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf-var
+/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
+/msbm10.pfb>
+Output written on report.pdf (34 pages, 915802 bytes).
 PDF statistics:
- 732 PDF objects out of 1000 (max. 8388607)
- 193 compressed objects within 2 object streams
+ 860 PDF objects out of 1000 (max. 8388607)
+ 221 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

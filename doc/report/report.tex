@@ -16,6 +16,7 @@
 \usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{relsize}
+\usepackage{listings}
 \captionsetup{compatibility=false}
 
 \usepackage[
@@ -28,6 +29,7 @@ citestyle=numeric,
 \usepackage[autostyle]{csquotes}
 
 \captionsetup{font=footnotesize}
+\renewcommand*{\lstlistlistingname}{Codes}
 
 
 \newtheorem{definition}{Definition}
@@ -75,13 +77,14 @@ citestyle=numeric,
     
     %% TABLE OF CONTENTS
     \tableofcontents
+    \texttt{\lstlistoflistings}
     \newpage
     
     %% ABSTRACT
     \section{Introduction}
     \subsection{Abstract}
     The aim of the project is to study and implement a suitable numerical scheme for the resolution of the \emph{Bidomain Problem}, a famous system of equations that has been developed in the context of the electrophysiology of human heart. \\
-    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the very goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. In fact, even if a \emph{Discontinuous Galerkin} discretization has been successfully implemented, results are not satisfactory from the point of view of stability and convergence. We think this notice is noteworthy as this work is primarily based on these provided data and codes. Through this article, it will be illustrated how we managed to solve these problems extending, optimizing and correcting these past numerical strategies.
+    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the very goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. In fact, even if a \emph{Discontinuous Galerkin} discretization has been successfully implemented, results are not satisfactory from the point of view of stability and convergence. We think this notice is noteworthy as this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes. Through this article, it will be illustrated how we managed to solve these problems extending, optimizing and correcting these past numerical strategies.
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
@@ -171,26 +174,24 @@ citestyle=numeric,
 
     \subsection{A short discussion about the past works issue}
     As we have already introduced, our project initially aimed to continue and improve the work of a previous project (\parencite{marta}). \\
-    Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. On the other hand, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes.
-    This issue heavily limits the use of the code for research and/or experimental simulations as it guarantees convergence to the right solution only in few and non-realistic problems.  \\
+    Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. On the other hand, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes (fact that was already noticed in \cite{andreotti}).
+    This issue heavily limits the use of the \textsc{Matlab} code for research and/or experimental simulations as it guarantees convergence to the right solution only in few and non-realistic problems.  \\
 
     \noindent After a while, we realized that an inverted sign of the FitzHugh-Nagumo model formula occurred in \cite{acta}. \\
 
     \noindent This oversight was not only essential for the fidelity to the real phenomena but also crucial for the well-posedness of the problem.\\ 
-    We could give two motivations to reinforce this last statement: first of all, if we consider the well known study of \citeauthor{bourgault} (\cite{bourgault}), the conditions required for the well-posedness of the Bidomain problem are not satisfied if the sign is inverted (neither for the existence, hypothesis H4, nor for the uniqueness).\\ Secondly, suppose to discretize the Bidomain problem in time and to treat the non-linear term semi-implicitly, as it will be done in the following sections. Then, if we fix the timestep and if data from the previous timestep are given, we achieve a linear problem that can be easily switched into a weak formulation. From this analysis, we could observe that if $V_m<a$ or $V_m>1$ and $C_m$ is sufficiently small, the associated bilinear form is not coercive. \\
-
-    \noindent This second motivation, even if not very formal and with a mixed approach, is particularly interesting since a few confirmations occurred during simulations, as shown for instance in figure \ref{sol_ill_posed}.
-
-
-\begin{figure}[h]
-	\begin{center}
-		\includegraphics[width = 11cm]{./sol_ill_posed.jpg}
-		\caption{Comparison between exact and computed solution with inverted FitzHugh-Nagumo model: huge errors arise only when $Vm<0$}
-		\label{sol_ill_posed}
-	\end{center}
-\end{figure}
+    We could give two motivations to reinforce this last statement: first of all, if we consider the well known study of \citeauthor{bourgault} (\cite{bourgault}), the conditions required for the well-posedness of the Bidomain problem are not satisfied if the sign is inverted (neither for the existence, hypothesis H4, nor for the uniqueness).\\ Secondly, suppose to discretize the Bilinear problem in time and to treat the non-linear term semi-implicitly, as it will be done in section \ref{temporal_discretization}. Then, if we fix the time-step and if data from the previous time-step are given, we achieve a linear problem that can be easily switched into a weak formulation. From this analysis, we could observe that if $V_m<a$ or $V_m>1$ and $C_m$ is sufficiently small, the associated bilinear form is not coercive. Some consequences of this result occurred during simulations, as in figure \ref{sol_ill_posed}. \\
     
-    \noindent In conclusion, the issue of the past works \cite{andreotti}, \cite{marta} had not a numerical nature as expected, but instead an analytical origin due to an ill-posed problem.
+    \begin{figure}[h]
+    	\begin{center}
+    		\includegraphics[width = 11cm]{./sol_ill_posed.jpg}
+    		\caption{Comparison between exact and computed solution with inverted FitzHugh-Nagumo model: huge errors arise only when $Vm<0$}
+    		\label{sol_ill_posed}
+    	\end{center}
+    \end{figure}
+
+    \noindent While first reason is completely analytical, the second one is less formal and with a mixed analytical-numerical approach because of the time discretization. As shown in \cite{andreotti}, instabilities could depend on the choice of temporal step too. This fact is confirmed since the positive term of previous coercivity constant is the ratio between $C_m$ and $\Delta t$. \\
+    \noindent In conclusion, the issue of the past works \cite{andreotti}, \cite{marta} had not a simple numerical nature as expected, but it probably had an analytical origin too. In general, there are no guarantees for numerical stability nor for analytical well-posedness when we try to solve the inverted sign problem. However, it is useless to go deeper in this non-realistic problem. From now on, the sign modification will be taken for granted.
 
 \newpage
 
@@ -435,10 +436,10 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t))
     \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.\\ \\
     
     \subsection{Implementation}\label{subsection_implementation}
-    Our code let the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until the order 3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis.\\
+    Our \textsc{Matlab} code let the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until the order 3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis.\\
     The starting point was the implementation of some functions to evaluate the Dubiner basis functions and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of section \ref{analytical_aspects} with the addition of some technicalities. These mentioned scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
-    \noindent Moreover, some conditional statements and some extra methods (as the script \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
+    \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
     \noindent More interesting are instead the scripts \texttt{dubiner\_to\_fem.m} and \texttt{fem\_to\_dubiner.m}, used to convert the Dubiner modal coefficients of the vector solution to the nodal values of the approximated function and viceversa. For this reason, they deserve some further explanations.
 \subsection{Switch from the modal coefficients to the nodal values}
@@ -457,64 +458,66 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i)
 	\end{equation}
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm} \\
-	This formula has then been implemented in the following lines from the \texttt{dubiner\_to\_fem.m} script. 
-	\begin{verbatim}
-	function [u0] = dubiner_to_fem (uh, femregion, Data)  
+	This formula has been implemented in the following lines from \texttt{dubiner\_to\_fem.m} script. \\
+	\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = dubiner_to_fem.m, frame=single]
+function [u0] = dubiner_to_fem (uh, femregion, Data)  
 	
-	...
-	...
-	...
+...
+...
+...
 	
-	u0 = zeros(femregion.ndof,1);
+u0 = zeros(femregion.ndof,1);
 	
-	% loop over all the elements
-	for ie = 1:femregion.ne
+% loop over all the elements
+for ie = 1:femregion.ne
 	
-	   % to get the global indexes for the nodes of ie 
-	   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
+   % to get the global indexes for the nodes of ie 
+   nln = femregion.nln;
+   index = (ie-1)*nln*ones(nln,1) + [1:nln]';
 	
-	   for i = 1 : femregion.nln
-	      for j = 1: femregion.nln
-	         u0(index(i)) = u0(index(i)) +  uh(index(j))*phi(1,i,j);
-	      end
-	   end
-	end
-	\end{verbatim} \vspace{4mm}
+   for i = 1 : nln
+      for j = 1 : nln
+         u0(index(i)) = u0(index(i)) +  uh(index(j))*phi(1,i,j);
+      end
+   end
+end
+	\end{lstlisting} \vspace{4mm}
 	\subsubsection{\texttt{fem\_to\_dubiner.m}}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis are $L^2$-orthonormal (proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That means:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i
 	\end{equation}
 	\vspace{2mm} \\
-	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} using \emph{Gauss-Legendre-Lobatto} quadrature integration formulas. The main steps are the following:
-	\begin{verbatim}
-	function [u0] = fem_to_dubiner (uh, femregion, Data)
+	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} using \emph{Gauss-Legendre-Lobatto} quadrature formulas. The main steps are the following: \\
+	\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = fem_to_dubiner.m, frame=single]
+function [u0] = fem_to_dubiner (uh, femregion, Data)
 	
-	...
-	...
-	...
+...
+...
+...
 	
-	u0 = zeros(femregion.ndof,1);
+u0 = zeros(femregion.ndof,1);
 	
-	% loop over all the elements
-	for ie = 1:femregion.ne
+% loop over all the elements
+for ie = 1:femregion.ne
 	
-	   % to get the global indexes for the nodes of ie 
-	   index = (ie-1)*femregion.nln*ones(femregion.nln,1) + [1:femregion.nln]';
-	   % loop over local degrees of freedom
-	   for i = 1 : femregion.nln
-	      % loop over 2D quadrature points
-	      for k = 1:length(w_2D) 
-	         uh_eval_k = 0;
-	         % loop to evaluate uh in a quadrature point
-	         for j = 1:femregion.nln
-	            uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
-	         end
-	         u0(index(i)) = u0(index(i)) + uh_eval_k*phi_dub(1,k,i).*w_2D(k);
-	      end
-	   end    
-	end
-	\end{verbatim}
+   % to get the global indexes for the nodes of ie 
+   nln = femregion.nln;
+   index = (ie-1)*nln*ones(nln,1) + [1:nln]';
+   % loop over local degrees of freedom
+   for i = 1 : nln
+      % loop over 2D quadrature points
+      for k = 1:length(w_2D) 
+         uh_eval_k = 0;
+         % loop to evaluate uh in a quadrature point
+         for j = 1 : nln
+            uh_eval_k = uh_eval_k + uh(index(j))*phi_fem(1,k,j);
+         end
+         u0(index(i))=u0(index(i))+uh_eval_k*phi_dub(1,k,i).*w_2D(k);
+      end
+   end    
+end
+	\end{lstlisting}
 	
 	\vspace{5mm}
 	\subsubsection{Final remarks} 
@@ -524,7 +527,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	
 
 \newpage 
-\section{Temporal discretization}
+\section{Temporal discretization}\label{temporal_discretization}
 So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into K subintervals $(t^k,t^k+1]$ of length $\Delta t$ such that $t^k=k \Delta t \quad \forall k=0,\cdots,K-1$, we then assume that $V_m^k\approx V_m(t^k)$. \\
 We have developed, implemented and tested 3 different temporal strategies that we will refer to as: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
 \subsection{Semi-implicit method}
@@ -590,7 +593,7 @@ Find $\Phi^{k+1}=[\phi_i^{k+1} \phi_e^{k+1}]^T$ and $w^{k+1}$ $\forall k=0,\cdot
 \end{problem}\vspace{4mm}
 
 \subsubsection{Implementation}
-\begin{verbatim}
+\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (semi-implicit), frame=single]
 MASS = [M -M; -M M];
 ZERO = sparse(length(M), length(M));
 MASS_W = [M ZERO; ZERO -M];
@@ -620,7 +623,7 @@ for t=dt:dt:T
    u0 = u1;
    w0 = w1(1:ll);
 end
-\end{verbatim}
+\end{lstlisting}
 \vspace{4mm}
 \subsection{Godunov operator-splitting}
 The main feature of a general operator-splitting method is the division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
@@ -649,7 +652,7 @@ Two operator-splitting methods have been implemented, the first is of \emph{Godu
 \chi_m C_m M\frac{V_m^{k+1} - V_m^k}{\Delta t} + C(V_m^k)V_m^k +\chi_mMw^k - A_e \Phi_e^{k+1}= -F_e^{k+1} \\
 w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta t V_m^k
 \end{cases}
-\end{equation}
+\end{equation} \vspace{3mm} \\
 The equations in the system \ref{Godunov} can be rewritten as:
 \begin{equation*}
 \begin{cases}
@@ -681,7 +684,7 @@ w^{k+1} = (1-\epsilon \gamma \Delta t) w^k + \epsilon \Delta tV_m^k
 \end{problem}\vspace{4mm}
 
 \subsubsection{Implementation}
-\begin{verbatim}
+\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (Godunov operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
 MASS = (ChiM*Cm/dt)*[M, -M; M -M];
 MASSW = ChiM*[M, ZERO; ZERO, M];
@@ -703,7 +706,7 @@ for t=dt:dt:T
    u0 = u1;
    w0 = w1;
 end
-\end{verbatim}
+\end{lstlisting}
 \vspace{4mm}
 \subsection{Quasi-implicit operator-splitting}
 The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a full implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
@@ -787,7 +790,7 @@ w^{k+1} = \frac{\displaystyle w^k + \epsilon \Delta t (\phi_i^{k+1}-\phi_e^{k+1}
 \end{problem}
 \vspace{4mm}
 \subsubsection{Implementation}
-\begin{verbatim}
+\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (quasi-implicit operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
         
 for t=dt:dt:T
@@ -814,8 +817,8 @@ for t=dt:dt:T
    u0 = u1;
    w0 = w1;
 end
-\end{verbatim}
-
+\end{lstlisting}
+\newpage
 \section{About the potentials uniqueness}
 \subsection{Analytical concepts}
 \noindent Observing for a moment the Bidomain problem analytical formulation (definition \ref{def1}), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
@@ -977,7 +980,7 @@ Secondly, if the system is hugely ill-conditioned or even non-solvable (this is 
 
 \noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} that takes the $c$ value from the exact solution: \\
 
-\begin{verbatim}
+\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_phi_i.m, frame=single]
 function [A, b] = assign_phi_i (A, b, t, Data, femregion)
 
 ...
@@ -988,7 +991,7 @@ if (Data.fem(1)=='P')
 
    x = femregion.dof(1,1); % x-coordinate of the first dof point
    y = femregion.dof(1,2); % y-coordinate of the first dof point
-   exact_coeff = eval(Data.exact_sol_i); % evaluation of the exact solution
+   exact_coeff = eval(Data.exact_sol_i); % evaluation of exact sol
 
 
 elseif (Data.fem(1)=='D')
@@ -1003,29 +1006,30 @@ elseif (Data.fem(1)=='D')
    ...
    ...
 
-   % the first coefficient is the L2 scalar product of uh with the first
-   % basis function. To the get the right coefficient, we compute the scalar 
+   % the first coeff is the L2 scalar product of uh with the first
+   % basis function. To the get the right coeff, we compute the scalar 
    % product between the exact solution and the first basis function
    
    for k = 1:length(w_2D) % loop over 2D quadrature points
-      x = x0 + h*node_2D(k,1);  %physical coords of the integration point
+      %physical coords of the integration point
+      x = x0 + h*node_2D(k,1);  
       y = y0 + h*node_2D(k,2);
-      eval_sol = eval(Data.exact_sol_i);
-      exact_coeff = exact_coeff + eval_sol*phi_dub(1,k,index).*w_2D(k);
+      evalsol = eval(Data.exact_sol_i);
+      exact_coeff = exact_coeff + evalsol*phi_dub(1,k,index).*w_2D(k);
    end
 
 end
 
 
-% we now change the system coefficients in order to impose u(1)=exact_coeff
+% we change the system coefficients to impose u(1)=exact_coeff
 Nh = length(b);
 b = b - A(:,1)*exact_coeff;
 b(1) = exact_coeff;  
 A(:,1) = zeros(Nh,1);
 A(1,:) = zeros(1,Nh);
 A(1,1) = 1;
-
-\end{verbatim}
+\end{lstlisting}
+\vspace{4mm}
 \noindent To conclude this section, it is interesting to observe that the numerical imposition is done at \emph{every} time-step. This is confirmed from previous analytical theory as the difference $\varphi$ is a constant but depending on time: therefore, it is needed to fix it at every time-step.
 
 \subsubsection{An analytical motivation for the mean value imposition method}
@@ -1123,9 +1127,9 @@ A(1,1) = 1;
 	\end{equation*}
 \end{problem}
 
-\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved.
+\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved.  \newpage
 \begin{lemma} \label{lemma_lagrange}
-	Suppose previous assumptions on data are satisfied. Then there exists a couple solution $(u,\lambda)$ to the problem \ref{reference_problem_3}. Moreover, $\lambda=0$ and $u$ is unique.
+	Suppose previous assumptions on data are satisfied. Then there exists a couple solution $(u,\lambda)$ to the problem \ref{reference_problem_3}. Moreover, $\lambda=0$ and $u$ is unique. \\
 \end{lemma}
 \begin{proof}
 	For what concerns existence, we can immediately realize that the solution $u$ of problem \ref{reference_problem} solves the problem \ref{reference_problem_3} with $\lambda=0$. Then the existence property holds because existence of problem \ref{reference_problem} has already been proved. \\
@@ -1210,12 +1214,12 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \vspace{3mm} \\
 \noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, all the information is conserved. To conclude, we remind from lemma \ref{lemma_lagrange} that $\lambda$ is a fake unknown, its value is always zero and, if it is not, there is some issue. \\
 
-\noindent The implementation of such transformation is located in the \texttt{assign\_null\_average.m} script. Some lines follow:
+\noindent The implementation of such transformation is located in the \texttt{assign\_null\_average.m} script. Some lines follow: \\
 
-\begin{verbatim}
+\begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_null_average.m, frame=single]
 function [A, b] = assign_null_average (A, b, Data, femregion)
 
-ll = length(b)/2;
+Nh = length(b)/2;
 
 if (Data.fem(1)=='P')
 
@@ -1227,9 +1231,9 @@ if (Data.fem(1)=='P')
       coeff = coeff + phi_fem(1,k,1).*w_2D(k);
    end
 
-   for i = 1:ll
-      A(i,2*ll+1)=coeff;
-      A(2*ll+1,i)=coeff;
+   for i = 1:Nh
+      A(i,2*Nh+1)=coeff;
+      A(2*Nh+1,i)=coeff;
    end
 
 
@@ -1247,21 +1251,21 @@ elseif (Data.fem(1)=='D')
       coeff(p)=p_int;
    end
 
-   for i = 1:femregion.nln:ll
-      A(2*ll+1,i:i+femregion.nln-1)=coeff';
-      A(i:i+femregion.nln-1,2*ll+1)=coeff;
+   for i = 1:femregion.nln:Nh
+      A(2*Nh+1,i:i+femregion.nln-1)=coeff';
+      A(i:i+femregion.nln-1,2*Nh+1)=coeff;
    end
 
 end
 
 b = [b;0];
 
-\end{verbatim}
-
+\end{lstlisting}
+\vspace{8mm}
 \noindent Some comments:
 \begin{itemize}
-	\item \texttt{Nh = length(b)/2} because the original system is a block matrix system. We remind that this transformation concerns only $\phi_i$, then it applies to the first half of the system only.
-	\item $c$ is chosen to be zero, its value does not come from an exact solution because the mean-value strategy has been adopted only for realistic simulation with no exact solutions (see \ref{uniqueness_results}). 
+	\item \texttt{Nh = length(b)/2} at line 3 because the original system is a block matrix system. We remind that this transformation concerns only $\phi_i$, then it applies to the first half of the system only.
+	\item $c$ is chosen to be zero (line 42), its value does not come from an exact solution because the mean-value strategy has been adopted only for realistic simulation with no exact solutions (see \ref{uniqueness_results}). 
 	\item We avoided to compute all $d_i$ for FEM basis as they all have the same value.
 	\item On the other hand, for Dubiner basis, $d_i$ values are different. However, it is not needed to compute these values for all the global polynomials as they repeat for every element. For this reason, we only iterate over the local degrees of freedom.
 \end{itemize}
