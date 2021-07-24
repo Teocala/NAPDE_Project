@@ -1,68 +1,78 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \babel@toc {english}{}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {1}Introduction}{2}%
+\contentsline {section}{\numberline {1}Introduction}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.1}Abstract}{2}%
+\contentsline {subsection}{\numberline {1.1}Abstract}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.2}The physical problem}{2}%
+\contentsline {subsection}{\numberline {1.2}The physical problem}{3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.3}Mathematical models}{3}%
+\contentsline {subsection}{\numberline {1.3}Mathematical models}{4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {1.4}A short discussion about the past works issue}{4}%
+\contentsline {subsection}{\numberline {1.4}A short discussion about the past works issue}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Semi discretized numerical methods}{6}%
+\contentsline {section}{\numberline {2}Semi discretized numerical methods}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}DG discrete formulation}{6}%
+\contentsline {subsection}{\numberline {2.1}DG discrete formulation}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2}Algebraic formulation}{7}%
+\contentsline {subsection}{\numberline {2.2}Algebraic formulation}{8}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Dubiner Basis}{8}%
+\contentsline {section}{\numberline {3}Dubiner Basis}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.1}Analytical aspects}{8}%
+\contentsline {subsection}{\numberline {3.1}Analytical aspects}{9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.2}Implementation}{11}%
+\contentsline {subsection}{\numberline {3.2}Implementation}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3}Switch from the modal coefficients to the nodal values}{12}%
+\contentsline {subsection}{\numberline {3.3}Switch from the modal coefficients to the nodal values}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.1}\texttt {dubiner\_to\_fem.m}}{12}%
+\contentsline {subsubsection}{\numberline {3.3.1}\texttt {dubiner\_to\_fem.m}}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.2}\texttt {fem\_to\_dubiner.m}}{13}%
+\contentsline {subsubsection}{\numberline {3.3.2}\texttt {fem\_to\_dubiner.m}}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.3}Final remarks}{14}%
+\contentsline {subsubsection}{\numberline {3.3.3}Final remarks}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Temporal discretization}{15}%
+\contentsline {section}{\numberline {4}Temporal discretization}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}Semi-implicit method}{15}%
+\contentsline {subsection}{\numberline {4.1}Semi-implicit method}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.1.1}Implementation}{16}%
+\contentsline {subsubsection}{\numberline {4.1.1}Implementation}{17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}Godunov operator-splitting}{17}%
+\contentsline {subsection}{\numberline {4.2}Godunov operator-splitting}{18}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.2.1}Implementation}{18}%
+\contentsline {subsubsection}{\numberline {4.2.1}Implementation}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}Quasi-implicit operator-splitting}{18}%
+\contentsline {subsection}{\numberline {4.3}Quasi-implicit operator-splitting}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {4.3.1}Implementation}{20}%
+\contentsline {subsubsection}{\numberline {4.3.1}Implementation}{21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}About the potentials uniqueness}{21}%
+\contentsline {section}{\numberline {5}About the potentials uniqueness}{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Analytical concepts}{21}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{21}%
+\contentsline {subsection}{\numberline {5.1}Analytical concepts}{22}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Proof. }{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Numerical correction}{22}%
+\contentsline {paragraph}{Proof. }{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1}Implementation of the first coefficient imposition}{24}%
+\contentsline {subsection}{\numberline {5.2}Numerical correction}{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2}An analytical motivation for the mean value imposition method}{26}%
+\contentsline {subsubsection}{\numberline {5.2.1}Implementation of the first coefficient imposition}{25}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{27}%
+\contentsline {subsubsection}{\numberline {5.2.2}An analytical motivation for the mean value imposition method}{27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{29}%
+\contentsline {paragraph}{Proof. }{28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.3}Implementation of the mean value imposition}{29}%
+\contentsline {paragraph}{Proof. }{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.4}Results}{31}%
+\contentsline {subsubsection}{\numberline {5.2.3}Implementation of the mean value imposition}{30}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {5.2.4}Results}{32}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6}Results}{33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {6.1}Error analysis}{33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.1}Comparison Dubiner with FEM}{33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.2}Comparison between different time discretization methods}{42}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\numberline {6.1.3}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{45}%

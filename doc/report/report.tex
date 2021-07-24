@@ -520,7 +520,7 @@ end
 	\end{lstlisting}
 	
 	\vspace{5mm}
-	\subsubsection{Final remarks} 
+	\subsubsection{Final remarks}\label{dub}
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula \ref{ref3} is needed to plot and compute errors after the resolution of the system (otherwise solely Dubiner coefficients are useless). Formula \ref{ref4} is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
 	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa. With this choice, the two basis generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.\\
@@ -818,8 +818,9 @@ for t=dt:dt:T
    w0 = w1;
 end
 \end{lstlisting}
+
 \newpage
-\section{About the potentials uniqueness}
+\section{About the potentials uniqueness}\label{unique}
 \subsection{Analytical concepts}
 \noindent Observing for a moment the Bidomain problem analytical formulation (definition \ref{def1}), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
 \begin{equation}\label{phi_uniqueness}
@@ -1284,6 +1285,316 @@ b = [b;0];
 	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
 \end{itemize} 
 
+
+\section{Results}
+\subsection{Error analysis}
+In this section we can study and compare the results of our code. For all the simulations we used the physiological parameters, taken from \cite{bagnara}, namely:
+\begin{itemize}
+\item $\chi_m=10^5$
+\item $\Sigma_i=\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$
+\item $\Sigma_e=\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$
+\item $C_m=10^{-2}$
+\item $k=19.5$
+\item $\varepsilon=1.2$
+\item $\gamma=0.1$
+\item $a=13*10^{-3}$
+\end{itemize}
+
+We are trying to approximate the exact solutions: $V_m(x,y,t)=sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ and $w(x,y,t)=\frac{\varepsilon}{\varepsilon \gamma-5} sin(2 \pi x) sin(2 \pi y) e^{-5 t}$, in a domain $\Omega=[0,1; 0,1]$ and time interval $(0,0.001]$.
+
+\subsubsection{Comparison Dubiner with FEM}
+\begin{enumerate}
+\item
+At first we look for approximate solutions as polynomials of degree 1 (so D1 and P1 as explained in the section \ref{dub}).
+
+\newgeometry{a4paper,top=2cm,bottom=2cm,left=0cm,right=1cm} 
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with D1}
+\label{Vm_D1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P1_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with P1}
+\label{Vm_P1}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with D1}
+\label{Phii_D1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P1_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with P1}
+\label{Phii_P1}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with D1}
+\label{Phie_D1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P1_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with P1}
+\label{Phie_P1}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_w_1.jpg}
+\caption*{Gating variable ($w$) with D1}
+\label{w_D1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P1_w_1.jpg}
+\caption*{Gating variable ($w$) with P1}
+\label{w_P1}
+\end{subfigure}
+\end{figure}
+\restoregeometry
+We can see that the convergence is very alike and the errors, between the two kinds of basis, have the same trend.
+\item
+Then using quadratic polynomials (D2 - P2).
+
+\newgeometry{a4paper,top=2cm,bottom=2cm,left=0cm,right=1cm} 
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D2_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with D2}
+\label{Vm_D2}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P2_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with P2}
+\label{Vm_P2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D2_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with D2}
+\label{Phii_D2}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P2_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with P2}
+\label{Phii_P2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D2_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with D2}
+\label{Phie_D2}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P2_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with P2}
+\label{Phie_P2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D2_w_1.jpg}
+\caption*{Gating variable ($w$) with D2}
+\label{w_D2}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P2_w_1.jpg}
+\caption*{Gating variable ($w$) with P2}
+\label{w_P2}
+\end{subfigure}
+\end{figure}
+\restoregeometry
+Now, we see that the errors for $\phi_i$ and $\phi_e$ are higher for Dubiner basis than for FEM basis, but summing up in $V_m$ the errors are very similar. Also, we note that increasing the number of refinements the error of $V_m$ becomes constant (but it is always very low).
+
+\item
+Finally, for polynomials of degree 3 (D3 - P3).
+\newgeometry{a4paper,top=2cm,bottom=2cm,left=0cm,right=1cm} 
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D3_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with D3}
+\label{Vm_D3}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P3_Vm_1.jpg}
+\caption*{Difference of potential ($V_m$) with P3}
+\label{Vm_P3}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D3_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with D3}
+\label{Phii_D3}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P3_Phii_1.jpg}
+\caption*{Intracellular Potential ($\phi_i$) with P3}
+\label{Phii_P3}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D3_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with D3}
+\label{Phie_D3}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P3_Phie_1.jpg}
+\caption*{Extracellular Potential ($\phi_e$) with P3}
+\label{Phie_P3}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D3_w_1.jpg}
+\caption*{Gating variable ($w$) with D3}
+\label{w_D3}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./P3_w_1.jpg}
+\caption*{Gating variable ($w$) with P3}
+\label{w_P3}
+\end{subfigure}
+\end{figure}
+\restoregeometry
+\end{enumerate}
+
+\subsubsection{Comparison between different time discretization methods}
+In the section \ref{temporal_discretization} three methods for the time discretization are presented and so we compare their results:
+\newgeometry{a4paper,top=2cm,bottom=2cm,left=0cm,right=0cm} 
+\begin{figure}[h]
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width = 7cm]{./D1_Vm_1.jpg}
+\caption*{$V_m$ with D1 using Semi Implicit}
+\label{Vm_D1_SI}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Vm_1_GO.jpg}
+\caption*{$V_m$ with D1 using Godunov operator-splitting}
+\label{Vm_D1_GO}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Vm_1_OS.jpg}
+\caption*{$V_m$ with D1 using Quasi-implicit operator-splitting}
+\label{Vm_D1_OS}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width = 7cm]{./D1_Phii_1.jpg}
+\caption*{$\phi_i$ with D1 using Semi Implicit}
+\label{Phii_D1_SI}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Phii_1_GO.jpg}
+\caption*{$\phi_i$ with D1 using Godunov operator-splitting}
+\label{Phii_D1_GO}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Phii_1_OS.jpg}
+\caption*{$\phi_i$ with D1 using Quasi-implicit operator-splitting}
+\label{Phii_D1_OS}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width = 7cm]{./D1_Phie_1.jpg}
+\caption*{$\phi_e$ with D1 using Semi Implicit}
+\label{Phie_D1_SI}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Phie_1_GO.jpg}
+\caption*{$\phi_e$ with D1 using Godunov operator-splitting}
+\label{Phie_D1_GO}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_Phie_1_OS.jpg}
+\caption*{$\phi_e$ with D1 using Quasi-implicit operator-splitting}
+\label{Phie_D1_OS}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width = 7cm]{./D1_w_1.jpg}
+\caption*{$w$ with D1 using Semi Implicit}
+\label{w_D1_SI}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_w_1_GO.jpg}
+\caption*{$w$ with D1 using Godunov operator-splitting}
+\label{w_D1_GO}
+\end{subfigure}
+\begin{subfigure}{0.3\textwidth}
+\includegraphics[width =7cm]{./D1_w_1_OS.jpg}
+\caption*{$w$ with D1 using Quasi-implicit operator-splitting}
+\label{w_D1_OS}
+\end{subfigure}
+\end{figure}
+ \restoregeometry
+From these graphics we can see that the convergence is practically the same and so the three methods are equivalent.
+
+\subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
+Referring to the section \ref{unique}, we have explained two different methods for imposing uniqueness of the cellular potentials.
+The main one imposes the value of the function in a specific point and it's the one we have used for the previous error analysis, but there is another one where imposes the mean value at zero.
+Now we compare their results:
+\newgeometry{a4paper,top=2cm,bottom=2cm,left=0cm,right=1cm} 
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Vm_1.jpg}
+\caption*{$V_m$ with D1 imposing the function in a specific point}
+\label{Vm_1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./D1_Vm_2.jpg}
+\caption*{$V_m$ with D1 imposing the zero mean}
+\label{Vm_2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Phii_1.jpg}
+\caption*{$\phi_i$ with D1 imposing the function in a specific point}
+\label{Phii_1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./D1_Phii_2.jpg}
+\caption*{$\phi_i$ with D1 imposing the zero mean}
+\label{Phii_2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_Phie_1.jpg}
+\caption*{$\phi_e$ with D1 imposing the function in a specific point}
+\label{Phie_1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./D1_Phie_2.jpg}
+\caption*{$\phi_e$ with D1 imposing the zero mean}
+\label{Phie_2}
+\end{subfigure}
+\end{figure}
+\begin{figure}[h]
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width = 11cm]{./D1_w_1.jpg}
+\caption*{$w$ with D1 imposing the function in a specific point}
+\label{w_1}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+\includegraphics[width =11cm]{./D1_w_2.jpg}
+\caption*{$w$ with D1 imposing the zero mean}
+\label{w_2}
+\end{subfigure}
+\end{figure}
+\restoregeometry
     \newpage
     \printbibliography
 
