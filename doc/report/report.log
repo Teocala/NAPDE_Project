@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  15 AUG 2021 12:59
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  15 AUG 2021 15:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1621,8 +1621,16 @@ Overfull \hbox (2.42162pt too wide) in paragraph at lines 1573--1593
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[39 <./D1_w_1_GO.jpg> <./D1_w_1_OS.jpg> <./D1_Vm_2.jpg> <./D1_Phii_2.jpg>]
-[40 <./D1_Phie_2.jpg> <./D1_w_2.jpg>] [41] (./report.aux)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[39 <./D1_w_1_GO.jpg> <./D1_w_1_OS.jpg> <./D1_Vm_2.jpg>]
+Underfull \hbox (badness 10000) in paragraph at lines 1596--1598
+
+ []
+
+[40 <./D1_Phii_2.jpg> <./D1_Phie_2.jpg> <./D1_w_2.jpg>] [41] [42] [43]
+(./report.aux)
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
@@ -1677,10 +1685,10 @@ msfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on report.pdf (42 pages, 5198821 bytes).
+Output written on report.pdf (44 pages, 5200449 bytes).
 PDF statistics:
- 964 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
+ 971 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

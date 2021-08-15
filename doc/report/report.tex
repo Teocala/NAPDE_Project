@@ -1544,7 +1544,7 @@ In section \ref{temporal_discretization} three methods for the time discretizati
 \subsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to the section \ref{unique}, we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second one imposes the mean value at zero.
-We now compare their goodness:
+We now compare their goodness for our simple test case:
 \begin{figure}[h]
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 8cm]{./D1_Vm_1.jpg}
@@ -1591,6 +1591,14 @@ We now compare their goodness:
 \label{w_2}
 \end{subfigure}
 \end{figure}
+
+\newpage
+\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results even if not identical (in particular, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in section \ref{uniqueness_results}, problems that does not imply very ill-conditioned systems, can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may be not solvable because of singularities. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.
+
+
+
+
     \newpage ~\newpage
     \printbibliography
 
