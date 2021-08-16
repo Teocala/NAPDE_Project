@@ -86,7 +86,7 @@ citestyle=numeric,
     %% ABSTRACT
     \section{Introduction}
     The aim of this project is to study and implement a suitable numerical scheme for the approximate solutions of the \emph{Bidomain Problem}, a well-known system of non-linear partial differential equations that has been developed in the context of the modelling of electrophysiology of human heart. \\
-    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and thus convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios, as a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
+    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and thus convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
@@ -117,8 +117,7 @@ citestyle=numeric,
     \end{figure}
     
     \noindent The general formulation is the following: \vspace{3mm}
-    \begin{mycapequ}[!ht]
-    \caption{Bidomain model}
+    \begin{problem}[Bidomain model]
     Find $\phi_i$ and $\phi_e$ such that:
 	\begin{equation*}
 	\begin{cases}
@@ -128,7 +127,7 @@ citestyle=numeric,
 	-\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_e \nabla \phi_e) - \chi_m I_{ion} = -I_e^{ext}    & \text{in } \Omega_{mus} \cross (0,T].
 	\end{cases}
 	\end{equation*}
-	\end{mycapequ}
+	\end{problem}
 	\vspace{3mm}
 	
 	where:
@@ -144,10 +143,9 @@ citestyle=numeric,
     
     \vspace{4mm}
     \noindent Actually, this system is not complete since it misses boundary and initial conditions and a suitable model for $I_{ion}$. Initial conditions and Neumann boundary conditions for $\phi_i$ and $\phi_e$ are then imposed. For the definition of $I_{ion}$, instead, a \emph{reduced ionic model} is chosen, in particular the \emph{FitzHugh-Nagumo model}. Summing up:\newpage
-        \begin{mycapequ}[!ht]
-      	\caption{Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions}
+        \begin{problem}\label{def1}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]
       	Find $\phi_i$ and $\phi_e$ such that:
-    	\begin{equation}\label{def1}
+    	\begin{equation*}
     	\begin{cases}
     	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i) + \chi_m I_{ion}(V_m,w) = I_i^{ext}    & \text{in } \Omega_{mus} \cross (0,T],
     	\\
@@ -163,8 +161,8 @@ citestyle=numeric,
     	\\
     	\text{Initial conditions for } \phi_i,\phi_e, w & \text{in } \Omega_{mus}\cross\{t=0\}.
     	\end{cases}
-    	\end{equation}
-    	\end{mycapequ}
+    	\end{equation*}
+    	\end{problem}
     \vspace{3mm}
     where:
     \begin{itemize}[label=\textendash]
@@ -175,10 +173,10 @@ citestyle=numeric,
     \end{itemize}
 
     \vspace{4mm}
-    \noindent From now on, the system of equations given by (\ref{def1}) will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
+    \noindent From now on, the system of equations given by Problem (\ref{def1}) will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
 
-    \subsection{A short discussion about the state of the art (?)}\label{past}
+    \subsection{State of the art}\label{past}
     As we have already introduced, our project initially aimed to continue and improve the work of a previous project \cite{marta}. \\
     Results obtained using unitary parameters, namely $\chi_m =\Sigma_i= \Sigma_e= C_m= k = \epsilon= \gamma= a=1$, were actually quite satisfactory. On the other hand, the choice of more realistic/experimental values for the parameters (that are often very big or very small) caused bad consequences to the accuracy of the schemes or even to their stability. In particular, we observed that the choice of $C_m \approx 10^{-2}$ highly compromised the stability of the numerical schemes (fact that was already noticed in \cite{andreotti}).
     This issue heavily limits the use of the \textsc{Matlab} code for research and/or experimental simulations as it guarantees convergence to the right solution only in few and non-realistic problems.  \\
@@ -203,7 +201,7 @@ citestyle=numeric,
 
     \section{Semi-discrete Discontinuos Galerkin formulation}
     \subsection{Discontinuos Galerkin discrete formulation}
-    Starting from the strong form given by the system (\ref{def1}), the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
+    Starting from the strong form given by the Problem (\ref{def1}), the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
     Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ on the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces, respectively. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $k \geq i$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
     \begin{problem}[DG weak formulation]
     For any $t\in[0,T]$ find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
@@ -227,8 +225,8 @@ citestyle=numeric,
     \vspace{3mm}
     \begin{equation}\label{forgamma}
     \begin{aligned}
-    \bullet& \quad a_k(\phi_k^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_k \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_k \nabla_h \phi_k^h \}\} \cdot [[v_h]] d\sigma}+\\
-    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_k \nabla_h v_h\}\} \cdot [[\phi_k^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_k^h]] \cdot [[v_h]] d\sigma} \qquad k=i,e,\\
+    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
+    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
     \newline
     \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h dw}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
     \newline
@@ -260,18 +258,18 @@ citestyle=numeric,
  Then, we introduce the matrices:
  \begin{equation*}
 \begin{rcases}
-(V_k)_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \Sigma_k \nabla \varphi_i,
-\\ (I_k^T)_{ij} &= \sum_{F \in F_h^I} \int_{F} \{\{\Sigma_k \nabla\varphi_j\}\} \cdot [[\varphi_i]],
-\\ (I_k)_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_k \nabla \varphi_i\}\},
-\\(S_k)_{i,j} &= \sum_{F \in F_h^I} \int_{F} \gamma_k[[\varphi_j]] \cdot [[\varphi_i]],
+(V_l)_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \Sigma_l \nabla \varphi_i,
+\\ (I_l^T)_{ij} &= \sum_{F \in F_h^I} \int_{F} \{\{\Sigma_l \nabla\varphi_j\}\} \cdot [[\varphi_i]],
+\\ (I_l)_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_l \nabla \varphi_i\}\},
+\\(S_l)_{i,j} &= \sum_{F \in F_h^I} \int_{F} \Gamma_l[[\varphi_j]] \cdot [[\varphi_i]],
 \end{rcases}
 \begin{gathered}
-\quad A_k = (V_k -I_k^T - \theta I_k + S_k)\\
-k=i,e, \\
+\quad A_l = (V_l -I_l^T - \theta I_l + S_l)\\
+l=i,e, \\
 \end{gathered}
 \end{equation*}
 \begin{equation*}
-\gamma_k\vert_F = (n_F^T \, \Sigma_k \, n_F) \,\gamma, \quad n_F \text{ outward normal vector of F},
+\Gamma_l\vert_F = (n_F^T \, \Sigma_l \, n_F) \,\Gamma, \quad n_F \text{ outward normal vector of F},
 \end{equation*}
 We also define:
 \begin{equation*}
@@ -287,7 +285,7 @@ M_{ij} = \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}}\varphi_j\varphi_i \qqua
 C(u_h)_{ij} =  \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non-linear matrix}},
 \end{equation*}
 \begin{equation*}
-\bm{F_k}=\begin{bmatrix} F_{i,k} \\ F_{e,k} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_i\varphi_k \\ - \int_{\Omega} I_e^{ext}\varphi_k - \sum_{F \in F_h^B} \int_F b_e\varphi_k \end{bmatrix}.
+\bm{F_l}=\begin{bmatrix} F_{i,l} \\ F_{e,l} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_l - \sum_{F \in F_h^B} \int_F b_i\varphi_l \\ - \int_{\Omega} I_e^{ext}\varphi_l - \sum_{F \in F_h^B} \int_F b_e\varphi_l \end{bmatrix}.
 \end{equation*}
 \vspace{3mm} \\
 Therefore, our semi-discrete algebraic formulation is as follows: \vspace{3mm}
@@ -403,7 +401,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \end{definition}
     
     \vspace{5mm}
-    \noindent As we have anticipated the following result holds, cf.  (\cite{sherwin})
+    \noindent As we have anticipated the following result holds, cf.  \cite{sherwin}.
     \begin{prop}\label{l2_ortho}
     The Dubiner basis is orthonormal in $L^2(\hat{K})$ $\forall p \geq 0$:
     \begin{equation*}
@@ -437,7 +435,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \subsection{Implementation}\label{subsection_implementation}
     Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis functions.\\
-    As explained in the Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$), and so our first goal was the implementation of some functions to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
+    As explained in the Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
     \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
@@ -452,7 +450,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
 	
-	\subsubsection{\texttt{dubiner\_to\_fem.m}}
+	\subsubsection{From Dubiner Basis to FEM Basis}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i),
@@ -482,7 +480,7 @@ for ie = 1:femregion.ne
    end
 end
 	\end{lstlisting} \vspace{4mm}
-	\subsubsection{\texttt{fem\_to\_dubiner.m}}
+	\subsubsection{From FEM Basis to Dubiner Basis}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
@@ -591,7 +589,7 @@ Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,
 \begin{equation*}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{n+1}=\epsilon M V_m^n+\frac{M}{\Delta t} w^n, \vspace{2mm} \\
-(B+C_{nl}(\Phi^n)) \Phi^{n+1}=r^{n+1}.
+(B+C_{nl}(\bm{\Phi^n})) \bm{\Phi^{n+1}}=r^{n+1}.
 \end{cases}
 \end{equation*} 
 \end{problem}\vspace{4mm}
@@ -651,7 +649,7 @@ Two operator-splitting methods have been implemented, the first is of \emph{Godu
 \begin{equation}\label{Godunov}
 \begin{cases}
 \chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n + A_i \phi_i^{n+1}= F_i^{n+1}, \vspace{2mm}\\
-\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n - A_e \Phi_e^{n+1}= -F_e^{n+1}, \vspace{2mm}\\
+\chi_m C_m M\frac{V_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n - A_e \phi_e^{n+1}= -F_e^{n+1}, \vspace{2mm}\\
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta t V_m^n.
 \end{cases}
 \end{equation} \vspace{3mm} \\
@@ -768,7 +766,7 @@ w^{n+1} = \frac{w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{1+\epsilon 
 \vspace{4mm}
 The final system becomes: \\
 \begin{problem} [Quasi-implicit operator-splitting discretized system]
-Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that:
+Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that:
 \begin{equation*}
 \quad
 \begin{cases}
@@ -818,7 +816,7 @@ end
 \newpage
 \section{About uniqueness of the potentials}\label{unique}
 \subsection{Analytical concepts}
-\noindent Observing for a moment the Bidomain problem analytical formulation (Definition (\ref{def1})), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
+\noindent Observing for a moment the Bidomain problem analytical formulation (Problem (\ref{def1})), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
 \begin{equation}\label{phi_uniqueness}
 \begin{gathered}
 \phi_i,\phi_e \text{ classical solutions of Bidomain} \Rightarrow \phi_i+\varphi,\,\phi_e+\varphi \text{ are solutions as well } \\
@@ -831,7 +829,7 @@ end
 
 \noindent Moreover, we can give this simple result to show that the solutions of the form of equation (\ref{phi_uniqueness}) are also the only admissible:\\
 \begin{theo}
-	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Definition (\ref{def1})), the solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
+	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Problem (\ref{def1})), the solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
 \end{theo}
 
 \begin{proof}
@@ -856,7 +854,7 @@ end
 	\Sigma_i\nabla \phi_i^2 \cdot n = b_i   & \text{on } \partial \Omega_{mus} \cross (0,T].
 	\end{cases}
 	\end{equation*}\\
-	Subtracting:
+	Subtracting the first two equations and the second two we obtain:
 	\begin{equation*}
 	\begin{cases}
 	- \nabla \cdot (\Sigma_i \nabla \varphi) = 0    & \text{in } \Omega_{mus} \cross (0,T],\vspace{2mm}
@@ -864,7 +862,7 @@ end
 	\Sigma_i\nabla \varphi \cdot n = 0   & \text{on } \partial \Omega_{mus} \cross (0,T].
 	\end{cases}
 	\end{equation*} \\
-	That is a classical \emph{Laplace problem} with homogeneous Neumann boundary conditions. From theory \cite{salsa}, we know that the solution set is composed by all constant terms (remember that $\Sigma_i$ is positive definite). However, we must pay attention to the fact that $\varphi$ is a time-dependent function, even if time does not compare in the system. Thus, we can state:
+	That is a classical \emph{Laplace problem} with homogeneous Neumann boundary conditions. From \cite{salsa}, we know that the solution set is composed by all constant terms (remember that $\Sigma_i$ is positive). However, we must pay attention to the fact that $\varphi$ is a time-dependent function, even if time does not compare in the system. Thus, we can state:
 	
 	\begin{equation*}
 	\exists \tilde{\varphi}:[0,T]\rightarrow \mathbb{R} \text{ such that } \varphi(x,t) = \tilde{\varphi}(t) \quad \forall x \in \Omega,\forall t \in [0,T].
@@ -883,7 +881,7 @@ For what concerns the regularity of $\varphi$, we can certainly state that, as a
 \noindent We can conclude this analytical digression with an accomplished necessary and sufficient condition for the potentials solutions. \vspace{4mm}
 
 \begin{corollary}
-Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of Definition (\ref{def1}) (for a certain $w$). The couple ($\tilde{\phi}_i,\tilde{\phi}_e$) of sufficiently regular real functions defined in $\Omega\cross[0,T]$ is another couple solution if and only if both $\tilde{\phi}_i,\tilde{\phi}_e$ differ respectively from $\phi_i,\phi_e$ for a time-dependent function $\varphi$ that belongs to the union of the regularity classes of the previous functions if restricted to time variable.
+Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of Problem (\ref{def1}) (for a certain $w$). The couple ($\tilde{\phi}_i,\tilde{\phi}_e$) of sufficiently regular real functions defined in $\Omega\cross[0,T]$ is another couple solution if and only if both $\tilde{\phi}_i,\tilde{\phi}_e$ differ respectively from $\phi_i,\phi_e$ for a time-dependent function $\varphi$ that belongs to the union of the regularity classes of the previous functions if restricted to time variable.
 \end{corollary}
 
 \begin{proof}
@@ -973,7 +971,7 @@ The very advantage of this procedure is the conservation of $A$ symmetry. As we 
 Moreover, the value $c$ can be freely chosen, for instance from the exact solution (when error analysis needs to be executed) or a conventional fixed value as zero. \\ 
 
 \noindent On the other hand, there are two main disadvantages. First of all, the system first line information has been deleted during this procedure. However, if the mesh is composed by many elements, this information is not essential and the solution behavior is practically the same as this information were provided. \\
-Secondly, if the system is hugely ill-conditioned or even non-solvable (this is the case when we have homogeneous boundary conditions and/or homogeneous forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and that is the reason why we implemented the more complicated mean value imposition strategy.\\
+Secondly, if the system is hugely ill-conditioned or even non-solvable (determinant may approximate the zero value, when we have homogeneous boundary conditions and/or homogeneous forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and that is the reason why we implemented the more complicated mean value imposition strategy.\\
 
 \noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} that takes the $c$ value from the exact solution: \\
 
@@ -1085,7 +1083,7 @@ A(1,1) = 1;
 \end{proof}
 
 \begin{remark}
-	The minimization of the functional $J$ for the Laplace problem is a known fact. However, in this case where the sole Laplace-Neumann problem is not well-posed, this result was not trivial and thus it needed a check. Indeed, it is noteworthy to underline that minimization property holds but in a slightly different way: $u$ is not the absolute minimum point, every $u+x, x\in\mathbb{R}$ reaches the same minimum.
+	The minimization of the functional $J$ for the Laplace problem is a known fact. However, in this case where the sole Laplace-Neumann problem is not well-posed, this result was not trivial and thus it needed a check. Indeed, it is noteworthy to underline that minimization property holds but in a slightly different way: $u$ is not the absolute minimum point, every $u+\xi, \xi\in\mathbb{R}$ reaches the same minimum.
 \end{remark}\vspace{4mm}
 
 \noindent Previous well-posedness and minimization results implies that, if $u$ solves Problem (\ref{reference_problem}), then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform Problem (\ref{reference_problem}) in another formulation:\\
@@ -1126,7 +1124,7 @@ A(1,1) = 1;
 
 \noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved.  \newpage
 \begin{lemma} \label{lemma_lagrange}
-	Suppose previous assumptions on data are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem (\ref{reference_problem_3}). Moreover, $\lambda=0$ and $u$ is unique. \\
+	Suppose that the assumptions on data of the Problem (\ref{reference_problem}) are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem (\ref{reference_problem_3}). Moreover, $\lambda=0$ and $u$ is unique. \\
 \end{lemma}
 \begin{proof}
 	For what concerns existence, we can immediately realize that the solution $u$ of Problem (\ref{reference_problem}) solves the Problem (\ref{reference_problem_3}) with $\lambda=0$. Then the existence property holds because existence of Problem (\ref{reference_problem}) has already been proved. \\
@@ -1268,18 +1266,12 @@ b = [b;0];
 \end{itemize}
 \vspace{6mm}
 
-\subsubsection{Results} \label{uniqueness_results}
+\subsubsection{Final remarks} \label{uniqueness_results}
 \noindent As already discussed, the mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
 \begin{itemize}
 	\item the coefficient imposition for error analysis simulations (as boundary conditions and forcing terms were never homogeneous)
 	\item the mean value imposition for realistic simulations (as boundary conditions and forcing terms were essentially homogeneous)
 \end{itemize}\vspace{2mm}
-
-\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system. For what concerns our two initial objectives, we achieved both them since:
-\begin{itemize}
-	\item Error analysis studies demonstrated that $\phi_i,\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do.
-	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
-\end{itemize} 
 
 \vspace{6mm}
 
@@ -1590,8 +1582,12 @@ We now compare their goodness for our simple test case:
 
 \newpage
 \noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results even if not identical (in particular, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems, can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
-On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may be not solvable because of singularities. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.
-
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may be not solvable because of singularities. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\
+\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system. For what concerns our two initial objectives, we achieved both them since:
+\begin{itemize}
+	\item Error analysis studies demonstrated that $\phi_i,\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do.
+	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
+\end{itemize} 
 
 
 
