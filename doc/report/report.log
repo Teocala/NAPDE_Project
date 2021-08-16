@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.7.6)  16 AUG 2021 16:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  16 AUG 2021 22:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -323,7 +323,7 @@ Package newfloat Info: float type `mycapequ'=8 on input line 22.
 \c@submycapequ=\count284
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
-Package: biblatex 2020/08/23 v3.15a programmable bibliographies (PK/MW)
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -404,7 +404,6 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@parenlevel@foot=\count325
 \blx@sectionciteorder@0=\count326
 \blx@entrysetcounter=\count327
-\blx@biblioinstance=\count328
 \labelnumberwidth=\skip60
 \labelalphawidth=\skip61
 \biblabelsep=\skip62
@@ -416,87 +415,87 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read3
 \blx@bcfout=\write3
 \blx@langwohyphens=\language5
-\c@mincomprange=\count329
-\c@maxcomprange=\count330
-\c@mincompwidth=\count331
+\c@mincomprange=\count328
+\c@maxcomprange=\count329
+\c@mincompwidth=\count330
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
-File: blx-dm.def 2020/08/23 v3.15a biblatex localization (PK/MW)
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count332
-\c@savedafterword=\count333
-\c@annotator=\count334
-\c@savedannotator=\count335
-\c@author=\count336
-\c@savedauthor=\count337
-\c@bookauthor=\count338
-\c@savedbookauthor=\count339
-\c@commentator=\count340
-\c@savedcommentator=\count341
-\c@editor=\count342
-\c@savededitor=\count343
-\c@editora=\count344
-\c@savededitora=\count345
-\c@editorb=\count346
-\c@savededitorb=\count347
-\c@editorc=\count348
-\c@savededitorc=\count349
-\c@foreword=\count350
-\c@savedforeword=\count351
-\c@holder=\count352
-\c@savedholder=\count353
-\c@introduction=\count354
-\c@savedintroduction=\count355
-\c@namea=\count356
-\c@savednamea=\count357
-\c@nameb=\count358
-\c@savednameb=\count359
-\c@namec=\count360
-\c@savednamec=\count361
-\c@translator=\count362
-\c@savedtranslator=\count363
-\c@shortauthor=\count364
-\c@savedshortauthor=\count365
-\c@shorteditor=\count366
-\c@savedshorteditor=\count367
-\c@labelname=\count368
-\c@savedlabelname=\count369
-\c@institution=\count370
-\c@savedinstitution=\count371
-\c@lista=\count372
-\c@savedlista=\count373
-\c@listb=\count374
-\c@savedlistb=\count375
-\c@listc=\count376
-\c@savedlistc=\count377
-\c@listd=\count378
-\c@savedlistd=\count379
-\c@liste=\count380
-\c@savedliste=\count381
-\c@listf=\count382
-\c@savedlistf=\count383
-\c@location=\count384
-\c@savedlocation=\count385
-\c@organization=\count386
-\c@savedorganization=\count387
-\c@origlocation=\count388
-\c@savedoriglocation=\count389
-\c@origpublisher=\count390
-\c@savedorigpublisher=\count391
-\c@publisher=\count392
-\c@savedpublisher=\count393
-\c@language=\count394
-\c@savedlanguage=\count395
-\c@origlanguage=\count396
-\c@savedoriglanguage=\count397
-\c@pageref=\count398
-\c@savedpageref=\count399
+\c@afterword=\count331
+\c@savedafterword=\count332
+\c@annotator=\count333
+\c@savedannotator=\count334
+\c@author=\count335
+\c@savedauthor=\count336
+\c@bookauthor=\count337
+\c@savedbookauthor=\count338
+\c@commentator=\count339
+\c@savedcommentator=\count340
+\c@editor=\count341
+\c@savededitor=\count342
+\c@editora=\count343
+\c@savededitora=\count344
+\c@editorb=\count345
+\c@savededitorb=\count346
+\c@editorc=\count347
+\c@savededitorc=\count348
+\c@foreword=\count349
+\c@savedforeword=\count350
+\c@holder=\count351
+\c@savedholder=\count352
+\c@introduction=\count353
+\c@savedintroduction=\count354
+\c@namea=\count355
+\c@savednamea=\count356
+\c@nameb=\count357
+\c@savednameb=\count358
+\c@namec=\count359
+\c@savednamec=\count360
+\c@translator=\count361
+\c@savedtranslator=\count362
+\c@shortauthor=\count363
+\c@savedshortauthor=\count364
+\c@shorteditor=\count365
+\c@savedshorteditor=\count366
+\c@labelname=\count367
+\c@savedlabelname=\count368
+\c@institution=\count369
+\c@savedinstitution=\count370
+\c@lista=\count371
+\c@savedlista=\count372
+\c@listb=\count373
+\c@savedlistb=\count374
+\c@listc=\count375
+\c@savedlistc=\count376
+\c@listd=\count377
+\c@savedlistd=\count378
+\c@liste=\count379
+\c@savedliste=\count380
+\c@listf=\count381
+\c@savedlistf=\count382
+\c@location=\count383
+\c@savedlocation=\count384
+\c@organization=\count385
+\c@savedorganization=\count386
+\c@origlocation=\count387
+\c@savedoriglocation=\count388
+\c@origpublisher=\count389
+\c@savedorigpublisher=\count390
+\c@publisher=\count391
+\c@savedpublisher=\count392
+\c@language=\count393
+\c@savedlanguage=\count394
+\c@origlanguage=\count395
+\c@savedoriglanguage=\count396
+\c@pageref=\count397
+\c@savedpageref=\count398
 \shorthandwidth=\skip68
 \shortjournalwidth=\skip69
 \shortserieswidth=\skip70
@@ -515,55 +514,45 @@ Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
-File: blx-compat.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
-)
-Package biblatex Info: expl3
-(biblatex)             2020-07-17 L3 programming layer (loader) 
-(biblatex)             is new enough (at least 2020/04/06),
-(biblatex)             setting 'casechanger=expl3'.
-Package biblatex Info: Trying to load expl3 case changing code...
-Package biblatex Info: ... file 'blx-case-expl3.def' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.def
-File: blx-case-expl3 2020/08/23 v3.15a expl3 case changing code for biblatex
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
-File: biblatex.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
-\c@textcitecount=\count400
-\c@textcitetotal=\count401
-\c@textcitemaxnames=\count402
-\c@biburlbigbreakpenalty=\count403
-\c@biburlbreakpenalty=\count404
-\c@biburlnumpenalty=\count405
-\c@biburlucpenalty=\count406
-\c@biburllcpenalty=\count407
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count399
+\c@textcitetotal=\count400
+\c@textcitemaxnames=\count401
+\c@biburlbigbreakpenalty=\count402
+\c@biburlbreakpenalty=\count403
+\c@biburlnumpenalty=\count404
+\c@biburlucpenalty=\count405
+\c@biburllcpenalty=\count406
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count408
+\c@smartand=\count407
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
+File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
-File: standard.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count409
-\c@bbx:relatedtotal=\count410
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count408
+\c@bbx:relatedtotal=\count409
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2020/08/23 v3.15a biblatex citation style (PK/MW)
+File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -584,12 +573,12 @@ File: biblatex.cfg
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count411
-\csq@gtype=\count412
-\csq@glevel=\count413
-\csq@qlevel=\count414
-\csq@maxlvl=\count415
-\csq@tshold=\count416
+\csq@reset=\count410
+\csq@gtype=\count411
+\csq@glevel=\count412
+\csq@qlevel=\count413
+\csq@maxlvl=\count414
+\csq@tshold=\count415
 \csq@ltx@everypar=\toks33
 
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
@@ -603,12 +592,12 @@ File: csquotes.cfg
 )
 Package csquotes Info: Enabling multilingual quotes.
 )
-\c@definition=\count417
-\c@theo=\count418
-\c@prop=\count419
-\c@problem=\count420
-\c@corollary=\count421
-\c@lemma=\count422
+\c@definition=\count416
+\c@theo=\count417
+\c@prop=\count418
+\c@problem=\count419
+\c@corollary=\count420
+\c@lemma=\count421
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./report.aux)
@@ -664,16 +653,16 @@ LaTeX Font Info:    ... okay on input line 48.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count423
+\scratchcounter=\count422
 \scratchdimen=\dimen177
 \scratchbox=\box52
-\nofMPsegments=\count424
-\nofMParguments=\count425
+\nofMPsegments=\count423
+\nofMParguments=\count424
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count426
+\MPscratchCnt=\count425
 \MPscratchDim=\dimen178
-\MPnumerator=\count427
-\makeMPintoPDFobject=\count428
+\MPnumerator=\count426
+\makeMPintoPDFobject=\count427
 \everyMPtoPDFconversion=\toks35
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -698,12 +687,12 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count429
+\c@lstlisting=\count428
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-File: english.lbx 2020/08/23 v3.15a biblatex localization (PK/MW)
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
 )
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
@@ -1676,6 +1665,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 1584--1588
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 1584--1588
+
+ []
+
 [40 <./D1_Phii_2.jpg> <./D1_Phie_2.jpg> <./D1_w_2.jpg>] [41] [42]
 
 Package caption Warning: Unused \captionsetup[mycapequ] on input line 23.
@@ -1687,53 +1681,53 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17750 strings out of 482843
- 298835 string characters out of 5956406
- 999003 words of memory out of 5000000
- 32804 multiletter control sequences out of 15000+600000
+ 17582 strings out of 482843
+ 293962 string characters out of 5956406
+ 969935 words of memory out of 5000000
+ 32639 multiletter control sequences out of 15000+600000
  567203 words of font info for 108 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,23n,45p,1447b,2189s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.
-600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1
-000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/t
-crm1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecti1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecrm1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ecbx1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecrm0600.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/
-ljfour/jknappen/ec/tcrm1095.600pk> </home/federica/.texlive2020/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/federica/.texlive2020/texmf-var/f
-onts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/federica/.texlive2020/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk> </home/federica/.texlive2020/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/federica/.texlive2020
-/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/federica/.texlive
-2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/federica/.tex
-live2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/federica/
-.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/feder
-ica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/f
-ederica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1440.600pk> </ho
-me/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> 
-</home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx2488.600
-pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1095
-.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sh
-are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (44 pages, 5188765 bytes).
+ </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm0800.60
+0pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1000.
+600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm100
+0.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1
+000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecr
+m1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+cbx1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecrm0600.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
+ec/tcrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm0900.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/tcrm0800.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecti1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
+/jknappen/ec/ectt1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
+four/jknappen/ec/ecbx1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
+k/ljfour/jknappen/ec/eccc1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts
+/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf-var
+/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symb
+ols/msbm10.pfb>
+Output written on report.pdf (44 pages, 5188681 bytes).
 PDF statistics:
  971 PDF objects out of 1000 (max. 8388607)
  239 compressed objects within 3 object streams

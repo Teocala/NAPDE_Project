@@ -9,9 +9,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3}State of the art}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Semi-discrete Discontinuos Galerkin formulation}{7}%
+\contentsline {section}{\numberline {2}Semi-discrete Discontinuous Galerkin formulation}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Discontinuos Galerkin discrete formulation}{7}%
+\contentsline {subsection}{\numberline {2.1}Discontinuous Galerkin discrete formulation}{7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Algebraic formulation}{8}%
 \defcounter {refsection}{0}\relax 

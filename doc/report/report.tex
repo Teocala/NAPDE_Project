@@ -199,8 +199,8 @@ citestyle=numeric,
 
 \newpage
 
-    \section{Semi-discrete Discontinuos Galerkin formulation}
-    \subsection{Discontinuos Galerkin discrete formulation}
+    \section{Semi-discrete Discontinuous Galerkin formulation}
+    \subsection{Discontinuous Galerkin discrete formulation}
     Starting from the strong form given by the Problem (\ref{def1}), the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
     Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ on the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces, respectively. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $k \geq i$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
     \begin{problem}[DG weak formulation]
@@ -971,7 +971,7 @@ The very advantage of this procedure is the conservation of $A$ symmetry. As we 
 Moreover, the value $c$ can be freely chosen, for instance from the exact solution (when error analysis needs to be executed) or a conventional fixed value as zero. \\ 
 
 \noindent On the other hand, there are two main disadvantages. First of all, the system first line information has been deleted during this procedure. However, if the mesh is composed by many elements, this information is not essential and the solution behavior is practically the same as this information were provided. \\
-Secondly, if the system is hugely ill-conditioned or even non-solvable (determinant may approximate the zero value, when we have homogeneous boundary conditions and/or homogeneous forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and that is the reason why we implemented the more complicated mean value imposition strategy.\\
+Secondly, if the initial system is hugely ill-conditioned or even non-solvable (determinant could approximate the machine epsilon when we have homogeneous boundary conditions and/or no forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and that is the reason why we implemented the more complicated mean value imposition strategy.\\
 
 \noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} that takes the $c$ value from the exact solution: \\
 
@@ -1286,7 +1286,7 @@ Starting from some example problems, we provide now an experimental error analys
 \item $k=19.5$
 \item $\varepsilon=1.2$
 \item $\gamma=0.1$
-\item $a=13*10^{-3}$
+\item $a=13 \cdot 10^{-3}$
 \end{itemize}
 
 \noindent We initially consider as exact solutions $V_m(x,y,t)=sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ and $w(x,y,t)=\frac{\varepsilon}{\varepsilon \gamma-5} sin(2 \pi x) sin(2 \pi y) e^{-5 t}$, in a domain $\Omega=[0,1; 0,1]$ and time interval $(0,0.001]$. From these assumptions, we consequently obtain the suitable boundary conditions, initial conditions and forcing terms.
@@ -1398,9 +1398,9 @@ If $1$ is chosen as polynomial order, these errors plots are given.
 \end{figure}
 
 \newpage
-\noindent Here, instead, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two basis. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM. Indeed, the differences are present only in the $L^2$ and $L^\infty$ errors and, moreover, these differences are eliminated when potentials subtract to get $V_m$. \\
+\noindent Here, instead, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two basis. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences are eliminated when potentials subtract to get $V_m$. \\
 The second unexpected result is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present for $D1-P1$: in the previous case, space errors were still too big and other causes of error negligible. \\ \\
-We then underline that these two unexpected effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section (\ref{imposition_section}). The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this effect happens, it means that space discrezitation errors are very small that, in general, is a good news. This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\ \\
+We then underline that these two unexpected effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section (\ref{imposition_section}). The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\ \\
 In conclusion, if we do not care so much about these two phenomena, plots show a second order for $H^1$ and $L^2$ errors and third order for $L^2$ and $L^\infty$ errors.
 \vspace{4mm}
 \subsubsection{P3-D3}
@@ -1441,7 +1441,7 @@ Finally, for polynomials of degree 3:
 \label{Phie_P3}
 \end{subfigure}
 \end{figure} \\ \\
-\noindent Here, we still find expected results except for the two phenomena already discussed in the Section (\ref{P2-D2}). However, because of the third order precision, space errors are smaller and then these effects amplified. If we do not consider them, we still get expected errors orders that are third for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$. \\ 
+\noindent Here, we still find expected results except for the two phenomena already discussed in Section (\ref{P2-D2}). However, because of the third order precision, space errors are smaller and then these effects amplified. If we do not consider them, we still get expected errors orders that are third for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$. \\ 
 \begin{figure}[h]
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 8cm]{./D3_w_1.jpg}
@@ -1581,11 +1581,11 @@ We now compare their goodness for our simple test case:
 \end{figure}
 
 \newpage
-\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results even if not identical (in particular, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems, can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
-On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may be not solvable because of singularities. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\
-\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system. For what concerns our two initial objectives, we achieved both them since:
+\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may even be not solvable because of a null, or almost null, determinant. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
+\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section (\ref{imposition_section})), we achieved both them since:
 \begin{itemize}
-	\item Error analysis studies demonstrated that $\phi_i,\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do.
+	\item Error analysis studies demonstrate that $\phi_i$ and $\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly defined.
 	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
 \end{itemize} 
 
