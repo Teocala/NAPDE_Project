@@ -9,9 +9,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {1.3}State of the art}{5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2}Semi-discrete Discontinuos Galerkin formulation}{7}%
+\contentsline {section}{\numberline {2}Semi-discrete Discontinuous Galerkin formulation}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.1}Discontinuos Galerkin discrete formulation}{7}%
+\contentsline {subsection}{\numberline {2.1}Discontinuous Galerkin discrete formulation}{7}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Algebraic formulation}{8}%
 \defcounter {refsection}{0}\relax 
@@ -80,3 +80,9 @@
 \contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{38}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{39}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {7}Realistic simulations}{41}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.1}First test-case}{42}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {7.2}Second test-case}{44}%
