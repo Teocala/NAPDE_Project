@@ -17,10 +17,10 @@
 \usepackage{subcaption}
 \usepackage{relsize}
 \usepackage{listings}
+\usepackage{array}
+\usepackage{caption}
 \captionsetup{compatibility=false}
 
-\DeclareCaptionType{mycapequ}[][List of equations]
-\captionsetup[mycapequ]{labelformat=empty}
 
 \usepackage[
 backend=biber,
@@ -1275,7 +1275,7 @@ b = [b;0];
 
 \vspace{6mm}
 
-\section{Error analysis results}
+\section{Error analysis results} \label{error_analysis}
 \subsection{Data}
 Starting from some example problems, we provide now an experimental error analysis that can show the efficacy and goodness of our numerical schemes. For all the simulations, the values to assign to constant parameters are the same proposed in \cite{bagnara} and used in \cite{andreotti} and \cite{marta}. Namely:
 \begin{itemize}
@@ -1582,12 +1582,209 @@ We now compare their goodness for our simple test case:
 
 \newpage
 \noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
-On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may even be not solvable because of a null, or almost null, determinant. These problems will be considered in the next section about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, there could be huge differences for the solution or the system may even be not solvable because of a null, or almost null, determinant. These problems will be considered in Section (\ref{real_sim}) about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section (\ref{imposition_section})), we achieved both them since:
 \begin{itemize}
 	\item Error analysis studies demonstrate that $\phi_i$ and $\phi_e$ potentials converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly defined.
 	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
-\end{itemize} 
+\end{itemize}
+
+\section{Realistic simulations} \label{real_sim}
+Our final goal is to exploit strategies and tools presented in the previous sections to run simulations that can get closer to the cardiac electrophysiology phenomena. It is noteworthy to warn that no exact solutions are known for these kinds of problems and what we care about is only visual. Moreover, we warn that there are some limitations to the complete resemblance to the realistic phenomena, for instance the domain shape. Our general choices for all the test-cases are the following:
+
+\begin{center}
+	\captionof{table}{Parameters for pseudo-realistic simulations}
+	\begin{tabular}{|c|c|} 
+		\hline 
+		Domain & $\begin{bmatrix} -0.025 & 0.035 \\ -0.025 & 0.035\end{bmatrix}$ \\
+		\hline
+		Temporal scheme & Semi-implicit \\
+		\hline
+		Polynomials space & D1 \\
+		\hline
+		$dt$ & 0.0001 \\
+		\hline
+		$nREF$ & 5 \\ 
+		\hline
+		Initial condition for $V_m$ & 0 \\
+		\hline
+		Initial condition for $w$ & 0 \\
+		\hline
+		$I_i^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		\hline
+		$I_e^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		\hline
+		$b_i$ & 0 \\
+		\hline
+		$b_e$ & 0 \\
+		\hline 
+		$\chi_m$ & $10^5$ \\
+		\hline 
+		$C_m$ & $10^{-2}$ \\
+		\hline
+		$\Sigma_i$ & $\begin{bmatrix} 0.34 & 0 \\ 0 & 0.06\end{bmatrix}$ \\
+		\hline
+		$\Sigma_e$ & $\begin{bmatrix} 0.62 & 0 \\ 0 & 0.24 \end{bmatrix}$ \\
+		\hline 
+	\end{tabular}
+\end{center}
+ \vspace{4mm}
+\noindent Where $I$ is a positive value to be chosen depending on the context. We remind that the mean value imposition is always chosen for realistic simulations. Moreover, we observe that the main differences with the previous parameters are the square domain that is no more unitary and the anisotropy of the diffusion tensors. The latter choice is motivated from the real utility of the \emph{Bidomain Model} if compared to the \emph{Monodomain Model}, where the two tensors are assumed to be equal or proportional. Parameters values are taken as usual from literature, especially from \cite{acta}. \\
+
+\noindent Physically, this setting represents a square section of the surface of the heart that is electrically isolated (homogeneous boundary conditions) and an external current that is applied in a central region for a limited interval of time. \\
+To conclude, observe that the compatibility condition for the existence of the solution is satisfied since both boundary conditions and external currents are the same in the intracellular and extracellular regions. \\
+
+\noindent For what concerns \emph{FitzHugh-Nagumo} parameters, there are no general values as for the previous ones. To generalize this aspect, we defined two different test-cases with two different sets of parameters, namely:
+
+\begin{center}
+	\captionof{table}{FitzHugh-Nagumo Parameters for pseudo-realistic simulations}
+	\begin{tabular}{|c|c|c|} 
+		\hline 
+		 & Test-case 1 & Test-case 2 \\
+		\hline \hline
+		$k$ & $19.5 $ & 1 \\
+		\hline
+		$\epsilon$ & $1.2$ & $0.2232$ \\ 
+		\hline
+		$\gamma$ & $0.1$ & $4.0322$ \\
+		\hline
+		$a$ & $13\cdot 10^{-3}$ & 0.004 \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\vspace{4mm}
+\noindent Basically, the first test-case comes from the values already adopted for Section (\ref{error_analysis}) and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. On the other hand, second test-case comes from \cite{mauricio}.
+
+\subsection{First test-case}
+For both the test-cases, we aim to show two different situations depending on the external current intensity: firstly, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up. Secondly, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion. Several simulations have proved that:
+\begin{itemize}
+	\item $I = 500 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
+	\item $I = 600 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
+\end{itemize}
+
+\noindent Visual results are the following:
+\newpage
+\begin{figure}[h] \caption{Test-case 1, missed activation ($I=500 \cdot 10^3$)}
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-1/002.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-1/004.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-1/006.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-1/008.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-1/010.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-1/012.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-1/014.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-1/016.jpg}
+	\end{subfigure}
+\end{figure}
+\newpage
+\begin{figure}[h] \caption{Test-case 1, activation ($I = 600 \cdot 10^3$)}
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-2/002.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-2/004.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-2/006.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-2/008.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-2/010.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-2/012.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc1-2/014.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc1-2/016.jpg}
+	\end{subfigure}
+\end{figure}
+
+\subsection{Second test-case}
+For these modified parameters, the threshold for the activation is different as we can state that:
+\begin{itemize}
+	\item $I = 15000 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
+	\item $I = 20000 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
+\end{itemize}
+
+\newpage
+\begin{figure}[h] \caption{Test-case 2, missed activation ($I = 15000 \cdot 10^3$)}
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-1/004.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-1/012.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-1/020.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-1/028.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-1/036.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-1/044.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-1/052.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-1/060.jpg}
+	\end{subfigure}
+\end{figure}
+
+\newpage
+\begin{figure}[h] \caption{Test-case 2, activation ($I = 20000 \cdot 10^3$)}
+	\centering
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-2/004.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-2/012.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-2/020.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-2/028.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-2/036.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-2/044.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width = 5cm]{./tc2-2/052.jpg}
+	\end{subfigure}
+	\begin{subfigure}{0.4\textwidth}
+		\includegraphics[width =5cm]{./tc2-2/060.jpg}
+	\end{subfigure}
+\end{figure}
 
 
 
