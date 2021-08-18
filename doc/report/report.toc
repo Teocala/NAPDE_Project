@@ -63,38 +63,38 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {6.1}Data}{29}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2}Comparison between Dubiner and FEM}{29}%
+\contentsline {subsection}{\numberline {6.2}Comparison between Dubiner and FEM}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.1}P1-D1}{29}%
+\contentsline {subsubsection}{\numberline {6.2.1}P1-D1}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.2}P2-D2}{31}%
+\contentsline {subsubsection}{\numberline {6.2.2}P2-D2}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.3}P3-D3}{33}%
+\contentsline {subsubsection}{\numberline {6.2.3}P3-D3}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{35}%
+\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{38}%
+\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Realistic simulations}{40}%
+\contentsline {section}{\numberline {7}Realistic simulations}{38}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}First test-case}{41}%
+\contentsline {subsection}{\numberline {7.1}First test-case}{39}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Second test-case}{44}%
+\contentsline {subsection}{\numberline {7.2}Second test-case}{42}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Comments on the results}{44}%
+\contentsline {subsection}{\numberline {7.3}Comments on the results}{42}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Numerical Codes}{47}%
+\contentsline {section}{\numberline {8}Numerical Codes}{45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.1}Implementation: Dubiner to FEM}{47}%
+\contentsline {subsection}{\numberline {8.1}Implementation: Dubiner to FEM}{45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.2}Implementation: FEM to Dubiner}{47}%
+\contentsline {subsection}{\numberline {8.2}Implementation: FEM to Dubiner}{45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.3}Implementation: Semi-implicit method}{48}%
+\contentsline {subsection}{\numberline {8.3}Implementation: Semi-implicit method}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.4}Implementation: Godunov operator-splitting method}{48}%
+\contentsline {subsection}{\numberline {8.4}Implementation: Godunov operator-splitting method}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.5}Implementation: Quasi-implicit operator-splitting method}{49}%
+\contentsline {subsection}{\numberline {8.5}Implementation: Quasi-implicit operator-splitting method}{47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.6}Implementation: imposing a value in a specific point}{49}%
+\contentsline {subsection}{\numberline {8.6}Implementation: imposing a value in a specific point}{47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {8.7}Implementation: imposing zero mean}{50}%
+\contentsline {subsection}{\numberline {8.7}Implementation: imposing zero mean}{48}%
