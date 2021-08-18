@@ -418,7 +418,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \subsection{Implementation}\label{subsection_implementation}
     Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis functions.\\
-    As explained in the Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
+    As explained in Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
     \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
@@ -525,7 +525,7 @@ Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,
 \end{equation*} 
 \end{problem}
 
-\noindent The implementation can be found at the Section (\ref{SI}).
+\noindent The implementation can be found at Section (\ref{SI}).
 \vspace{4mm}
 \subsection{The Godunov operator-splitting}
 The main feature of a general operator-splitting method is the sub-division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
@@ -582,7 +582,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
 \end{cases}
 \end{equation*}
 \end{problem}\vspace{4mm}
-\noindent The implementation is written at the Section (\ref{GO}).
+\noindent The implementation is written at Section (\ref{GO}).
 \vspace{4mm}
 \subsection{The Quasi-implicit operator-splitting}
 The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a fully implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
@@ -658,7 +658,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 \end{equation*}
 \end{problem}
 \vspace{4mm}
-\noindent The implementation is at the Section (\ref{OS}).
+\noindent The implementation is shown at Section (\ref{OS}).
 \newpage
 \section{About uniqueness of the potentials}\label{unique}
 \subsection{Analytical concepts}
@@ -675,7 +675,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 
 \noindent Moreover, we can give this simple result to show that the solutions of the form of equation (\ref{phi_uniqueness}) are also the only admissible:\\
 \begin{theo}
-	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Problem (\ref{def1})), the solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
+	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Problem (\ref{def1})), the classical solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
 \end{theo}
 
 \begin{proof}
@@ -735,10 +735,10 @@ Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of P
 \end{proof}
 \vspace{4mm}
 \subsection{Numerical correction} \label{imposition_section}
-Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi$ unknowns for the following two reasons:
+Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed if we adopt the standard space $H^1$. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi$ unknowns for the following two reasons:
 \begin{enumerate}
-	\item To pursue the achievement of the exact $\phi_i,\phi_e$ and not their values minus a constant. Useful for instance for the error analysis.
-	\item To strengthen our Galerkin formulation that currently derives from a ill-posed problem and, for this reason, may show bad features as the generation of a ill-conditioned system or even a non-solvable system.
+	\item To pursue the achievement of the exact $\phi_i,\phi_e$ and not their values up to a constant. Useful for instance for the error analysis.
+	\item To strengthen our Galerkin formulation that currently derives from a problem that is well-posed only in $H^1\backslash \mathbb{R}$ and, for this reason, may show bad features as the generation of a ill-conditioned system or even a non-solvable system.
 \end{enumerate}
 
 \vspace{3mm}
@@ -1458,7 +1458,7 @@ To conclude, observe that the compatibility condition for the existence of the s
 For both the test-cases, we aim to show two different situations depending on the external current intensity: firstly, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up. Secondly, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion. Several simulations have proved that:
 \begin{itemize}
 	\item $I = 500 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
-	\item $I = 600 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
+	\item $I = 700 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
 \end{itemize}
 
 \noindent Visual results are the following:
@@ -1494,7 +1494,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \caption{Test-case 1, activation ($I = 600 \cdot 10^3$)}
+\begin{figure}[h] \caption{Test-case 1, activation ($I = 700 \cdot 10^3$)}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-2/002.jpg}
@@ -1530,9 +1530,30 @@ For these modified parameters, the threshold for the activation is different as 
 	\item $I = 20000 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
 \end{itemize}
 
+\noindent Results related to this test-case are visible in Fig. (\ref{tc2-1}) and Fig. (\ref{tc2-2}).
+
+\subsection{Comments on the results}
+As expected, even two completely different sets of parameters show a very similar behavior. As expected, we can distinguish two different phenomena:
+\begin{itemize}
+	\item In \emph{underflow} simulations, propagation is visible and wave height (that is always below 1) decreases at every time-step. Then, the overall phenomena seems to be only diffusive.
+	\item On the contrary, in \emph{overflow} simulations, propagation is visible and the wave height keeps constant with value $\approx 1$.  
+\end{itemize}
+
+\noindent On the other hand, the main differences due to the choice of \emph{FitzHugh-Nagumo} parameters turn to be:
+\begin{itemize}
+	\item The threshold intensity (in test-case 2 this value is ten times the first).
+	\item The speed of propagation (test-case 2 needs a lot more time to activate all the domain, 0.6 seconds are still not sufficient).
+	\item The direction of propagation (shape in test-case 2 is more symmetric).
+\end{itemize}
+ 
+\noindent We certainly state that all these features were expected and reflect the physical phenomenon. In human cardiac electrophysiology is indeed needed a certain current intensity to fully activate the myocyties. Otherwise, cells go soon back to their rest potential. \\
+
+\noindent On the other hand, there are some unexpected mismatches if we look at the potential cycle shown in Fig. (\ref{potential_cycle}). First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the extremely simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, then a refinement to the model is needed to get these more realistic values. \\
+The second and more sophisticated incongruence is the missed repolarization after the activation. In other words, the potential keeps the same value and it does not decrease back to 0 even after several time-steps. We think it is in part due to (again) the simplicity of the \emph{FitzHugh-Nagumo} model, fact that is moreover warned in \cite{colli_franzone_parallel}. Here, it is indeed stated that \emph{FitzHugh-Nagumo} model is not able to truly approximate the physical phenomenon, in particular for the \emph{plateau} and \emph{repolarization} phases.
+
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \caption{Test-case 2, missed activation ($I = 15000 \cdot 10^3$)}
+\begin{figure}[h] \caption{Test-case 2, missed activation ($I = 15000 \cdot 10^3$)} \label{tc2-1}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-1/004.jpg}
@@ -1562,7 +1583,7 @@ For these modified parameters, the threshold for the activation is different as 
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \caption{Test-case 2, activation ($I = 20000 \cdot 10^3$)}
+\begin{figure}[h] \caption{Test-case 2, activation ($I = 20000 \cdot 10^3$)} \label{tc2-2}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-2/004.jpg}

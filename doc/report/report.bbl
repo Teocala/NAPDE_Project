@@ -177,6 +177,36 @@
       \field{pages}{458\bibrangedash 482}
       \range{pages}{25}
     \endentry
+    \entry{colli_franzone_parallel}{article}{}
+      \name{author}{2}{}{%
+        {{hash=36cb417b3e2bca9311869b8f5524ccf0}{%
+           family={Colli\bibnamedelima Franzone},
+           familyi={C\bibinitperiod\bibinitdelim F\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=f4b25aeac3739b1f53c131cf80e880b7}{%
+           family={Pavarino},
+           familyi={P\bibinitperiod},
+           given={L.\bibnamedelimi F.},
+           giveni={L\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+      }
+      \strng{namehash}{c0c6356ab95783e9cbda0541a3277f88}
+      \strng{fullhash}{c0c6356ab95783e9cbda0541a3277f88}
+      \strng{bibnamehash}{c0c6356ab95783e9cbda0541a3277f88}
+      \strng{authorbibnamehash}{c0c6356ab95783e9cbda0541a3277f88}
+      \strng{authornamehash}{c0c6356ab95783e9cbda0541a3277f88}
+      \strng{authorfullhash}{c0c6356ab95783e9cbda0541a3277f88}
+      \field{sortinit}{C}
+      \field{sortinithash}{4c244ceae61406cdc0cc2ce1cb1ff703}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematical Models and Methods in Applied Sciences}
+      \field{title}{A parallel solver for reaction-diffusion systems in computational electrocardiology}
+      \field{volume}{14}
+      \field{year}{2004}
+      \field{pages}{883\bibrangedash 911}
+      \range{pages}{29}
+    \endentry
     \entry{colli_franzone}{book}{}
       \name{author}{3}{}{%
         {{hash=36cb417b3e2bca9311869b8f5524ccf0}{%
