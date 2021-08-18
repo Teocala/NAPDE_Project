@@ -227,7 +227,6 @@ citestyle=numeric,
     \noindent In (\ref{forgamma}) $\Gamma$ is the so called stability parameter, which is defined edge-wise as:\\ $\Gamma := \alpha \frac{k^2}{h}$, where $ \alpha \in \mathbb{R}$ has to be chosen high enough for the SIP and IIP formulations.
     \end{problem}
 
-    \vspace{4mm}
     \subsection{Algebraic formulation}
     Taking $\{\varphi_j\}_{j=1}^{N_h}$ a basis of $V_h^n$, so that we can write
     \begin{equation*}
@@ -414,7 +413,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the Section (\ref{subsection_implementation}). Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
     
-    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.\\ \\
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.
     
     \subsection{Implementation}\label{subsection_implementation}
     Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis functions.\\
@@ -431,28 +430,27 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	Obviously, this property does not hold when we work with the Dubiner basis. Indeed, these functions are not associated to any mesh point. This implies that the Dubiner coefficients of a function $u\in V_h^p$ are not the evaluation at suitable points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
 	For this reason we introduced two new functions that transform the coefficients of the solution w.r.t. the FEM basis to the coefficients w.r.t. the Dubiner basis and viceversa.\vspace{5mm}
 	
-	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution. \vspace{5mm}
+	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution.
 	
 	\subsubsection{From Dubiner Basis to FEM Basis}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i),
 	\end{equation}
-	where $x_i$ is the point associated to the $\psi_i$ basis function. \vspace{5mm} \\
-	This formula has been implemented in the lines from \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})). \\
-\vspace{4mm}
+	where $x_i$ is the point associated to the $\psi_i$ basis function. \\
+	This formula has been implemented in the lines from \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})).
+
 	\subsubsection{From FEM Basis to Dubiner Basis}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
 	\end{equation}
 	\vspace{2mm} \\
-	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section (\ref{fem_to_dub})) using \emph{Gauss-Legendre} quadrature formulas.\\
-	\vspace{2mm}
+	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section (\ref{fem_to_dub})) using \emph{Gauss-Legendre} quadrature formulas.
 	\subsubsection{Final remarks}\label{dub}
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula (\ref{ref3}) is needed to plot and compute errors after the solution of the system. Formula (\ref{ref4}) is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
-	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ means the FEM Basis of n-th polynomial degree, meanwhile $D_n$ is for the Dubiner Basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.\\
+	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ means the FEM Basis of n-th polynomial degree, meanwhile $D_n$ is for the Dubiner Basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.
 	
 
 \newpage 
@@ -526,7 +524,7 @@ Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,
 \end{problem}
 
 \noindent The implementation can be found at Section (\ref{SI}).
-\vspace{4mm}
+
 \subsection{The Godunov operator-splitting}
 The main feature of a general operator-splitting method is the sub-division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
 Two operator-splitting methods have been implemented, the first is of \emph{Godunov} type and a detailed study together with its properties can be found in \cite{spiteri}. The formulation is: \\ \\
@@ -583,7 +581,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
 \end{equation*}
 \end{problem}\vspace{4mm}
 \noindent The implementation is written at Section (\ref{GO}).
-\vspace{4mm}
+
 \subsection{The Quasi-implicit operator-splitting}
 The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a fully implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
 
@@ -733,7 +731,7 @@ Suppose the couple ($\phi_i,\phi_e$) is a classical solution of the problem of P
 \begin{proof}
 	The regularity statement is trivial and already discussed. The right implication is due to the previous theorem. Finally, the left implication follows what has been shown in equation (\ref{phi_uniqueness}): it is enough to insert $\phi_i+\varphi$ and $\phi_e+\varphi$ in the Bidomain system to find out that $\varphi$ disappears and the remaining system is the same as the one with $\phi_i,\phi_e$, thus solved by hypothesis. \qed
 \end{proof}
-\vspace{4mm}
+
 \subsection{Numerical correction} \label{imposition_section}
 Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed if we adopt the standard space $H^1$. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi$ unknowns for the following two reasons:
 \begin{enumerate}
@@ -959,7 +957,6 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\vspace{3mm} \\
 	\noindent This analytical digression was intended as a clarification of how Problem (\ref{reference_problem_3}) can be considered as equivalent to the original Problem (\ref{reference_problem}) (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
 
-\vspace{8mm}
 
 \subsubsection{Implementation of the mean value imposition} \label{mean_value_implementation}
 \noindent Following the Problem (\ref{reference_problem_3}) new formulation, the basic idea is to consider $\lambda$ as a new coefficient of the vector solution, for instance the last one. The vector $u$ is now of dimension $N_h+1$. Let us define $d_i=\int_\Omega \varphi_i$ where $\varphi_i$ is the $i$-th basis function (both for FEM and Dubiner). Moreover, define $c$ as the imposed value for the mean. Then the discretized problem at a certain time-step turns to be:
@@ -1013,16 +1010,14 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 	\item We avoided to compute all $d_i$ for FEM basis as they all have the same value.
 	\item On the other hand, for Dubiner basis, $d_i$ values are different. However, it is not needed to compute these values for all the global polynomials as they repeat for every element. For this reason, we only iterate over the local degrees of freedom.
 \end{itemize}
-\vspace{6mm}
+
 
 \subsubsection{Final remarks} \label{uniqueness_results}
 \noindent As already discussed, the mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
 \begin{itemize}
 	\item the coefficient imposition for error analysis simulations (as boundary conditions and forcing terms were never homogeneous)
 	\item the mean value imposition for realistic simulations (as boundary conditions and forcing terms were essentially homogeneous)
-\end{itemize}\vspace{2mm}
-
-\vspace{6mm}
+\end{itemize}
 \newpage
 \section{Error analysis results} \label{error_analysis}
 \subsection{Data}
@@ -1569,6 +1564,11 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \end{figure}
 \restoregeometry
 \newpage
+\section{Conclusion}
+In the end, we have presented two main categories: various comparison for the error analysis (Section (\ref{error_analysis})) and a final realistic simulation (Section (\ref{real_sim})).\\
+\noindent From the first one we obtained very good results, indeed any convergence test we have studied was consistent with the theory and the different methods or basis, which we implemented, were equivalent.\\
+\noindent Then, for the second group, we got good outcomes, but not perfect because we have not beeen able to achieve repolarization after the activation and so a perfect wave.\\
+\noindent Our hope is that this could be a springboard for future projects aiming at improving our results.
 \section{Numerical Codes}
 \subsection{Implementation: Dubiner to FEM}\label{dub_to_fem}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = dubiner_to_fem.m, frame=single]
