@@ -305,7 +305,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 \end{equation*}
 \end{problem}
 \newpage
-\section{Implementation details: the Dubiner Basis}
+\section{High-order Dubiner basis functions}
     \subsection{Analytical aspects}\label{analytical_aspects}
     So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^n$ space. Usually, the common choice consists in the classical hat functions from FEMs. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner Basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
     How we will see soon, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
@@ -457,7 +457,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 \section{Temporal discretization}\label{temporal_discretization}
 So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into N subintervals $(t^n,t^n+1]$ of length $\Delta t$ such that $t^n=n \Delta t \quad \forall n=0,\cdots,N-1$, we then assume our fully discretized solution as $V_m^n\approx V_m^h(t^n)$. \\
 We have developed, implemented and tested 3 different temporal strategies that we will refer to as: \emph{semi-implicit}, \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
-\subsection{The Semi-implicit method}
+\subsection{The semi-implicit method}
 One of the most famous and used temporal scheme for a non-linear problem such as the Bidomain is certainly the \emph{Semi-Implicit} scheme \cite{acta}. The basic idea is to treat most of the terms implicitly while treating the non-linear term semi-implicitly. Since the non-linear term is cubic, the best choice is to treat only one of these $V_m$ terms implicitly, i.e.:
 \begin{equation*}
 I_{ion}^{n+1}=k(V_m^n-a)(V_m^n-1)V_m^{n+1}+w^{n+1},
@@ -582,7 +582,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
 \end{problem}\vspace{4mm}
 \noindent The implementation is written at Section (\ref{GO}).
 
-\subsection{The Quasi-implicit operator-splitting}
+\subsection{The quasi-implicit operator-splitting}
 The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a fully implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
 
 \begin{center} Find $\tilde{V}_m^{n+1}, \phi_i^{n+1}, \phi_e^{n+1},w^{n+1}$ such that: \end{center}
@@ -1087,28 +1087,28 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{figure}[h] \caption{Comparison between Dubiner and FEM with first order polynomials} \label{P1-D1_plot}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_Vm_1.jpg}
-\caption{Difference of potential ($V_m$) with D1}
+\caption{Trans-membrane potential  ($V_m$) with D1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P1_Vm_1.jpg}
-\caption{Difference of potential ($V_m$) with P1}
+\caption{Trans-membrane potential  ($V_m$) with P1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with D1}
+\caption{Intracellular potential ($\phi_i$) with D1}
 \end{subfigure}
 \hfill
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P1_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with P1}
+\caption{Intracellular potential ($\phi_i$) with P1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_Phie_1.jpg}
-\caption{Extracellular Potential ($\phi_e$) with D1}
+\caption{Extracellular potential ($\phi_e$) with D1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P1_Phie_1.jpg}
-\caption{Extracellular Potential ($\phi_e$) with P1}
+\caption{Extracellular potential ($\phi_e$) with P1}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_w_1.jpg}
@@ -1125,27 +1125,27 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{figure}[h]\caption{Comparison between Dubiner and FEM with second order polynomials} \label{P2-D2_plot}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D2_Vm_1.jpg}
-\caption{Difference of potential ($V_m$) with D2}
+\caption{Trans-membrane potential  ($V_m$) with D2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P2_Vm_1.jpg}
-\caption*{Difference of potential ($V_m$) with P2}
+\caption{Trans-membrane potential  ($V_m$) with P2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D2_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with D2}
+\caption{Intracellular potential ($\phi_i$) with D2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P2_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with P2}
+\caption{Intracellular potential ($\phi_i$) with P2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D2_Phie_1.jpg}
-\caption{Extracellular Potential ($\phi_e$) with D2}
+\caption{Extracellular potential ($\phi_e$) with D2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P2_Phie_1.jpg}
-\caption{Extracellular Potential ($\phi_e$) with P2}
+\caption{Extracellular potential ($\phi_e$) with P2}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D2_w_1.jpg}
@@ -1162,19 +1162,19 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{figure}[h] \caption{Comparison between Dubiner and FEM with third order polynomials} \label{P3-D3_plot}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D3_Vm_1.jpg}
-\caption{Difference of potential ($V_m$) with D3}
+\caption{Trans-membrane potential ($V_m$) with D3}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P3_Vm_1.jpg}
-\caption{Difference of potential ($V_m$) with P3}
+\caption{Trans-membrane potential  ($V_m$) with P3}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D3_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with D3}
+\caption{Intracellular potential ($\phi_i$) with D3}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P3_Phii_1.jpg}
-\caption{Intracellular Potential ($\phi_i$) with P3}
+\caption{Intracellular potential ($\phi_i$) with P3}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D3_Phie_1.jpg}
@@ -1182,7 +1182,7 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./P3_Phie_1.jpg}
-\caption{Extracellular Potential ($\phi_e$) with P3}
+\caption{Extracellular potential ($\phi_e$) with P3}
 \label{Phie_P3}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
@@ -1204,7 +1204,7 @@ In Section (\ref{temporal_discretization}) three methods for the time discretiza
 \subsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to the Section (\ref{unique}), we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. (\ref{uniqueness_plot}). \\
-\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
+\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test-case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
 On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section (\ref{real_sim}) about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section (\ref{imposition_section})), we achieved both them since:
 \begin{itemize}
@@ -1416,7 +1416,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \noindent Visual results are the following:
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, missed activation ($I=500 \cdot 10^3$)}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, activation missed ($I=500 \cdot 10^3$)}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-1/002.jpg}
@@ -1446,7 +1446,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, activation ($I = 700 \cdot 10^3$)}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, activation achieved ($I = 700 \cdot 10^3$)}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-2/002.jpg}
@@ -1485,7 +1485,7 @@ For these modified parameters, the threshold for the activation is different as 
 \noindent Results related to this test-case are visible in Fig. (\ref{tc2-1}) and Fig. (\ref{tc2-2}).
 
 \subsection{Comments on the results}
-As expected, even two completely different sets of parameters show a very similar behavior. As expected, we can distinguish two different phenomena:
+As expected, we can distinguish two different phenomena in both the test-cases:
 \begin{itemize}
 	\item In \emph{underflow} simulations, propagation is visible and wave height (that is always below 1) decreases at every time-step. Then, the overall phenomena seems to be only diffusive.
 	\item On the contrary, in \emph{overflow} simulations, propagation is visible and the wave height keeps constant with value $\approx 1$.  
@@ -1498,14 +1498,14 @@ As expected, even two completely different sets of parameters show a very simila
 	\item The direction of propagation (shape in test-case 2 is more symmetric).
 \end{itemize}
  
-\noindent We certainly state that all these features were expected and reflect the physical phenomenon. In human cardiac electrophysiology is indeed needed a certain current intensity to fully activate the myocyties. Otherwise, cells go soon back to their rest potential. \\
+\noindent Most of these features were expected and successfully reflect the physical phenomenon. Indeed, a certain current intensity is needed to fully activate the myocyties. Otherwise, cells go soon back to their rest potential. Moreover, the stretched shape of the activated region is consistent with the anisotropy of the diffusion tensor and it physically shows the difference of conductivity between the tangential and normal direction of the fibers.\\
 
-\noindent On the other hand, there are some unexpected mismatches if we look at the potential cycle shown in Fig. (\ref{potential_cycle}). First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the extremely simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, then a refinement to the model is needed to get these more realistic values. \\
+\noindent On the other hand, if we look at the potential cycle shown in Fig. (\ref{potential_cycle}), we notice some unexpected mismatches. First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the extremely simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, then a refinement to the model is needed to get these more realistic values. \\
 The second and more sophisticated incongruence is the missed repolarization after the activation. In other words, the potential keeps the same value and it does not decrease back to 0 even after several time-steps. We think it is in part due to (again) the simplicity of the \emph{FitzHugh-Nagumo} model, fact that is moreover warned in \cite{colli_franzone_parallel}. Here, it is indeed stated that \emph{FitzHugh-Nagumo} model is not able to truly approximate the physical phenomenon, in particular for the \emph{plateau} and \emph{repolarization} phases.
 
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, missed activation ($I = 15000 \cdot 10^3$)} \label{tc2-1}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, activation missed ($I = 15000 \cdot 10^3$)} \label{tc2-1}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-1/004.jpg}
@@ -1535,7 +1535,7 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, activation ($I = 20000 \cdot 10^3$)} \label{tc2-2}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, activation achieved ($I = 20000 \cdot 10^3$)} \label{tc2-2}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-2/004.jpg}
@@ -1565,12 +1565,12 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \restoregeometry
 \newpage
 \section{Conclusion}
-In the end, we have presented two main categories: various comparison for the error analysis (Section (\ref{error_analysis})) and a final realistic simulation (Section (\ref{real_sim})).\\
-\noindent From the first one we obtained very good results, indeed any convergence test we have studied was consistent with the theory and the different methods or basis, which we implemented, were equivalent.\\
-\noindent Then, for the second group, we got good outcomes, but not perfect because we have not beeen able to achieve repolarization after the activation and so a perfect wave.\\
-\noindent Our hope is that this could be a springboard for future projects aiming at improving our results.
-\section{Numerical Codes}
-\subsection{Implementation: Dubiner to FEM}\label{dub_to_fem}
+After some introductions and motivations, we have validated our numerical study through a basic error analysis and a couple of simulations aimed to re-create what happens in the human heart.
+\noindent From the former we obtained excellent validations: every result was consistent with the theory and even what was initially unexpected has later been justified with other causes independent from our study.\\
+\noindent From the latter, we achieved very good outcomes too: our simulations turned to be consistent with the physical phenomenon except for the missed repolarization. We doubt that it is due to the numerical schemes because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too wide mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
+\noindent We hope that this last point could be a springboard for future projects aiming at improving and generalize our results. 
+\section{Appendix: numerical codes}
+\subsection{\texttt{dubiner\_to\_fem.m}}\label{dub_to_fem}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = dubiner_to_fem.m, frame=single]
 function [u0] = dubiner_to_fem (uh, femregion, Data)  
 	
@@ -1595,7 +1595,7 @@ for ie = 1:femregion.ne
 end
 \end{lstlisting} 
 
-\subsection{Implementation: FEM to Dubiner}\label{fem_to_dub}
+\subsection{\texttt{fem\_to\_dubiner.m}}\label{fem_to_dub}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = fem_to_dubiner.m, frame=single]
 function [u0] = fem_to_dubiner (uh, femregion, Data)
 	
@@ -1625,7 +1625,7 @@ for ie = 1:femregion.ne
    end    
 end
 \end{lstlisting}
-\subsection{Implementation: Semi-implicit method}\label{SI}
+\subsection{\texttt{main2D.m} (semi-implicit method)}\label{SI}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (semi-implicit), frame=single]
 MASS = [M -M; -M M];
 ZERO = sparse(length(M), length(M));
@@ -1658,7 +1658,7 @@ for t=dt:dt:T
 end
 \end{lstlisting}
 
-\subsection{Implementation: Godunov operator-splitting method}\label{GO}
+\subsection{\texttt{main2D.m} (Godunov operator-splitting method)}\label{GO}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (Godunov operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
 MASS = (ChiM*Cm/dt)*[M, -M; M -M];
@@ -1683,7 +1683,7 @@ for t=dt:dt:T
 end
 \end{lstlisting}
 
-\subsection{Implementation: Quasi-implicit operator-splitting method}\label{OS}
+\subsection{\texttt{main2D.m} (quasi-implicit operator-splitting method)}\label{OS}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (quasi-implicit operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
         
@@ -1712,7 +1712,7 @@ for t=dt:dt:T
    w0 = w1;
 end
 \end{lstlisting}
-\subsection{Implementation: imposing a value in a specific point}\label{assign}
+\subsection{\texttt{assign\_phi\_i.m}}\label{assign}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_phi_i.m, frame=single]
 function [A, b] = assign_phi_i (A, b, t, Data, femregion)
 
@@ -1762,7 +1762,7 @@ A(:,1) = zeros(Nh,1);
 A(1,:) = zeros(1,Nh);
 A(1,1) = 1;
 \end{lstlisting}
-\subsection{Implementation: imposing zero mean}\label{mean}
+\subsection{\texttt{assign\_null\_average.m}}\label{mean}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_null_average.m, frame=single]
 function [A, b] = assign_null_average (A, b, Data, femregion)
 

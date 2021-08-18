@@ -15,7 +15,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2}Algebraic formulation}{7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3}Implementation details: the Dubiner Basis}{9}%
+\contentsline {section}{\numberline {3}High-order Dubiner basis functions}{9}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.1}Analytical aspects}{9}%
 \defcounter {refsection}{0}\relax 
@@ -31,11 +31,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4}Temporal discretization}{14}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}The Semi-implicit method}{14}%
+\contentsline {subsection}{\numberline {4.1}The semi-implicit method}{14}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.2}The Godunov operator-splitting}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}The Quasi-implicit operator-splitting}{16}%
+\contentsline {subsection}{\numberline {4.3}The quasi-implicit operator-splitting}{16}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5}About uniqueness of the potentials}{18}%
 \defcounter {refsection}{0}\relax 
@@ -85,18 +85,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {8}Conclusion}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Numerical Codes}{44}%
+\contentsline {section}{\numberline {9}Appendix: numerical codes}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}Implementation: Dubiner to FEM}{44}%
+\contentsline {subsection}{\numberline {9.1}\texttt {dubiner\_to\_fem.m}}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}Implementation: FEM to Dubiner}{44}%
+\contentsline {subsection}{\numberline {9.2}\texttt {fem\_to\_dubiner.m}}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}Implementation: Semi-implicit method}{45}%
+\contentsline {subsection}{\numberline {9.3}\texttt {main2D.m} (semi-implicit method)}{45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}Implementation: Godunov operator-splitting method}{46}%
+\contentsline {subsection}{\numberline {9.4}\texttt {main2D.m} (Godunov operator-splitting method)}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.5}Implementation: Quasi-implicit operator-splitting method}{46}%
+\contentsline {subsection}{\numberline {9.5}\texttt {main2D.m} (quasi-implicit operator-splitting method)}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.6}Implementation: imposing a value in a specific point}{47}%
+\contentsline {subsection}{\numberline {9.6}\texttt {assign\_phi\_i.m}}{47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.7}Implementation: imposing zero mean}{48}%
+\contentsline {subsection}{\numberline {9.7}\texttt {assign\_null\_average.m}}{48}%
