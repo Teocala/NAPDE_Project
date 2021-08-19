@@ -430,12 +430,12 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	Obviously, this property does not hold when we work with the Dubiner basis. Indeed, these functions are not associated to any mesh point. This implies that the Dubiner coefficients of a function $u\in V_h^p$ are not the evaluation at suitable points of the discretized function itself. They have a completely different meaning, they are now \emph{modal} values instead of being \emph{nodal}.
 	For this reason we introduced two new functions that transform the coefficients of the solution w.r.t. the FEM basis to the coefficients w.r.t. the Dubiner basis and viceversa.\vspace{5mm}
 	
-	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution.
+	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\varphi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of a function $u_h$.
 	
 	\subsubsection{From Dubiner basis to FEM basis}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
 	\begin{equation} \label{ref3}
-	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i),
+	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i),
 	\end{equation}
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \\
 	This formula has been implemented in the lines from \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})).
@@ -443,7 +443,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\subsubsection{From FEM basis to Dubiner basis}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
-	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
+	\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\varphi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
 	\end{equation}
 	\vspace{2mm} \\
 	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section (\ref{fem_to_dub})) using \emph{Gauss-Legendre} quadrature formulas.
