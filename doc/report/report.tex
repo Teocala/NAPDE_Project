@@ -84,7 +84,7 @@ citestyle=numeric,
     %% ABSTRACT
     \section{Introduction}
     The aim of this project is to study and implement a suitable numerical scheme for the approximate solutions of the \emph{Bidomain Problem}, a well-known system of non-linear partial differential equations that has been developed in the context of the modelling of electrophysiology of human heart. \\
-    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and thus convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
+    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability, and thus convergence, of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
@@ -172,7 +172,7 @@ citestyle=numeric,
 
     \vspace{4mm}
     \noindent From now on, the system of equations given by Problem (\ref{def1}) will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
-    To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}. But this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
+    To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}, but this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
 
     \subsection{State of the art}\label{past}
     As we have already introduced, our project initially aimed to continue and improve the work of a previous project \cite{marta}. \\
@@ -185,22 +185,22 @@ citestyle=numeric,
     \section{Semi-discrete Discontinuous Galerkin formulation}
     \subsection{Discontinuous Galerkin discrete formulation}
     Starting from the strong form given by the Problem (\ref{def1}), the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
-    Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ on the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces, respectively. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $k \geq i$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
+    Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ on the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $k \geq 1$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
     \begin{problem}[DG weak formulation]
     For any $t\in[0,T]$ find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
     \begin{equation*}
     \begin{cases}
     \begin{gathered}
-    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_i(\phi_i^h,v_h)+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
-    +\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h dw}=(I_i^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} V_h d\omega}+a_i(\phi_i^h,v_h)+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+    +\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(I_i^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
     \vspace{2mm}
     \end{gathered}\\
     \begin{gathered}
-    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} V_h dw}+a_e(\phi_e^h,v_h)-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h dw}+\\
-    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h dw}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} V_h d\omega}+a_e(\phi_e^h,v_h)-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
        \vspace{2mm}
     \end{gathered}\\
-    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h dw}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h dw}, \qquad \forall v_h \in V_h^p,\\
+    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
     \end{cases}
     \end{equation*}
     \vspace{5mm}
@@ -208,12 +208,12 @@ citestyle=numeric,
     \vspace{3mm}
     \begin{equation}\label{forgamma}
     \begin{aligned}
-    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h dw}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
+    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
     &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
     \newline
-    \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h dw}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
+    \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
     \newline
-    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_e^{ext} v_h dw}+\int_{\partial \Omega}{b_e v_h d\sigma}.
+    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_e^{ext} v_h d\omega}+\int_{\partial \Omega}{b_e v_h d\sigma}.
     \end{aligned}
     \end{equation}
     
@@ -228,7 +228,7 @@ citestyle=numeric,
     \end{problem}
 
     \subsection{Algebraic formulation}
-    Taking $\{\varphi_j\}_{j=1}^{N_h}$ a basis of $V_h^n$, so that we can write
+    Taking $\{\varphi_j\}_{j=1}^{N_h}$ a basis of $V_h^p$, so that we can write
     \begin{equation*}
     \begin{gathered}
     \bm{\Phi_h}(t) = \begin{bmatrix} \phi_i^h(t) \\ \phi_e^h(t) \end{bmatrix} = \begin {bmatrix}\sum_{j=1}^{N_h} \phi_{i,j}(t)\varphi_j \\ \sum_{j=1}^{N_h} \phi_{e,j}(t)\varphi_j \end{bmatrix},\\
@@ -241,9 +241,9 @@ citestyle=numeric,
  \begin{equation*}
 \begin{rcases}
 (V_l)_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \Sigma_l \nabla \varphi_i,
-\\ (I_l^T)_{ij} &= \sum_{F \in F_h^I} \int_{F} \{\{\Sigma_l \nabla\varphi_j\}\} \cdot [[\varphi_i]],
-\\ (I_l)_{i,j} &= \sum_{F \in F_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_l \nabla \varphi_i\}\},
-\\(S_l)_{i,j} &= \sum_{F \in F_h^I} \int_{F} \Gamma_l[[\varphi_j]] \cdot [[\varphi_i]],
+\\ (I_l^T)_{ij} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \{\{\Sigma_l \nabla\varphi_j\}\} \cdot [[\varphi_i]],
+\\ (I_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_l \nabla \varphi_i\}\},
+\\(S_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \Gamma_l[[\varphi_j]] \cdot [[\varphi_i]],
 \end{rcases}
 \begin{gathered}
 \quad A_l = (V_l -I_l^T - \theta I_l + S_l)\\
@@ -251,7 +251,7 @@ l=i,e, \\
 \end{gathered}
 \end{equation*}
 \begin{equation*}
-\Gamma_l\vert_F = (n_F^T \, \Sigma_l \, n_F) \,\Gamma, \quad n_F \text{ outward normal vector of F},
+\Gamma_l\vert_F = (n_F^T \, \Sigma_l \, n_F) \,\Gamma, \quad \text{with } n_F \text{ outward normal vector of F},
 \end{equation*}
 We also define:
 \begin{equation*}
@@ -267,12 +267,12 @@ M_{ij} = \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}}\varphi_j\varphi_i \qqua
 C(u_h)_{ij} =  \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non-linear matrix}},
 \end{equation*}
 \begin{equation*}
-\bm{F_l}=\begin{bmatrix} F_{i,l} \\ F_{e,l} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_l - \sum_{F \in F_h^B} \int_F b_i\varphi_l \\ - \int_{\Omega} I_e^{ext}\varphi_l - \sum_{F \in F_h^B} \int_F b_e\varphi_l \end{bmatrix}.
+\bm{F_l}=\begin{bmatrix} F_{i,l} \\ F_{e,l} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_l - \sum_{F \in \mathcal{F}_h^B} \int_F b_i\varphi_l \\ - \int_{\Omega} I_e^{ext}\varphi_l - \sum_{F \in \mathcal{F}_h^B} \int_F b_e\varphi_l \end{bmatrix}.
 \end{equation*}
 \vspace{3mm} \\
 Therefore, our semi-discrete algebraic formulation is as follows: \vspace{3mm}
 \begin{problem}[DG algebraic formulation]\label{algebraic}
-Find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^n]^2$ and $w_h(t) \in V_h^n$ for any $t \in (0;T]$ such that:
+Find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$ and $w_h(t) \in V_h^p$ for any $t \in (0;T]$ such that:
 \begin{equation*}
 \begin{cases}
 \chi_m Cm M \dot{V_m^h}+A_i \phi_i^h+C(V_m^h) V_m^h+\chi_m M w_h=F_i^h, \vspace{2mm} \\ 
@@ -282,10 +282,10 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 \end{equation*}
 \end{problem}
  \vspace{5mm}
- Supplement with suitable initial conditions.
+ \noindent Supplement with suitable initial conditions.\\
  \noindent An alternative and more compact version is given by: \vspace{3mm}
  \begin{problem}[DG algebraic formulation - 2] \label{block_matrix}
- Find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^n]^2$ and $w_h(t) \in V_h^n$ for any $t \in (0;T]$ such that:
+ Find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$ and $w_h(t) \in V_h^p$ for any $t \in (0;T]$ such that:
  \begin{equation*}
  \begin{cases}
  \begin{gathered}
@@ -307,7 +307,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 \newpage
 \section{High-order Dubiner basis functions}
     \subsection{Analytical aspects}\label{analytical_aspects}
-    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^n$ space. Usually, the common choice consists in the classical hat functions from FEMs. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner Basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
+    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^p$ space. Usually, the common choice consists in the classical hat functions from FEMs. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
     How we will see soon, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
     \begin{equation*}
     \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \},
@@ -364,7 +364,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \end{prop}
     
     \noindent We can now define explicitly the Dubiner basis.
-    \begin{definition}[Dubiner Basis] \label{dubiner}
+    \begin{definition}[Dubiner basis] \label{dubiner}
     The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of polynomials of degree $p$ over the reference triangle is the set of functions:
     \begin{equation*}
     \begin{split}
@@ -379,7 +379,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{equation*}
     c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
     \end{equation*}
-    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial defined in (\ref{jacobi}).
+    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial defined in Definition (\ref{jacobi}).
     \end{definition}
     
     \vspace{5mm}
@@ -411,12 +411,12 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \noindent In general, the orthogonality property implies some good numerical properties, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the conditional number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
     
-    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the Section (\ref{subsection_implementation}). Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner Basis results to be particularly successful. \\
+    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in the Section (\ref{subsection_implementation}). Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
     
-    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner Basis with tetrahedra, i.e. in dimension $n=3$.
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner basis with tetrahedra, i.e. in dimension $n=3$.
     
     \subsection{Implementation}\label{subsection_implementation}
-    Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$ finite element basis functions.\\
+    Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$, finite element basis functions.\\
     As explained in Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
     \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
@@ -432,7 +432,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\phi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider as $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of the solution.
 	
-	\subsubsection{From Dubiner Basis to FEM Basis}
+	\subsubsection{From Dubiner basis to FEM basis}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th mesh point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i),
@@ -440,8 +440,8 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \\
 	This formula has been implemented in the lines from \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})).
 
-	\subsubsection{From FEM Basis to Dubiner Basis}
-	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner Basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
+	\subsubsection{From FEM basis to Dubiner basis}
+	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \phi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \phi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\phi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
 	\end{equation}
@@ -450,7 +450,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\subsubsection{Final remarks}\label{dub}
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula (\ref{ref3}) is needed to plot and compute errors after the solution of the system. Formula (\ref{ref4}) is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
-	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ means the FEM Basis of n-th polynomial degree, meanwhile $D_n$ is for the Dubiner Basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^n$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.
+	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ means the FEM basis of n-th polynomial degree, meanwhile $D_n$ is for the Dubiner basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^p$ and then the transformation infers only on the coefficients and not on the function's properties. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.
 	
 
 \newpage 
@@ -510,11 +510,11 @@ C(V_m^n) & -C(V_m^n) \\ -C(V_m^n) & C(V_m^n)
 \begin{itemize}
 \item $B=\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix}+\begin{bmatrix} A_i & 0 \\ 0 & A_e \end{bmatrix}$,
 \item $C_{nl}(V_m^n)=\begin{bmatrix}C(V_m^h) & -C(V_m^h) \\ -C(V_m^h) & C(V_m^h) \end{bmatrix}$,
-\item $r^{n+1}=\begin{bmatrix} F_i^{n+1} \\ F_e^{n+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{n+1} \\ w^{n+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^n \\ \phi_e^n \end{bmatrix}$.
+\item $r^{n+1}=\begin{bmatrix} F_i^{n+1} \\ F_e^{n+1}\end{bmatrix}-\chi_m \begin{bmatrix}M & 0 \\ 0 & -M \end{bmatrix} \begin{bmatrix}w^{n+1} \\ w^{n+1} \end{bmatrix}+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix} M &-M \\-M & M \end{bmatrix} \begin{bmatrix} \phi_i^n \\ \phi_e^n \end{bmatrix}$,
 \end{itemize} \vspace{5mm}
 we get the system in its final form.  \\
 \begin{problem}[Semi-implicit discretized system]
-Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,\cdots,T-1$ such that:
+Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,\cdots,N-1$ such that:
 \begin{equation*}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{n+1}=\epsilon M V_m^n+\frac{M}{\Delta t} w^n, \vspace{2mm} \\
@@ -611,8 +611,8 @@ Putting into a unique system, we obtain:
 \vspace{2mm} \\
 If we define:
 \begin{itemize}
-\item $Q_k = \frac{\chi_m C_m}{\Delta t}M + C(V_m^n) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$,
-\item $R_k = \frac{\chi_mC_m}{\Delta t}MV_m^n - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^n$.
+\item $Q_n = \frac{\chi_m C_m}{\Delta t}M + C(V_m^n) + \frac{\epsilon\chi_m \Delta t}{1 + \epsilon \gamma \Delta t} M$,
+\item $R_n = \frac{\chi_mC_m}{\Delta t}MV_m^n - \frac{\chi_m}{1+\epsilon\gamma\Delta t}M w^n$,
 \end{itemize}
 \vspace{4mm}
 the equations in system (\ref{Quasi}) can be written as:
@@ -621,7 +621,7 @@ the equations in system (\ref{Quasi}) can be written as:
 \chi_m C_m M \frac{	\phi_i^{n+1}-\phi_e^{n+1}-V_m^{n}}{\Delta t} +  C(V_m^n) (\phi_i^{n+1}-\phi_e^{n+1}) + \\
  +\chi_m M \left(\frac{w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right)
 + A_i \phi_i ^{n+1} = F_i^{n+1}, \\ \\
-\Rightarrow \quad (Q_k + A_i) \phi_i^{n+1} - Q_k \phi_e^{n+1} =R_k +  F_i^{n+1},
+\Rightarrow \quad (Q_n + A_i) \phi_i^{n+1} - Q_n \phi_e^{n+1} =R_n +  F_i^{n+1},
 \end{gathered}
 \end{equation}
 \vspace{3mm}
@@ -630,7 +630,7 @@ the equations in system (\ref{Quasi}) can be written as:
 \chi_m C_m M \frac{	\phi_i^{n+1}-\phi_e^{n+1}-V_m^{n}}{\Delta t} + \cdot C(V_m^n) (\phi_i^{n+1}-\phi_e^{n+1}) +\\ 
 + \chi_m M \left(\frac{w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right)
 - A_e \phi_e ^{n+1} = -F_e^{n+1}, \\ \\
-\Rightarrow \quad Q_k \phi_i^{n+1} - (Q_k+A_e) \phi_e^{n+1} =R_k - F_e^{n+1},
+\Rightarrow \quad Q_n \phi_i^{n+1} - (Q_n+A_e) \phi_e^{n+1} =R_n - F_e^{n+1},
 \end{gathered}
 \end{equation}
 \vspace{3mm}
@@ -644,13 +644,13 @@ Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall 
 \quad
 \begin{cases}
 \left(
-\begin{bmatrix} Q_k & -Q_k \\ Q_k & -Q_k \end{bmatrix} + 
+\begin{bmatrix} Q_n & -Q_n \\ Q_n & -Q_n \end{bmatrix} + 
 \begin{bmatrix} A_i & 0 \\ 0 & -A_e\end{bmatrix}
 \right)
 \begin{bmatrix}
 \phi_i^{n+1} \\ \phi_e^{n+1}
 \end{bmatrix}
-= \begin{bmatrix} R_k \\ R_k \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  -F_e^{n+1}\end{bmatrix},\\ \\
+= \begin{bmatrix} R_n \\ R_n \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  -F_e^{n+1}\end{bmatrix},\\ \\
 w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{\displaystyle 1+\epsilon \gamma \Delta t}.
 \end{cases}
 \end{equation*}
@@ -746,7 +746,7 @@ Previous analytical results are crucial for what concerns the numerical computat
 \begin{enumerate}
 	\item Imposition of the value of the function in a specific point.
 	\begin{equation*}
-	\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T].
+	\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T],
 	\end{equation*}
 	\item Imposition of the function mean value.
 	\begin{equation*}
@@ -762,19 +762,19 @@ Previous analytical results are crucial for what concerns the numerical computat
 \begin{enumerate}
 	\item Imposition of a coefficient of the vector solution.
 	\begin{equation*}
-	u_l^n = \varphi(t^n) \quad \forall n \in \{1,N\}.
+	u_l^n = \varphi(t^n) \quad \forall n \in \{1,N\},
 	\end{equation*}
 	\item Imposition of the function mean value.
 	\begin{equation*}
-	\sum_{j=1\dots N_h} u_j^n \, w_j = \varphi(t^n)\quad \forall n \in \{1,N\}.
+	\sum_{j=1\dots N_h} u_j^n \, w_j = \varphi(t^n)\quad \forall n \in \{1,N\},
 	\end{equation*}
 \end{enumerate}	
 where $l$ is a fixed value $\in \{1,N_h\}$ and $w_j$ stands for a suitable weight (that depends on the mesh geometry, the basis choice and the quadrature formula chosen). \\
 
-\noindent We remind that our aim is to impose such conditions \emph{directly} into the system. The easiest way would certainly be to impose these conditions \emph{after} the system resolution, as it has been reproduced in other past works. However, in this case, some issues related to the ill-posedness arise, especially ill-conditioning. Then, in the next sections we will illustrate how we managed to impose potential uniqueness only changing matrices and vectors coefficients before the resolution.
+\noindent We remind that our aim is to impose such conditions \emph{directly} into the system. The easiest way would certainly be to impose these conditions \emph{after} the system resolution, as it has been reproduced in other past works. However, in this case, some issues related to the ill-posedness arise, especially ill-conditioning. Then, in the next sections, we will illustrate how we managed to impose potential uniqueness only changing matrices and vectors coefficients before the resolution.
 
 \subsubsection{Implementation of the first coefficient imposition} \label{first_coeff_implementation}
-For simplicity, we choose $l=1$. Then, $u_l^n$ has the meaning of:
+For simplicity, we choose $l=1$. Then, $u_1^n$ has the meaning of:
 \begin{itemize}
 	\item Value of $u$ in the first dof point, $\forall$ timestep $n$ (FEM)
 	\item Fourier coefficient of $u$ w.r.t. the first Dubiner basis function, $\forall$ timestep $n$ (Dubiner)
@@ -840,7 +840,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{cases}
 	\end{equation*}
 \end{problem}
-\noindent As usual, the regularity of $f,\Omega$ imply that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
+\noindent As usual, the regularity of $f$ and $\Omega$ imply that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
 \begin{lemma}
 	The Problem (\ref{reference_problem}) admits a weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
 \end{lemma} \vspace{1mm}
@@ -902,7 +902,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \end{equation*}\\
 \noindent where $J',I'$ are the \emph{Frechét derivatives} of the two operators $J,I$ and $<\cdot,\cdot>$ represents the $H^1$ duality. Computing the derivatives, we indeed obtain:
 \begin{equation*}
-\exists \lambda \in \mathbb{R} \text{ such that} \quad \int_{\Omega}\nabla u \cdot \nabla v + \lambda \int_\Omega v = \int_{\Omega} fv \quad \forall v \in H^1(\Omega),
+\exists \lambda \in \mathbb{R} \text{ such that} \quad \int_{\Omega}\nabla u \cdot \nabla v + \lambda \int_\Omega v = \int_{\Omega} fv \quad \forall v \in H^1(\Omega).
 \end{equation*}\\
 
 \noindent We can then formulate a third and last version of the reference problem:
@@ -1069,7 +1069,7 @@ Starting from some example problems, we provide now an experimental error analys
 	\end{tabular}
 \end{center}
 
-\noindent From these assumptions, we consequently obtain the suitable boundary conditions, initial conditions and forcing terms. Moreover, we remind from Section \ref{uniqueness_results} that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ is chosen as polynomials space and the semi-implicit method is chosen for the time discretization.
+\noindent From these assumptions, we consequently obtain the suitable boundary conditions, initial conditions and forcing terms. Moreover, we remind from Section (\ref{uniqueness_results}) that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ is chosen as polynomials space and the semi-implicit method is chosen for the time discretization.
 
 \subsection{Comparison between Dubiner and FEM}
 At first, an error analysis related to the basis choice is shown. More precisely, we fix a polynomial order and we compare the errors of the Dubiner and FEM basis choosing this order for both. We expect to see similar results for each couple of basis. On the other hand, we expect to see different error orders for different polynomials orders.
@@ -1230,7 +1230,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \end{center}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_Phii_1.jpg}
-\caption*{$\phi_i$ with D1 - Semi-implicit}
+\caption*{$\phi_i$ with D1 - Semi-implicit method}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./D1_Phii_1_GO.jpg}
@@ -1249,7 +1249,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure} \captionsetup{size = large} \caption{Comparison of $\phi_e$ and $w$ errors between different time-discretization schemes} \label{pe-time}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width = 9cm]{./D1_Phie_1.jpg}
-\caption*{$\phi_e$ with D1 - Semi-implicit}
+\caption*{$\phi_e$ with D1 - Semi-implicit method}
 \end{subfigure}
 \begin{subfigure}{0.5\textwidth}
 \includegraphics[width =9cm]{./D1_Phie_1_GO.jpg}

@@ -23,9 +23,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3}Switch from the modal expansion coefficients to the Lagrangian ones}{12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.1}From Dubiner Basis to FEM Basis}{13}%
+\contentsline {subsubsection}{\numberline {3.3.1}From Dubiner basis to FEM basis}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {3.3.2}From FEM Basis to Dubiner Basis}{13}%
+\contentsline {subsubsection}{\numberline {3.3.2}From FEM basis to Dubiner basis}{13}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {3.3.3}Final remarks}{13}%
 \defcounter {refsection}{0}\relax 
