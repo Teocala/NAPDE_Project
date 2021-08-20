@@ -29,74 +29,74 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {3.3.3}Final remarks}{13}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4}Temporal discretization}{14}%
+\contentsline {section}{\numberline {4}Temporal discretization}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.1}The semi-implicit method}{14}%
+\contentsline {subsection}{\numberline {4.1}The semi-implicit method}{15}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.2}The Godunov operator-splitting}{15}%
+\contentsline {subsection}{\numberline {4.2}The Godunov operator-splitting}{16}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3}The quasi-implicit operator-splitting}{16}%
+\contentsline {subsection}{\numberline {4.3}The quasi-implicit operator-splitting}{17}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5}About uniqueness of the potentials}{18}%
+\contentsline {section}{\numberline {5}About uniqueness of the potentials}{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1}Analytical concepts}{18}%
-\defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{18}%
+\contentsline {subsection}{\numberline {5.1}Analytical concepts}{19}%
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Proof. }{19}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.2}Numerical correction}{19}%
+\contentsline {paragraph}{Proof. }{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.1}Implementation of the first coefficient imposition}{21}%
+\contentsline {subsection}{\numberline {5.2}Numerical correction}{20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.2}An analytical motivation for the mean value imposition method}{22}%
+\contentsline {subsubsection}{\numberline {5.2.1}Implementation of the first coefficient imposition}{22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{23}%
+\contentsline {subsubsection}{\numberline {5.2.2}An analytical motivation for the mean value imposition method}{23}%
 \defcounter {refsection}{0}\relax 
-\contentsline {paragraph}{Proof. }{25}%
+\contentsline {paragraph}{Proof. }{24}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.3}Implementation of the mean value imposition}{25}%
+\contentsline {paragraph}{Proof. }{26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {5.2.4}Final remarks}{27}%
+\contentsline {subsubsection}{\numberline {5.2.3}Implementation of the mean value imposition}{26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6}Error analysis results}{28}%
+\contentsline {subsubsection}{\numberline {5.2.4}Final remarks}{28}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.1}Data}{28}%
+\contentsline {section}{\numberline {6}Space error analysis results}{29}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.2}Comparison between Dubiner and FEM}{29}%
+\contentsline {subsection}{\numberline {6.1}Chosen data}{29}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.1}P1-D1}{29}%
+\contentsline {subsection}{\numberline {6.2}Comparison between Dubiner and FEM}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.2}P2-D2}{29}%
+\contentsline {subsubsection}{\numberline {6.2.1}P1-D1}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\numberline {6.2.3}P3-D3}{29}%
+\contentsline {subsubsection}{\numberline {6.2.2}P2-D2}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{33}%
+\contentsline {subsubsection}{\numberline {6.2.3}P3-D3}{30}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{33}%
+\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Realistic simulations}{37}%
+\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}First test-case}{38}%
+\contentsline {section}{\numberline {7}Realistic simulations}{38}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Second test-case}{41}%
+\contentsline {subsection}{\numberline {7.1}First test-case}{39}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Comments on the results}{41}%
+\contentsline {subsection}{\numberline {7.2}Second test-case}{42}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{44}%
+\contentsline {subsection}{\numberline {7.3}Comments on the results}{42}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Appendix: numerical codes}{44}%
+\contentsline {section}{\numberline {8}Conclusion}{45}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}\texttt {dubiner\_to\_fem.m}}{44}%
+\contentsline {section}{\numberline {9}Appendix: numerical codes}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}\texttt {fem\_to\_dubiner.m}}{44}%
+\contentsline {subsection}{\numberline {9.1}\texttt {dubiner\_to\_fem.m}}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}\texttt {main2D.m} (semi-implicit method)}{45}%
+\contentsline {subsection}{\numberline {9.2}\texttt {fem\_to\_dubiner.m}}{46}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}\texttt {main2D.m} (Godunov operator-splitting method)}{46}%
+\contentsline {subsection}{\numberline {9.3}\texttt {main2D.m} (semi-implicit method)}{47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.5}\texttt {main2D.m} (quasi-implicit operator-splitting method)}{46}%
+\contentsline {subsection}{\numberline {9.4}\texttt {main2D.m} (Godunov operator-splitting method)}{47}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.6}\texttt {assign\_phi\_i.m}}{47}%
+\contentsline {subsection}{\numberline {9.5}\texttt {main2D.m} (quasi-implicit operator-splitting method)}{48}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.7}\texttt {assign\_null\_average.m}}{48}%
+\contentsline {subsection}{\numberline {9.6}\texttt {assign\_phi\_i.m}}{48}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {9.7}\texttt {assign\_null\_average.m}}{49}%

@@ -14,8 +14,8 @@ function [u0] = dubiner_to_fem (uh, femregion, Data)
 deg=sscanf(Data.fem(2:end),'%f');
 s=0;
 
-% define the coordinates of the degree of freedom in the reference triangle
-% adn square
+% define the coordinates of the degrees of freedom in the reference triangle
+% and square
 if (deg==1)  %D1
     a   = [-1; 1; -1];
     b   = [-1; -1; 1];

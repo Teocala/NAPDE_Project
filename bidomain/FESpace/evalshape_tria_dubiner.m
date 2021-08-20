@@ -1,6 +1,6 @@
 function [dphiq,Grad,B_edge,G_edge]=evalshape_tria_dubiner(shape_basis,node_2D, node_1D,nqn,nln)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%It creates the Dubiner basis (dphiq) and its gradient (Grad) on the volume terms and on
+%Evaluation of the Dubiner basis (dphiq) and its gradient (Grad) on the volume terms and on
 %the edges (B_edge and G_edge)
 %Input: shape_basis (the structure of the Dubiner basis), node_1D and
 %node_2D (quadrature nodes), nqn (number of quadrature nodes in 1D) and nln
