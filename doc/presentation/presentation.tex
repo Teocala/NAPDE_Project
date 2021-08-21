@@ -17,6 +17,7 @@
 
 
 \newtheorem*{remark}{Remark}
+\newtheorem*{theor}{Theorem}
 
 \title[\color{white}{Project N°2}]{A HIGH-ORDER DISCONTINUOUS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}
 \subtitle{Project N$^\circ$ 2}
@@ -193,4 +194,214 @@ Exploiting the $L^2$-orthonormality of Dubiner, we compute its Fourier coeff.:
 \end{equation*}
 \end{frame}
 
+\begin{frame}
+\section{Semi-discrete Discontinuous Galerkin}
+\frametitle{Discretization}
+$\qquad \qquad \qquad \qquad $ \textbf{space-dependent:} Discontinuous Galerkin method\\\vspace{2mm}
+$\qquad \qquad \qquad \qquad \nearrow$\\
+Bidomain problem\\
+$\qquad \qquad \qquad \qquad \searrow$\\\vspace{2mm}
+$\qquad \qquad \qquad \qquad $ \textbf{time-dependent:} Semi-implicit, Godunov\\ $\qquad \qquad \qquad \qquad $ operator-splitting and quasi-implicit operator-splitting
+\end{frame}
+
+\begin{frame}
+\frametitle{Semi-discrete Discontinuous Galerkin formulation}
+For any $t\in[0,T]$ find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
+\vspace{2mm}
+    \begin{equation*}
+    \begin{cases}
+    \begin{gathered}
+    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_i(\phi_i^h,v_h)+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+    +\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(I_i^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+    \end{gathered}\\
+    \vspace{2mm}
+    \begin{gathered}
+    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_e(\phi_e^h,v_h)-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+    \end{gathered}\\
+    \vspace{2mm}
+    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
+    \end{cases}
+    \end{equation*}
+\end{frame}
+\begin{frame}
+    where:
+\center
+    \begin{equation*}
+    \begin{aligned}
+    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
+    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
+    \newline
+    \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
+    \newline
+    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_e^{ext} v_h d\omega}+\int_{\partial \Omega}{b_e v_h d\sigma}.
+    \end{aligned}
+    \end{equation*}
+\end{frame}
+
+\begin{frame}
+\section{Temporal discretization}
+\frametitle{Semi-implicit scheme}
+Idea:
+\begin{itemize}
+\item treat most of the terms of the PDE implicitly,
+\item treat the non-linear term semi-implictly,
+\item treat the ODE implictly with the exception of the term $V_m$.
+\end{itemize}
+\vspace{3mm}
+\begin{center}
+\underline{Semi-implicit discretized system}
+\end{center}
+Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,\cdots,N-1$ such that:
+\begin{equation*}
+\begin{cases}
+(\frac{1}{\Delta t}+\epsilon \gamma)M w^{n+1}=\epsilon M V_m^n+\frac{M}{\Delta t} w^n, \vspace{2mm} \\
+(B+C_{nl}(V_m^n)) \Phi^{n+1}=r^{n+1}.
+\end{cases}
+\end{equation*} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Godunov operator-splitting scheme}
+The main feature is the sub-division of the problem into two different problems to be solved sequentially, such that $L(u)=L_1(u)+L_2(u)$. In our case:
+\vspace{2mm}
+\begin{columns}
+            \begin{column}{0.5\textwidth}
+\small 1:
+ \begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{\hat{V}_m^{n+1} - V_m^n}{\Delta t} + C(V_m^n)V_m^n +\chi_mMw^n = 0,\vspace{2mm}\\
+\frac{w^{n+1}-w^n}{\Delta t} = \epsilon (V_m^n - \gamma w^n).
+\end{cases}
+\end{equation*}
+            \end{column}
+            \hspace{1cm}
+            \begin{column}{0.5\textwidth}  
+            \small 2:
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^{n+1}}{\Delta t} + A_i\phi_i^{n+1} = F_i^{n+1}, \vspace{2mm}\\
+-\chi_m C_m M\frac{V_m^{n+1} - \hat{V}_m^{n+1}}{\Delta t} + A_e\phi_e^{n+1} = F_e^{n+1}.
+\end{cases}
+\end{equation*}
+
+            \end{column}
+     \end{columns}
+     \vspace{4mm}
+\begin{center}
+\underline{Godunov operator-splitting discretized system}
+\end{center}
+Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that: \small
+\begin{equation*}
+\begin{cases}
+\begin{gathered}
+\left(
+\frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
++ \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
+\right) \begin{bmatrix} \phi_i^{n+1} \\ \phi_e^{n+1}  \end{bmatrix} =
+\begin{bmatrix} F_i^{n+1} \\ -F_e^{n+1} \end{bmatrix} + \\ -
+\chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^n \\ w^n \end{bmatrix} +
+\left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
+- \begin{bmatrix} C(V_m^n) & 0 \\ 0 & C(V_m^n)\end{bmatrix} 
+\right) \begin{bmatrix} V_m^n \\ V_m^n \end {bmatrix},
+\end{gathered} \\ \\
+w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
+\end{cases}
+\end{equation*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Quasi-implicit operator-splitting scheme}
+Idea:
+\begin{itemize}
+\item sub-division of the operator as Godunov operator-splitting
+\item treat implicitly all the terms except the cubic one
+\end{itemize}
+\vspace{2mm}
+In this case:
+\begin{columns}
+            \begin{column}{0.5\textwidth}
+\small 1:
+ \begin{equation*}
+\begin{cases}
+\chi_m C_m M \frac{\tilde{V}_m^{n+1}-V_m^n}{\Delta t} +  C(V_m^n) V_m^{n+1} + \chi_m M w^{n+1}= 0,\vspace{2mm}\\
+\frac{w^{n+1} - w^n}{\Delta t} = \epsilon (V_m^{n+1}-\gamma w^{n+1}).
+\end{cases}
+\end{equation*}
+            \end{column}
+            \hspace{1cm}
+            \begin{column}{0.5\textwidth}  
+            \small 2:
+\begin{equation*}
+\begin{cases}
+\chi_m C_m M \frac{V_m^{n+1}-\tilde{V}_m^{n+1}}{\Delta t} + A_i \phi_i^{n+1}= F_i^{n+1},\vspace{2mm}\\
+- \chi_m C_m M \frac{V_m^{n+1}-\tilde{V}_m^{n+1}}{\Delta t} + A_e \phi_e^{n+1}= F_e^{n+1}.
+\end{cases}
+\end{equation*}
+            \end{column}
+     \end{columns}
+\vspace{3mm}
+\begin{center}
+\underline{Quasi-implicit operator-splitting discretized system}
+\end{center}
+Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that:
+\begin{equation*}
+\quad
+\begin{cases}
+\left(
+\begin{bmatrix} Q_n & -Q_n \\ Q_n & -Q_n \end{bmatrix} + 
+\begin{bmatrix} A_i & 0 \\ 0 & -A_e\end{bmatrix}
+\right)
+\begin{bmatrix}
+\phi_i^{n+1} \\ \phi_e^{n+1}
+\end{bmatrix}
+= \begin{bmatrix} R_n \\ R_n \end{bmatrix} + \begin{bmatrix} F_i^{n+1} \\  -F_e^{n+1}\end{bmatrix},\\ \\
+w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{\displaystyle 1+\epsilon \gamma \Delta t}.
+\end{cases}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+\section{Uniqueness of the potentials}
+\frametitle{Uniqueness}
+About uniqueness of the unkowns:
+\vspace{2mm}
+\begin{itemize}
+\item $V_m, w$ proved in \textit{Existence and uniqueness of the solution for the bidomain model used in cardiac electrophysiology} by Y. Bourgault, Y. Coudière, and C. Pierre.
+\vspace{2mm}
+\item $\phi_i, \phi_e$ appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness.
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Uniqueness of potentials}
+\begin{theor}
+The classical solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time.
+\end{theor}
+Namely:\\
+Suppose now there exist two couples $(\phi_i^1,\phi_e^1)$,$(\phi_i^2,\phi_e^2)$ of potentials solutions of the Bidomain problem.
+\begin{equation*}
+\exists \tilde{\varphi}:[0,T]\rightarrow \mathbb{R} \text{ such that } \phi_i^1(x,t)-\phi_i^2(x,t) = \phi_e^1(x,t)-\phi_e^2(x,t)= \tilde{\varphi}(t)
+\end{equation*} 
+$\qquad \forall x \in \Omega,\forall t \in [0,T].$
+\begin{center}
+\textbf{SO HOW TO RESOLVE IT?}
+\end{center}
+\begin{enumerate}
+\item Imposition of the value of the function in a specific point.
+\item Imposition of the function mean value.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposition of a value in a specific point}
+Focus on only one of the potentials $\phi_i$.\\
+\vspace{3mm}
+\begin{small}
+$\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T] \qquad
+\xrightarrow[\text{with } \{u_j\} \text{ as vector of solution}]{\text{Numerical version}}\quad
+u_l^n = \varphi(t^n) \quad \forall n \in \{1,N\}$
+\end{small}
+\vspace{2mm}
+\end{frame}
 \end{document}
