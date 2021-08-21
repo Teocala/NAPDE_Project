@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.7.6)  20 AUG 2021 23:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  21 AUG 2021 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -741,48 +741,48 @@ Package: physics
 )
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\\' on input line 24.
+(hyperref)                removing `\\' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\new@ifnextchar' on input line 24.
+(hyperref)                removing `\new@ifnextchar' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 33.
+(hyperref)                removing `math shift' on input line 36.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 33.
+(hyperref)                removing `superscript' on input line 36.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\circ' on input line 33.
+(hyperref)                removing `\circ' on input line 36.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 33.
+(hyperref)                removing `math shift' on input line 36.
 
 (./presentation.aux)
 \openout1 = `presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 33
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 36.
+LaTeX Font Info:    ... okay on input line 36.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 36
 .
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
@@ -845,7 +845,7 @@ e
 ))
 ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box77
-Package hyperref Info: Link coloring OFF on input line 33.
+Package hyperref Info: Link coloring OFF on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -858,56 +858,56 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count334
 )
-LaTeX Info: Redefining \ref on input line 33.
-LaTeX Info: Redefining \pageref on input line 33.
-LaTeX Info: Redefining \nameref on input line 33.
+LaTeX Info: Redefining \ref on input line 36.
+LaTeX Info: Redefining \pageref on input line 36.
+LaTeX Info: Redefining \nameref on input line 36.
 
 (./presentation.out) (./presentation.out)
 \@outlinefile=\write5
 \openout5 = `presentation.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 33.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 33.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/b/n on input line 36.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/ptm/m/n on input line 33.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 33.
+(Font)                  OT1/cmss/m/n --> T1/ptm/m/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 33.
+(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 33.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 33.
+(Font)                  OT1/cmr/bx/n --> T1/phv/b/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 33.
+(Font)                  OT1/cmss/m/n --> T1/phv/m/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 33.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 33.
+(Font)                  OT1/cmss/bx/n --> T1/phv/m/n on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 33.
+(Font)                  OT1/cmr/m/it --> T1/phv/m/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 33.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 33.
+(Font)                  OT1/cmr/bx/it --> T1/phv/m/it on input line 36.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 33.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 33.
+(Font)                  OT1/cmtt/m/n --> T1/pcr/m/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 33.
+(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 36.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 33.
+(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/b/n --> T1/ptm/b/n on input line 33.
+(Font)                  OT1/cmss/b/n --> T1/ptm/b/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/phv/b/n --> T1/phv/b/n on input line 33.
+(Font)                  T1/phv/b/n --> T1/phv/b/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 33.
+(Font)                  T1/phv/m/n --> T1/phv/b/n on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 33.
+(Font)                  T1/phv/m/it --> T1/phv/b/it on input line 36.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/pcr/m/n --> T1/pcr/b/n on input line 33.
+(Font)                  T1/pcr/m/n --> T1/pcr/b/n on input line 36.
 
 (/usr/share/texlive/texmf-dist/tex/latex/translator/translator-basic-dictionary
 -English.dict
@@ -1005,40 +1005,40 @@ zlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2020/01/08 v3.1.5b (3.1.5b)
 ))) (./presentation.nav)
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 3
-3.
+6.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
-Overfull \vbox (2.16953pt too high) detected at line 33
+Overfull \vbox (4.16953pt too high) detected at line 36
  []
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 35.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 35.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <5> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 35.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <8> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 35.
-<logo_polimi.png, id=47, 1443.3925pt x 429.605pt>
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 38.
+<logo_polimi.png, id=57, 1443.3925pt x 429.605pt>
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 35.
+Package pdftex.def Info: logo_polimi.png  used on input line 38.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
@@ -1047,51 +1047,51 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 (./presentation.toc)
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 40.
+Package pdftex.def Info: logo_polimi.png  used on input line 43.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [2
 
 ]
-<./potential_cycle.png, id=131, 558.085pt x 328.22626pt>
+<./potential_cycle.png, id=149, 558.085pt x 328.22626pt>
 File: ./potential_cycle.png Graphic file (type png)
 <use ./potential_cycle.png>
-Package pdftex.def Info: ./potential_cycle.png  used on input line 74.
+Package pdftex.def Info: ./potential_cycle.png  used on input line 77.
 (pdftex.def)             Requested size: 122.9164pt x 72.29013pt.
 <<VPlayer.swf>><<Video_Presentazione.mp4>>
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 74.
+Package pdftex.def Info: logo_polimi.png  used on input line 77.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [3
 
  <./potential_cycle.png>]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 101.
+LaTeX Font Warning: Command \small invalid in math mode on input line 104.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/b/n' undefined
-(Font)              using `OT1/cmss/m/n' instead on input line 101.
+(Font)              using `OT1/cmss/m/n' instead on input line 104.
 
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <8> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 104.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <6> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 104.
 LaTeX Font Info:    Font shape `T1/phv/b/it' in size <5> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 101.
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 104.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 101.
+Package pdftex.def Info: logo_polimi.png  used on input line 104.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [4
@@ -1099,10 +1099,10 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 119.
+Package pdftex.def Info: logo_polimi.png  used on input line 122.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [5
@@ -1110,44 +1110,36 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 138.
+Package pdftex.def Info: logo_polimi.png  used on input line 132.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [6
 
 ]
-Overfull \hbox (4.93947pt too wide) detected at line 156
-[][]   \OML/cmm/m/it/9 ^^X \OT1/cmss/m/n/9 = []\OML/cmm/m/it/9 ; ^^Q \OT1/cmss/
-m/n/9 = []\OML/cmm/m/it/9 :[]
+Overfull \hbox (33.90326pt too wide) detected at line 153
+[]
  []
 
-<./transformation.png, id=299, 485.815pt x 256.96pt>
-File: ./transformation.png Graphic file (type png)
-<use ./transformation.png>
-Package pdftex.def Info: ./transformation.png  used on input line 156.
-(pdftex.def)             Requested size: 113.81102pt x 60.1974pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 156.
+Package pdftex.def Info: logo_polimi.png  used on input line 153.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [7
 
- <./transformation.png>]
-LaTeX Font Info:    Font shape `T1/phv/b/it' in size <9> not available
-(Font)              Font shape `T1/phv/b/sl' tried instead on input line 173.
+]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 173.
+Package pdftex.def Info: logo_polimi.png  used on input line 167.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [8
@@ -1155,36 +1147,44 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 195.
+Package pdftex.def Info: logo_polimi.png  used on input line 187.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [9
 
 ]
+Overfull \hbox (4.93947pt too wide) detected at line 205
+[][]   \OML/cmm/m/it/9 ^^X \OT1/cmss/m/n/9 = []\OML/cmm/m/it/9 ; ^^Q \OT1/cmss/
+m/n/9 = []\OML/cmm/m/it/9 :[]
+ []
+
+<./transformation.png, id=428, 485.815pt x 256.96pt>
+File: ./transformation.png Graphic file (type png)
+<use ./transformation.png>
+Package pdftex.def Info: ./transformation.png  used on input line 205.
+(pdftex.def)             Requested size: 113.81102pt x 60.1974pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
 Package pdftex.def Info: logo_polimi.png  used on input line 205.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [10
 
-]
-Overfull \hbox (33.90326pt too wide) detected at line 226
-[]
- []
-
+ <./transformation.png>]
+LaTeX Font Info:    Font shape `T1/phv/b/it' in size <9> not available
+(Font)              Font shape `T1/phv/b/sl' tried instead on input line 222.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 226.
+Package pdftex.def Info: logo_polimi.png  used on input line 222.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [11
@@ -1192,10 +1192,10 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 240.
+Package pdftex.def Info: logo_polimi.png  used on input line 244.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [12
@@ -1203,50 +1203,58 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 262.
+Package pdftex.def Info: logo_polimi.png  used on input line 267.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [13
 
 ]
-Overfull \hbox (26.4679pt too wide) detected at line 312
+Overfull \hbox (26.4679pt too wide) detected at line 317
 []
  []
 
 
-Overfull \hbox (6.42776pt too wide) detected at line 312
+Overfull \hbox (6.42776pt too wide) detected at line 317
 []
+ []
+
+
+Overfull \vbox (4.5171pt too high) detected at line 317
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 312.
+Package pdftex.def Info: logo_polimi.png  used on input line 317.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [14
 
 ]
-Overfull \hbox (42.44054pt too wide) detected at line 363
+Overfull \hbox (42.44054pt too wide) detected at line 367
 []
  []
 
 
-Overfull \hbox (6.42776pt too wide) detected at line 363
+Overfull \hbox (6.42776pt too wide) detected at line 367
 []
+ []
+
+
+Overfull \vbox (2.95674pt too high) detected at line 367
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 363.
+Package pdftex.def Info: logo_polimi.png  used on input line 367.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [15
@@ -1254,10 +1262,10 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 375.
+Package pdftex.def Info: logo_polimi.png  used on input line 379.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [16
@@ -1265,10 +1273,10 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 394.
+Package pdftex.def Info: logo_polimi.png  used on input line 401.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [17
@@ -1276,13 +1284,277 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 406.
+Package pdftex.def Info: logo_polimi.png  used on input line 435.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
-Overfull \vbox (2.16953pt too high) has occurred while \output is active []
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 
 
 [18
+
+]
+Overfull \hbox (17.81894pt too wide) detected at line 469
+[]
+ []
+
+
+Overfull \hbox (21.77184pt too wide) detected at line 469
+[]
+ []
+
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 469.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[19
+
+]
+Overfull \vbox (8.09204pt too high) detected at line 500
+ []
+
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 500.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[20
+
+]
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 510.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[21
+
+]
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 547.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[22
+
+]
+<D1_Vm_1.jpg, id=880, 1521.685pt x 895.345pt>
+File: D1_Vm_1.jpg Graphic file (type jpg)
+<use D1_Vm_1.jpg>
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 571.
+(pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
+<D2_Vm_1.jpg, id=881, 1510.64375pt x 888.31876pt>
+File: D2_Vm_1.jpg Graphic file (type jpg)
+<use D2_Vm_1.jpg>
+Package pdftex.def Info: D2_Vm_1.jpg  used on input line 571.
+(pdftex.def)             Requested size: 122.9164pt x 72.27332pt.
+<P1_Vm_1.jpg, id=882, 1495.5875pt x 879.285pt>
+File: P1_Vm_1.jpg Graphic file (type jpg)
+<use P1_Vm_1.jpg>
+Package pdftex.def Info: P1_Vm_1.jpg  used on input line 571.
+(pdftex.def)             Requested size: 122.9164pt x 72.26283pt.
+<P2_Vm_1.jpg, id=883, 1521.685pt x 884.30376pt>
+File: P2_Vm_1.jpg Graphic file (type jpg)
+<use P2_Vm_1.jpg>
+Package pdftex.def Info: P2_Vm_1.jpg  used on input line 571.
+(pdftex.def)             Requested size: 122.9164pt x 71.42041pt.
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 571.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[23
+
+ <./D1_Vm_1.jpg> <./D2_Vm_1.jpg> <./P1_Vm_1.jpg> <./P2_Vm_1.jpg>]
+File: D1_Vm_1.jpg Graphic file (type jpg)
+<use D1_Vm_1.jpg>
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 591.
+(pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
+<D1_Vm_1_GO.jpg, id=919, 1511.6475pt x 883.3pt>
+File: D1_Vm_1_GO.jpg Graphic file (type jpg)
+<use D1_Vm_1_GO.jpg>
+Package pdftex.def Info: D1_Vm_1_GO.jpg  used on input line 591.
+(pdftex.def)             Requested size: 122.9164pt x 71.81107pt.
+<D1_Vm_1_OS.jpg, id=920, 1503.6175pt x 882.29625pt>
+File: D1_Vm_1_OS.jpg Graphic file (type jpg)
+<use D1_Vm_1_OS.jpg>
+Package pdftex.def Info: D1_Vm_1_OS.jpg  used on input line 591.
+(pdftex.def)             Requested size: 122.91406pt x 72.11989pt.
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 591.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[24
+
+ <./D1_Vm_1_GO.jpg> <./D1_Vm_1_OS.jpg>]
+File: D1_Vm_1.jpg Graphic file (type jpg)
+<use D1_Vm_1.jpg>
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 611.
+(pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
+<D1_Vm_2.jpg, id=955, 1503.6175pt x 879.285pt>
+File: D1_Vm_2.jpg Graphic file (type jpg)
+<use D1_Vm_2.jpg>
+Package pdftex.def Info: D1_Vm_2.jpg  used on input line 611.
+(pdftex.def)             Requested size: 122.9164pt x 71.87375pt.
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 611.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[25
+
+ <./D1_Vm_2.jpg>]
+Overfull \hbox (10.78685pt too wide) in paragraph at lines 639--639
+ [] 
+ []
+
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 639.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[26
+
+]
+<tc1-1/002.jpg, id=1025, 562.1pt x 421.575pt>
+File: tc1-1/002.jpg Graphic file (type jpg)
+<use tc1-1/002.jpg>
+Package pdftex.def Info: tc1-1/002.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/004.jpg, id=1026, 562.1pt x 421.575pt>
+File: tc1-1/004.jpg Graphic file (type jpg)
+<use tc1-1/004.jpg>
+Package pdftex.def Info: tc1-1/004.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/006.jpg, id=1027, 562.1pt x 421.575pt>
+File: tc1-1/006.jpg Graphic file (type jpg)
+<use tc1-1/006.jpg>
+Package pdftex.def Info: tc1-1/006.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/008.jpg, id=1028, 562.1pt x 421.575pt>
+File: tc1-1/008.jpg Graphic file (type jpg)
+<use tc1-1/008.jpg>
+Package pdftex.def Info: tc1-1/008.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/010.jpg, id=1029, 562.1pt x 421.575pt>
+File: tc1-1/010.jpg Graphic file (type jpg)
+<use tc1-1/010.jpg>
+Package pdftex.def Info: tc1-1/010.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/012.jpg, id=1030, 562.1pt x 421.575pt>
+File: tc1-1/012.jpg Graphic file (type jpg)
+<use tc1-1/012.jpg>
+Package pdftex.def Info: tc1-1/012.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/014.jpg, id=1031, 562.1pt x 421.575pt>
+File: tc1-1/014.jpg Graphic file (type jpg)
+<use tc1-1/014.jpg>
+Package pdftex.def Info: tc1-1/014.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-1/016.jpg, id=1032, 572.1375pt x 414.54875pt>
+File: tc1-1/016.jpg Graphic file (type jpg)
+<use tc1-1/016.jpg>
+Package pdftex.def Info: tc1-1/016.jpg  used on input line 688.
+(pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 688.
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 688.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[27
+
+ <./tc1-1/002.jpg> <./tc1-1/004.jpg> <./tc1-1/006.jpg> <./tc1-1/008.jpg> <./tc1
+-1/010.jpg> <./tc1-1/012.jpg> <./tc1-1/014.jpg> <./tc1-1/016.jpg>]
+<tc1-2/002.jpg, id=1069, 562.1pt x 421.575pt>
+File: tc1-2/002.jpg Graphic file (type jpg)
+<use tc1-2/002.jpg>
+Package pdftex.def Info: tc1-2/002.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-2/004.jpg, id=1070, 562.1pt x 421.575pt>
+File: tc1-2/004.jpg Graphic file (type jpg)
+<use tc1-2/004.jpg>
+Package pdftex.def Info: tc1-2/004.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-2/006.jpg, id=1071, 572.1375pt x 414.54875pt>
+File: tc1-2/006.jpg Graphic file (type jpg)
+<use tc1-2/006.jpg>
+Package pdftex.def Info: tc1-2/006.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
+<tc1-2/008.jpg, id=1072, 562.1pt x 421.575pt>
+File: tc1-2/008.jpg Graphic file (type jpg)
+<use tc1-2/008.jpg>
+Package pdftex.def Info: tc1-2/008.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-2/010.jpg, id=1073, 572.1375pt x 414.54875pt>
+File: tc1-2/010.jpg Graphic file (type jpg)
+<use tc1-2/010.jpg>
+Package pdftex.def Info: tc1-2/010.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
+<tc1-2/012.jpg, id=1074, 562.1pt x 421.575pt>
+File: tc1-2/012.jpg Graphic file (type jpg)
+<use tc1-2/012.jpg>
+Package pdftex.def Info: tc1-2/012.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-2/014.jpg, id=1075, 562.1pt x 421.575pt>
+File: tc1-2/014.jpg Graphic file (type jpg)
+<use tc1-2/014.jpg>
+Package pdftex.def Info: tc1-2/014.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+<tc1-2/016.jpg, id=1076, 562.1pt x 421.575pt>
+File: tc1-2/016.jpg Graphic file (type jpg)
+<use tc1-2/016.jpg>
+Package pdftex.def Info: tc1-2/016.jpg  used on input line 737.
+(pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 737.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[28
+
+ <./tc1-2/002.jpg> <./tc1-2/004.jpg> <./tc1-2/006.jpg> <./tc1-2/008.jpg> <./tc1
+-2/010.jpg> <./tc1-2/012.jpg> <./tc1-2/014.jpg> <./tc1-2/016.jpg>]
+File: logo_polimi.png Graphic file (type png)
+<use logo_polimi.png>
+Package pdftex.def Info: logo_polimi.png  used on input line 752.
+(pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
+
+Overfull \vbox (4.16953pt too high) has occurred while \output is active []
+
+
+[29
 
 ]
 \tf@nav=\write6
@@ -1294,24 +1566,24 @@ Overfull \vbox (2.16953pt too high) has occurred while \output is active []
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 407.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 407.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 754.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 754.
  (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 407.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 407.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 754.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 754.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
-(rerunfilecheck)             Checksum: CB81F684C34B6B873C535D241B76FE37;302.
+(rerunfilecheck)             Checksum: 6BC560F0232E4751AF97FD00676A62A5;407.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 23909 strings out of 482843
- 469212 string characters out of 5956406
- 750625 words of memory out of 5000000
- 38630 multiletter control sequences out of 15000+600000
- 587724 words of font info for 89 fonts, out of 8000000 for 9000
+ 24120 strings out of 482843
+ 472207 string characters out of 5956406
+ 751754 words of memory out of 5000000
+ 38797 multiletter control sequences out of 15000+600000
+ 592293 words of font info for 97 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  59i,20n,63p,798b,963s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1321,19 +1593,21 @@ exmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist
 /fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><
-/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/urw/helvetic/uhvro8a.pfb>
-Output written on presentation.pdf (18 pages, 1784722 bytes).
+ublic/amsfonts/cm/cmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/t
+exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
+elvetic/uhvro8a.pfb>
+Output written on presentation.pdf (29 pages, 3979979 bytes).
 PDF statistics:
- 759 PDF objects out of 1000 (max. 8388607)
- 685 compressed objects within 7 object streams
- 46 named destinations out of 1000 (max. 500000)
- 224 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1223 PDF objects out of 1440 (max. 8388607)
+ 1106 compressed objects within 12 object streams
+ 70 named destinations out of 1000 (max. 500000)
+ 355 words of extra memory for PDF output out of 10000 (max. 10000000)
 

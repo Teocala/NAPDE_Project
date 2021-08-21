@@ -21,6 +21,8 @@
 \usepackage{caption}
 \captionsetup{compatibility=false}
 \usepackage{float}
+\DeclareCaptionType{mycapequ}[][List of equations]
+\captionsetup[mycapequ]{labelformat=empty}
 
 \usepackage[
 backend=biber,
@@ -104,7 +106,7 @@ citestyle=numeric,
     From a microscopical point of view, we could study the dynamics acting in each single cell (as a consequence of the passage of chemical ions through specific channels, e.g. $Ca2+,Na+,K+$). From a macroscopical point of view, instead, one can describe it as a continuous electrical diffusion over the entire cardiac surface. Even if this consists in a very rapid phenomenon, the study of such propagation could be very interesting in order, for instance, to detect diseases in sick patients.
     
     \subsection{Mathematical models}
-    Starting from the circuit in Figure (\ref{electrical_circuit}), applying general electromagnetism laws, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete derivation).
+    Starting from the circuit in Figure (\ref{electrical_circuit}) and applying general electromagnetism laws, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete derivation).
     
     \begin{figure}[h]
     	\begin{center}
@@ -169,8 +171,18 @@ citestyle=numeric,
     	\item $b_i,b_e$ are the boundary conditions data,
     	\item $n$ is the outward normal vector.
     \end{itemize}
-
+    
     \vspace{4mm}
+    \noindent Moreover, if we sum the first two equations of Problem (\ref{def1}), we integrate both sides over $\Omega $ and we use the divergence theorem, we easily get the following compatibility condition, necessary for the existence of the solution: \\
+    \begin{mycapequ}[!ht]
+    	\caption{Compatibility condition}
+    \end{mycapequ}
+    \begin{equation} \label{compatibility}
+    \int_{\Omega} I_i^{ext} - \int_{\Omega} I_e^{ext} = -\int_{\partial \Omega} b_i - \int_{\partial \Omega} b_e
+    \end{equation} \vspace{3mm} \\
+    Even when it is not explicitly declared, boundary conditions and forcing terms are always chosen to satisfy Equation (\ref{compatibility}). \\
+    
+
     \noindent From now on, the system of equations given by Problem (\ref{def1}) will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}, but this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
 
@@ -660,7 +672,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 \newpage
 \section{About uniqueness of the potentials}\label{unique}
 \subsection{Analytical concepts}
-\noindent Observing for a moment the Bidomain problem analytical formulation (Problem (\ref{def1})), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
+\noindent Examining for a moment the Bidomain problem analytical formulation (Problem (\ref{def1})), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
 \begin{equation}\label{phi_uniqueness}
 \begin{gathered}
 \phi_i,\phi_e \text{ classical solutions of Bidomain} \Rightarrow \phi_i+\varphi,\,\phi_e+\varphi \text{ are solutions as well } \\
@@ -841,7 +853,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{equation*}
 \end{problem}
 \noindent As usual, the regularity of $f$ and $\Omega$ imply that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
-\begin{lemma}
+\begin{lemma} \label{first_lemma}
 	The Problem (\ref{reference_problem}) admits a unique weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
 \end{lemma} \vspace{1mm}
 \begin{proof}
@@ -895,7 +907,19 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{itemize}
 \end{problem}\vspace{3mm}
 
-\noindent Surely a solution of Problem (\ref{reference_problem}) is a solution of Problem (\ref{reference_problem_2}). The converse implication could be easily proved too. Then, the two problems are well-posed and completely equivalent. The advantage of the second form is that it consists in a minimization problem with constraints, a kind of problem that can be solved with generalized \emph{Lagrange Multipliers}. It means that:
+\begin{corollary}
+	Problem (\ref{reference_problem}) and Problem (\ref{reference_problem_2}) are both well-posed and share the same unique solution $u \in H^1$. Thus, they are equivalent problems.
+\end{corollary}
+\begin{proof}
+	From Lemma (\ref{first_lemma}), we know that Problem (\ref{reference_problem}) is well-posed and its unique solution $u$ solves Problem (\ref{reference_problem_2}) too. Let us show that $u$ is the unique solution of Problem (\ref{reference_problem_2}) too. Then, consider $v \in H^1$ another solution and define $w=u-v \in H^1$. \\
+	From the end of Lemma (\ref{first_lemma}) proof, since $J(u)=J(v)$ by hypothesis, it follows that:
+	\begin{equation*}
+	\int_{\Omega} | \nabla w | ^2 = 0
+	\end{equation*}
+	Since $\nabla w \in L^2(\Omega)$, it implies that $\nabla w = 0$ almost everywhere. From \emph{Microteorema 2.2} in \cite{salsa} about weak gradients, $w$ is constant almost everywhere. But, since $I(w)=I(u)-I(v)=0$, $w$ is necessarily equal to zero a.e. \\
+	Summing up, $u$ always exists and is the unique solution of both the problems. \\ \qed
+\end{proof} \vspace{4mm} 
+\noindent Then, the two problems are well-posed and completely equivalent. The advantage of the second form is that it consists in a minimization problem with constraints, a kind of problem that can be solved with generalized \emph{Lagrange Multipliers}. It means that:
 
 \begin{equation*}
 \exists \lambda \in \mathbb{R} \text{ such that} \quad <J'(u),v>+\lambda <I'(u),v>=0 \quad \forall v \in H^1(\Omega),
@@ -915,9 +939,9 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{equation*}
 \end{problem}
 
-\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved.  \newpage
+\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved. \\
 \begin{lemma} \label{lemma_lagrange}
-	Suppose that the assumptions on data of Problem (\ref{reference_problem}) are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem (\ref{reference_problem_3}). Moreover, $\lambda=0$ and $u$ is unique. \\
+	Suppose that the assumptions on data of Problem (\ref{reference_problem}) are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem (\ref{reference_problem_3}). Moreover, $\lambda=0$ and $u$ is unique. 
 \end{lemma}
 \begin{proof}
 	For what concerns existence, we can immediately realize that the solution $u$ of Problem (\ref{reference_problem}) solves the Problem (\ref{reference_problem_3}) with $\lambda=0$. Then the existence property holds because existence of Problem (\ref{reference_problem}) has already been proved. \\
@@ -951,10 +975,10 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\begin{equation*}
 	\lambda \int_{\Omega}v = 0 \quad \forall v \in H^1(\Omega),
 	\end{equation*}
-	that trivially implies $\lambda=0$.	
+	that trivially implies $\lambda=0$.	\\ \qed
 \end{proof}
-	\qed
-	\vspace{3mm} \\
+	
+	\vspace{3mm} 
 	\noindent This analytical digression was intended as a clarification of how Problem (\ref{reference_problem_3}) can be considered as equivalent to the original Problem (\ref{reference_problem}) (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
 
 
@@ -999,7 +1023,7 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \end{bmatrix}
 \end{equation*}
 \vspace{3mm} \\
-\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, all the information is conserved. To conclude, we remind from Lemma (\ref{lemma_lagrange}) that $\lambda$ is an auxiliary unknown, its value is always zero. \\
+\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, all the information is conserved. For this reason, a similar procedure might be replicated for the first coefficient imposition if the information of the first row and first column are essential. To conclude, we remind from Lemma (\ref{lemma_lagrange}) that $\lambda$ is an auxiliary unknown, its value turns to be always zero. \\
 
 \noindent The implementation of such transformation is carried out in the \texttt{assign\_null\_average.m} script (at Section (\ref{mean})).\\
 \vspace{2mm}
@@ -1025,7 +1049,7 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \subsection{Chosen data}
 Starting from some example problems, we provide now an experimental error analysis that can show the efficacy and goodness of our numerical schemes. For all the simulations, the values to assign to constant parameters are the same proposed in \cite{bagnara} and used in \cite{andreotti} and \cite{marta}. Namely:
 \begin{center}
-	\captionof{table}{Parameters for pseudo-realistic simulations}
+	\captionof{table}{Parameters for space error analysis simulations}
 	\begin{tabular}{|c|c|} 
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
@@ -1384,7 +1408,7 @@ Our final goal is to exploit strategies and tools presented in the previous sect
 \noindent Where $I$ is a positive value to be chosen depending on the context. We remind from \ref{uniqueness_results} that the mean value imposition is always chosen for realistic simulations. Moreover, we observe that the main differences with the previous parameters are the square domain that is no more unitary and the anisotropy of the diffusion tensors. The latter choice is motivated from the real utility of the \emph{Bidomain Model} if compared to the \emph{Monodomain Model}, where the two tensors are assumed to be equal or proportional. Parameters values are taken as usual from literature, especially from \cite{acta}. \\
 
 \noindent Physically, this setting represents a square section of the surface of the heart that is electrically isolated (homogeneous boundary conditions) and an external current that is applied in a central region for a limited interval of time. \\
-To conclude, observe that the compatibility condition for the existence of the solution is satisfied since both boundary conditions and external currents are the same in the intracellular and extracellular regions. \\
+To conclude, observe that the compatibility condition (Equation (\ref{compatibility})) for the existence of the solution is satisfied since boundary conditions are null and external currents are the same in the intracellular and extracellular regions. \\
 
 \noindent For what concerns \emph{FitzHugh-Nagumo} parameters, there are no general values as for the previous ones. To generalize this aspect, we defined two different test-cases with two different sets of parameters, namely:
 

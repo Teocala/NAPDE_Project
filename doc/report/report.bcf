@@ -2207,15 +2207,16 @@
     <bcf:citekey order="23">bourgault</bcf:citekey>
     <bcf:citekey order="24">salsa</bcf:citekey>
     <bcf:citekey order="25">gazzola</bcf:citekey>
-    <bcf:citekey order="26">bagnara</bcf:citekey>
-    <bcf:citekey order="27">andreotti</bcf:citekey>
-    <bcf:citekey order="28">marta</bcf:citekey>
-    <bcf:citekey order="29">acta</bcf:citekey>
-    <bcf:citekey order="30">bagnara</bcf:citekey>
-    <bcf:citekey order="31">andreotti</bcf:citekey>
-    <bcf:citekey order="32">marta</bcf:citekey>
-    <bcf:citekey order="33">mauricio</bcf:citekey>
-    <bcf:citekey order="34">colli_franzone_parallel</bcf:citekey>
+    <bcf:citekey order="26">salsa</bcf:citekey>
+    <bcf:citekey order="27">bagnara</bcf:citekey>
+    <bcf:citekey order="28">andreotti</bcf:citekey>
+    <bcf:citekey order="29">marta</bcf:citekey>
+    <bcf:citekey order="30">acta</bcf:citekey>
+    <bcf:citekey order="31">bagnara</bcf:citekey>
+    <bcf:citekey order="32">andreotti</bcf:citekey>
+    <bcf:citekey order="33">marta</bcf:citekey>
+    <bcf:citekey order="34">mauricio</bcf:citekey>
+    <bcf:citekey order="35">colli_franzone_parallel</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
