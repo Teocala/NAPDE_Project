@@ -15,6 +15,9 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamerfont{caption}{size=\scriptsize}
+\setlength\abovecaptionskip{-5pt}
 
 \newtheorem*{remark}{Remark}
 \newtheorem*{theor}{Theorem}
@@ -118,10 +121,56 @@ What we did:
 \end{itemize}
 \end{frame}
 
+\begin{frame}
+	\section{Semi-discrete Discontinuous Galerkin}
+	\frametitle{Discretization}
+	$\qquad \qquad \qquad \qquad $ \textbf{space-dependent:} Discontinuous Galerkin method\\\vspace{2mm}
+	$\qquad \qquad \qquad \qquad \nearrow$\\
+	Bidomain problem\\
+	$\qquad \qquad \qquad \qquad \searrow$\\\vspace{2mm}
+	$\qquad \qquad \qquad \qquad $ \textbf{time-dependent:} Semi-implicit, Godunov\\ $\qquad \qquad \qquad \qquad $ operator-splitting and quasi-implicit operator-splitting
+\end{frame}
+
+\begin{frame}
+	\frametitle{Semi-discrete Discontinuous Galerkin formulation}
+	For any $t\in[0,T]$ find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
+	\vspace{2mm}
+	\begin{equation*}
+	\begin{cases}
+	\begin{gathered}
+	\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_i(\phi_i^h,v_h)+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+	+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(I_i^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+	\end{gathered}\\
+	\vspace{2mm}
+	\begin{gathered}
+	-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_e(\phi_e^h,v_h)-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
+	-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
+	\end{gathered}\\
+	\vspace{2mm}
+	\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
+	\end{cases}
+	\end{equation*}
+\end{frame}
+\begin{frame}
+	where:
+	\center
+	\begin{equation*}
+	\begin{aligned}
+	\bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
+	&-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
+	\newline
+	\bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
+	\newline
+	\bullet& \quad (-I_e^{ext},v_h)=-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_e^{ext} v_h d\omega}+\int_{\partial \Omega}{b_e v_h d\sigma}.
+	\end{aligned}
+	\end{equation*}
+\end{frame}
+
+
 
 \begin{frame}
 \section{Dubiner basis implementation}
-\frametitle{Analytical definition}
+\frametitle{Dubiner basis: analytical definition}
 \begin{definition}[Dubiner basis] \label{dubiner}
 	The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of polynomials of degree $p$ over the reference triangle is the set of functions:
 	\begin{equation*}
@@ -185,7 +234,7 @@ Consider:
 \textbf{FEM $\leftarrow$ Dubiner} \\
 Exploiting the nodal meaning of FEM, we compute its value in a point:
 \begin{equation*} \label{ref3}
-\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\phi_j(x_i),
+\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i),
 \end{equation*}
 \textbf{FEM $\rightarrow$ Dubiner} \\
 Exploiting the $L^2$-orthonormality of Dubiner, we compute its Fourier coeff.:
@@ -194,50 +243,6 @@ Exploiting the $L^2$-orthonormality of Dubiner, we compute its Fourier coeff.:
 \end{equation*}
 \end{frame}
 
-\begin{frame}
-\section{Semi-discrete Discontinuous Galerkin}
-\frametitle{Discretization}
-$\qquad \qquad \qquad \qquad $ \textbf{space-dependent:} Discontinuous Galerkin method\\\vspace{2mm}
-$\qquad \qquad \qquad \qquad \nearrow$\\
-Bidomain problem\\
-$\qquad \qquad \qquad \qquad \searrow$\\\vspace{2mm}
-$\qquad \qquad \qquad \qquad $ \textbf{time-dependent:} Semi-implicit, Godunov\\ $\qquad \qquad \qquad \qquad $ operator-splitting and quasi-implicit operator-splitting
-\end{frame}
-
-\begin{frame}
-\frametitle{Semi-discrete Discontinuous Galerkin formulation}
-For any $t\in[0,T]$ find $\Phi_h(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
-\vspace{2mm}
-    \begin{equation*}
-    \begin{cases}
-    \begin{gathered}
-    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_i(\phi_i^h,v_h)+\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
-    +\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(I_i^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
-    \end{gathered}\\
-    \vspace{2mm}
-    \begin{gathered}
-    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m C_m \pdv{V_m^h}{t} v_h d\omega}+a_e(\phi_e^h,v_h)-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m k (V_m^h-1)(V_m^h-a) V_m^h v_h d\omega}+\\
-    -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
-    \end{gathered}\\
-    \vspace{2mm}
-    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
-    \end{cases}
-    \end{equation*}
-\end{frame}
-\begin{frame}
-    where:
-\center
-    \begin{equation*}
-    \begin{aligned}
-    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
-    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
-    \newline
-    \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
-    \newline
-    \bullet& \quad (-I_e^{ext},v_h)=-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_e^{ext} v_h d\omega}+\int_{\partial \Omega}{b_e v_h d\sigma}.
-    \end{aligned}
-    \end{equation*}
-\end{frame}
 
 \begin{frame}
 \section{Temporal discretization}
@@ -319,7 +324,6 @@ Idea:
 \item treat implicitly all the terms except the cubic one
 \end{itemize}
 \vspace{2mm}
-In this case:
 \begin{columns}
             \begin{column}{0.5\textwidth}
 \small 1:
@@ -378,30 +382,373 @@ About uniqueness of the unkowns:
 \begin{theor}
 The classical solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time.
 \end{theor}
-Namely:\\
-Suppose now there exist two couples $(\phi_i^1,\phi_e^1)$,$(\phi_i^2,\phi_e^2)$ of potentials solutions of the Bidomain problem.
-\begin{equation*}
-\exists \tilde{\varphi}:[0,T]\rightarrow \mathbb{R} \text{ such that } \phi_i^1(x,t)-\phi_i^2(x,t) = \phi_e^1(x,t)-\phi_e^2(x,t)= \tilde{\varphi}(t)
-\end{equation*} 
-$\qquad \forall x \in \Omega,\forall t \in [0,T].$
 \begin{center}
-\textbf{SO HOW TO RESOLVE IT?}
+	\textbf{STRATEGIES}
 \end{center}
 \begin{enumerate}
-\item Imposition of the value of the function in a specific point.
-\item Imposition of the function mean value.
+\item Imposition of the value of the function in a specific point. \\
+\begin{small}
+	$\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T] \quad
+	\xrightarrow[]{\text{Numerical version}}\quad
+	u_1^n = \varphi(t^n) \quad \forall n \in \{1,N\}$ \vspace{4mm}
+\end{small}
+\item Imposition of the function mean value. \\
+\begin{small}
+$\displaystyle \int_\Omega \phi_i\,dx = \varphi(t) \quad \forall t \in [0,T] \quad
+\xrightarrow[]{\text{Numerical version}}\quad \sum_{j=1}^{N_h} u_j^n \, w_j = \varphi(t^n)\quad \forall n \in \{1,N\}$
+\end{small}
 \end{enumerate}
 \end{frame}
 
 \begin{frame}
-\frametitle{Imposition of a value in a specific point}
-Focus on only one of the potentials $\phi_i$.\\
-\vspace{3mm}
-\begin{small}
-$\phi_i(\bar{x},t) = \varphi(t) \quad \forall t \in [0,T] \qquad
-\xrightarrow[\text{with } \{u_j\} \text{ as vector of solution}]{\text{Numerical version}}\quad
-u_l^n = \varphi(t^n) \quad \forall n \in \{1,N\}$
-\end{small}
-\vspace{2mm}
+\frametitle{Imposition of a value in a specific point / first coefficient}
+\begin{remark}
+	The aim is to impose the condition before or directly into the system to avoid ill-conditioning.
+\end{remark}
+
+\begin{equation*}
+A=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} \\ 
+a_{21} & a_{22} & \dots & a_{2N} \\ 
+a_{31} &a_{32} & \dots & a_{3N} \\
+\dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad \rightarrow
+\quad \quad \tilde{A}=\begin{bmatrix}
+1 & 0 & \dots & 0 \\ 
+0 & a_{22} & \dots & a_{2N} \\ 
+0 &a_{32} & \dots & a_{3N} \\
+\dots & \dots & \dots & \dots \\
+0  & a_{N2} & \dots & a_{NN}
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+b=\begin{bmatrix}
+b_1 \\ b_2 \\ b_3 \\ \dots \\ b_N
+\end{bmatrix} \quad \rightarrow \quad
+\tilde{b}=\begin{bmatrix}
+c \\ b_2 -a_{21}c \\ b_3-a_{31}c \\ \dots \\ b_N-a_{N1}c
+\end{bmatrix}
+\quad \quad \text{($c$ is the imposed value)}
+\end{equation*}
 \end{frame}
+
+
+\begin{frame}
+\frametitle{An anaytical motivation for the mean-value imposition}
+\begin{remark}
+The previous strategy modifies directly the system and keeps the symmetry of the matrix. This is not possible for the mean-value imposition, we should look for a different method.
+\end{remark}
+\vspace{2mm}
+\begin{lemma}
+	The two following problems are both well-posed and have the same solution $u$, moreover $\lambda=0$.
+\end{lemma}
+\vspace{2mm}
+
+\begin{columns}
+	\begin{column}{0.45\textwidth}
+		Find $u\in H^1(\Omega)$ such that:
+		\begin{equation*}
+		\begin{cases}
+		\int_{\Omega}\nabla u \cdot \nabla v = \int_{\Omega} fv, \quad \forall v \in H^1(\Omega),\\[2ex]
+		\int_{\Omega}u = 0.
+		\end{cases}
+		\end{equation*}
+	\end{column}
+	\begin{column}{0.55\textwidth}  
+		Find $ u \in H^1(\Omega), \lambda \in \mathbb{R}$ such that:
+		\begin{equation*}
+		\begin{cases}
+	     \int_{\Omega}\nabla u \cdot \nabla v + \lambda \int_\Omega v = \int_{\Omega} fv, \quad \forall v \in H^1(\Omega), \\[2ex]
+		\int_{\Omega}u= 0.
+		\end{cases}
+		\end{equation*}
+	\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Imposition of the mean-value}
+\begin{remark}
+	An equivalent formulation to the Laplace problem with Neumann B.C. and null mean has been found (the very motivation passed through the Lagrange Multipliers). We can now generalize it for the Bidomain.
+\end{remark}
+\begin{equation*}
+A=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} \\ 
+a_{21} & a_{22} & \dots & a_{2N} \\ 
+\dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN}
+\end{bmatrix} \quad \quad \rightarrow
+\quad \quad \tilde{A}=\begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1N} & d_1\\ 
+a_{21} & a_{22} & \dots & a_{2N} & d_2 \\ 
+\dots & \dots & \dots & \dots & \dots \\
+a_{N1}  & a_{N2} & \dots & a_{NN} & d_N \\
+d_1 & d_2 & \dots & d_N & 0
+\end{bmatrix}
+\end{equation*}
+
+\begin{equation*}
+b=\begin{bmatrix}
+b_1 \\ b_2 \\ \dots \\ b_N
+\end{bmatrix} \quad \rightarrow \quad
+\tilde{b}=\begin{bmatrix}
+b_1 \\ b_2 \\ \dots \\ b_N \\ c
+\end{bmatrix} \quad \text{(where $c$ is the imposed value, $ \textstyle d_i = \int_\Omega \varphi_i$)}
+\end{equation*}
+\end{frame}
+
+\begin{frame}
+\frametitle{Strategies choices}
+Most of the times the two strategies are equivalent even if the second one is computationally more expensive. On the other hand, for very ill-posed systems, first strategy might have an overshooting effect and then a global strategy is needed. \vspace{4mm} \\
+This is why we chose to adopt:
+\begin{itemize}
+	\item The first coefficient imposition for error analysis studies.
+	\item The mean value imposition for realistic simulations (where many terms are null).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\section{Error analysis}
+\frametitle{Chosen data}
+\begin{center}
+	\begin{tabular}{|c|c|} 
+		\hline 
+		Domain & $\begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix}$ \\
+		\hline 
+		$dt$ & $0.0001$ \\
+		\hline
+		$T$ & $0.001$ \\
+		\hline
+		$\chi_m$ & $10^5$ \\
+		\hline
+		$\Sigma_i$ & $\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$ \\
+		\hline
+		$\Sigma_e$ & $\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$ \\
+		\hline
+		$C_m$ & $10^{-2}$ \\
+		\hline
+		$k$ & 19.5 \\ 
+		\hline
+		$\varepsilon$ & 1.2 \\
+		\hline
+		$\gamma$ & 0.1 \\
+		\hline
+		$a$ & $13 \cdot 10^{-3}$ \\
+		\hline
+		$V_m$ exact solution & $sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ \\
+		\hline
+		$w$ exact solution & $\frac{\varepsilon}{\varepsilon \gamma-5} sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparison between FEM and Dubiner}
+\begin{columns}
+	\begin{column}{0.5\textwidth}
+	\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{D1_Vm_1.jpg} \caption{D1}
+	\end{figure}
+    \vspace{-4mm}
+    \begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{D2_Vm_1.jpg} \caption{D2}
+	\end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    \begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{P1_Vm_1.jpg} \caption{P1}
+    \end{figure}
+    \vspace{-4mm}
+    \begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{P2_Vm_1.jpg} \caption{P2}
+	\end{figure}
+    \end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Comparison between temporal schemes}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=0.8\textwidth]{D1_Vm_1.jpg} \caption{Semi-implicit}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=0.8\textwidth]{D1_Vm_1_GO.jpg} \caption{Godunov OS}
+			\end{figure}
+		\end{column}
+	\end{columns}
+    \vspace{-4mm}
+    \begin{figure}[h]
+    	\includegraphics[width=0.4\textwidth]{D1_Vm_1_OS.jpg} \caption{Quasi-implicit OS}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Comparison between uniqueness imposition strategies}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=0.8\textwidth]{D1_Vm_1.jpg} \caption{First coefficient imposition}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=0.8\textwidth]{D1_Vm_2.jpg} \caption{Mean value imposition}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	\vspace{3mm}
+	\begin{center}
+	Moreover, conditional number passes from $\approx 10^{17}$ to $\approx 10^7$.
+	\end{center}
+\end{frame}
+
+\begin{frame}
+\section{Realistic simulations}
+\frametitle{Chosen data}
+\begin{center}
+	\begin{tabular}{|c|c|} 
+		\hline 
+		Domain & $\begin{bmatrix} -0.025 & 0.035 \\ -0.025 & 0.035\end{bmatrix}$ \\
+		\hline
+		Initial condition for $V_m$ & 0 \\
+		\hline
+		Initial condition for $w$ & 0 \\
+		\hline
+		$I_i^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		\hline
+		$I_e^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		\hline
+		$b_i$ & 0 \\
+		\hline
+		$b_e$ & 0 \\
+		\hline
+		$\Sigma_i$ & $\begin{bmatrix} 0.34 & 0 \\ 0 & 0.06\end{bmatrix}$ \\
+		\hline
+		$\Sigma_e$ & $\begin{bmatrix} 0.62 & 0 \\ 0 & 0.24 \end{bmatrix}$ \\
+		\hline 
+	\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Missed activation, $I = 500\cdot 10^3$}
+	\begin{columns}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-1/002.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-1/004.jpg}
+			\end{figure}
+		\end{column}
+	    \begin{column}{0.25\textwidth}
+		    \begin{figure}[h]
+			    \includegraphics[width=\textwidth]{tc1-1/006.jpg}
+		\end{figure}
+	    \end{column}
+	    \begin{column}{0.25\textwidth}
+		    \begin{figure}[h]
+			    \includegraphics[width=\textwidth]{tc1-1/008.jpg}
+		    \end{figure}
+	\end{column}
+	\end{columns}
+    \begin{columns}
+    	\begin{column}{0.25\textwidth}
+    		\begin{figure}[h]
+    			\includegraphics[width=\textwidth]{tc1-1/010.jpg}
+    		\end{figure}
+    	\end{column}
+    	\begin{column}{0.25\textwidth}
+    		\begin{figure}[h]
+    			\includegraphics[width=\textwidth]{tc1-1/012.jpg}
+    		\end{figure}
+    	\end{column}
+    	\begin{column}{0.25\textwidth}
+    		\begin{figure}[h]
+    			\includegraphics[width=\textwidth]{tc1-1/014.jpg}
+    		\end{figure}
+    	\end{column}
+    	\begin{column}{0.25\textwidth}
+    		\begin{figure}[h]
+    			\includegraphics[width=\textwidth]{tc1-1/016.jpg}
+    		\end{figure}
+    	\end{column}
+    \end{columns}
+	\vspace{3mm}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Achieved activation, $I = 700\cdot 10^3$}
+	\begin{columns}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/002.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/004.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/006.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/008.jpg}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	\begin{columns}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/010.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/012.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/014.jpg}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.25\textwidth}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth]{tc1-2/016.jpg}
+			\end{figure}
+		\end{column}
+	\end{columns}
+	\vspace{3mm}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusions}
+\begin{itemize}
+	\item Simulations truthfully represent the physical phenomenon: the threshold value for the activation, the propagation, the constant height etc.
+	\item However, the rest and activation values are $0$ and $1$, different from the physiological values. Moreover, the repolarization phase misses.
+This is probably due to the ionic model that is too poor and a too wide mesh. 
+\end{itemize}
+\vspace{4mm}
+Further researches might:
+\begin{itemize}
+	\item Do a mesh-adaptivity study.
+	\item Adopt and compare different ionic models.
+\end{itemize}
+\end{frame}
+
 \end{document}
