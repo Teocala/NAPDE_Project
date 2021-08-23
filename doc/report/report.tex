@@ -85,13 +85,13 @@ citestyle=numeric,
     
     %% ABSTRACT
     \section{Introduction}
-    The aim of this project is to study and implement a suitable numerical scheme for the approximate solutions of the \emph{Bidomain Problem}, a well-known system of non-linear partial differential equations that has been developed in the context of the modelling of electrophysiology of human heart. \\
+    The aim of this project is to study and implement a suitable numerical scheme for the approximate solutions of the \emph{Bidomain Problem}, a well-known system of non-linear partial differential equations that has been developed in the context of the modeling of electrophysiology of human heart. \\
     This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
     We provide in what follows a brief introduction to the Bidomain equations. For a more complete explanation, we instead refer to \cite{acta}.\\
-    The mechanical contraction and expansion of the human heart has its origin in the \emph{electrical activation} of the cardiac cells. At each heartbeat, myocyties are activated and deactivated following a characteristic electrical cycle (Fig. (\ref{potential_cycle})). 
+    The mechanical contraction and expansion of the human heart has its origin in the \emph{electrical activation} of the cardiac cells. At each heartbeat, myocytes are activated and deactivated following a characteristic electrical cycle (Fig. \ref{potential_cycle}). 
     
     
     \begin{figure}[h]
@@ -102,11 +102,11 @@ citestyle=numeric,
     \end{center}
     \end{figure}
     
-    \noindent The cell is initially at rest ($-90mV$, step 4). At a certain point, its potential increases rapidly ($\approx2ms$) and reaches the value of $+20mV$: the cell is activated. Later, a plateau near $0mV$ is observed and then a slow repolarization to the initial potential; cf. Fig. (\ref{potential_cycle}). \\
+    \noindent The cell is initially at rest ($-90mV$, step 4). At a certain point, its potential increases rapidly ($\approx2ms$) and reaches the value of $+20mV$: the cell is activated. Later, a plateau near $0mV$ is observed and then a slow repolarization to the initial potential; cf. Fig. \ref{potential_cycle}. \\
     From a microscopical point of view, we could study the dynamics acting in each single cell (as a consequence of the passage of chemical ions through specific channels, e.g. $Ca2+,Na+,K+$). From a macroscopical point of view, instead, one can describe it as a continuous electrical diffusion over the entire cardiac surface. Even if this consists in a very rapid phenomenon, the study of such propagation could be very interesting in order, for instance, to detect diseases in sick patients.
     
     \subsection{Mathematical models}
-    Starting from the circuit in Figure (\ref{electrical_circuit}) and applying general electromagnetism laws, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete derivation).
+    Starting from the circuit in Figure \ref{electrical_circuit} and applying general electromagnetism laws, the Bidomain model has been formulated (see \parencite{acta} for more details and/or \parencite{colli_franzone} for the complete derivation).
     
     \begin{figure}[h]
     	\begin{center}
@@ -132,7 +132,7 @@ citestyle=numeric,
 	
 	where:
 	\begin{itemize}[label=\textendash]
-		\item $\phi_i, \phi_e$ are the \emph{Intracellular and Extracelllular Potentials} (unknowns),
+		\item $\phi_i, \phi_e$ are the \emph{Intracellular and Extracellular Potentials} (unknowns),
 		\item $V_m = \phi_i-\phi_e$ is the \emph{Trans-membrane Potential},
 		\item $\chi_m,C_m$ are known positive constants,
 		\item $\Sigma_i, \Sigma_e$ are known positive definite tensors,
@@ -173,17 +173,17 @@ citestyle=numeric,
     \end{itemize}
     
     \vspace{4mm}
-    \noindent Moreover, if we sum the first two equations of Problem (\ref{def1}), we integrate both sides over $\Omega $ and we use the divergence theorem, we easily get the following compatibility condition, necessary for the existence of the solution: \\
+    \noindent Moreover, if we sum the first two equations of Problem \ref{def1}, we integrate both sides over $\Omega $ and we use the divergence theorem, we easily get the following compatibility condition, necessary for the existence of the solution: \\
     \begin{mycapequ}[!ht]
     	\caption{Compatibility condition}
     \end{mycapequ}
     \begin{equation} \label{compatibility}
     \int_{\Omega} I_i^{ext} - \int_{\Omega} I_e^{ext} = -\int_{\partial \Omega} b_i - \int_{\partial \Omega} b_e
     \end{equation} \vspace{3mm} \\
-    Even when it is not explicitly declared, boundary conditions and forcing terms are always chosen to satisfy Equation (\ref{compatibility}). \\
+    Even when it is not explicitly declared, boundary conditions and forcing terms are always chosen to satisfy equation (\ref{compatibility}). \\
     
 
-    \noindent From now on, the system of equations given by Problem (\ref{def1}) will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
+    \noindent From now on, the system of equations given by Problem \ref{def1} will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
     To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}, but this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
 
     \subsection{State of the art}\label{past}
@@ -196,7 +196,7 @@ citestyle=numeric,
 
     \section{Semi-discrete Discontinuous Galerkin formulation}
     \subsection{Discontinuous Galerkin discrete formulation}
-    Starting from the strong form given by the Problem (\ref{def1}), the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
+    Starting from the strong form given by the Problem \ref{def1}, the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
     Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ are the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $p \geq 1$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
     \begin{problem}[DG weak formulation]
     For any $t\in[0,T]$ find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
@@ -236,7 +236,7 @@ citestyle=numeric,
     \item $\delta=-1$: Non Symmetric Interior Penalty method (NIP) 
     \end{itemize}
      \vspace{2mm}
-    \noindent In (\ref{forgamma}) $\Gamma$ is the so called stability parameter, which is defined edge-wise as:\\ $\Gamma := \alpha \frac{k^2}{h}$, where $ \alpha \in \mathbb{R}$ has to be chosen high enough for the SIP and IIP formulations.
+    \noindent In equation (\ref{forgamma}) $\Gamma$ is the so called stability parameter, which is defined edge-wise as:\\ $\Gamma := \alpha \frac{k^2}{h}$, where $ \alpha \in \mathbb{R}$ has to be chosen high enough for the SIP and IIP formulations.
     \end{problem}
 
     \subsection{Algebraic formulation}
@@ -248,7 +248,7 @@ citestyle=numeric,
     V_m^h(t)=\sum_{j=1}^{N_h} V_{m,j}(t) \phi_j=\sum_{j=1}^{N_h}(\phi_{i,j}(t)-\phi_{e,j}(t))\varphi_j.
  \end{gathered}
  \end{equation*}
- Where $\phi_{i,j}$, $\phi_{e,j}$ and $w_j \in \mathbb{R}$ are the unkonwn expansion coefficients $\forall$ i,j=1,...,$N_h$.
+ Where $\phi_{i,j}$, $\phi_{e,j}$ and $w_j \in \mathbb{R}$ are the unknown expansion coefficients $\forall$ i,j=1,...,$N_h$.
  Then, we introduce the matrices:
  \begin{equation*}
 \begin{rcases}
@@ -391,7 +391,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{equation*}
     c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
     \end{equation*}
-    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial defined in Def. (\ref{jacobi}).
+    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial defined in Def. \ref{jacobi}.
     \end{definition}
     
     \vspace{5mm}
@@ -403,7 +403,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \end{equation*}
     \end{prop}
     \vspace{4mm}
-    \noindent Notice that, thanks to Proposition (\ref{l2_ortho}), the mass matrix of the DG space turns out to be diagonal. See Fig. (\ref{mass}) as a confirmation.
+    \noindent Notice that, thanks to Proposition \ref{l2_ortho}, the mass matrix of the DG space turns out to be diagonal. See Fig. \ref{mass} as a confirmation.
     
     \begin{figure}[ht]
     \begin{center}
@@ -413,23 +413,23 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \end{center}
     \end{figure}
 
-    \noindent It is noteworthy to point out that transformation (\ref{transformation_formula}) is bijective, it can be inverted but it needs some care. The natural inverse would be:
+    \noindent It is noteworthy to point out that transformation \ref{transformation_formula} is bijective, it can be inverted but it needs some care. The natural inverse would be:
     
     \begin{equation*}
     a = \frac{2\xi}{1-\eta}-1 \quad \quad b = 2\eta-1,
     \end{equation*}
     \vspace{2mm} \\
-    \noindent that has already been used for Definition (\ref{dubiner}). However, $a$ is not defined for $\eta=1$, i.e. for the sole point $(0,1)$ of the reference triangle. Moreover, in \cite{sherwin} it is shown that $a$ value cannot be achieved with continuity prolongation because of a second type singularity. Even so, the transformation is still effective because it can be easily shown that the evaluations of the Dubiner basis functions in $(\xi,\eta)=(0,1)$ are the same for every value of $a$ from -1 to 1. For the code implementation, we bypassed this issue with some conditional statements in which we set $a$ the conventional value -1. Another solution would be to avoid the evaluation in the exact point choosing instead a near point.\\
+    \noindent that has already been used for Definition \ref{dubiner}. However, $a$ is not defined for $\eta=1$, i.e. for the sole point $(0,1)$ of the reference triangle. Moreover, in \cite{sherwin} it is shown that $a$ value cannot be achieved with continuity prolongation because of a second type singularity. Even so, the transformation is still effective because it can be easily shown that the evaluations of the Dubiner basis functions in $(\xi,\eta)=(0,1)$ are the same for every value of $a$ from -1 to 1. For the code implementation, we bypassed this issue with some conditional statements in which we set $a$ the conventional value -1. Another solution would be to avoid the evaluation in the exact point choosing instead a near point.\\
     
     \noindent In general, the orthogonality property implies some good numerical qualities, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the conditional number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
     
-    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in Section (\ref{FEM_DUB_conversion}). Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
+    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in Section \ref{FEM_DUB_conversion}. Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
     
-    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner basis with tetrahedra, i.e. in dimension $n=3$.
+    \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner basis with tetrahedron, i.e. in dimension $n=3$.
     
     \subsection{Implementation}
     Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$, finite element basis functions.\\
-    As explained in Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model through FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
+    As explained in Section \ref{past}, our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model through FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section \ref{analytical_aspects} with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
     \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
@@ -445,15 +445,15 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\varphi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of a function $u_h$.
 	
 	\subsubsection{From Dubiner basis to FEM basis}
-	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th degree-of-freedom point, then: 
+	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property \ref{ref1}, i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th degree-of-freedom point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i), \qquad i=1, \dots p
 	\end{equation}
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \\
-	This formula has been implemented in \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})).
+	This formula has been implemented in \texttt{dubiner\_to\_fem.m} script (Section \ref{dub_to_fem}).
 
 	\subsubsection{From FEM basis to Dubiner basis}
-	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner basis is $L^2$-orthonormal (Proposition (\ref{l2_ortho})). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
+	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner basis is $L^2$-orthonormal (Proposition \ref{l2_ortho}). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
 	\begin{gathered}
 	\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\varphi_j(x)\,dx \Big) \hat{u}_i \\
@@ -461,11 +461,11 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\end{gathered}
 	\end{equation}
 	\vspace{2mm} \\
-	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section (\ref{fem_to_dub})) using \emph{Gauss-Legendre} quadrature formulas.
+	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section \ref{fem_to_dub}) using \emph{Gauss-Legendre} quadrature formulas.
 	\subsubsection{Final remarks}\label{dub}
 	\noindent If the Dubiner functions are chosen as Galerkin basis, both the transformations are needed for the code implementation. Formula (\ref{ref3}) is needed to plot and compute errors after the resolution of the system. Formula (\ref{ref4}) is instead needed to convert the FEM initial data $u_0$ into a vector of Dubiner coefficients before the resolution of the system.\\
 	
-	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ stands for the FEM basis of n-th polynomial degree, meanwhile $D_n$ is the Dubiner basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^p$ and then the transformation infers only on the coefficients without modifying the functions. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several semplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.
+	\noindent In order to be rigorous, but also for the sake of simplicity, these transformations are implemented only from $P_n$ to $D_n$, $n=1,2,3$ and viceversa, where $P_n$ stands for the FEM basis of n-th polynomial degree, meanwhile $D_n$ is the Dubiner basis of n-th polynomial degree. With this choice, the two bases generate the same space $V_h^p$ and then the transformation infers only on the coefficients without modifying the functions. Otherwise, decreasing $n$ would mean to lose significant information, while increasing $n$ does not substantially improve the quality of the solution as it initially belonged to a lower order space. Moreover, choosing the same degree for P and D implies several simplifications, for instance the same number of local nodes ($nln$). For this reason, both $p$ and $q$ are actually replaced with $nln$ in the code.
 	
 
 \newpage 
@@ -483,7 +483,7 @@ Moreover, the gating variable ODE is treated implicitly with the exception of th
 M \frac{w^{n+1}-w^n}{\Delta t}=\epsilon M (V_m^n-\gamma w^{n+1}).
 \end{equation*}
 \vspace{5mm} \\
-Therefore, we can transform the semi-discrete Problem (\ref{block_matrix}) into:
+Therefore, we can transform the semi-discrete Problem \ref{block_matrix} into:
 \begin{equation*}
 \begin{cases}
  \begin{gathered}
@@ -538,7 +538,7 @@ Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,
 \end{equation*} 
 \end{problem}
 
-\noindent The implementation can be found at Section (\ref{SI}).
+\noindent The implementation can be found at Section \ref{SI}.
 
 \subsection{The Godunov operator-splitting}
 The main feature of a general operator-splitting method is the sub-division of the problem into two different problems to be solved sequentially. This is possible and justified when the original functional operator $L$ is splitted into 2 different operators such that $L(u)=L_1(u)+L_2(u)$.
@@ -585,7 +585,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
 \frac{\chi_m C_m}{\Delta t} \begin{bmatrix}M & -M \\ M & -M\end{bmatrix}
 + \begin{bmatrix} A_i & 0 \\ 0 & -A_e \end{bmatrix}
 \right) \begin{bmatrix} \phi_i^{n+1} \\ \phi_e^{n+1}  \end{bmatrix} =
-\begin{bmatrix} F_i^{n+1} \\ -F_e^{n+1} \end{bmatrix} + \\ -
+\begin{bmatrix} F_i^{n+1} \\ -F_e^{n+1} \end{bmatrix} + \\-
 \chi_m\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix} \begin{bmatrix} w^n \\ w^n \end{bmatrix} +
 \left(\frac{\chi_mC_m}{\Delta t}\begin{bmatrix} M & 0 \\ 0 & M \end{bmatrix}
 - \begin{bmatrix} C(V_m^n) & 0 \\ 0 & C(V_m^n)\end{bmatrix} 
@@ -595,7 +595,7 @@ w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta tV_m^n.
 \end{cases}
 \end{equation*}
 \end{problem}\vspace{4mm}
-\noindent The implementation is written at Section (\ref{GO}).
+\noindent The implementation is written at Section \ref{GO}.
 
 \subsection{The quasi-implicit operator-splitting}
 The aim of a quasi-implicit operator splitting is to treat implicitly all the terms except the cubic one. Even if it cannot be defined as a fully implicit method, we hope to achieve more stability if compared to the previous Godunov-kind scheme. This time, the formulation turns to be: \newline
@@ -671,15 +671,16 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 \end{equation*}
 \end{problem}
 \vspace{4mm}
-\noindent The implementation is shown at Section (\ref{OS}).
+\noindent The implementation is shown at Section \ref{OS}.
 \newpage
+
 \section{About uniqueness of the potentials}\label{unique}
 \subsection{Analytical concepts}
-\noindent Examining for a moment the Bidomain problem analytical formulation (Problem (\ref{def1})), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
+\noindent Examining for a moment the Bidomain problem analytical formulation (Problem \ref{def1}), we can immediately realize that the intracellular and the extracellular potentials appear only through their difference $V_m$ or their gradient. This means that there cannot be uniqueness for the two functions. Namely: \vspace{2mm}
 \begin{equation}\label{phi_uniqueness}
 \begin{gathered}
 \phi_i,\phi_e \text{ classical solutions of Bidomain} \Rightarrow \phi_i+\varphi,\,\phi_e+\varphi \text{ are solutions as well } \\
- \forall \varphi: [0,T] \rightarrow \mathbb{R} \quad \text{ sufficiently regular}.
+ \forall \varphi: [0,T] \rightarrow \mathbb{R} \text{  sufficiently regular}.
 \end{gathered}
 \end{equation}
 
@@ -688,7 +689,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 
 \noindent Moreover, we can give this simple result to show that the solutions of the form of equation (\ref{phi_uniqueness}) are also the only admissible:\\
 \begin{theo}
-	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Problem (\ref{def1})), the classical solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
+	For the Bidomain problem coupled with Fitzhugh-Nagumo model with Neumann boundary conditions (Problem \ref{def1}) the classical solutions $\phi_i,\phi_e$ are unique up to a constant depending only on time. 
 \end{theo}
 
 \begin{proof}
@@ -701,7 +702,7 @@ w^{n+1} = \frac{\displaystyle w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1}
 	\begin{equation*}
 	\varphi := \phi_i^1-\phi_i^2 = \phi_e^1-\phi_e^2,
 	\end{equation*}\\
-	If we consider the Problem (\ref{def1}), the following equations must hold:
+	If we consider the Problem \ref{def1}, the following equations must hold:
 	\begin{equation*}
 	\begin{cases}
 	\chi_m C_m\pdv{V_m}{t} - \nabla \cdot (\Sigma_i \nabla \phi_i^1) + \chi_m I_{ion}(V_m,w) = I_i^{ext},    & \text{in } \Omega_{mus} \cross (0,T],\vspace{2mm}
@@ -740,7 +741,7 @@ For what concerns the regularity of $\varphi$, we can certainly state that, as a
 \noindent We can conclude this analytical digression with an accomplished necessary and sufficient condition for the potentials solutions. \vspace{4mm}
 
 \begin{corollary}
-Suppose the couple ($\phi_i,\phi_e$) is a classical solution of Problem (\ref{def1}) (for a certain $w$). The couple ($\tilde{\phi}_i,\tilde{\phi}_e$) of sufficiently regular real functions defined in $\Omega\cross[0,T]$ is another couple solution if and only if both $\tilde{\phi}_i,\tilde{\phi}_e$ differ respectively from $\phi_i,\phi_e$ for a time-dependent function $\varphi$ that belongs to the union of the regularity classes of the previous functions if restricted to time variable.
+Suppose the couple ($\phi_i,\phi_e$) is a classical solution of Problem \ref{def1} (for a certain $w$). The couple ($\tilde{\phi}_i,\tilde{\phi}_e$) of sufficiently regular real functions defined in $\Omega\cross[0,T]$ is another couple solution if and only if both $\tilde{\phi}_i,\tilde{\phi}_e$ differ respectively from $\phi_i,\phi_e$ for a time-dependent function $\varphi$ that belongs to the union of the regularity classes of the previous functions if restricted to time variable.
 \end{corollary}
 
 \begin{proof}
@@ -748,14 +749,14 @@ Suppose the couple ($\phi_i,\phi_e$) is a classical solution of Problem (\ref{de
 \end{proof}
 
 \subsection{Numerical correction} \label{imposition_section}
-Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed if we adopt the standard space $H^1$. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi$ unknowns for the following two reasons:
+Previous analytical results are crucial for what concerns the numerical computations since the Bidomain problem turns now to be \emph{not exactly} well-posed if we adopt the standard space $H^1$. Even if, in general, the right $V_m$ is most of the times achieved thanks to its uniqueness, our aim is to impose a further condition on the $\phi_i,\phi_e$ unknowns for the following two reasons:
 \begin{enumerate}
-	\item To pursue the achievement of the exact $\phi_i,\phi_e$ and not their values up to a constant. Useful for instance for the error analysis.
-	\item To strengthen our Galerkin formulation that currently derives from a problem that is well-posed only in $H^1\backslash \mathbb{R}$ and, for this reason, may show bad features as the generation of a ill-conditioned system or even an indeterminate system.
+	\item To pursue the achievement of the exact potentials and not their values up to a constant. Useful for instance for the error analysis.
+	\item To strengthen our Galerkin formulation that currently derives from a problem that is well-posed only in $H^1\backslash \mathbb{R}$ and, for this reason, may show bad features, as the generation of a ill-conditioned system or even an indeterminate system.
 \end{enumerate}
 
 \vspace{3mm}
-\noindent We firstly observe that the additional condition should be applied only to one of the potentials, for instance to $\phi_i$. Indeed, the difference of the two possible solutions is $\varphi$ for both intracellular and extracellular potentials. Imposing $\varphi$ at each time-step implies the uniqueness imposition for both $\phi_i,\phi_e$. \\
+\noindent We, firstly, observe that the additional condition should be applied only to one of the potentials, for instance to $\phi_i$. Indeed, the difference of the two possible solutions is $\varphi$ for both intracellular and extracellular potentials, therefore imposing $\varphi$ at each time-step implies the uniqueness imposition for both $\phi_i,\phi_e$. \\
 
 \noindent The most common and simple strategies are the following:
 \begin{enumerate}
@@ -771,7 +772,7 @@ Previous analytical results are crucial for what concerns the numerical computat
 
 \noindent Notice that the first strategy would be useless if we keep working with an analytical and abstract weak formulation in Sobolev spaces. However, in the numerical context, we can assume certain regularities for the solution that let it makes sense and be the most common choice for numerical implementations. \\
 
-\noindent As we will examine later on, it is demanding to implement the first strategy in a Dubiner context without losing the main system properties. Thus, we slightly change the first strategy and we instead opt for the imposition of a vector solution coefficient. For what concerns the FEM basis, this has the same meaning as before, provided that $\bar{x}$ is not a whatever point but a \emph{dof} point. On the other hand, for Dubiner basis, this has a completely different and abstract meaning: we remind that this time it has the role of modal coefficient. \\
+\noindent As we will examine later on, it is demanding to implement the first strategy in a Dubiner context without losing the main system properties. Thus, we slightly change the first strategy and we instead opt for the imposition of a vector solution coefficient. For what concerns the lagrangian hat functions, this has the same meaning as before, provided that $\bar{x}$ is not a whatever point but a \emph{dof} point. On the other hand, for Dubiner basis, this has a completely different and abstract meaning: we remind that this time it has the role of modal coefficient. \\
 
 \noindent Consider $\{u_j\}_{j=1 \dots N_h}$ as the list of the vector solution. As a consequence, we give the numerical version of the previous strategies:
 \begin{enumerate}
@@ -791,8 +792,8 @@ where $l$ is a fixed value $\in \{1,N_h\}$ and $w_j$ stands for a suitable weigh
 \subsubsection{Implementation of the first coefficient imposition} \label{first_coeff_implementation}
 For simplicity, we choose $l=1$. Then, $u_1^n$ has the meaning of:
 \begin{itemize}
-	\item Value of $u$ in the first dof point, $\forall$ timestep $n$ (FEM)
-	\item Fourier coefficient of $u$ w.r.t. the first Dubiner basis function, $\forall$ timestep $n$ (Dubiner)
+	\item Value of $u$ in the first dof point, $\forall$ timestep $n$ (in the case of FEM basis)
+	\item Fourier coefficient of $u$ w.r.t. the first Dubiner basis function, $\forall$ timestep $n$ (in the case of Dubiner basis)
 \end{itemize}
 
 \noindent What follows will be independent from basis choice. Suppose $c\in \mathbb{R}$ is the value to impose in the system $Au=\vec{b}$ for a certain timestep $n$. Since first coefficient occupies the first cell in the unknown vector and influences other coefficient values only through the first matrix column, we can switch the system from: \\
@@ -832,11 +833,11 @@ Moreover, the value $c$ can be freely chosen, for instance from the exact soluti
 \noindent On the other hand, there are two main disadvantages. First of all, the system first line information has been deleted during this procedure. However, if the mesh is composed by many elements, this information is not essential and the solution behavior is practically the same as this information were provided. \\
 Secondly, if the initial system is hugely ill-conditioned or even non-solvable (determinant could approximate the machine epsilon when we have homogeneous boundary conditions and/or no forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and this is the reason why we implemented the more complicated mean value imposition strategy.\\
 
-\noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} (Section (\ref{assign})) that takes the $c$ value from the exact solution.\\
-\noindent To conclude this section, it is interesting to observe that the numerical imposition is done at \emph{every} time-step. This is confirmed from previous analytical theory as the difference $\varphi$ is a constant but depending on time: therefore, it is needed to fix it at every time-step.
+\noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} (Section \ref{assign}) that takes the $c$ value from the exact solution.\\
+\noindent To conclude this section, we can also observe that the numerical imposition is done at \emph{every} time-step. This is confirmed from previous analytical theory as the difference $\varphi$ is a constant but depending on time: therefore, it is needed to fix it at every time-step.
 
 \subsubsection{An analytical motivation for the mean value imposition method}
-\noindent It is easy to realize that the procedure in Section (\ref{first_coeff_implementation}) cannot be replicated for the mean unless losing symmetry. For instance, in the case of FEM basis and zero mean, a first line full of ones would imply also a first column full of ones and thus the resolution would be compromised. We should look for a different strategy. Let us start with a simple reference problem: \\
+\noindent It is easy to realize that the procedure in Section \ref{first_coeff_implementation} cannot be replicated for the mean unless losing symmetry. For instance, in the case of FEM basis and zero mean, a first line full of ones would imply also a first column full of ones and thus the resolution would be compromised. We should look for a different strategy. Let us start with a simple reference problem: \\
 \begin{problem}[Reference zero-mean problem - strong form] Let $\Omega$ be an open, bounded and sufficiently regular domain, $f\in C^0(\bar{\Omega})$. Find $u\in C^2(\Omega)\cap C^1(\bar{\Omega})$ such that:
 \begin{equation*}
 \begin{cases}
@@ -857,7 +858,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \end{problem}
 \noindent As usual, the regularity of $f$ and $\Omega$ imply that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
 \begin{lemma} \label{first_lemma}
-	The Problem (\ref{reference_problem}) admits a unique weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
+	The Problem \ref{reference_problem} admits a unique weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
 \end{lemma} \vspace{1mm}
 \begin{proof}
 	Consider for the moment the first equation only. It is the Laplace problem with homogeneous Neumann boundary conditions. In a more general form, it is equivalent to a specific reaction-diffusion problem:
@@ -894,7 +895,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	The minimization of the functional $J$ for the Laplace problem is a known fact. However, in this case where the sole Laplace-Neumann problem is not well-posed, this result was not trivial and thus it needed a check. Indeed, it is noteworthy to underline that minimization property holds but in a slightly different way: $u$ is not the absolute minimum point, every $u+\xi, \xi\in\mathbb{R}$ reaches the same minimum.
 \end{remark}\vspace{4mm}
 
-\noindent Previous well-posedness and minimization results implies that, if $u$ solves Problem (\ref{reference_problem}), then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform Problem (\ref{reference_problem}) in another formulation:\\
+\noindent Previous well-posedness and minimization results implies that, if $u$ solves Problem \ref{reference_problem}, then it is unique and, moreover, it is the unique zero mean value function that minimizes the functional $J(u)$. Thus, we can transform Problem \ref{reference_problem} in another formulation:\\
 
 \begin{problem}[Reference mean-value problem - 2] \label{reference_problem_2} Find $u\in H^1(\Omega)$ such that
 	\begin{equation*}
@@ -911,11 +912,11 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \end{problem}\vspace{3mm}
 
 \begin{corollary}
-	Problem (\ref{reference_problem}) and Problem (\ref{reference_problem_2}) are both well-posed and share the same unique solution $u \in H^1$. Thus, they are equivalent problems.
+	Problem \ref{reference_problem} and Problem \ref{reference_problem_2} are both well-posed and share the same unique solution $u \in H^1$. Thus, they are equivalent problems.
 \end{corollary}
 \begin{proof}
-	From Lemma (\ref{first_lemma}), we know that Problem (\ref{reference_problem}) is well-posed and its unique solution $u$ solves Problem (\ref{reference_problem_2}) too. Let us show that $u$ is the unique solution of Problem (\ref{reference_problem_2}) too. Then, consider $v \in H^1$ another solution and define $w=u-v \in H^1$. \\
-	From the end of Lemma (\ref{first_lemma}) proof, since $J(u)=J(v)$ by hypothesis, it follows that:
+	From Lemma \ref{first_lemma}, we know that Problem \ref{reference_problem} is well-posed and its unique solution $u$ solves Problem \ref{reference_problem_2} too. Let us show that $u$ is the unique solution of Problem \ref{reference_problem_2} too. Consider $v \in H^1$ another different solution and define $w=u-v \in H^1$. \\
+	From the end of Lemma \ref{first_lemma} proof, since $J(u)=J(v)$ by hypothesis, it follows that:
 	\begin{equation*}
 	\int_{\Omega} | \nabla w | ^2 = 0
 	\end{equation*}
@@ -942,12 +943,12 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{equation*}
 \end{problem}
 
-\noindent It may seem a very trivial result but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved. \\
+\noindent It may seem a very trivial result, but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved. \\
 \begin{lemma} \label{lemma_lagrange}
-	Suppose that the assumptions on data of Problem (\ref{reference_problem}) are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem (\ref{reference_problem_3}). Moreover, $\lambda=0$ and $u$ is unique. 
+	Suppose that the assumptions on data of Problem \ref{reference_problem} are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem \ref{reference_problem_3}. Moreover, $\lambda=0$ and $u$ is unique. 
 \end{lemma}
 \begin{proof}
-	For what concerns existence, we can immediately realize that the solution $u$ of Problem (\ref{reference_problem}) solves the Problem (\ref{reference_problem_3}) with $\lambda=0$. Then the existence property holds because existence of Problem (\ref{reference_problem}) has already been proved. \\
+	For what concerns existence, we can immediately realize that the solution $u$ of Problem \ref{reference_problem} solves the Problem \ref{reference_problem_3} with $\lambda=0$. Then the existence property holds because existence of Problem \ref{reference_problem} has already been proved. \\
 	
 	\noindent Suppose now there exist two couples $(u_1,0), (u_2,\lambda)$ solutions of the problem and define $\varphi=u_2-u_1$. Then:
 	
@@ -959,12 +960,12 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{cases}
 	\end{equation*}
 		Subtracting, we obtain:
-	\begin{equation*}
+	\begin{equation}\label{system1}
 	\begin{cases}
 	\int_{\Omega}\nabla \varphi \cdot \nabla v + \lambda \int_\Omega v = 0, \quad \forall v \in H^1(\Omega),\vspace{2mm} \\
 	\int_{\Omega}\varphi = 0.
 	\end{cases}
-	\end{equation*}
+	\end{equation}
 	
 	\noindent If we assign $v=\varphi \in H^1(\Omega)$, then:
 	\begin{equation*}
@@ -973,8 +974,11 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\int_{\Omega}\varphi = 0.
 	\end{cases}
 	\end{equation*}
+	\begin{equation*}
+	\xrightarrow[]{\text{Putting together}} \int_{\Omega}|\nabla \varphi|^2 + \lambda \int_\Omega \varphi = \int_{\Omega}|\nabla \varphi|^2 = 0, \quad \forall v \in H^1(\Omega).
+	\end{equation*}
 	Then, $\norm{\nabla \varphi}_{L^2} = 0 $ implies $\varphi$ constant a.e., but, since it has zero mean,  $\varphi = 0$ a.e.  \\
-	To conclude, if $u_1=u_2$ a.e. as just proved, the previous system becomes:
+	To conclude, if $u_1=u_2$ a.e. as just proved, the previous system (\ref{system1}) becomes:
 	\begin{equation*}
 	\lambda \int_{\Omega}v = 0 \quad \forall v \in H^1(\Omega),
 	\end{equation*}
@@ -982,11 +986,11 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \end{proof}
 	
 	\vspace{3mm} 
-	\noindent This analytical digression was intended as a clarification of how Problem (\ref{reference_problem_3}) can be considered as equivalent to the original Problem (\ref{reference_problem}) (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
+	\noindent This analytical digression was intended as a clarification of how Problem \ref{reference_problem_3} can be considered as equivalent to the original Problem \ref{reference_problem} (indeed, they are both well-posed and have the same solution). For this reason, the system modifications of the next section will be in some way justified by the previous results even if Bidomain problem is hugely more complicated than the simple Laplace problem.
 
 
 \subsubsection{Implementation of the mean value imposition} \label{mean_value_implementation}
-\noindent Following the Problem (\ref{reference_problem_3}) new formulation, the basic idea is to consider $\lambda$ as a new coefficient of the vector solution, for instance the last one. The vector $u$ is now of dimension $N_h+1$. Let us define $d_i=\int_\Omega \psi_i$ where $\psi_i$ is the $i$-th basis function (both if we consider FEM or Dubiner). Moreover, define $c$ as the imposed value for the mean. Then the discretized problem at a certain time-step turns to be:
+\noindent Following the Problem \ref{reference_problem_3} new formulation, the basic idea is to consider $\lambda$ as a new coefficient of the vector solution, for instance the last one. The vector $u$ is now of dimension $N_h+1$. Let us define $d_i=\int_\Omega \psi_i$ where $\psi_i$ is the $i$-th basis function (whether FEM or Dubiner basis). Moreover, define $c$ as the imposed value for the mean. Then the discretized problem at a certain time-step turns to be:
 
 \begin{problem}[Discretized mean-value imposition problem]
 	Find $\{u_i\}_{i=1\dots N_h+1}$ such that:
@@ -1026,9 +1030,9 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \end{bmatrix}
 \end{equation*}
 \vspace{3mm} \\
-\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, all the information is conserved. For this reason, a similar procedure might be replicated for the first coefficient imposition if the information of the first row and first column are essential. To conclude, we remind from Lemma (\ref{lemma_lagrange}) that $\lambda$ is an auxiliary unknown, its value turns to be always zero. \\
+\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, hence all the information is conserved. For this reason, a similar procedure might be replicated for the first coefficient imposition if the information of the first row and first column are essential. To conclude, we remind from Lemma \ref{lemma_lagrange} that $\lambda$ is an auxiliary unknown, so its value turns to be always zero. \\
 
-\noindent The implementation of such transformation is carried out in the \texttt{assign\_null\_average.m} script (at Section (\ref{mean})).\\
+\noindent The implementation of such transformation is carried out in the \texttt{assign\_null\_average.m} script (at Section \ref{mean}).\\
 \vspace{2mm}
 \noindent Some comments:
 \begin{itemize}
@@ -1042,8 +1046,8 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \subsubsection{Final remarks} \label{uniqueness_results}
 \noindent As already discussed, the mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
 \begin{itemize}
-	\item the coefficient imposition for error analysis simulations (as boundary conditions and forcing terms were never homogeneous)
-	\item the mean value imposition for realistic simulations (as boundary conditions and forcing terms were essentially homogeneous)
+	\item the coefficient imposition for error analysis simulations in Section \ref{error_analysis} (as boundary conditions and forcing terms were never homogeneous)
+	\item the mean value imposition for realistic simulations in Section \ref{real_sim} (as boundary conditions and forcing terms were essentially homogeneous)
 \end{itemize}
 
 
@@ -1051,34 +1055,34 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 
 \captionsetup{font=normalsize}
 
-\section{Numerical results} \label{error_analysis}
-\subsection{Space error analysis}
+\section{Numerical results}
+\subsection{Space error analysis}\label{error_analysis}
 \subsubsection{Chosen data}
-Starting from some example problems, we provide now an experimental error analysis that can show the efficacy and goodness of our numerical schemes. For all the simulations, the values to assign to constant parameters are the same proposed in \cite{bagnara} and used in \cite{andreotti} and \cite{marta}. Namely:
+Considering some example problems, we provide now an experimental error analysis that can show the efficacy and goodness of our numerical schemes. For all the simulations, we  choose the parameters proposed in \cite{bagnara} and used in \cite{andreotti} and \cite{marta}. These values are reported in Table \ref{tab1}.
 \begin{center}
-	\captionof{table}{Parameters for space error analysis simulations}
+	\captionof{table}{Parameters for space error analysis simulations}\label{tab1}
 	\begin{tabular}{|c|c|} 
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
-		Domain & $\begin{bmatrix} 0 & 1 \\ 0 & 1 \end{bmatrix}$ \\
+		Domain & $\Omega=(0 \text{ m},1 \text{ m})^2$ \\
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
-		$dt$ & $0.0001$ \\
+		$dt$ & $0.0001 \text{ s}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$T$ & $0.001$ \\
+		$T$ & $0.001 \text{ s}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$\chi_m$ & $10^5$ \\
+		$\chi_m$ & $10^5 \text{ m}^{-1}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$\Sigma_i$ & $\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$ \\
+		$\Sigma_i$ & $\begin{bmatrix} 0.12 \text{ Sm}^{-1} & 0 \\ 0 & 0.12 \text{ Sm}^{-1} \end{bmatrix}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$\Sigma_e$ & $\begin{bmatrix} 0.12 & 0 \\ 0 & 0.12 \end{bmatrix}$ \\
+		$\Sigma_e$ & $\begin{bmatrix} 0.12 \text{ Sm}^{-1} & 0 \\ 0 & 0.12 \text{ Sm}^{-1} \end{bmatrix}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$C_m$ & $10^{-2}$ \\
+		$C_m$ & $10^{-2} \text{ $\mu$F m}^{-2}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
 		$k$ & 19.5 \\ 
@@ -1092,36 +1096,37 @@ Starting from some example problems, we provide now an experimental error analys
 		\rule[-4mm]{0mm}{1cm}
 		$a$ & $13 \cdot 10^{-3}$ \\
 		\hline
-		\rule[-4mm]{0mm}{1cm}
-		$V_m$ exact solution & $sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ \\
-		\hline
-		\rule[-4mm]{0mm}{1cm}
-		$w$ exact solution & $\frac{\varepsilon}{\varepsilon \gamma-5} sin(2 \pi x) sin(2 \pi y) e^{-5 t}$ \\
-		\hline
 		
 	\end{tabular}
 \end{center}
 \vspace{3mm}
-\noindent From these assumptions, we consequently obtain the suitable boundary conditions, initial conditions and forcing terms. Moreover, we remind from Section (\ref{uniqueness_results}) that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ is chosen as polynomials space and the semi-implicit method is chosen for the time discretization. To conclude, the element size is split in half 5 times with refinement levels from 2 to 6 for all the following plots.
+\noindent We choose the exact solutions:
+\begin{equation*}
+\begin{gathered}
+V_m = \sin(2 \pi x) \sin(2 \pi y) e^{-5 t}, \\
+w = \frac{\varepsilon}{\varepsilon \gamma-5} \sin(2 \pi x) \sin(2 \pi y) e^{-5 t}.
+\end{gathered}
+\end{equation*}
+\noindent From these assumptions, we compute the r.h.s., the boundary conditions and initial conditions accordingly. Moreover, we remind from Section \ref{uniqueness_results} that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ (Dubiner basis with $p=1$ as polynomial degree) is chosen as polynomials space and the semi-implicit method is chosen for the time discretization. To conclude, the element size is split in half 5 times with refinement levels from 2 to 6 for all the following plots.
 
-\subsubsection{Comparison between Dubiner and FEM}
-At first, an error analysis related to the basis choice is shown. More precisely, we fix a polynomial order and we compare the errors of the Dubiner and FEM basis choosing this order for both. We expect to see similar results for each couple of basis. On the other hand, we expect to see different error orders for different polynomials orders.
+\subsubsection{Comparison between Dubiner and FEM basis}
+At first, an error analysis related to the chosen basis is shown. More precisely, we fix a polynomial order ($p=1,2 \text{ and } 3$) and we compare the errors of the Dubiner and Lagrangian hat basis functions choosing the same polynomial order for both. We expect to see similar results. On the other hand, we expect to see different error orders for different polynomials orders.
 \paragraph{P1-D1}
-If $1$ is chosen as polynomial order, errors plots are shown in Fig. (\ref{Vm_1}), Fig. (\ref{phii_1}), Fig. (\ref{phie_1}) and Fig. (\ref{w_1}). 
-\noindent It is clear that the convergence is very alike since the errors between the two kinds of basis have the same trend. Then, in this case, results are exactly as expected and show a first order for $H^1$ and $DG$ errors while second order for $L^2$ and $L^\infty$ errors.
+If $p=1$ is chosen as polynomial order, the computed errors plots are shown in Fig. \ref{Vm_1}, Fig. \ref{phii_1}, Fig. \ref{phie_1} and Fig. \ref{w_1}. 
+\noindent It is clear that the convergence is very similar since the errors between the two kinds of basis have the same trend. Then, in this case, results are exactly as expected and show a first order for $H^1$ and $DG$ errors while a second order for $L^2$ and $L^\infty$ errors.
 \paragraph{P2-D2} \label{P2-D2}
-\noindent  For what concerns the second order polynomials, we achieve slightly different results. Indeed, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two basis. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences are eliminated when potentials subtract to get $V_m$. \\
-The second unexpected result is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present for $D1-P1$: in the previous case, space errors were still too big and other causes of error negligible. \\
-We then underline that these two unexpected effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section (\ref{imposition_section}). The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
-In conclusion, if we do not care so much about these two phenomena, plots show a second order for $H^1$ and $L^2$ errors and third order for $L^2$ and $L^\infty$ errors.\\
-\noindent See Fig. (\ref{Vm_2}), Fig. (\ref{phii_2}), Fig. (\ref{phie_2}) and Fig. (\ref{w_2}). 
+\noindent  For what concerns the second order polynomials, i.e. $p=2$, we observe slightly different results, see Fig. \ref{Vm_2}, Fig. \ref{phii_2}, Fig. \ref{phie_2} and Fig. \ref{w_2}.  \\
+\noindent Indeed, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two bases. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappeared when potentials subtract to get $V_m$. \\
+The second behavior we see is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present in the previous case, where space errors were still too big and other causes of error negligible. \\
+We then underline that these two effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section \ref{imposition_section}. The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
+We observe, before the plateau, a quadratic convergence rate for the error measure in the energy norm and a cubic convergence rate for the error measure in the $L^2$ and $L^\infty$ norms.\\
 \paragraph{P3-D3}
-\noindent Finally, for polynomials of degree 3, we still find expected results except for the two phenomena already discussed in Section (\ref{P2-D2}). However, because of the third order precision, space errors are smaller and then these effects amplified. If we do not consider them, we still get expected errors orders that are third for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$.\\
-\noindent See Fig. (\ref{Vm_3}), Fig. (\ref{phii_3}), Fig. (\ref{phie_3}) and Fig. (\ref{w_3}). 
+\noindent Finally, for polynomials of degree 3, we still find the expected convergence rate except for the two phenomena already discussed in Section \ref{P2-D2}. The results are shown in Fig. \ref{Vm_3}, Fig. \ref{phii_3}, Fig. \ref{phie_3} and Fig. \ref{w_3}. However, because of the third order precision, space errors are smaller and then these effects are amplified. If we do not consider them, we still get the expected orders that are third order for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$.\\
+
 \newpage
 \newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
 \begin{center}
-\textbf{Comparison between Dubiner and FEM with first order polynomials}
+\textbf{Computed errors for Dubiner and FEM with first order polynomials}
 \end{center}
 
 \begin{figure}[H]
@@ -1130,13 +1135,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption{ Trans-membrane potential  ($V_m$) with D1}
+\caption{Trans-membrane potential ($V_m$) with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Vm_1.jpg}
-\caption{ Trans-membrane potential  ($V_m$) with P1}
+\caption{Trans-membrane potential ($V_m$) with $p=1$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1147,13 +1152,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with D1}
+\caption{Intracellular potential ($\phi_i$) with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with P1}
+\caption{Intracellular potential ($\phi_i$) with $p=1$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1165,13 +1170,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with D1}
+\caption{Extracellular potential ($\phi_e$) with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with P1}
+\caption{Extracellular potential ($\phi_e$) with $p=1$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1183,19 +1188,19 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption{Gating variable ($w$) with D1}
+\caption{Gating variable ($w$) with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_w_1.jpg}
-\caption{Gating variable ($w$) with P1}
+\caption{Gating variable ($w$) with $p=1$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
 \newpage
 \begin{center}
-\textbf{Comparison between Dubiner and FEM with second order polynomials}
+\textbf{Computed errors for Dubiner and FEM with second order polynomials}
 \end{center}
 \begin{figure}[H]
 \caption{Comparison of the trans-membrane potential ($V_m$)}
@@ -1203,13 +1208,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Vm_1.jpg}
-\caption{Trans-membrane potential  ($V_m$) with D2}
+\caption{Trans-membrane potential ($V_m$) with $p=2$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Vm_1.jpg}
-\caption{Trans-membrane potential  ($V_m$) with P2}
+\caption{Trans-membrane potential ($V_m$) with $p=2$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1220,13 +1225,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with D2}
+\caption{Intracellular potential ($\phi_i$) with $p=2$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with P2}
+\caption{Intracellular potential ($\phi_i$) with $p=2$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1238,13 +1243,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with D2}
+\caption{Extracellular potential ($\phi_e$) with $p=2$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with P2}
+\caption{Extracellular potential ($\phi_e$) with $p=2$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1256,20 +1261,20 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_w_1.jpg}
-\caption{Gating variable ($w$) with D2}
+\caption{Gating variable ($w$) with $p=2$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_w_1.jpg}
-\caption{Gating variable ($w$) with P2}
+\caption{Gating variable ($w$) with $p=2$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
 
 \newpage
 \begin{center}
-\textbf{Comparison between Dubiner and FEM with third order polynomials}
+\textbf{Computed errors for Dubiner and FEM with third order polynomials}
 \end{center}
 \begin{figure}[H]
 \caption{Comparison of the trans-membrane potential ($V_m$)}
@@ -1277,13 +1282,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D3_Vm_1.jpg}
-\caption{Trans-membrane potential  ($V_m$) with D3}
+\caption{Trans-membrane potential ($V_m$) with $p=3$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Vm_1.jpg}
-\caption{Trans-membrane potential  ($V_m$) with P3}
+\caption{Trans-membrane potential ($V_m$) with $p=3$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1294,13 +1299,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with D3}
+\caption{Intracellular potential ($\phi_i$) with $p=3$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Phii_1.jpg}
-\caption{Intracellular potential ($\phi_i$) with P3}
+\caption{Intracellular potential ($\phi_i$) with $p=3$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1311,13 +1316,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with D3}
+\caption{Extracellular potential ($\phi_e$) with $p=3$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Phie_1.jpg}
-\caption{Extracellular potential ($\phi_e$) with P3}
+\caption{Extracellular potential ($\phi_e$) with $p=3$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1329,13 +1334,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_w_1.jpg}
-\caption{Gating variable ($w$) with D3}
+\caption{Gating variable ($w$) with $p=3$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_w_1.jpg}
-\caption{Gating variable ($w$) with P3}
+\caption{Gating variable ($w$) with $p=3$ Lagrangian hat functions}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1343,16 +1348,16 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \newpage
 
 \subsubsection{Comparison between different time discretization methods}
-In Section (\ref{temporal_discretization}) three methods for the time discretization have been proposed and discussed. An error analysis comparison has been executed and gives the graphical results shown in Fig. (\ref{Vm-time}), (\ref{pi-time}),  (\ref{pe-time}) and (\ref{w-time}).
-\noindent It is clear that the three methods share an identical error trend. This is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spacial error that is strongly bigger than the temporal error. The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of order. Moreover, it is noteworthy to remember that non-linear term is considered as explicit for all the methods and then no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
+In Section \ref{temporal_discretization} three methods for the time discretization have been proposed and discussed. An error analysis comparison has been carried out and gives the graphical results shown in Fig. \ref{Vm-time}, Fig. \ref{pi-time}, Fig. \ref{pe-time} and Fig. \ref{w-time}, we adopted for every plot the Dubiner basis with first polynomial order.
+\noindent It is clear that the three methods show the same convergence rate, as expected. This is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spacial error that is strongly bigger than the temporal error. The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of convergence order. Moreover, it is noteworthy to remember that the non-linear term is treated in explicit way for all the methods and that no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
 \subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
-Referring to the Section (\ref{unique}), we have presented and explained two different methods to impose uniqueness of the cellular potentials.
-The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. (\ref{Vm-unique}), Fig. (\ref{phii-unique}), Fig. (\ref{phie-unique}) and Fig. (\ref{w-unique}).\\
-\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test-case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
-On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section (\ref{real_sim}) about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ 
-\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section (\ref{imposition_section})), we achieved both them since:
+Referring to the Section \ref{unique}, we have presented and explained two different methods to impose uniqueness of the cellular potentials.
+The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. \ref{Vm-unique}, Fig. \ref{phii-unique}, Fig. \ref{phie-unique} and Fig. \ref{w-unique}.\\
+\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory where the imposition method affects only the values of the two potentials. However, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section \ref{uniqueness_results}, problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test-case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section \ref{real_sim} regarding physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
+\noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section \ref{imposition_section}), we achieved both them since:
 \begin{itemize}
-	\item Error analysis studies demonstrate that $\phi_i$ and $\phi_e$ converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly defined.
+	\item Error plots demonstrate that the $\phi_i$ and $\phi_e$ converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly achieved.
 	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
 \end{itemize}
 \newpage
@@ -1360,20 +1365,20 @@ On the other hand, it has already been stated that some peculiar problems can be
 
 \newgeometry{a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm}
 \begin{center}
-\textbf{Comparison between different time-discretization schemes}
+\textbf{Computed errors for different time-discretization schemes}
 \end{center}
 \begin{figure}[h]
 \caption{Comparison of the trans-membrane potential ($V_m$)}
 \label{Vm-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption*{(a) $V_m$ with D1 - Semi-implicit method}
+\caption*{(a) $V_m$: Semi-implicit method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_1_GO.jpg}
-\caption*{(b) $V_m$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $V_m$: Godunov operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \newpage
@@ -1382,7 +1387,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_1_OS.jpg}
-\caption*{(c) $V_m$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $V_m$: Quasi-implicit operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 
@@ -1391,7 +1396,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{pi-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption*{(a) $\phi_i$ with D1 - Semi-implicit method}
+\caption*{(a) $\phi_i$: Semi-implicit method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \newpage
@@ -1399,13 +1404,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_1_GO.jpg}
-\caption*{(b) $\phi_i$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $\phi_i$: Godunov operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_1_OS.jpg}
-\caption*{(c) $\phi_i$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $\phi_i$: Quasi-implicit operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \newpage
@@ -1415,13 +1420,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{pe-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption*{(a) $\phi_e$ with D1 - Semi-implicit method}
+\caption*{(a) $\phi_e$: Semi-implicit method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_1_GO.jpg}
-\caption*{(b) $\phi_e$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $\phi_e$: Godunov operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \newpage
@@ -1429,7 +1434,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_1_OS.jpg}
-\caption*{(c) $\phi_e$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $\phi_e$: Quasi-implicit operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 
@@ -1438,7 +1443,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{w-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption*{(a) $w$ with D1 - Semi-implicit method}
+\caption*{(a) $w$: Semi-implicit method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \newpage
@@ -1446,13 +1451,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_1_GO.jpg}
-\caption*{(b) $w$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $w$: Godunov operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_1_OS.jpg}
-\caption*{(c) $w$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $w$: Quasi-implicit operator-splitting method with $p=1$ Dubiner basis}
 \end{center}
 \end{figure}
 \restoregeometry
@@ -1462,7 +1467,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 
 \newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
 \begin{center}
-\textbf{Comparison between the uniqueness imposition strategies}
+\textbf{Computed errors for the uniqueness imposition strategies}
 \end{center}
 \begin{figure}[H]
 \caption{Comparison of the trans-membrane potential ($V_m$)}
@@ -1470,13 +1475,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption{$V_m$ with D1 imposing the first coefficient}
+\caption{$V_m$: imposing the first coefficient with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_2.jpg}
-\caption{$V_m$ with D1 imposing the zero mean}
+\caption{$V_m$: imposing the zero mean with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1486,13 +1491,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption{$\phi_i$ with D1 imposing the first coefficient}
+\caption{$\phi_i$: imposing the first coefficient with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}	
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_2.jpg}
-\caption{$\phi_i$ with D1 imposing the zero mean}
+\caption{$\phi_i$: imposing the zero mean with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1504,13 +1509,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption{$\phi_e$ with D1 imposing the first coefficient}
+\caption{$\phi_e$: imposing the first coefficient with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_2.jpg}
-\caption{$\phi_e$ with D1 imposing the zero mean}
+\caption{$\phi_e$: imposing the zero mean with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1522,13 +1527,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption{$w$ with D1 imposing the first coefficient}
+\caption{$w$: imposing the first coefficient with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_2.jpg}
-\caption{$w$ with D1 imposing the zero mean}
+\caption{$w$: imposing the zero mean with $p=1$ Dubiner basis}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1536,14 +1541,14 @@ On the other hand, it has already been stated that some peculiar problems can be
 \newpage
 
 \subsection{Toward a realistic simulation} \label{real_sim}
-Our final goal is to exploit strategies and tools presented in the previous sections to run simulations that can get closer to the cardiac electrophysiology phenomena. It is noteworthy to warn that no exact solutions are known for these kinds of problems and what we care about is only visual. Moreover, we warn that there are some limitations to the complete resemblance to the realistic phenomena, for instance the domain shape. Our general choices for all the test-cases are the following:
+Our final goal is to exploit the strategies and tools presented in the previous sections to run simulations that can mimic the cardiac electrophysiology phenomena. It is noteworthy to warn that no exact solutions are known for these kinds of problems. Moreover, we point out that there are some limitations to the complete resemblance to the realistic phenomena, for instance the domain shape. Our general choices for all the test-cases are reported in Table \ref{tab2}.
 
 \begin{center}
-	\captionof{table}{Parameters for pseudo-realistic simulations}
+	\captionof{table}{Parameters for pseudo-realistic simulations}\label{tab2}
 	\begin{tabular}{|c|c|} 
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
-		Domain & $\begin{bmatrix} -0.025 & 0.035 \\ -0.025 & 0.035\end{bmatrix}$ \\
+		Domain & $\Omega=(-0.025 \text{ m}, 0.035 \text{ m})^2$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
 		Temporal scheme & Semi-implicit \\
@@ -1552,13 +1557,13 @@ Our final goal is to exploit strategies and tools presented in the previous sect
 		Polynomials space & D1 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$dt$ & 0.0001 \\
+		$dt$ & 0.0001 s \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
 		$nREF$ & 5 \\ 
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		Initial condition for $V_m$ & 0 \\
+		Initial condition for $V_m$ & 0 V \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
 		Initial condition for $w$ & 0 \\
@@ -1570,35 +1575,35 @@ Our final goal is to exploit strategies and tools presented in the previous sect
 		$I_e^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$b_i$ & 0 \\
+		$b_i$ & 0 $\frac{\text{SV}}{{\text{m}}^2}$\\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$b_e$ & 0 \\
+		$b_e$ & 0 $\frac{\text{SV}}{{\text{m}}^2}$\\
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
-		$\chi_m$ & $10^5$ \\
+		$\chi_m$ & $10^5 \text{ m}^{-1}$ \\
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
-		$C_m$ & $10^{-2}$ \\
+		$C_m$ & $10^{-2} \text{ $\mu$F m}^{-2}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$\Sigma_i$ & $\begin{bmatrix} 0.34 & 0 \\ 0 & 0.06\end{bmatrix}$ \\
+		$\Sigma_i$ & $\begin{bmatrix} 0.34 \text{ Sm}^{-1} & 0 \\ 0 & 0.06 \text{ Sm}^{-1}\end{bmatrix}$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$\Sigma_e$ & $\begin{bmatrix} 0.62 & 0 \\ 0 & 0.24 \end{bmatrix}$ \\
+		$\Sigma_e$ & $\begin{bmatrix} 0.62 \text{ Sm}^{-1} & 0 \\ 0 & 0.24 \text{ Sm}^{-1} \end{bmatrix}$ \\
 		\hline 
 	\end{tabular}
 \end{center}
  \vspace{4mm}
-\noindent Where $I$ is a positive value to be chosen depending on the context. We remind from \ref{uniqueness_results} that the mean value imposition is always chosen for realistic simulations. Moreover, we observe that the main differences with the previous parameters are the square domain that is no more unitary and the anisotropy of the diffusion tensors. The latter choice is motivated from the real utility of the \emph{Bidomain Model} if compared to the \emph{Monodomain Model}, where the two tensors are assumed to be equal or proportional. Parameters values are taken as usual from literature, especially from \cite{acta}. \\
+\noindent In Table \ref{tab2}, $I$ is a positive value to be chosen depending on the test case. We remind from Section \ref{uniqueness_results} that the mean value imposition is always chosen for realistic simulations. Moreover, we observe that the main differences with the previous parameters are the square domain that is no more unitary and the anisotropy of the diffusion tensors. The latter choice is motivated from the real utility of the \emph{Bidomain Model} if compared to the \emph{Monodomain Model}, where the two tensors are assumed to be equal or proportional. Parameter values are taken from literature, see \cite{acta}. \\
 
-\noindent Physically, this setting represents a square section of the surface of the heart that is electrically isolated (homogeneous boundary conditions) and an external current that is applied in a central region for a limited interval of time. \\
-To conclude, observe that the compatibility condition (Equation (\ref{compatibility})) for the existence of the solution is satisfied since boundary conditions are null and external currents are the same in the intracellular and extracellular regions. \\
+\noindent Physically, this setting represents a square section of the surface of the heart that is electrically isolated (homogeneous boundary conditions) and an external current that is applied in a central region for a limited interval of time. It could be seen as a simplification of the action of a defibrillator. \\
+To conclude, we observe that the compatibility condition (equation (\ref{compatibility})) for the existence of the solution is satisfied since boundary conditions are null and external currents are the same in the intracellular and extracellular regions. \\
 
-\noindent For what concerns \emph{FitzHugh-Nagumo} parameters, there are no general values as for the previous ones. To generalize this aspect, we defined two different test-cases with two different sets of parameters, namely:
+\noindent For what concerns the \emph{FitzHugh-Nagumo} parameters, there are no general values as for the previous ones. To generalize this aspect, we defined two different test-cases with two different sets of parameters, as shown in Table \ref{tab3}.
 
 \begin{center}
-	\captionof{table}{FitzHugh-Nagumo Parameters for pseudo-realistic simulations}
+	\captionof{table}{FitzHugh-Nagumo Parameters for pseudo-realistic simulations}\label{tab3}
 	\begin{tabular}{|c|c|c|} 
 		\hline 
 		 & Test-case 1 & Test-case 2 \\
@@ -1615,19 +1620,19 @@ To conclude, observe that the compatibility condition (Equation (\ref{compatibil
 \end{center}
 
 \vspace{4mm}
-\noindent Basically, the first test-case data comes from the values already adopted for Section (\ref{error_analysis}) and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. On the other hand, the second test-case parameters comes from \cite{mauricio}.
+\noindent The first test-case data employs the values already adopted for Section \ref{error_analysis} and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. Meanwhile, the second test-case parameters is taken from \cite{mauricio}.
 
 \subsubsection{First test-case}
-For both the test-cases, we aim to show two different situations depending on the external current intensity: firstly, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up. Secondly, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion. Several simulations have proved that:
+For both the test-cases, we aim to show two different situations depending on the external current intensity: first, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up (\emph{underflow} case). Second, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion (\emph{overflow} case). Several simulations have proved that:
 \begin{itemize}
-	\item $I = 500 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
-	\item $I = 700 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
+	\item $I = 500 \cdot 10^3 $ A is a suitable value for the \emph{underflow} case.
+	\item $I = 700 \cdot 10^3 $ A is a suitable value for the \emph{overflow} case.
 \end{itemize}
 
-\noindent Visual results are the following:
+\noindent In Fig. \ref{test1_under} and in Fig. \ref{test1_over}, we report the computed solutions for both choices of $I$ using first polynomial degree functions.
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, activation missed ($I=500 \cdot 10^3$)}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots underflow case ($I=500 \cdot 10^3$ A)} \label{test1_under}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-1/002.jpg}
@@ -1657,7 +1662,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, activation achieved ($I = 700 \cdot 10^3$)}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots overflow case ($I = 700 \cdot 10^3$ A)}\label{test1_over}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-2/002.jpg}
@@ -1687,36 +1692,36 @@ For both the test-cases, we aim to show two different situations depending on th
 \restoregeometry
 \newpage
 \subsubsection{Second test-case}
-For these modified parameters, the threshold for the activation is different as we can state that:
+For this test case, the threshold for the activation is different. We choose:
 \begin{itemize}
-	\item $I = 15000 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
-	\item $I = 20000 \cdot 10^3 $ is a suitable value for the \emph{overflow} case.
+	\item $I = 15000 \cdot 10^3 $ A is a suitable value for the \emph{underflow} case.
+	\item $I = 20000 \cdot 10^3 $ A is a suitable value for the \emph{overflow} case.
 \end{itemize}
 
-\noindent Results related to this test-case are visible in Fig. (\ref{tc2-1}) and Fig. (\ref{tc2-2}).
+\noindent The results related to this test-case are reported in Fig. \ref{tc2-1} and Fig. \ref{tc2-2}.
 
 \subsubsection{Comments on the results}
 As expected, we can distinguish two different phenomena in both the test-cases:
 \begin{itemize}
-	\item In \emph{underflow} simulations, propagation is visible and wave height (that is always below 1) decreases at every time-step. Then, the overall phenomena seems to be only diffusive.
+	\item In \emph{underflow} simulations, propagation is visible and the wave height (that is always below 1) decreases at every time-step. Then, the overall phenomena seems to be only diffusive.
 	\item On the contrary, in \emph{overflow} simulations, propagation is visible and the wave height keeps constant with value $\approx 1$.  
 \end{itemize}
 
-\noindent On the other hand, the main differences due to the choice of \emph{FitzHugh-Nagumo} parameters turn to be:
+\noindent On the other hand, the main differences due to the choice of the \emph{FitzHugh-Nagumo} parameters turn out to be:
 \begin{itemize}
 	\item The threshold intensity (in test-case 2 this value is ten times the first).
 	\item The speed of propagation (test-case 2 needs a lot more time to activate all the domain, 0.6 seconds are still not sufficient).
 	\item The direction of propagation (shape in test-case 2 is more symmetric).
 \end{itemize}
  
-\noindent Most of these features were expected and successfully reflect the physical phenomenon. Indeed, a certain current intensity is needed to fully activate the myocyties. Otherwise, cells go soon back to their rest potential. Moreover, the stretched shape of the activated region is consistent with the anisotropy of the diffusion tensor and it physically shows the difference of conductivity between the tangential and normal direction of the fibers.\\
+\noindent Most of these features were expected and successfully reflect the physical phenomenon. Indeed, a certain current intensity is needed to fully activate the myocytes. Otherwise, cells go soon back to their rest potential. Moreover, the stretched shape of the activated region is consistent with the anisotropy of the diffusion tensor and it physically shows the difference of conductivity between the tangential and normal direction of the fibers.\\
 
-\noindent On the other hand, if we look at the potential cycle shown in Fig. (\ref{potential_cycle}), we notice some unexpected mismatches. First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the extremely simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, then a refinement to the model is needed to get these more realistic values. \\
-The second and more sophisticated incongruence is the missed repolarization after the activation. In other words, the potential keeps the same value and it does not decrease back to 0 even after several time-steps. We think it is in part due to (again) the simplicity of the \emph{FitzHugh-Nagumo} model, fact that is moreover warned in \cite{colli_franzone_parallel}. Here, it is indeed stated that \emph{FitzHugh-Nagumo} model is not able to truly approximate the physical phenomenon, in particular for the \emph{plateau} and \emph{repolarization} phases.
+\noindent On the other hand, if we look at the potential cycle shown in Fig. \ref{potential_cycle}, we notice some unexpected mismatches. First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, again a refinement to the model is needed to get these more realistic values. \\
+The second incongruence is the missed repolarization after the activation. In other words, the potential keeps the same value and it does not decrease back to 0 even after several time-steps. We think it is in part due to (again) the simplicity of the \emph{FitzHugh-Nagumo} model, fact that is already observed in \cite{colli_franzone_parallel}. Here, it is, indeed, stated that \emph{FitzHugh-Nagumo} model is not able to truly approximate the physical phenomenon, in particular for the \emph{plateau} and \emph{repolarization} phases.
 
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, activation missed ($I = 15000 \cdot 10^3$)} \label{tc2-1}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots underflow case ($I = 15000 \cdot 10^3$ A)} \label{tc2-1}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-1/004.jpg}
@@ -1746,7 +1751,7 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, activation achieved ($I = 20000 \cdot 10^3$)} \label{tc2-2}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots overflow case ($I = 20000 \cdot 10^3$ A)} \label{tc2-2}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-2/004.jpg}
@@ -1776,9 +1781,9 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \restoregeometry
 \newpage
 \section{Conclusion}
-In this project we have considered a DG approach for cardiac electro-physiology. After some introductions and motivations, we have validated the proposed numerical method through a basic error analysis and a couple of simulations aimed to re-create what happens in the human heart.
-\noindent From the former we obtained excellent validations: every result was consistent with the theory and even what was initially unexpected has later been justified with other causes independent from our study.\\
-\noindent We also achieved very good outcomes from the pseudo realistic simulations: they turned to be consistent with the physical phenomenon except for the missed repolarization. We doubt that it is due to the numerical schemes because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too wide mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
+In this project we have considered a DG approach for cardiac electro-physiology. After some motivations, we have validated the proposed numerical method through a basic error analysis and a couple of simulations aimed to re-create what happens in physiological case.
+\noindent From the former we obtained excellent validations: every result was consistent with the theory.\\
+\noindent We also achieved very good outcomes from the pseudo realistic simulations: they turned to be consistent with the physical phenomenon, except for the missed repolarization. We doubt that it is due to the numerical schemes, because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too coarse mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
 \noindent We hope that this last point could be a springboard for future projects aiming at improving and generalize our results.  
 \newpage
 \section{Appendix: numerical codes}
