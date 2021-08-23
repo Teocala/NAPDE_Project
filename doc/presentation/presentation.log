@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  21 AUG 2021 14:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  23 AUG 2021 16:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1222,8 +1222,7 @@ Overfull \hbox (6.42776pt too wide) detected at line 317
  []
 
 
-Overfull \vbox (4.5171pt too high) detected at line 317
- []
+LaTeX Font Warning: Command \small invalid in math mode on input line 317.
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
@@ -1236,22 +1235,18 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 [14
 
 ]
-Overfull \hbox (42.44054pt too wide) detected at line 367
+Overfull \hbox (42.44054pt too wide) detected at line 366
 []
  []
 
 
-Overfull \hbox (6.42776pt too wide) detected at line 367
+Overfull \hbox (6.42776pt too wide) detected at line 366
 []
- []
-
-
-Overfull \vbox (2.95674pt too high) detected at line 367
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 367.
+Package pdftex.def Info: logo_polimi.png  used on input line 366.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1262,7 +1257,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 379.
+Package pdftex.def Info: logo_polimi.png  used on input line 378.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1273,7 +1268,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 401.
+Package pdftex.def Info: logo_polimi.png  used on input line 400.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1284,7 +1279,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 435.
+Package pdftex.def Info: logo_polimi.png  used on input line 434.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1293,18 +1288,18 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 [18
 
 ]
-Overfull \hbox (17.81894pt too wide) detected at line 469
+Overfull \hbox (17.81894pt too wide) detected at line 468
 []
  []
 
 
-Overfull \hbox (21.77184pt too wide) detected at line 469
+Overfull \hbox (21.77184pt too wide) detected at line 468
 []
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 469.
+Package pdftex.def Info: logo_polimi.png  used on input line 468.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1313,12 +1308,12 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 [19
 
 ]
-Overfull \vbox (8.09204pt too high) detected at line 500
+Overfull \vbox (2.09204pt too high) detected at line 499
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 500.
+Package pdftex.def Info: logo_polimi.png  used on input line 499.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1329,7 +1324,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 510.
+Package pdftex.def Info: logo_polimi.png  used on input line 509.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1340,7 +1335,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 ]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 547.
+Package pdftex.def Info: logo_polimi.png  used on input line 546.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1352,26 +1347,26 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 <D1_Vm_1.jpg, id=880, 1521.685pt x 895.345pt>
 File: D1_Vm_1.jpg Graphic file (type jpg)
 <use D1_Vm_1.jpg>
-Package pdftex.def Info: D1_Vm_1.jpg  used on input line 571.
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 570.
 (pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
 <D2_Vm_1.jpg, id=881, 1510.64375pt x 888.31876pt>
 File: D2_Vm_1.jpg Graphic file (type jpg)
 <use D2_Vm_1.jpg>
-Package pdftex.def Info: D2_Vm_1.jpg  used on input line 571.
+Package pdftex.def Info: D2_Vm_1.jpg  used on input line 570.
 (pdftex.def)             Requested size: 122.9164pt x 72.27332pt.
 <P1_Vm_1.jpg, id=882, 1495.5875pt x 879.285pt>
 File: P1_Vm_1.jpg Graphic file (type jpg)
 <use P1_Vm_1.jpg>
-Package pdftex.def Info: P1_Vm_1.jpg  used on input line 571.
+Package pdftex.def Info: P1_Vm_1.jpg  used on input line 570.
 (pdftex.def)             Requested size: 122.9164pt x 72.26283pt.
 <P2_Vm_1.jpg, id=883, 1521.685pt x 884.30376pt>
 File: P2_Vm_1.jpg Graphic file (type jpg)
 <use P2_Vm_1.jpg>
-Package pdftex.def Info: P2_Vm_1.jpg  used on input line 571.
+Package pdftex.def Info: P2_Vm_1.jpg  used on input line 570.
 (pdftex.def)             Requested size: 122.9164pt x 71.42041pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 571.
+Package pdftex.def Info: logo_polimi.png  used on input line 570.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1382,21 +1377,21 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
  <./D1_Vm_1.jpg> <./D2_Vm_1.jpg> <./P1_Vm_1.jpg> <./P2_Vm_1.jpg>]
 File: D1_Vm_1.jpg Graphic file (type jpg)
 <use D1_Vm_1.jpg>
-Package pdftex.def Info: D1_Vm_1.jpg  used on input line 591.
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 590.
 (pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
 <D1_Vm_1_GO.jpg, id=919, 1511.6475pt x 883.3pt>
 File: D1_Vm_1_GO.jpg Graphic file (type jpg)
 <use D1_Vm_1_GO.jpg>
-Package pdftex.def Info: D1_Vm_1_GO.jpg  used on input line 591.
+Package pdftex.def Info: D1_Vm_1_GO.jpg  used on input line 590.
 (pdftex.def)             Requested size: 122.9164pt x 71.81107pt.
 <D1_Vm_1_OS.jpg, id=920, 1503.6175pt x 882.29625pt>
 File: D1_Vm_1_OS.jpg Graphic file (type jpg)
 <use D1_Vm_1_OS.jpg>
-Package pdftex.def Info: D1_Vm_1_OS.jpg  used on input line 591.
+Package pdftex.def Info: D1_Vm_1_OS.jpg  used on input line 590.
 (pdftex.def)             Requested size: 122.91406pt x 72.11989pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 591.
+Package pdftex.def Info: logo_polimi.png  used on input line 590.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1407,16 +1402,16 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
  <./D1_Vm_1_GO.jpg> <./D1_Vm_1_OS.jpg>]
 File: D1_Vm_1.jpg Graphic file (type jpg)
 <use D1_Vm_1.jpg>
-Package pdftex.def Info: D1_Vm_1.jpg  used on input line 611.
+Package pdftex.def Info: D1_Vm_1.jpg  used on input line 610.
 (pdftex.def)             Requested size: 122.9164pt x 72.31215pt.
 <D1_Vm_2.jpg, id=955, 1503.6175pt x 879.285pt>
 File: D1_Vm_2.jpg Graphic file (type jpg)
 <use D1_Vm_2.jpg>
-Package pdftex.def Info: D1_Vm_2.jpg  used on input line 611.
+Package pdftex.def Info: D1_Vm_2.jpg  used on input line 610.
 (pdftex.def)             Requested size: 122.9164pt x 71.87375pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 611.
+Package pdftex.def Info: logo_polimi.png  used on input line 610.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1425,13 +1420,13 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 [25
 
  <./D1_Vm_2.jpg>]
-Overfull \hbox (10.78685pt too wide) in paragraph at lines 639--639
+Overfull \hbox (10.78685pt too wide) in paragraph at lines 638--638
  [] 
  []
 
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 639.
+Package pdftex.def Info: logo_polimi.png  used on input line 638.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1443,48 +1438,48 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 <tc1-1/002.jpg, id=1025, 562.1pt x 421.575pt>
 File: tc1-1/002.jpg Graphic file (type jpg)
 <use tc1-1/002.jpg>
-Package pdftex.def Info: tc1-1/002.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/002.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/004.jpg, id=1026, 562.1pt x 421.575pt>
 File: tc1-1/004.jpg Graphic file (type jpg)
 <use tc1-1/004.jpg>
-Package pdftex.def Info: tc1-1/004.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/004.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/006.jpg, id=1027, 562.1pt x 421.575pt>
 File: tc1-1/006.jpg Graphic file (type jpg)
 <use tc1-1/006.jpg>
-Package pdftex.def Info: tc1-1/006.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/006.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/008.jpg, id=1028, 562.1pt x 421.575pt>
 File: tc1-1/008.jpg Graphic file (type jpg)
 <use tc1-1/008.jpg>
-Package pdftex.def Info: tc1-1/008.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/008.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/010.jpg, id=1029, 562.1pt x 421.575pt>
 File: tc1-1/010.jpg Graphic file (type jpg)
 <use tc1-1/010.jpg>
-Package pdftex.def Info: tc1-1/010.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/010.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/012.jpg, id=1030, 562.1pt x 421.575pt>
 File: tc1-1/012.jpg Graphic file (type jpg)
 <use tc1-1/012.jpg>
-Package pdftex.def Info: tc1-1/012.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/012.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/014.jpg, id=1031, 562.1pt x 421.575pt>
 File: tc1-1/014.jpg Graphic file (type jpg)
 <use tc1-1/014.jpg>
-Package pdftex.def Info: tc1-1/014.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/014.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-1/016.jpg, id=1032, 572.1375pt x 414.54875pt>
 File: tc1-1/016.jpg Graphic file (type jpg)
 <use tc1-1/016.jpg>
-Package pdftex.def Info: tc1-1/016.jpg  used on input line 688.
+Package pdftex.def Info: tc1-1/016.jpg  used on input line 687.
 (pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10.95> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 688.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 687.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 688.
+Package pdftex.def Info: logo_polimi.png  used on input line 687.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1497,46 +1492,46 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 <tc1-2/002.jpg, id=1069, 562.1pt x 421.575pt>
 File: tc1-2/002.jpg Graphic file (type jpg)
 <use tc1-2/002.jpg>
-Package pdftex.def Info: tc1-2/002.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/002.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-2/004.jpg, id=1070, 562.1pt x 421.575pt>
 File: tc1-2/004.jpg Graphic file (type jpg)
 <use tc1-2/004.jpg>
-Package pdftex.def Info: tc1-2/004.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/004.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-2/006.jpg, id=1071, 572.1375pt x 414.54875pt>
 File: tc1-2/006.jpg Graphic file (type jpg)
 <use tc1-2/006.jpg>
-Package pdftex.def Info: tc1-2/006.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/006.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
 <tc1-2/008.jpg, id=1072, 562.1pt x 421.575pt>
 File: tc1-2/008.jpg Graphic file (type jpg)
 <use tc1-2/008.jpg>
-Package pdftex.def Info: tc1-2/008.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/008.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-2/010.jpg, id=1073, 572.1375pt x 414.54875pt>
 File: tc1-2/010.jpg Graphic file (type jpg)
 <use tc1-2/010.jpg>
-Package pdftex.def Info: tc1-2/010.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/010.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 55.65804pt.
 <tc1-2/012.jpg, id=1074, 562.1pt x 421.575pt>
 File: tc1-2/012.jpg Graphic file (type jpg)
 <use tc1-2/012.jpg>
-Package pdftex.def Info: tc1-2/012.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/012.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-2/014.jpg, id=1075, 562.1pt x 421.575pt>
 File: tc1-2/014.jpg Graphic file (type jpg)
 <use tc1-2/014.jpg>
-Package pdftex.def Info: tc1-2/014.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/014.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 <tc1-2/016.jpg, id=1076, 562.1pt x 421.575pt>
 File: tc1-2/016.jpg Graphic file (type jpg)
 <use tc1-2/016.jpg>
-Package pdftex.def Info: tc1-2/016.jpg  used on input line 737.
+Package pdftex.def Info: tc1-2/016.jpg  used on input line 736.
 (pdftex.def)             Requested size: 76.82246pt x 57.61133pt.
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 737.
+Package pdftex.def Info: logo_polimi.png  used on input line 736.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1548,7 +1543,7 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 -2/010.jpg> <./tc1-2/012.jpg> <./tc1-2/014.jpg> <./tc1-2/016.jpg>]
 File: logo_polimi.png Graphic file (type png)
 <use logo_polimi.png>
-Package pdftex.def Info: logo_polimi.png  used on input line 752.
+Package pdftex.def Info: logo_polimi.png  used on input line 751.
 (pdftex.def)             Requested size: 47.79288pt x 14.22636pt.
 
 Overfull \vbox (4.16953pt too high) has occurred while \output is active []
@@ -1566,11 +1561,11 @@ Overfull \vbox (4.16953pt too high) has occurred while \output is active []
 \tf@snm=\write8
 \openout8 = `presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 754.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 754.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 753.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 753.
  (./presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 754.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 754.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 753.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 753.
 Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: 6BC560F0232E4751AF97FD00676A62A5;407.
 
@@ -1604,7 +1599,7 @@ exlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/helvetic/uhvbo8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/h
 elvetic/uhvro8a.pfb>
-Output written on presentation.pdf (29 pages, 3979979 bytes).
+Output written on presentation.pdf (29 pages, 3979124 bytes).
 PDF statistics:
  1223 PDF objects out of 1440 (max. 8388607)
  1106 compressed objects within 12 object streams

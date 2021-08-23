@@ -232,14 +232,14 @@ Consider:
 	\item $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as the FEM and Dubiner coefficients of a function $u_h$.
 \end{itemize} \vspace{4mm}
 \textbf{FEM $\leftarrow$ Dubiner} \\
-Exploiting the nodal meaning of FEM, we compute its value in a point:
+\small Exploiting the nodal meaning of FEM, we compute its value in a point: \normalsize
 \begin{equation*} \label{ref3}
 \hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i),
 \end{equation*}
 \textbf{FEM $\rightarrow$ Dubiner} \\
-Exploiting the $L^2$-orthonormality of Dubiner, we compute its Fourier coeff.:
+\small Exploiting the $L^2$-orthonormality of Dubiner, we compute its Fourier coeff.: \normalsize
 \begin{equation*}\label{ref4}
-\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\varphi_j(x)\,dx \Big) \hat{u}_i.
+\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx
 \end{equation*}
 \end{frame}
 
@@ -296,8 +296,8 @@ The main feature is the sub-division of the problem into two different problems 
 \begin{center}
 \underline{Godunov operator-splitting discretized system}
 \end{center}
-Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that: \small
 \begin{equation*}
+\small
 \begin{cases}
 \begin{gathered}
 \left(
@@ -349,7 +349,6 @@ Idea:
 \begin{center}
 \underline{Quasi-implicit operator-splitting discretized system}
 \end{center}
-Find $\Phi^{n+1}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1} \quad \forall n=0, \cdots, N-1$ such that:
 \begin{equation*}
 \quad
 \begin{cases}
@@ -401,7 +400,7 @@ $\displaystyle \int_\Omega \phi_i\,dx = \varphi(t) \quad \forall t \in [0,T] \qu
 \end{frame}
 
 \begin{frame}
-\frametitle{Imposition of a value in a specific point / first coefficient}
+\frametitle{Imposition of the value in a specific point / first coefficient}
 \begin{remark}
 	The aim is to impose the condition before or directly into the system to avoid ill-conditioning.
 \end{remark}
@@ -495,7 +494,7 @@ b_1 \\ b_2 \\ \dots \\ b_N
 \end{bmatrix} \quad \rightarrow \quad
 \tilde{b}=\begin{bmatrix}
 b_1 \\ b_2 \\ \dots \\ b_N \\ c
-\end{bmatrix} \quad \text{(where $c$ is the imposed value, $ \textstyle d_i = \int_\Omega \varphi_i$)}
+\end{bmatrix} \quad \text{($c$ is the imposed value, $ \textstyle d_i = \int_\Omega \varphi_i$)}
 \end{equation*}
 \end{frame}
 
