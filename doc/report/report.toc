@@ -73,32 +73,32 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsubsection}{\numberline {6.2.3}P3-D3}{31}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{47}%
+\contentsline {subsection}{\numberline {6.3}Comparison between different time discretization methods}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{47}%
+\contentsline {subsection}{\numberline {6.4}Comparison between methods for uniqueness of $\phi _i$ and $\phi _e$}{44}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7}Realistic simulations}{60}%
+\contentsline {section}{\numberline {7}Realistic simulations}{56}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.1}First test-case}{61}%
+\contentsline {subsection}{\numberline {7.1}First test-case}{57}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.2}Second test-case}{64}%
+\contentsline {subsection}{\numberline {7.2}Second test-case}{60}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {7.3}Comments on the results}{64}%
+\contentsline {subsection}{\numberline {7.3}Comments on the results}{60}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {8}Conclusion}{67}%
+\contentsline {section}{\numberline {8}Conclusion}{63}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {9}Appendix: numerical codes}{68}%
+\contentsline {section}{\numberline {9}Appendix: numerical codes}{64}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.1}\texttt {dubiner\_to\_fem.m}}{68}%
+\contentsline {subsection}{\numberline {9.1}\texttt {dubiner\_to\_fem.m}}{64}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.2}\texttt {fem\_to\_dubiner.m}}{68}%
+\contentsline {subsection}{\numberline {9.2}\texttt {fem\_to\_dubiner.m}}{64}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.3}\texttt {main2D.m} (semi-implicit method)}{69}%
+\contentsline {subsection}{\numberline {9.3}\texttt {main2D.m} (semi-implicit method)}{65}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.4}\texttt {main2D.m} (Godunov operator-splitting method)}{69}%
+\contentsline {subsection}{\numberline {9.4}\texttt {main2D.m} (Godunov operator-splitting method)}{65}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.5}\texttt {main2D.m} (quasi-implicit operator-splitting method)}{70}%
+\contentsline {subsection}{\numberline {9.5}\texttt {main2D.m} (quasi-implicit operator-splitting method)}{66}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.6}\texttt {assign\_phi\_i.m}}{70}%
+\contentsline {subsection}{\numberline {9.6}\texttt {assign\_phi\_i.m}}{66}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {9.7}\texttt {assign\_null\_average.m}}{71}%
+\contentsline {subsection}{\numberline {9.7}\texttt {assign\_null\_average.m}}{67}%
