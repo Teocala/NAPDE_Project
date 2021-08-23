@@ -429,7 +429,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \subsection{Implementation}
     Our \textsc{Matlab} code allows the user to select which basis to adopt (FEM or Dubiner) and the order of polynomials until p=3. We chose to call $D_1,D_2,D_3$ these 3 families of basis functions, thanks to the similarity to the $P_1,P_2,P_3$, finite element basis functions.\\
-    As explained in Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model throught FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
+    As explained in Section (\ref{past}), our starting point was the code implemented by the previous projects, namely the resolution of the Bidomain Model through FEM basis ($P_1,P_2,P_3$). As follows, our first goal was the implementation of methods to evaluate the Dubiner basis functions ($D_1,D_2,D_3$) and their gradients in the quadrature points. We omit the full code as it is not particular interesting: it barely follows the definitions of Section (\ref{analytical_aspects}) with the addition of some technicalities. These scripts are: \texttt{eval\_jacobi\_polynomial.m}, \texttt{basis\_legendre\_dubiner.m}, \texttt{evalshape\_tria\_dubiner.m}.\\
     
     \noindent Moreover, some conditional statements and some extra methods (as \texttt{matrix2D\_dubiner.m}) were added to let the user easily switch from one basis to another (simply and once via \texttt{dati.m}). \\
     
@@ -447,7 +447,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\subsubsection{From Dubiner basis to FEM basis}
 	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th degree-of-freedom point, then: 
 	\begin{equation} \label{ref3}
-	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i),
+	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i), \qquad i=1, \dots p
 	\end{equation}
 	where $x_i$ is the point associated to the $\psi_i$ basis function. \\
 	This formula has been implemented in \texttt{dubiner\_to\_fem.m} script (Section (\ref{dub_to_fem})).
@@ -455,7 +455,10 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\subsubsection{From FEM basis to Dubiner basis}
 	\noindent Instead, to compute the coefficients conversely, we need to exploit the fact that the Dubiner basis is $L^2$-orthonormal (Proposition (\ref{l2_ortho})). We then need to compute a $L^2$ scalar product between the FEM discretized function and each Dubiner basis function. That is:
 	\begin{equation}\label{ref4}
-	\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\varphi_j(x)\,dx \Big) \hat{u}_i, \qquad j=1,...
+	\begin{gathered}
+	\tilde{u}_j = \int_\mathcal{K} u_h(x) \varphi_j(x) \,dx = \int_{\mathcal{K}} \sum_{i=1}^p \hat{u}_i\psi_i(x) \varphi_j(x) \,dx = \sum_{i=1}^p \Big(\int_{\mathcal{K}}\psi_i(x)\varphi_j(x)\,dx \Big) \hat{u}_i \\
+	 \qquad j=1,\dots q
+	\end{gathered}
 	\end{equation}
 	\vspace{2mm} \\
 	\noindent This slightly more difficult formula has been reproduced in \texttt{fem\_to\_dubiner.m} (Section (\ref{fem_to_dub})) using \emph{Gauss-Legendre} quadrature formulas.
@@ -1045,8 +1048,12 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 
 
 \newpage
-\section{Space error analysis results} \label{error_analysis}
-\subsection{Chosen data}
+
+\captionsetup{font=normalsize}
+
+\section{Numerical results} \label{error_analysis}
+\subsection{Space error analysis}
+\subsubsection{Chosen data}
 Starting from some example problems, we provide now an experimental error analysis that can show the efficacy and goodness of our numerical schemes. For all the simulations, the values to assign to constant parameters are the same proposed in \cite{bagnara} and used in \cite{andreotti} and \cite{marta}. Namely:
 \begin{center}
 	\captionof{table}{Parameters for space error analysis simulations}
@@ -1097,18 +1104,18 @@ Starting from some example problems, we provide now an experimental error analys
 \vspace{3mm}
 \noindent From these assumptions, we consequently obtain the suitable boundary conditions, initial conditions and forcing terms. Moreover, we remind from Section (\ref{uniqueness_results}) that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ is chosen as polynomials space and the semi-implicit method is chosen for the time discretization. To conclude, the element size is split in half 5 times with refinement levels from 2 to 6 for all the following plots.
 
-\subsection{Comparison between Dubiner and FEM}
+\subsubsection{Comparison between Dubiner and FEM}
 At first, an error analysis related to the basis choice is shown. More precisely, we fix a polynomial order and we compare the errors of the Dubiner and FEM basis choosing this order for both. We expect to see similar results for each couple of basis. On the other hand, we expect to see different error orders for different polynomials orders.
-\subsubsection{P1-D1}
+\paragraph{P1-D1}
 If $1$ is chosen as polynomial order, errors plots are shown in Fig. (\ref{Vm_1}), Fig. (\ref{phii_1}), Fig. (\ref{phie_1}) and Fig. (\ref{w_1}). 
 \noindent It is clear that the convergence is very alike since the errors between the two kinds of basis have the same trend. Then, in this case, results are exactly as expected and show a first order for $H^1$ and $DG$ errors while second order for $L^2$ and $L^\infty$ errors.
-\subsubsection{P2-D2} \label{P2-D2}
+\paragraph{P2-D2} \label{P2-D2}
 \noindent  For what concerns the second order polynomials, we achieve slightly different results. Indeed, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two basis. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences are eliminated when potentials subtract to get $V_m$. \\
 The second unexpected result is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present for $D1-P1$: in the previous case, space errors were still too big and other causes of error negligible. \\
 We then underline that these two unexpected effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section (\ref{imposition_section}). The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
 In conclusion, if we do not care so much about these two phenomena, plots show a second order for $H^1$ and $L^2$ errors and third order for $L^2$ and $L^\infty$ errors.\\
 \noindent See Fig. (\ref{Vm_2}), Fig. (\ref{phii_2}), Fig. (\ref{phie_2}) and Fig. (\ref{w_2}). 
-\subsubsection{P3-D3}
+\paragraph{P3-D3}
 \noindent Finally, for polynomials of degree 3, we still find expected results except for the two phenomena already discussed in Section (\ref{P2-D2}). However, because of the third order precision, space errors are smaller and then these effects amplified. If we do not consider them, we still get expected errors orders that are third for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$.\\
 \noindent See Fig. (\ref{Vm_3}), Fig. (\ref{phii_3}), Fig. (\ref{phie_3}) and Fig. (\ref{w_3}). 
 \newpage
@@ -1123,13 +1130,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with D1}
+\caption{ Trans-membrane potential  ($V_m$) with D1}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with P1}
+\caption{ Trans-membrane potential  ($V_m$) with P1}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1140,13 +1147,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with D1}
+\caption{Intracellular potential ($\phi_i$) with D1}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with P1}
+\caption{Intracellular potential ($\phi_i$) with P1}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1158,13 +1165,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with D1}
+\caption{Extracellular potential ($\phi_e$) with D1}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with P1}
+\caption{Extracellular potential ($\phi_e$) with P1}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1176,20 +1183,17 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption*{Gating variable ($w$) with D1}
+\caption{Gating variable ($w$) with D1}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P1_w_1.jpg}
-\caption*{Gating variable ($w$) with P1}
+\caption{Gating variable ($w$) with P1}
 \end{center}
 \end{subfigure}
 \end{figure}
-\restoregeometry
 \newpage
-
-\newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
 \begin{center}
 \textbf{Comparison between Dubiner and FEM with second order polynomials}
 \end{center}
@@ -1199,13 +1203,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with D2}
+\caption{Trans-membrane potential  ($V_m$) with D2}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with P2}
+\caption{Trans-membrane potential  ($V_m$) with P2}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1216,13 +1220,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with D2}
+\caption{Intracellular potential ($\phi_i$) with D2}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with P2}
+\caption{Intracellular potential ($\phi_i$) with P2}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1234,13 +1238,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with D2}
+\caption{Extracellular potential ($\phi_e$) with D2}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with P2}
+\caption{Extracellular potential ($\phi_e$) with P2}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1252,20 +1256,18 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D2_w_1.jpg}
-\caption*{Gating variable ($w$) with D2}
+\caption{Gating variable ($w$) with D2}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P2_w_1.jpg}
-\caption*{Gating variable ($w$) with P2}
+\caption{Gating variable ($w$) with P2}
 \end{center}
 \end{subfigure}
 \end{figure}
-\restoregeometry
-\newpage
 
-\newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
+\newpage
 \begin{center}
 \textbf{Comparison between Dubiner and FEM with third order polynomials}
 \end{center}
@@ -1274,14 +1276,14 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \label{Vm_3}
 \begin{subfigure}{\textwidth}
 \begin{center}
-\includegraphics[width = \textwidth]{./D3_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with D3}
+\includegraphics[width =\textwidth]{./D3_Vm_1.jpg}
+\caption{Trans-membrane potential  ($V_m$) with D3}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Vm_1.jpg}
-\caption*{Trans-membrane potential  ($V_m$) with P3}
+\caption{Trans-membrane potential  ($V_m$) with P3}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1292,13 +1294,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with D3}
+\caption{Intracellular potential ($\phi_i$) with D3}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Phii_1.jpg}
-\caption*{Intracellular potential ($\phi_i$) with P3}
+\caption{Intracellular potential ($\phi_i$) with P3}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1309,13 +1311,13 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with D3}
+\caption{Extracellular potential ($\phi_e$) with D3}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_Phie_1.jpg}
-\caption*{Extracellular potential ($\phi_e$) with P3}
+\caption{Extracellular potential ($\phi_e$) with P3}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1327,33 +1329,34 @@ In conclusion, if we do not care so much about these two phenomena, plots show a
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D3_w_1.jpg}
-\caption*{Gating variable ($w$) with D3}
+\caption{Gating variable ($w$) with D3}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./P3_w_1.jpg}
-\caption*{Gating variable ($w$) with P3}
+\caption{Gating variable ($w$) with P3}
 \end{center}
 \end{subfigure}
 \end{figure}
 \restoregeometry
 \newpage
 
-\subsection{Comparison between different time discretization methods}
+\subsubsection{Comparison between different time discretization methods}
 In Section (\ref{temporal_discretization}) three methods for the time discretization have been proposed and discussed. An error analysis comparison has been executed and gives the graphical results shown in Fig. (\ref{Vm-time}), (\ref{pi-time}),  (\ref{pe-time}) and (\ref{w-time}).
 \noindent It is clear that the three methods share an identical error trend. This is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spacial error that is strongly bigger than the temporal error. The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of order. Moreover, it is noteworthy to remember that non-linear term is considered as explicit for all the methods and then no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
-\subsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
+\subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to the Section (\ref{unique}), we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. (\ref{Vm-unique}), Fig. (\ref{phii-unique}), Fig. (\ref{phie-unique}) and Fig. (\ref{w-unique}).\\
 \noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory since the imposition method affects only the values of the two potentials. On the other hand, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). Indeed, as already anticipated in Section (\ref{uniqueness_results}), problems that does not imply very ill-conditioned systems can be solved in both ways with very small differences. Our proposed test-case belongs to this family and for this reason we adopted the first method for all the previous error analysis studies as it is almost equivalent to the second one. These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
-On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section (\ref{real_sim}) about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
+On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section (\ref{real_sim}) about physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ 
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section (\ref{imposition_section})), we achieved both them since:
 \begin{itemize}
 	\item Error analysis studies demonstrate that $\phi_i$ and $\phi_e$ converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly defined.
 	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
 \end{itemize}
 \newpage
+
 
 \newgeometry{a4paper,top=2cm,bottom=2cm,left=2cm,right=2cm}
 \begin{center}
@@ -1364,13 +1367,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{Vm-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption*{$V_m$ with D1 - Semi-implicit method}
+\caption*{(a) $V_m$ with D1 - Semi-implicit method}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_1_GO.jpg}
-\caption*{$V_m$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $V_m$ with D1 - Godunov operator-splitting method}
 \end{center}
 \end{figure}
 \newpage
@@ -1379,7 +1382,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_1_OS.jpg}
-\caption*{$V_m$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $V_m$ with D1 - Quasi-implicit operator-splitting method}
 \end{center}
 \end{figure}
 
@@ -1388,7 +1391,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{pi-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption*{$\phi_i$ with D1 - Semi-implicit method}
+\caption*{(a) $\phi_i$ with D1 - Semi-implicit method}
 \end{center}
 \end{figure}
 \newpage
@@ -1396,13 +1399,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_1_GO.jpg}
-\caption*{$\phi_i$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $\phi_i$ with D1 - Godunov operator-splitting method}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_1_OS.jpg}
-\caption*{$\phi_i$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $\phi_i$ with D1 - Quasi-implicit operator-splitting method}
 \end{center}
 \end{figure}
 \newpage
@@ -1412,13 +1415,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{pe-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption*{$\phi_e$ with D1 - Semi-implicit method}
+\caption*{(a) $\phi_e$ with D1 - Semi-implicit method}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_1_GO.jpg}
-\caption*{$\phi_e$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $\phi_e$ with D1 - Godunov operator-splitting method}
 \end{center}
 \end{figure}
 \newpage
@@ -1426,7 +1429,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_1_OS.jpg}
-\caption*{$\phi_e$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $\phi_e$ with D1 - Quasi-implicit operator-splitting method}
 \end{center}
 \end{figure}
 
@@ -1435,7 +1438,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \label{w-time}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption*{$w$ with D1 - Semi-implicit method}
+\caption*{(a) $w$ with D1 - Semi-implicit method}
 \end{center}
 \end{figure}
 \newpage
@@ -1443,17 +1446,19 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_1_GO.jpg}
-\caption*{$w$ with D1 - Godunov operator-splitting method}
+\caption*{(b) $w$ with D1 - Godunov operator-splitting method}
 \end{center}
 \end{figure}
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_1_OS.jpg}
-\caption*{$w$ with D1 - Quasi-implicit operator-splitting method}
+\caption*{(c) $w$ with D1 - Quasi-implicit operator-splitting method}
 \end{center}
 \end{figure}
 \restoregeometry
 \newpage
+
+
 
 \newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
 \begin{center}
@@ -1465,13 +1470,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Vm_1.jpg}
-\caption*{$V_m$ with D1 imposing the function in a specific point}
+\caption{$V_m$ with D1 imposing the first coefficient}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Vm_2.jpg}
-\caption*{$V_m$ with D1 imposing the zero mean}
+\caption{$V_m$ with D1 imposing the zero mean}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1481,13 +1486,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phii_1.jpg}
-\caption*{$\phi_i$ with D1 imposing the function in a specific point}
+\caption{$\phi_i$ with D1 imposing the first coefficient}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}	
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phii_2.jpg}
-\caption*{$\phi_i$ with D1 imposing the zero mean}
+\caption{$\phi_i$ with D1 imposing the zero mean}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1499,13 +1504,13 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_Phie_1.jpg}
-\caption*{$\phi_e$ with D1 imposing the function in a specific point}
+\caption{$\phi_e$ with D1 imposing the first coefficient}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_Phie_2.jpg}
-\caption*{$\phi_e$ with D1 imposing the zero mean}
+\caption{$\phi_e$ with D1 imposing the zero mean}
 \end{center}
 \end{subfigure}
 \end{figure}
@@ -1517,20 +1522,20 @@ On the other hand, it has already been stated that some peculiar problems can be
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width = \textwidth]{./D1_w_1.jpg}
-\caption*{$w$ with D1 imposing the function in a specific point}
+\caption{$w$ with D1 imposing the first coefficient}
 \end{center}
 \end{subfigure}
 \begin{subfigure}{\textwidth}
 \begin{center}
 \includegraphics[width =\textwidth]{./D1_w_2.jpg}
-\caption*{$w$ with D1 imposing the zero mean}
+\caption{$w$ with D1 imposing the zero mean}
 \end{center}
 \end{subfigure}
 \end{figure}
 \restoregeometry
 \newpage
 
-\section{Realistic simulations} \label{real_sim}
+\subsection{Toward a realistic simulation} \label{real_sim}
 Our final goal is to exploit strategies and tools presented in the previous sections to run simulations that can get closer to the cardiac electrophysiology phenomena. It is noteworthy to warn that no exact solutions are known for these kinds of problems and what we care about is only visual. Moreover, we warn that there are some limitations to the complete resemblance to the realistic phenomena, for instance the domain shape. Our general choices for all the test-cases are the following:
 
 \begin{center}
@@ -1612,7 +1617,7 @@ To conclude, observe that the compatibility condition (Equation (\ref{compatibil
 \vspace{4mm}
 \noindent Basically, the first test-case data comes from the values already adopted for Section (\ref{error_analysis}) and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. On the other hand, the second test-case parameters comes from \cite{mauricio}.
 
-\subsection{First test-case}
+\subsubsection{First test-case}
 For both the test-cases, we aim to show two different situations depending on the external current intensity: firstly, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up. Secondly, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion. Several simulations have proved that:
 \begin{itemize}
 	\item $I = 500 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
@@ -1681,7 +1686,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \end{figure}
 \restoregeometry
 \newpage
-\subsection{Second test-case}
+\subsubsection{Second test-case}
 For these modified parameters, the threshold for the activation is different as we can state that:
 \begin{itemize}
 	\item $I = 15000 \cdot 10^3 $ is a suitable value for the \emph{underflow} case.
@@ -1690,7 +1695,7 @@ For these modified parameters, the threshold for the activation is different as 
 
 \noindent Results related to this test-case are visible in Fig. (\ref{tc2-1}) and Fig. (\ref{tc2-2}).
 
-\subsection{Comments on the results}
+\subsubsection{Comments on the results}
 As expected, we can distinguish two different phenomena in both the test-cases:
 \begin{itemize}
 	\item In \emph{underflow} simulations, propagation is visible and wave height (that is always below 1) decreases at every time-step. Then, the overall phenomena seems to be only diffusive.
@@ -1771,9 +1776,9 @@ The second and more sophisticated incongruence is the missed repolarization afte
 \restoregeometry
 \newpage
 \section{Conclusion}
-After some introductions and motivations, we have validated our numerical study through a basic error analysis and a couple of simulations aimed to re-create what happens in the human heart.
+In this project we have considered a DG approach for cardiac electro-physiology. After some introductions and motivations, we have validated the proposed numerical method through a basic error analysis and a couple of simulations aimed to re-create what happens in the human heart.
 \noindent From the former we obtained excellent validations: every result was consistent with the theory and even what was initially unexpected has later been justified with other causes independent from our study.\\
-\noindent We also achieved very good outcomes: our simulations turned to be consistent with the physical phenomenon except for the missed repolarization. We doubt that it is due to the numerical schemes because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too wide mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
+\noindent We also achieved very good outcomes from the pseudo realistic simulations: they turned to be consistent with the physical phenomenon except for the missed repolarization. We doubt that it is due to the numerical schemes because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too wide mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
 \noindent We hope that this last point could be a springboard for future projects aiming at improving and generalize our results.  
 \newpage
 \section{Appendix: numerical codes}
