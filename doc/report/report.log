@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.7.6)  24 AUG 2021 10:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  24 AUG 2021 17:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -341,7 +341,7 @@ Package newfloat Info: float type `mycapequ'=4 on input line 24.
 \c@submycapequ=\count284
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.sty
-Package: biblatex 2020/08/23 v3.15a programmable bibliographies (PK/MW)
+Package: biblatex 2019/12/01 v3.14 programmable bibliographies (PK/MW)
 
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
@@ -422,7 +422,6 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@parenlevel@foot=\count325
 \blx@sectionciteorder@0=\count326
 \blx@entrysetcounter=\count327
-\blx@biblioinstance=\count328
 \labelnumberwidth=\skip62
 \labelalphawidth=\skip63
 \biblabelsep=\skip64
@@ -434,87 +433,87 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 \blx@bcfin=\read3
 \blx@bcfout=\write3
 \blx@langwohyphens=\language5
-\c@mincomprange=\count329
-\c@maxcomprange=\count330
-\c@mincompwidth=\count331
+\c@mincomprange=\count328
+\c@maxcomprange=\count329
+\c@mincompwidth=\count330
 Package biblatex Info: Trying to load biblatex default data model...
 Package biblatex Info: ... file 'blx-dm.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-dm.def
-File: blx-dm.def 2020/08/23 v3.15a biblatex localization (PK/MW)
+File: blx-dm.def 2019/12/01 v3.14 biblatex localization (PK/MW)
 )
 Package biblatex Info: Trying to load biblatex style data model...
 Package biblatex Info: ... file 'numeric.dbx' not found.
 Package biblatex Info: Trying to load biblatex custom data model...
 Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
-\c@afterword=\count332
-\c@savedafterword=\count333
-\c@annotator=\count334
-\c@savedannotator=\count335
-\c@author=\count336
-\c@savedauthor=\count337
-\c@bookauthor=\count338
-\c@savedbookauthor=\count339
-\c@commentator=\count340
-\c@savedcommentator=\count341
-\c@editor=\count342
-\c@savededitor=\count343
-\c@editora=\count344
-\c@savededitora=\count345
-\c@editorb=\count346
-\c@savededitorb=\count347
-\c@editorc=\count348
-\c@savededitorc=\count349
-\c@foreword=\count350
-\c@savedforeword=\count351
-\c@holder=\count352
-\c@savedholder=\count353
-\c@introduction=\count354
-\c@savedintroduction=\count355
-\c@namea=\count356
-\c@savednamea=\count357
-\c@nameb=\count358
-\c@savednameb=\count359
-\c@namec=\count360
-\c@savednamec=\count361
-\c@translator=\count362
-\c@savedtranslator=\count363
-\c@shortauthor=\count364
-\c@savedshortauthor=\count365
-\c@shorteditor=\count366
-\c@savedshorteditor=\count367
-\c@labelname=\count368
-\c@savedlabelname=\count369
-\c@institution=\count370
-\c@savedinstitution=\count371
-\c@lista=\count372
-\c@savedlista=\count373
-\c@listb=\count374
-\c@savedlistb=\count375
-\c@listc=\count376
-\c@savedlistc=\count377
-\c@listd=\count378
-\c@savedlistd=\count379
-\c@liste=\count380
-\c@savedliste=\count381
-\c@listf=\count382
-\c@savedlistf=\count383
-\c@location=\count384
-\c@savedlocation=\count385
-\c@organization=\count386
-\c@savedorganization=\count387
-\c@origlocation=\count388
-\c@savedoriglocation=\count389
-\c@origpublisher=\count390
-\c@savedorigpublisher=\count391
-\c@publisher=\count392
-\c@savedpublisher=\count393
-\c@language=\count394
-\c@savedlanguage=\count395
-\c@origlanguage=\count396
-\c@savedoriglanguage=\count397
-\c@pageref=\count398
-\c@savedpageref=\count399
+\c@afterword=\count331
+\c@savedafterword=\count332
+\c@annotator=\count333
+\c@savedannotator=\count334
+\c@author=\count335
+\c@savedauthor=\count336
+\c@bookauthor=\count337
+\c@savedbookauthor=\count338
+\c@commentator=\count339
+\c@savedcommentator=\count340
+\c@editor=\count341
+\c@savededitor=\count342
+\c@editora=\count343
+\c@savededitora=\count344
+\c@editorb=\count345
+\c@savededitorb=\count346
+\c@editorc=\count347
+\c@savededitorc=\count348
+\c@foreword=\count349
+\c@savedforeword=\count350
+\c@holder=\count351
+\c@savedholder=\count352
+\c@introduction=\count353
+\c@savedintroduction=\count354
+\c@namea=\count355
+\c@savednamea=\count356
+\c@nameb=\count357
+\c@savednameb=\count358
+\c@namec=\count359
+\c@savednamec=\count360
+\c@translator=\count361
+\c@savedtranslator=\count362
+\c@shortauthor=\count363
+\c@savedshortauthor=\count364
+\c@shorteditor=\count365
+\c@savedshorteditor=\count366
+\c@labelname=\count367
+\c@savedlabelname=\count368
+\c@institution=\count369
+\c@savedinstitution=\count370
+\c@lista=\count371
+\c@savedlista=\count372
+\c@listb=\count373
+\c@savedlistb=\count374
+\c@listc=\count375
+\c@savedlistc=\count376
+\c@listd=\count377
+\c@savedlistd=\count378
+\c@liste=\count379
+\c@savedliste=\count380
+\c@listf=\count381
+\c@savedlistf=\count382
+\c@location=\count383
+\c@savedlocation=\count384
+\c@organization=\count385
+\c@savedorganization=\count386
+\c@origlocation=\count387
+\c@savedoriglocation=\count388
+\c@origpublisher=\count389
+\c@savedorigpublisher=\count390
+\c@publisher=\count391
+\c@savedpublisher=\count392
+\c@language=\count393
+\c@savedlanguage=\count394
+\c@origlanguage=\count395
+\c@savedoriglanguage=\count396
+\c@pageref=\count397
+\c@savedpageref=\count398
 \shorthandwidth=\skip70
 \shortjournalwidth=\skip71
 \shortserieswidth=\skip72
@@ -533,55 +532,45 @@ Package biblatex Info: Trying to load compatibility code...
 Package biblatex Info: ... file 'blx-compat.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-compat.def
-File: blx-compat.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
-)
-Package biblatex Info: expl3
-(biblatex)             2020-07-17 L3 programming layer (loader) 
-(biblatex)             is new enough (at least 2020/04/06),
-(biblatex)             setting 'casechanger=expl3'.
-Package biblatex Info: Trying to load expl3 case changing code...
-Package biblatex Info: ... file 'blx-case-expl3.def' found.
-
-(/usr/share/texlive/texmf-dist/tex/latex/biblatex/blx-case-expl3.def
-File: blx-case-expl3 2020/08/23 v3.15a expl3 case changing code for biblatex
+File: blx-compat.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
 )
 Package biblatex Info: Trying to load generic definitions...
 Package biblatex Info: ... file 'biblatex.def' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/biblatex.def
-File: biblatex.def 2020/08/23 v3.15a biblatex compatibility (PK/MW)
-\c@textcitecount=\count400
-\c@textcitetotal=\count401
-\c@textcitemaxnames=\count402
-\c@biburlbigbreakpenalty=\count403
-\c@biburlbreakpenalty=\count404
-\c@biburlnumpenalty=\count405
-\c@biburlucpenalty=\count406
-\c@biburllcpenalty=\count407
+File: biblatex.def 2019/12/01 v3.14 biblatex compatibility (PK/MW)
+\c@textcitecount=\count399
+\c@textcitetotal=\count400
+\c@textcitemaxnames=\count401
+\c@biburlbigbreakpenalty=\count402
+\c@biburlbreakpenalty=\count403
+\c@biburlnumpenalty=\count404
+\c@biburlucpenalty=\count405
+\c@biburllcpenalty=\count406
 \biburlbigskip=\muskip18
 \biburlnumskip=\muskip19
 \biburlucskip=\muskip20
 \biburllcskip=\muskip21
-\c@smartand=\count408
+\c@smartand=\count407
 )
 Package biblatex Info: Trying to load bibliography style 'numeric'...
 Package biblatex Info: ... file 'numeric.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
-File: numeric.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
+File: numeric.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
 Package biblatex Info: Trying to load bibliography style 'standard'...
 Package biblatex Info: ... file 'standard.bbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
-File: standard.bbx 2020/08/23 v3.15a biblatex bibliography style (PK/MW)
-\c@bbx:relatedcount=\count409
-\c@bbx:relatedtotal=\count410
+File: standard.bbx 2019/12/01 v3.14 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count408
+\c@bbx:relatedtotal=\count409
 ))
 Package biblatex Info: Trying to load citation style 'numeric'...
 Package biblatex Info: ... file 'numeric.cbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
-File: numeric.cbx 2020/08/23 v3.15a biblatex citation style (PK/MW)
+File: numeric.cbx 2019/12/01 v3.14 biblatex citation style (PK/MW)
 Package biblatex Info: Redefining '\cite'.
 Package biblatex Info: Redefining '\parencite'.
 Package biblatex Info: Redefining '\footcite'.
@@ -602,12 +591,12 @@ File: biblatex.cfg
 ))
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
-\csq@reset=\count411
-\csq@gtype=\count412
-\csq@glevel=\count413
-\csq@qlevel=\count414
-\csq@maxlvl=\count415
-\csq@tshold=\count416
+\csq@reset=\count410
+\csq@gtype=\count411
+\csq@glevel=\count412
+\csq@qlevel=\count413
+\csq@maxlvl=\count414
+\csq@tshold=\count415
 \csq@ltx@everypar=\toks36
 
 (/usr/share/texlive/texmf-dist/tex/latex/csquotes/csquotes.def
@@ -621,12 +610,12 @@ File: csquotes.cfg
 )
 Package csquotes Info: Enabling multilingual quotes.
 )
-\c@definition=\count417
-\c@theo=\count418
-\c@prop=\count419
-\c@problem=\count420
-\c@corollary=\count421
-\c@lemma=\count422
+\c@definition=\count416
+\c@theo=\count417
+\c@prop=\count418
+\c@problem=\count419
+\c@corollary=\count420
+\c@lemma=\count421
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
  (./report.aux)
@@ -682,16 +671,16 @@ LaTeX Font Info:    ... okay on input line 49.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count423
+\scratchcounter=\count422
 \scratchdimen=\dimen179
 \scratchbox=\box56
-\nofMPsegments=\count424
-\nofMParguments=\count425
+\nofMPsegments=\count423
+\nofMParguments=\count424
 \everyMPshowfont=\toks37
-\MPscratchCnt=\count426
+\MPscratchCnt=\count425
 \MPscratchDim=\dimen180
-\MPnumerator=\count427
-\makeMPintoPDFobject=\count428
+\MPnumerator=\count426
+\makeMPintoPDFobject=\count427
 \everyMPtoPDFconversion=\toks38
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -717,13 +706,13 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count429
+\c@lstlisting=\count428
 Package newfloat Info: `float' package detected.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
 
 (/usr/share/texlive/texmf-dist/tex/latex/biblatex/lbx/english.lbx
-File: english.lbx 2020/08/23 v3.15a biblatex localization (PK/MW)
+File: english.lbx 2019/12/01 v3.14 biblatex localization (PK/MW)
 )
 Package biblatex Info: Input encoding 'utf8' detected.
 Package biblatex Info: Automatic encoding selection.
@@ -826,90 +815,90 @@ Underfull \hbox (badness 10000) in paragraph at lines 190--193
  []
 
 [5] [6] [7] [8]
-Overfull \hbox (6.60852pt too wide) detected at line 317
+Overfull \hbox (6.60852pt too wide) detected at line 320
 []
  []
 
 [9]
-<./transformation.png, id=69, 485.815pt x 256.96pt>
+<./transformation.png, id=68, 485.815pt x 256.96pt>
 File: ./transformation.png Graphic file (type png)
 <use ./transformation.png>
-Package pdftex.def Info: ./transformation.png  used on input line 338.
+Package pdftex.def Info: ./transformation.png  used on input line 341.
 (pdftex.def)             Requested size: 199.16928pt x 105.34251pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--345
+Underfull \hbox (badness 10000) in paragraph at lines 347--348
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 357--359
+Underfull \hbox (badness 10000) in paragraph at lines 360--362
 
  []
 
 [10 <./transformation.png>]
-<./mass_dubiner.jpg, id=76, 1854.93pt x 908.39375pt>
+<./mass_dubiner.jpg, id=75, 1854.93pt x 908.39375pt>
 File: ./mass_dubiner.jpg Graphic file (type jpg)
 <use ./mass_dubiner.jpg>
-Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 410.
+Package pdftex.def Info: ./mass_dubiner.jpg  used on input line 413.
 (pdftex.def)             Requested size: 284.52756pt x 139.3303pt.
  [11]
-Underfull \hbox (badness 10000) in paragraph at lines 420--423
+Underfull \hbox (badness 10000) in paragraph at lines 423--426
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 424--425
+Underfull \hbox (badness 10000) in paragraph at lines 427--428
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 426--427
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 
  []
 
 [12 <./mass_dubiner.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 431--433
+Underfull \hbox (badness 10000) in paragraph at lines 434--436
 
  []
 
 
-Overfull \hbox (7.35368pt too wide) in paragraph at lines 434--435
+Overfull \hbox (7.35368pt too wide) in paragraph at lines 437--438
 \T1/cmr/m/n/10.95 Moreover, some con-di-tional state-ments and some ex-tra meth
 -ods (as \T1/cmtt/m/n/10.95 matrix2D_dubiner.m\T1/cmr/m/n/10.95 )
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 434--435
+Underfull \hbox (badness 10000) in paragraph at lines 437--438
 
  []
 
 [13]
-Underfull \hbox (badness 10000) in paragraph at lines 466--467
+Underfull \hbox (badness 10000) in paragraph at lines 469--470
 
  []
 
 [14] [15] [16]
-Underfull \hbox (badness 10000) in paragraph at lines 530--531
+Underfull \hbox (badness 10000) in paragraph at lines 533--534
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 544--546
+Underfull \hbox (badness 10000) in paragraph at lines 547--549
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 544--546
+Underfull \hbox (badness 10000) in paragraph at lines 547--549
 
  []
 
 
-Overfull \hbox (18.71088pt too wide) detected at line 576
+Overfull \hbox (18.71088pt too wide) detected at line 579
 []
  []
 
 [17]
-Overfull \hbox (1.94151pt too wide) in paragraph at lines 580--581
+Overfull \hbox (1.94151pt too wide) in paragraph at lines 583--584
 \T1/cmr/bx/n/10.95 Problem 7 \T1/cmr/m/n/10.95 (Go-dunov op-er-a-tor-s-plit-tin
 g dis-cretized sys-tem)\T1/cmr/bx/n/10.95 . \T1/cmr/m/it/10.95 Find $\OT1/cmr/b
 x/n/10.95 ^^H[] \OT1/cmr/m/n/10.95 = [\OML/cmm/m/it/10.95 ^^^[]^^^[]\OT1/cmr/m/
@@ -917,17 +906,17 @@ n/10.95 ][]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 601--602
+Underfull \hbox (badness 10000) in paragraph at lines 604--605
 
  []
 
 [18]
-Underfull \hbox (badness 10000) in paragraph at lines 654--656
+Underfull \hbox (badness 10000) in paragraph at lines 657--659
 
  []
 
 
-Overfull \hbox (25.82988pt too wide) in paragraph at lines 657--658
+Overfull \hbox (25.82988pt too wide) in paragraph at lines 660--661
 \T1/cmr/bx/n/10.95 Problem 8 \T1/cmr/m/n/10.95 (Quasi-im-plicit op-er-a-tor-s-p
 lit-ting dis-cretized sys-tem)\T1/cmr/bx/n/10.95 . \T1/cmr/m/it/10.95 Find $\OT
 1/cmr/bx/n/10.95 ^^H[] \OT1/cmr/m/n/10.95 = [\OML/cmm/m/it/10.95 ^^^[]^^^[]\OT1
@@ -935,114 +924,109 @@ lit-ting dis-cretized sys-tem)\T1/cmr/bx/n/10.95 . \T1/cmr/m/it/10.95 Find $\OT
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 688--689
+Underfull \hbox (badness 10000) in paragraph at lines 691--692
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 690--691
+Underfull \hbox (badness 10000) in paragraph at lines 693--694
 
  []
 
 [20] [21]
-Underfull \hbox (badness 10000) in paragraph at lines 759--760
+Underfull \hbox (badness 10000) in paragraph at lines 762--763
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 773--774
+Underfull \hbox (badness 10000) in paragraph at lines 776--777
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 775--776
+Underfull \hbox (badness 10000) in paragraph at lines 778--779
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 788--789
+Underfull \hbox (badness 10000) in paragraph at lines 791--792
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 799--800
+Underfull \hbox (badness 10000) in paragraph at lines 802--803
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 827--832
+Underfull \hbox (badness 10000) in paragraph at lines 830--835
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 833--835
+Underfull \hbox (badness 10000) in paragraph at lines 836--838
 
  []
 
 [23]
-Overfull \hbox (0.3409pt too wide) in paragraph at lines 836--838
+Overfull \hbox (0.3409pt too wide) in paragraph at lines 839--841
 \T1/cmr/m/n/10.95 The co-ef-fi-cient im-po-si-tion pro-ce-dure has been im-ple-
 mented in the script \T1/cmtt/m/n/10.95 assign_phi_i.m
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 840--841
+Underfull \hbox (badness 10000) in paragraph at lines 843--844
 
  []
 
 [24]
-Underfull \hbox (badness 10000) in paragraph at lines 877--879
+Underfull \hbox (badness 10000) in paragraph at lines 880--882
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 880--881
+Underfull \hbox (badness 10000) in paragraph at lines 883--884
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 898--899
+Underfull \hbox (badness 10000) in paragraph at lines 901--902
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 934--935
+Underfull \hbox (badness 10000) in paragraph at lines 937--938
 
  []
 
 [26]
-Underfull \hbox (badness 10000) in paragraph at lines 946--947
+Underfull \hbox (badness 10000) in paragraph at lines 949--950
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 951--952
+Underfull \hbox (badness 10000) in paragraph at lines 954--955
 
  []
 
 [27]
-Underfull \hbox (badness 10000) in paragraph at lines 1005--1006
+Underfull \hbox (badness 10000) in paragraph at lines 1008--1009
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1031--1034
+Underfull \hbox (badness 10000) in paragraph at lines 1034--1037
 
  []
 
 
-Overfull \hbox (0.62923pt too wide) in paragraph at lines 1035--1039
+Overfull \hbox (0.62923pt too wide) in paragraph at lines 1038--1042
 \T1/cmr/m/n/10.95 The im-ple-men-ta-tion of such trans-for-ma-tion is car-ried 
 out in the \T1/cmtt/m/n/10.95 assign_null_average.m
  []
 
 [28] [29] [30]
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1123
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1124--1125
+Underfull \hbox (badness 10000) in paragraph at lines 1127--1128
 
  []
 
@@ -1082,148 +1066,148 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./D1_Vm_1.jpg, id=146, 1521.685pt x 895.345pt>
+<./D1_Vm_1.jpg, id=145, 1521.685pt x 895.345pt>
 File: ./D1_Vm_1.jpg Graphic file (type jpg)
 <use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1137.
+Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1140.
 (pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./P1_Vm_1.jpg, id=147, 1495.5875pt x 879.285pt>
+<./P1_Vm_1.jpg, id=146, 1495.5875pt x 879.285pt>
 File: ./P1_Vm_1.jpg Graphic file (type jpg)
 <use ./P1_Vm_1.jpg>
-Package pdftex.def Info: ./P1_Vm_1.jpg  used on input line 1143.
+Package pdftex.def Info: ./P1_Vm_1.jpg  used on input line 1146.
 (pdftex.def)             Requested size: 483.69687pt x 284.3689pt.
-<./D1_Phii_1.jpg, id=148, 1494.58376pt x 883.3pt>
+<./D1_Phii_1.jpg, id=147, 1494.58376pt x 883.3pt>
 File: ./D1_Phii_1.jpg Graphic file (type jpg)
 <use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1154.
+Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1157.
 (pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
-<./P1_Phii_1.jpg, id=149, 1496.59125pt x 881.2925pt>
+<./P1_Phii_1.jpg, id=148, 1496.59125pt x 881.2925pt>
 File: ./P1_Phii_1.jpg Graphic file (type jpg)
 <use ./P1_Phii_1.jpg>
-Package pdftex.def Info: ./P1_Phii_1.jpg  used on input line 1160.
+Package pdftex.def Info: ./P1_Phii_1.jpg  used on input line 1163.
 (pdftex.def)             Requested size: 483.69687pt x 284.82986pt.
 [32
 
  <./D1_Vm_1.jpg> <./P1_Vm_1.jpg>] [33 <./D1_Phii_1.jpg> <./P1_Phii_1.jpg>]
-<./D1_Phie_1.jpg, id=158, 1496.59125pt x 888.31876pt>
+<./D1_Phie_1.jpg, id=157, 1496.59125pt x 888.31876pt>
 File: ./D1_Phie_1.jpg Graphic file (type jpg)
 <use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1172.
+Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1175.
 (pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./P1_Phie_1.jpg, id=159, 1500.60625pt x 880.28876pt>
+<./P1_Phie_1.jpg, id=158, 1500.60625pt x 880.28876pt>
 File: ./P1_Phie_1.jpg Graphic file (type jpg)
 <use ./P1_Phie_1.jpg>
-Package pdftex.def Info: ./P1_Phie_1.jpg  used on input line 1178.
+Package pdftex.def Info: ./P1_Phie_1.jpg  used on input line 1181.
 (pdftex.def)             Requested size: 483.69687pt x 283.73984pt.
 
 [34 <./D1_Phie_1.jpg> <./P1_Phie_1.jpg>]
-<./D1_w_1.jpg, id=163, 1527.7075pt x 866.23625pt>
+<./D1_w_1.jpg, id=162, 1527.7075pt x 866.23625pt>
 File: ./D1_w_1.jpg Graphic file (type jpg)
 <use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1190.
+Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1193.
 (pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
-<./P1_w_1.jpg, id=164, 1501.61pt x 875.27pt>
+<./P1_w_1.jpg, id=163, 1501.61pt x 875.27pt>
 File: ./P1_w_1.jpg Graphic file (type jpg)
 <use ./P1_w_1.jpg>
-Package pdftex.def Info: ./P1_w_1.jpg  used on input line 1196.
+Package pdftex.def Info: ./P1_w_1.jpg  used on input line 1199.
 (pdftex.def)             Requested size: 483.69687pt x 281.93518pt.
  [35 <./D1_w_1.jpg> <./P1_w_1.jpg>]
-<./D2_Vm_1.jpg, id=168, 1510.64375pt x 888.31876pt>
+<./D2_Vm_1.jpg, id=167, 1510.64375pt x 888.31876pt>
 File: ./D2_Vm_1.jpg Graphic file (type jpg)
 <use ./D2_Vm_1.jpg>
-Package pdftex.def Info: ./D2_Vm_1.jpg  used on input line 1210.
+Package pdftex.def Info: ./D2_Vm_1.jpg  used on input line 1213.
 (pdftex.def)             Requested size: 483.69687pt x 284.43047pt.
-<./P2_Vm_1.jpg, id=169, 1521.685pt x 884.30376pt>
+<./P2_Vm_1.jpg, id=168, 1521.685pt x 884.30376pt>
 File: ./P2_Vm_1.jpg Graphic file (type jpg)
 <use ./P2_Vm_1.jpg>
-Package pdftex.def Info: ./P2_Vm_1.jpg  used on input line 1216.
+Package pdftex.def Info: ./P2_Vm_1.jpg  used on input line 1219.
 (pdftex.def)             Requested size: 483.69687pt x 281.09392pt.
-<./D2_Phii_1.jpg, id=170, 1505.625pt x 883.3pt>
+<./D2_Phii_1.jpg, id=169, 1505.625pt x 883.3pt>
 File: ./D2_Phii_1.jpg Graphic file (type jpg)
 <use ./D2_Phii_1.jpg>
-Package pdftex.def Info: ./D2_Phii_1.jpg  used on input line 1227.
+Package pdftex.def Info: ./D2_Phii_1.jpg  used on input line 1230.
 (pdftex.def)             Requested size: 483.69687pt x 283.76697pt.
-<./P2_Phii_1.jpg, id=171, 1510.64375pt x 880.28876pt>
+<./P2_Phii_1.jpg, id=170, 1510.64375pt x 880.28876pt>
 File: ./P2_Phii_1.jpg Graphic file (type jpg)
 <use ./P2_Phii_1.jpg>
-Package pdftex.def Info: ./P2_Phii_1.jpg  used on input line 1233.
+Package pdftex.def Info: ./P2_Phii_1.jpg  used on input line 1236.
 (pdftex.def)             Requested size: 483.69687pt x 281.85934pt.
 
 [36 <./D2_Vm_1.jpg> <./P2_Vm_1.jpg>] [37 <./D2_Phii_1.jpg> <./P2_Phii_1.jpg>]
-<./D2_Phie_1.jpg, id=179, 1505.625pt x 882.29625pt>
+<./D2_Phie_1.jpg, id=178, 1505.625pt x 882.29625pt>
 File: ./D2_Phie_1.jpg Graphic file (type jpg)
 <use ./D2_Phie_1.jpg>
-Package pdftex.def Info: ./D2_Phie_1.jpg  used on input line 1245.
+Package pdftex.def Info: ./D2_Phie_1.jpg  used on input line 1248.
 (pdftex.def)             Requested size: 483.69687pt x 283.4445pt.
-<./P2_Phie_1.jpg, id=180, 1532.72626pt x 887.315pt>
+<./P2_Phie_1.jpg, id=179, 1532.72626pt x 887.315pt>
 File: ./P2_Phie_1.jpg Graphic file (type jpg)
 <use ./P2_Phie_1.jpg>
-Package pdftex.def Info: ./P2_Phie_1.jpg  used on input line 1251.
+Package pdftex.def Info: ./P2_Phie_1.jpg  used on input line 1254.
 (pdftex.def)             Requested size: 483.69687pt x 280.00665pt.
 
 [38 <./D2_Phie_1.jpg> <./P2_Phie_1.jpg>]
-<./D2_w_1.jpg, id=184, 1507.6325pt x 866.23625pt>
+<./D2_w_1.jpg, id=183, 1507.6325pt x 866.23625pt>
 File: ./D2_w_1.jpg Graphic file (type jpg)
 <use ./D2_w_1.jpg>
-Package pdftex.def Info: ./D2_w_1.jpg  used on input line 1263.
+Package pdftex.def Info: ./D2_w_1.jpg  used on input line 1266.
 (pdftex.def)             Requested size: 483.69687pt x 277.91502pt.
-<./P2_w_1.jpg, id=185, 1504.62125pt x 872.25874pt>
+<./P2_w_1.jpg, id=184, 1504.62125pt x 872.25874pt>
 File: ./P2_w_1.jpg Graphic file (type jpg)
 <use ./P2_w_1.jpg>
-Package pdftex.def Info: ./P2_w_1.jpg  used on input line 1269.
+Package pdftex.def Info: ./P2_w_1.jpg  used on input line 1272.
 (pdftex.def)             Requested size: 483.69687pt x 280.40622pt.
  [39 <./D2_w_1.jpg> <./P2_w_1.jpg>]
-<./D3_Vm_1.jpg, id=189, 1506.62875pt x 896.34875pt>
+<./D3_Vm_1.jpg, id=188, 1506.62875pt x 896.34875pt>
 File: ./D3_Vm_1.jpg Graphic file (type jpg)
 <use ./D3_Vm_1.jpg>
-Package pdftex.def Info: ./D3_Vm_1.jpg  used on input line 1284.
+Package pdftex.def Info: ./D3_Vm_1.jpg  used on input line 1287.
 (pdftex.def)             Requested size: 483.69687pt x 287.7675pt.
-<./P3_Vm_1.jpg, id=190, 1518.67375pt x 882.29625pt>
+<./P3_Vm_1.jpg, id=189, 1518.67375pt x 882.29625pt>
 File: ./P3_Vm_1.jpg Graphic file (type jpg)
 <use ./P3_Vm_1.jpg>
-Package pdftex.def Info: ./P3_Vm_1.jpg  used on input line 1290.
+Package pdftex.def Info: ./P3_Vm_1.jpg  used on input line 1293.
 (pdftex.def)             Requested size: 483.69687pt x 281.00775pt.
-<./D3_Phii_1.jpg, id=191, 1518.67375pt x 890.32625pt>
+<./D3_Phii_1.jpg, id=190, 1518.67375pt x 890.32625pt>
 File: ./D3_Phii_1.jpg Graphic file (type jpg)
 <use ./D3_Phii_1.jpg>
-Package pdftex.def Info: ./D3_Phii_1.jpg  used on input line 1301.
+Package pdftex.def Info: ./D3_Phii_1.jpg  used on input line 1304.
 (pdftex.def)             Requested size: 483.69687pt x 283.56528pt.
-<./P3_Phii_1.jpg, id=192, 1520.68124pt x 894.34125pt>
+<./P3_Phii_1.jpg, id=191, 1520.68124pt x 894.34125pt>
 File: ./P3_Phii_1.jpg Graphic file (type jpg)
 <use ./P3_Phii_1.jpg>
-Package pdftex.def Info: ./P3_Phii_1.jpg  used on input line 1307.
+Package pdftex.def Info: ./P3_Phii_1.jpg  used on input line 1310.
 (pdftex.def)             Requested size: 483.69687pt x 284.46193pt.
 
 [40 <./D3_Vm_1.jpg> <./P3_Vm_1.jpg>]
-<./D3_Phie_1.jpg, id=196, 1505.625pt x 881.2925pt>
+<./D3_Phie_1.jpg, id=195, 1505.625pt x 881.2925pt>
 File: ./D3_Phie_1.jpg Graphic file (type jpg)
 <use ./D3_Phie_1.jpg>
-Package pdftex.def Info: ./D3_Phie_1.jpg  used on input line 1318.
+Package pdftex.def Info: ./D3_Phie_1.jpg  used on input line 1321.
 (pdftex.def)             Requested size: 483.69687pt x 283.12204pt.
-<./P3_Phie_1.jpg, id=197, 1519.6775pt x 888.31876pt>
+<./P3_Phie_1.jpg, id=196, 1519.6775pt x 888.31876pt>
 File: ./P3_Phie_1.jpg Graphic file (type jpg)
 <use ./P3_Phie_1.jpg>
-Package pdftex.def Info: ./P3_Phie_1.jpg  used on input line 1324.
+Package pdftex.def Info: ./P3_Phie_1.jpg  used on input line 1327.
 (pdftex.def)             Requested size: 483.69687pt x 282.73613pt.
  [41 <./D3_Phii_1.jpg> <./P3_Phii_1.jpg>]
 [42 <./D3_Phie_1.jpg> <./P3_Phie_1.jpg>]
-<./D3_w_1.jpg, id=205, 1512.65125pt x 876.27374pt>
+<./D3_w_1.jpg, id=204, 1512.65125pt x 876.27374pt>
 File: ./D3_w_1.jpg Graphic file (type jpg)
 <use ./D3_w_1.jpg>
-Package pdftex.def Info: ./D3_w_1.jpg  used on input line 1336.
+Package pdftex.def Info: ./D3_w_1.jpg  used on input line 1339.
 (pdftex.def)             Requested size: 483.69687pt x 280.19939pt.
-<./P3_w_1.jpg, id=206, 1514.65875pt x 876.27374pt>
+<./P3_w_1.jpg, id=205, 1514.65875pt x 876.27374pt>
 File: ./P3_w_1.jpg Graphic file (type jpg)
 <use ./P3_w_1.jpg>
-Package pdftex.def Info: ./P3_w_1.jpg  used on input line 1342.
+Package pdftex.def Info: ./P3_w_1.jpg  used on input line 1345.
 (pdftex.def)             Requested size: 483.69687pt x 279.825pt.
  [43 <./D3_w_1.jpg> <./P3_w_1.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1354--1360
+Underfull \hbox (badness 10000) in paragraph at lines 1357--1363
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1354--1360
+Underfull \hbox (badness 10000) in paragraph at lines 1357--1363
 
  []
 
@@ -1267,12 +1251,12 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 
 File: ./D1_Vm_1.jpg Graphic file (type jpg)
 <use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1374.
+Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1377.
 (pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./D1_Vm_1_GO.jpg, id=213, 1511.6475pt x 883.3pt>
+<./D1_Vm_1_GO.jpg, id=212, 1511.6475pt x 883.3pt>
 File: ./D1_Vm_1_GO.jpg Graphic file (type jpg)
 <use ./D1_Vm_1_GO.jpg>
-Package pdftex.def Info: ./D1_Vm_1_GO.jpg  used on input line 1380.
+Package pdftex.def Info: ./D1_Vm_1_GO.jpg  used on input line 1383.
 (pdftex.def)             Requested size: 483.69687pt x 282.63481pt.
 [45
 
@@ -1312,58 +1296,58 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./D1_Vm_1_OS.jpg, id=217, 1503.6175pt x 882.29625pt>
+<./D1_Vm_1_OS.jpg, id=216, 1503.6175pt x 882.29625pt>
 File: ./D1_Vm_1_OS.jpg Graphic file (type jpg)
 <use ./D1_Vm_1_OS.jpg>
-Package pdftex.def Info: ./D1_Vm_1_OS.jpg  used on input line 1389.
+Package pdftex.def Info: ./D1_Vm_1_OS.jpg  used on input line 1392.
 (pdftex.def)             Requested size: 483.69687pt x 283.82147pt.
 File: ./D1_Phii_1.jpg Graphic file (type jpg)
 <use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1398.
+Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1401.
 (pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
 [46
 
  <./D1_Vm_1_OS.jpg>]
-<./D1_Phii_1_GO.jpg, id=221, 1501.61pt x 877.2775pt>
+<./D1_Phii_1_GO.jpg, id=220, 1501.61pt x 877.2775pt>
 File: ./D1_Phii_1_GO.jpg Graphic file (type jpg)
 <use ./D1_Phii_1_GO.jpg>
-Package pdftex.def Info: ./D1_Phii_1_GO.jpg  used on input line 1406.
+Package pdftex.def Info: ./D1_Phii_1_GO.jpg  used on input line 1409.
 (pdftex.def)             Requested size: 483.69687pt x 282.58182pt.
-<./D1_Phii_1_OS.jpg, id=222, 1502.61375pt x 883.3pt>
+<./D1_Phii_1_OS.jpg, id=221, 1502.61375pt x 883.3pt>
 File: ./D1_Phii_1_OS.jpg Graphic file (type jpg)
 <use ./D1_Phii_1_OS.jpg>
-Package pdftex.def Info: ./D1_Phii_1_OS.jpg  used on input line 1412.
+Package pdftex.def Info: ./D1_Phii_1_OS.jpg  used on input line 1415.
 (pdftex.def)             Requested size: 483.69687pt x 284.33305pt.
  [47 <./D1_Phii_1_GO.jpg> <./D1_Phii_1_OS.jpg>]
 File: ./D1_Phie_1.jpg Graphic file (type jpg)
 <use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1422.
+Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1425.
 (pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./D1_Phie_1_GO.jpg, id=226, 1513.655pt x 886.31125pt>
+<./D1_Phie_1_GO.jpg, id=225, 1513.655pt x 886.31125pt>
 File: ./D1_Phie_1_GO.jpg Graphic file (type jpg)
 <use ./D1_Phie_1_GO.jpg>
-Package pdftex.def Info: ./D1_Phie_1_GO.jpg  used on input line 1428.
+Package pdftex.def Info: ./D1_Phie_1_GO.jpg  used on input line 1431.
 (pdftex.def)             Requested size: 483.69687pt x 283.21967pt.
  [48 <./D1_Phie_1_GO.jpg>]
-<./D1_Phie_1_OS.jpg, id=231, 1511.6475pt x 880.28876pt>
+<./D1_Phie_1_OS.jpg, id=230, 1511.6475pt x 880.28876pt>
 File: ./D1_Phie_1_OS.jpg Graphic file (type jpg)
 <use ./D1_Phie_1_OS.jpg>
-Package pdftex.def Info: ./D1_Phie_1_OS.jpg  used on input line 1436.
+Package pdftex.def Info: ./D1_Phie_1_OS.jpg  used on input line 1439.
 (pdftex.def)             Requested size: 483.69687pt x 281.6713pt.
 File: ./D1_w_1.jpg Graphic file (type jpg)
 <use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1445.
+Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1448.
 (pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
  [49 <./D1_Phie_1_OS.jpg>]
-<./D1_w_1_GO.jpg, id=236, 1510.64375pt x 866.23625pt>
+<./D1_w_1_GO.jpg, id=235, 1510.64375pt x 866.23625pt>
 File: ./D1_w_1_GO.jpg Graphic file (type jpg)
 <use ./D1_w_1_GO.jpg>
-Package pdftex.def Info: ./D1_w_1_GO.jpg  used on input line 1453.
+Package pdftex.def Info: ./D1_w_1_GO.jpg  used on input line 1456.
 (pdftex.def)             Requested size: 483.69687pt x 277.35988pt.
-<./D1_w_1_OS.jpg, id=237, 1506.62875pt x 862.22125pt>
+<./D1_w_1_OS.jpg, id=236, 1506.62875pt x 862.22125pt>
 File: ./D1_w_1_OS.jpg Graphic file (type jpg)
 <use ./D1_w_1_OS.jpg>
-Package pdftex.def Info: ./D1_w_1_OS.jpg  used on input line 1459.
+Package pdftex.def Info: ./D1_w_1_OS.jpg  used on input line 1462.
 (pdftex.def)             Requested size: 483.69687pt x 276.81107pt.
  [50 <./D1_w_1_GO.jpg> <./D1_w_1_OS.jpg>]
 
@@ -1403,21 +1387,21 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 
 File: ./D1_Vm_1.jpg Graphic file (type jpg)
 <use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1477.
+Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1480.
 (pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./D1_Vm_2.jpg, id=241, 1503.6175pt x 879.285pt>
+<./D1_Vm_2.jpg, id=240, 1503.6175pt x 879.285pt>
 File: ./D1_Vm_2.jpg Graphic file (type jpg)
 <use ./D1_Vm_2.jpg>
-Package pdftex.def Info: ./D1_Vm_2.jpg  used on input line 1483.
+Package pdftex.def Info: ./D1_Vm_2.jpg  used on input line 1486.
 (pdftex.def)             Requested size: 483.69687pt x 282.8528pt.
 File: ./D1_Phii_1.jpg Graphic file (type jpg)
 <use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1493.
+Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1496.
 (pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
-<./D1_Phii_2.jpg, id=242, 1509.64pt x 878.28125pt>
+<./D1_Phii_2.jpg, id=241, 1509.64pt x 878.28125pt>
 File: ./D1_Phii_2.jpg Graphic file (type jpg)
 <use ./D1_Phii_2.jpg>
-Package pdftex.def Info: ./D1_Phii_2.jpg  used on input line 1499.
+Package pdftex.def Info: ./D1_Phii_2.jpg  used on input line 1502.
 (pdftex.def)             Requested size: 483.69687pt x 281.40417pt.
 [51
 
@@ -1425,32 +1409,37 @@ Package pdftex.def Info: ./D1_Phii_2.jpg  used on input line 1499.
  <./D1_Vm_2.jpg>] [52 <./D1_Phii_2.jpg>]
 File: ./D1_Phie_1.jpg Graphic file (type jpg)
 <use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1511.
+Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1514.
 (pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./D1_Phie_2.jpg, id=249, 1518.67375pt x 887.315pt>
+<./D1_Phie_2.jpg, id=248, 1518.67375pt x 887.315pt>
 File: ./D1_Phie_2.jpg Graphic file (type jpg)
 <use ./D1_Phie_2.jpg>
-Package pdftex.def Info: ./D1_Phie_2.jpg  used on input line 1517.
+Package pdftex.def Info: ./D1_Phie_2.jpg  used on input line 1520.
 (pdftex.def)             Requested size: 483.69687pt x 282.6062pt.
  [53 <./D1_Phie_2.jpg>]
 File: ./D1_w_1.jpg Graphic file (type jpg)
 <use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1529.
+Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1532.
 (pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
-<./D1_w_2.jpg, id=253, 1509.64pt x 870.25125pt>
+<./D1_w_2.jpg, id=252, 1509.64pt x 870.25125pt>
 File: ./D1_w_2.jpg Graphic file (type jpg)
 <use ./D1_w_2.jpg>
-Package pdftex.def Info: ./D1_w_2.jpg  used on input line 1535.
+Package pdftex.def Info: ./D1_w_2.jpg  used on input line 1538.
 (pdftex.def)             Requested size: 483.69687pt x 278.83134pt.
  [54 <./D1_w_2.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1598--1599
+Overfull \hbox (12.38934pt too wide) in paragraph at lines 1551--1599
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1601--1602
 
  []
 
 [55
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1600--1602
+Underfull \hbox (badness 10000) in paragraph at lines 1603--1605
 
  []
 
@@ -1490,83 +1479,83 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./tc1-1/002.jpg, id=264, 562.1pt x 421.575pt>
+<./tc1-1/002.jpg, id=263, 562.1pt x 421.575pt>
 File: ./tc1-1/002.jpg Graphic file (type jpg)
 <use ./tc1-1/002.jpg>
-Package pdftex.def Info: ./tc1-1/002.jpg  used on input line 1638.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
-
-Overfull \hbox (11.3844pt too wide) in paragraph at lines 1638--1639
-[][] 
- []
-
-<./tc1-1/004.jpg, id=265, 562.1pt x 421.575pt>
-File: ./tc1-1/004.jpg Graphic file (type jpg)
-<use ./tc1-1/004.jpg>
-Package pdftex.def Info: ./tc1-1/004.jpg  used on input line 1641.
+Package pdftex.def Info: ./tc1-1/002.jpg  used on input line 1641.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1641--1642
 [][] 
  []
 
-<./tc1-1/006.jpg, id=266, 562.1pt x 421.575pt>
-File: ./tc1-1/006.jpg Graphic file (type jpg)
-<use ./tc1-1/006.jpg>
-Package pdftex.def Info: ./tc1-1/006.jpg  used on input line 1644.
+<./tc1-1/004.jpg, id=264, 562.1pt x 421.575pt>
+File: ./tc1-1/004.jpg Graphic file (type jpg)
+<use ./tc1-1/004.jpg>
+Package pdftex.def Info: ./tc1-1/004.jpg  used on input line 1644.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1644--1645
 [][] 
  []
 
-<./tc1-1/008.jpg, id=267, 562.1pt x 421.575pt>
-File: ./tc1-1/008.jpg Graphic file (type jpg)
-<use ./tc1-1/008.jpg>
-Package pdftex.def Info: ./tc1-1/008.jpg  used on input line 1647.
+<./tc1-1/006.jpg, id=265, 562.1pt x 421.575pt>
+File: ./tc1-1/006.jpg Graphic file (type jpg)
+<use ./tc1-1/006.jpg>
+Package pdftex.def Info: ./tc1-1/006.jpg  used on input line 1647.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1647--1648
 [][] 
  []
 
-<./tc1-1/010.jpg, id=268, 562.1pt x 421.575pt>
-File: ./tc1-1/010.jpg Graphic file (type jpg)
-<use ./tc1-1/010.jpg>
-Package pdftex.def Info: ./tc1-1/010.jpg  used on input line 1650.
+<./tc1-1/008.jpg, id=266, 562.1pt x 421.575pt>
+File: ./tc1-1/008.jpg Graphic file (type jpg)
+<use ./tc1-1/008.jpg>
+Package pdftex.def Info: ./tc1-1/008.jpg  used on input line 1650.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1650--1651
 [][] 
  []
 
-<./tc1-1/012.jpg, id=269, 562.1pt x 421.575pt>
-File: ./tc1-1/012.jpg Graphic file (type jpg)
-<use ./tc1-1/012.jpg>
-Package pdftex.def Info: ./tc1-1/012.jpg  used on input line 1653.
+<./tc1-1/010.jpg, id=267, 562.1pt x 421.575pt>
+File: ./tc1-1/010.jpg Graphic file (type jpg)
+<use ./tc1-1/010.jpg>
+Package pdftex.def Info: ./tc1-1/010.jpg  used on input line 1653.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1653--1654
 [][] 
  []
 
-<./tc1-1/014.jpg, id=270, 562.1pt x 421.575pt>
-File: ./tc1-1/014.jpg Graphic file (type jpg)
-<use ./tc1-1/014.jpg>
-Package pdftex.def Info: ./tc1-1/014.jpg  used on input line 1656.
+<./tc1-1/012.jpg, id=268, 562.1pt x 421.575pt>
+File: ./tc1-1/012.jpg Graphic file (type jpg)
+<use ./tc1-1/012.jpg>
+Package pdftex.def Info: ./tc1-1/012.jpg  used on input line 1656.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1656--1657
 [][] 
  []
 
-<./tc1-1/016.jpg, id=271, 572.1375pt x 414.54875pt>
-File: ./tc1-1/016.jpg Graphic file (type jpg)
-<use ./tc1-1/016.jpg>
-Package pdftex.def Info: ./tc1-1/016.jpg  used on input line 1659.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc1-1/014.jpg, id=269, 562.1pt x 421.575pt>
+File: ./tc1-1/014.jpg Graphic file (type jpg)
+<use ./tc1-1/014.jpg>
+Package pdftex.def Info: ./tc1-1/014.jpg  used on input line 1659.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1659--1660
+[][] 
+ []
+
+<./tc1-1/016.jpg, id=270, 572.1375pt x 414.54875pt>
+File: ./tc1-1/016.jpg Graphic file (type jpg)
+<use ./tc1-1/016.jpg>
+Package pdftex.def Info: ./tc1-1/016.jpg  used on input line 1662.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+
+Overfull \hbox (11.3844pt too wide) in paragraph at lines 1662--1663
 [][] 
  []
 
@@ -1610,83 +1599,83 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./tc1-2/002.jpg, id=278, 562.1pt x 421.575pt>
+<./tc1-2/002.jpg, id=277, 562.1pt x 421.575pt>
 File: ./tc1-2/002.jpg Graphic file (type jpg)
 <use ./tc1-2/002.jpg>
-Package pdftex.def Info: ./tc1-2/002.jpg  used on input line 1668.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
-
-Overfull \hbox (11.3844pt too wide) in paragraph at lines 1668--1669
-[][] 
- []
-
-<./tc1-2/004.jpg, id=279, 562.1pt x 421.575pt>
-File: ./tc1-2/004.jpg Graphic file (type jpg)
-<use ./tc1-2/004.jpg>
-Package pdftex.def Info: ./tc1-2/004.jpg  used on input line 1671.
+Package pdftex.def Info: ./tc1-2/002.jpg  used on input line 1671.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1671--1672
 [][] 
  []
 
-<./tc1-2/006.jpg, id=280, 572.1375pt x 414.54875pt>
-File: ./tc1-2/006.jpg Graphic file (type jpg)
-<use ./tc1-2/006.jpg>
-Package pdftex.def Info: ./tc1-2/006.jpg  used on input line 1674.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc1-2/004.jpg, id=278, 562.1pt x 421.575pt>
+File: ./tc1-2/004.jpg Graphic file (type jpg)
+<use ./tc1-2/004.jpg>
+Package pdftex.def Info: ./tc1-2/004.jpg  used on input line 1674.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1674--1675
 [][] 
  []
 
-<./tc1-2/008.jpg, id=281, 562.1pt x 421.575pt>
-File: ./tc1-2/008.jpg Graphic file (type jpg)
-<use ./tc1-2/008.jpg>
-Package pdftex.def Info: ./tc1-2/008.jpg  used on input line 1677.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
+<./tc1-2/006.jpg, id=279, 572.1375pt x 414.54875pt>
+File: ./tc1-2/006.jpg Graphic file (type jpg)
+<use ./tc1-2/006.jpg>
+Package pdftex.def Info: ./tc1-2/006.jpg  used on input line 1677.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1677--1678
 [][] 
  []
 
-<./tc1-2/010.jpg, id=282, 572.1375pt x 414.54875pt>
-File: ./tc1-2/010.jpg Graphic file (type jpg)
-<use ./tc1-2/010.jpg>
-Package pdftex.def Info: ./tc1-2/010.jpg  used on input line 1680.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc1-2/008.jpg, id=280, 562.1pt x 421.575pt>
+File: ./tc1-2/008.jpg Graphic file (type jpg)
+<use ./tc1-2/008.jpg>
+Package pdftex.def Info: ./tc1-2/008.jpg  used on input line 1680.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1680--1681
 [][] 
  []
 
-<./tc1-2/012.jpg, id=283, 562.1pt x 421.575pt>
-File: ./tc1-2/012.jpg Graphic file (type jpg)
-<use ./tc1-2/012.jpg>
-Package pdftex.def Info: ./tc1-2/012.jpg  used on input line 1683.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
+<./tc1-2/010.jpg, id=281, 572.1375pt x 414.54875pt>
+File: ./tc1-2/010.jpg Graphic file (type jpg)
+<use ./tc1-2/010.jpg>
+Package pdftex.def Info: ./tc1-2/010.jpg  used on input line 1683.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1683--1684
 [][] 
  []
 
-<./tc1-2/014.jpg, id=284, 562.1pt x 421.575pt>
-File: ./tc1-2/014.jpg Graphic file (type jpg)
-<use ./tc1-2/014.jpg>
-Package pdftex.def Info: ./tc1-2/014.jpg  used on input line 1686.
+<./tc1-2/012.jpg, id=282, 562.1pt x 421.575pt>
+File: ./tc1-2/012.jpg Graphic file (type jpg)
+<use ./tc1-2/012.jpg>
+Package pdftex.def Info: ./tc1-2/012.jpg  used on input line 1686.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1686--1687
 [][] 
  []
 
-<./tc1-2/016.jpg, id=285, 562.1pt x 421.575pt>
-File: ./tc1-2/016.jpg Graphic file (type jpg)
-<use ./tc1-2/016.jpg>
-Package pdftex.def Info: ./tc1-2/016.jpg  used on input line 1689.
+<./tc1-2/014.jpg, id=283, 562.1pt x 421.575pt>
+File: ./tc1-2/014.jpg Graphic file (type jpg)
+<use ./tc1-2/014.jpg>
+Package pdftex.def Info: ./tc1-2/014.jpg  used on input line 1689.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1689--1690
+[][] 
+ []
+
+<./tc1-2/016.jpg, id=284, 562.1pt x 421.575pt>
+File: ./tc1-2/016.jpg Graphic file (type jpg)
+<use ./tc1-2/016.jpg>
+Package pdftex.def Info: ./tc1-2/016.jpg  used on input line 1692.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
+
+Overfull \hbox (11.3844pt too wide) in paragraph at lines 1692--1693
 [][] 
  []
 
@@ -1695,7 +1684,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [58 <./tc1-2/002.jpg> <./tc1-2/004.jpg> <./tc1-2/006.jpg> <./tc1-2/008.jpg> <./
 tc1-2/010.jpg> <./tc1-2/012.jpg> <./tc1-2/014.jpg> <./tc1-2/016.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 1717--1718
+Underfull \hbox (badness 10000) in paragraph at lines 1720--1721
 
  []
 
@@ -1740,83 +1729,83 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./tc2-1/004.jpg, id=292, 562.1pt x 421.575pt>
+<./tc2-1/004.jpg, id=291, 562.1pt x 421.575pt>
 File: ./tc2-1/004.jpg Graphic file (type jpg)
 <use ./tc2-1/004.jpg>
-Package pdftex.def Info: ./tc2-1/004.jpg  used on input line 1727.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
-
-Overfull \hbox (11.3844pt too wide) in paragraph at lines 1727--1728
-[][] 
- []
-
-<./tc2-1/012.jpg, id=293, 562.1pt x 421.575pt>
-File: ./tc2-1/012.jpg Graphic file (type jpg)
-<use ./tc2-1/012.jpg>
-Package pdftex.def Info: ./tc2-1/012.jpg  used on input line 1730.
+Package pdftex.def Info: ./tc2-1/004.jpg  used on input line 1730.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1730--1731
 [][] 
  []
 
-<./tc2-1/020.jpg, id=294, 562.1pt x 421.575pt>
-File: ./tc2-1/020.jpg Graphic file (type jpg)
-<use ./tc2-1/020.jpg>
-Package pdftex.def Info: ./tc2-1/020.jpg  used on input line 1733.
+<./tc2-1/012.jpg, id=292, 562.1pt x 421.575pt>
+File: ./tc2-1/012.jpg Graphic file (type jpg)
+<use ./tc2-1/012.jpg>
+Package pdftex.def Info: ./tc2-1/012.jpg  used on input line 1733.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1733--1734
 [][] 
  []
 
-<./tc2-1/028.jpg, id=295, 562.1pt x 421.575pt>
-File: ./tc2-1/028.jpg Graphic file (type jpg)
-<use ./tc2-1/028.jpg>
-Package pdftex.def Info: ./tc2-1/028.jpg  used on input line 1736.
+<./tc2-1/020.jpg, id=293, 562.1pt x 421.575pt>
+File: ./tc2-1/020.jpg Graphic file (type jpg)
+<use ./tc2-1/020.jpg>
+Package pdftex.def Info: ./tc2-1/020.jpg  used on input line 1736.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1736--1737
 [][] 
  []
 
-<./tc2-1/036.jpg, id=296, 562.1pt x 421.575pt>
-File: ./tc2-1/036.jpg Graphic file (type jpg)
-<use ./tc2-1/036.jpg>
-Package pdftex.def Info: ./tc2-1/036.jpg  used on input line 1739.
+<./tc2-1/028.jpg, id=294, 562.1pt x 421.575pt>
+File: ./tc2-1/028.jpg Graphic file (type jpg)
+<use ./tc2-1/028.jpg>
+Package pdftex.def Info: ./tc2-1/028.jpg  used on input line 1739.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1739--1740
 [][] 
  []
 
-<./tc2-1/044.jpg, id=297, 562.1pt x 421.575pt>
-File: ./tc2-1/044.jpg Graphic file (type jpg)
-<use ./tc2-1/044.jpg>
-Package pdftex.def Info: ./tc2-1/044.jpg  used on input line 1742.
+<./tc2-1/036.jpg, id=295, 562.1pt x 421.575pt>
+File: ./tc2-1/036.jpg Graphic file (type jpg)
+<use ./tc2-1/036.jpg>
+Package pdftex.def Info: ./tc2-1/036.jpg  used on input line 1742.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1742--1743
 [][] 
  []
 
-<./tc2-1/052.jpg, id=298, 562.1pt x 421.575pt>
-File: ./tc2-1/052.jpg Graphic file (type jpg)
-<use ./tc2-1/052.jpg>
-Package pdftex.def Info: ./tc2-1/052.jpg  used on input line 1745.
+<./tc2-1/044.jpg, id=296, 562.1pt x 421.575pt>
+File: ./tc2-1/044.jpg Graphic file (type jpg)
+<use ./tc2-1/044.jpg>
+Package pdftex.def Info: ./tc2-1/044.jpg  used on input line 1745.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1745--1746
 [][] 
  []
 
-<./tc2-1/060.jpg, id=299, 572.1375pt x 414.54875pt>
-File: ./tc2-1/060.jpg Graphic file (type jpg)
-<use ./tc2-1/060.jpg>
-Package pdftex.def Info: ./tc2-1/060.jpg  used on input line 1748.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc2-1/052.jpg, id=297, 562.1pt x 421.575pt>
+File: ./tc2-1/052.jpg Graphic file (type jpg)
+<use ./tc2-1/052.jpg>
+Package pdftex.def Info: ./tc2-1/052.jpg  used on input line 1748.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1748--1749
+[][] 
+ []
+
+<./tc2-1/060.jpg, id=298, 572.1375pt x 414.54875pt>
+File: ./tc2-1/060.jpg Graphic file (type jpg)
+<use ./tc2-1/060.jpg>
+Package pdftex.def Info: ./tc2-1/060.jpg  used on input line 1751.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+
+Overfull \hbox (11.3844pt too wide) in paragraph at lines 1751--1752
 [][] 
  []
 
@@ -1860,83 +1849,83 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./tc2-2/004.jpg, id=304, 562.1pt x 421.575pt>
+<./tc2-2/004.jpg, id=303, 562.1pt x 421.575pt>
 File: ./tc2-2/004.jpg Graphic file (type jpg)
 <use ./tc2-2/004.jpg>
-Package pdftex.def Info: ./tc2-2/004.jpg  used on input line 1757.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
-
-Overfull \hbox (11.3844pt too wide) in paragraph at lines 1757--1758
-[][] 
- []
-
-<./tc2-2/012.jpg, id=305, 562.1pt x 421.575pt>
-File: ./tc2-2/012.jpg Graphic file (type jpg)
-<use ./tc2-2/012.jpg>
-Package pdftex.def Info: ./tc2-2/012.jpg  used on input line 1760.
+Package pdftex.def Info: ./tc2-2/004.jpg  used on input line 1760.
 (pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1760--1761
 [][] 
  []
 
-<./tc2-2/020.jpg, id=306, 572.1375pt x 414.54875pt>
-File: ./tc2-2/020.jpg Graphic file (type jpg)
-<use ./tc2-2/020.jpg>
-Package pdftex.def Info: ./tc2-2/020.jpg  used on input line 1763.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc2-2/012.jpg, id=304, 562.1pt x 421.575pt>
+File: ./tc2-2/012.jpg Graphic file (type jpg)
+<use ./tc2-2/012.jpg>
+Package pdftex.def Info: ./tc2-2/012.jpg  used on input line 1763.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1763--1764
 [][] 
  []
 
-<./tc2-2/028.jpg, id=307, 572.1375pt x 414.54875pt>
-File: ./tc2-2/028.jpg Graphic file (type jpg)
-<use ./tc2-2/028.jpg>
-Package pdftex.def Info: ./tc2-2/028.jpg  used on input line 1766.
+<./tc2-2/020.jpg, id=305, 572.1375pt x 414.54875pt>
+File: ./tc2-2/020.jpg Graphic file (type jpg)
+<use ./tc2-2/020.jpg>
+Package pdftex.def Info: ./tc2-2/020.jpg  used on input line 1766.
 (pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1766--1767
 [][] 
  []
 
-<./tc2-2/036.jpg, id=308, 562.1pt x 421.575pt>
-File: ./tc2-2/036.jpg Graphic file (type jpg)
-<use ./tc2-2/036.jpg>
-Package pdftex.def Info: ./tc2-2/036.jpg  used on input line 1769.
-(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
+<./tc2-2/028.jpg, id=306, 572.1375pt x 414.54875pt>
+File: ./tc2-2/028.jpg Graphic file (type jpg)
+<use ./tc2-2/028.jpg>
+Package pdftex.def Info: ./tc2-2/028.jpg  used on input line 1769.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1769--1770
 [][] 
  []
 
-<./tc2-2/044.jpg, id=309, 572.1375pt x 414.54875pt>
-File: ./tc2-2/044.jpg Graphic file (type jpg)
-<use ./tc2-2/044.jpg>
-Package pdftex.def Info: ./tc2-2/044.jpg  used on input line 1772.
-(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+<./tc2-2/036.jpg, id=307, 562.1pt x 421.575pt>
+File: ./tc2-2/036.jpg Graphic file (type jpg)
+<use ./tc2-2/036.jpg>
+Package pdftex.def Info: ./tc2-2/036.jpg  used on input line 1772.
+(pdftex.def)             Requested size: 227.62204pt x 170.71764pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1772--1773
 [][] 
  []
 
-<./tc2-2/052.jpg, id=310, 572.1375pt x 414.54875pt>
-File: ./tc2-2/052.jpg Graphic file (type jpg)
-<use ./tc2-2/052.jpg>
-Package pdftex.def Info: ./tc2-2/052.jpg  used on input line 1775.
+<./tc2-2/044.jpg, id=308, 572.1375pt x 414.54875pt>
+File: ./tc2-2/044.jpg Graphic file (type jpg)
+<use ./tc2-2/044.jpg>
+Package pdftex.def Info: ./tc2-2/044.jpg  used on input line 1775.
 (pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1775--1776
 [][] 
  []
 
-<./tc2-2/060.jpg, id=311, 572.1375pt x 414.54875pt>
-File: ./tc2-2/060.jpg Graphic file (type jpg)
-<use ./tc2-2/060.jpg>
-Package pdftex.def Info: ./tc2-2/060.jpg  used on input line 1778.
+<./tc2-2/052.jpg, id=309, 572.1375pt x 414.54875pt>
+File: ./tc2-2/052.jpg Graphic file (type jpg)
+<use ./tc2-2/052.jpg>
+Package pdftex.def Info: ./tc2-2/052.jpg  used on input line 1778.
 (pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
 
 Overfull \hbox (11.3844pt too wide) in paragraph at lines 1778--1779
+[][] 
+ []
+
+<./tc2-2/060.jpg, id=310, 572.1375pt x 414.54875pt>
+File: ./tc2-2/060.jpg Graphic file (type jpg)
+<use ./tc2-2/060.jpg>
+Package pdftex.def Info: ./tc2-2/060.jpg  used on input line 1781.
+(pdftex.def)             Requested size: 227.62204pt x 164.92465pt.
+
+Overfull \hbox (11.3844pt too wide) in paragraph at lines 1781--1782
 [][] 
  []
 
@@ -1951,89 +1940,85 @@ tc2-2/036.jpg> <./tc2-2/044.jpg> <./tc2-2/052.jpg> <./tc2-2/060.jpg>] [62
 
 ]
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1790.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 1793.
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) [63] [64]
-Overfull \hbox (4.49023pt too wide) in paragraph at lines 1910--1911
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 1913--1914
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ] 
  []
 
 [65]
-Overfull \hbox (4.49023pt too wide) in paragraph at lines 1960--1961
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 1963--1964
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (4.49023pt too wide) in paragraph at lines 1968--1969
+Overfull \hbox (4.49023pt too wide) in paragraph at lines 1971--1972
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 [66] [67] [68] [69] (./report.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package logreq Info: Writing requests to 'report.run.xml'.
 \openout1 = `report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17985 strings out of 482843
- 302892 string characters out of 5956406
- 1006126 words of memory out of 5000000
- 33016 multiletter control sequences out of 15000+600000
+ 17817 strings out of 482843
+ 298019 string characters out of 5956406
+ 977062 words of memory out of 5000000
+ 32851 multiletter control sequences out of 15000+600000
  570411 words of font info for 120 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,19n,45p,1434b,1733s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1000.
-600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1
-000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
-cti1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
-ec/ecbx1000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
-pen/ec/ecrm0600.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/j
-knappen/ec/ectt1200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfo
-ur/jknappen/ec/ecrm1200.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/
-ljfour/jknappen/ec/ecrm1000.600pk> </home/federica/.texlive2020/texmf-var/fonts
-/pk/ljfour/jknappen/ec/ecrm0800.600pk> </home/federica/.texlive2020/texmf-var/f
-onts/pk/ljfour/jknappen/ec/tcrm1095.600pk> </home/federica/.texlive2020/texmf-v
-ar/fonts/pk/ljfour/jknappen/ec/ecrm0900.600pk> </home/federica/.texlive2020/tex
-mf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600pk> </home/federica/.texlive2020
-/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk> </home/federica/.texlive
-2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1095.600pk> </home/federica/.tex
-live2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1095.600pk> </home/federica/
-.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.600pk> </home/feder
-ica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1095.600pk> </home/f
-ederica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.600pk> </ho
-me/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1200.600pk> 
-</home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/eccc1440.600
-pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti1440
-.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx
-2488.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/
-eccc1095.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-bsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
-pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/tex
-live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/font
-s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (70 pages, 8586114 bytes).
+ 44i,19n,45p,1434b,1709s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1000.60
+0pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.
+600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecti100
+0.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1
+000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/ecr
+m0600.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
+ctt1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec
+/ecrm1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecrm1000.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm0800.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jknap
+pen/ec/tcrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/jkn
+appen/ec/ecrm0900.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour/j
+knappen/ec/ecbx1200.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfour
+/jknappen/ec/tcrm0800.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/ljfo
+ur/jknappen/ec/ecti1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/lj
+four/jknappen/ec/ectt1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/pk/
+ljfour/jknappen/ec/ecrm1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts/p
+k/ljfour/jknappen/ec/ecbx1095.600pk> </home/matteo/.texlive2020/texmf-var/fonts
+/pk/ljfour/jknappen/ec/ecbx1440.600pk> </home/matteo/.texlive2020/texmf-var/fon
+ts/pk/ljfour/jknappen/ec/eccc1200.600pk> </home/matteo/.texlive2020/texmf-var/f
+onts/pk/ljfour/jknappen/ec/eccc1440.600pk> </home/matteo/.texlive2020/texmf-var
+/fonts/pk/ljfour/jknappen/ec/ecti1440.600pk> </home/matteo/.texlive2020/texmf-v
+ar/fonts/pk/ljfour/jknappen/ec/ecbx2488.600pk> </home/matteo/.texlive2020/texmf
+-var/fonts/pk/ljfour/jknappen/ec/eccc1095.600pk></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
+sbm10.pfb>
+Output written on report.pdf (70 pages, 8578349 bytes).
 PDF statistics:
- 1140 PDF objects out of 1200 (max. 8388607)
- 309 compressed objects within 4 object streams
+ 1131 PDF objects out of 1200 (max. 8388607)
+ 306 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  366 words of extra memory for PDF output out of 10000 (max. 10000000)
 
