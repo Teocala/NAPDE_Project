@@ -86,7 +86,7 @@ citestyle=numeric,
     %% ABSTRACT
     \section{Introduction}
     The aim of this project is to study and implement a suitable numerical scheme for the approximate solutions of the \emph{Bidomain Problem}, a well-known system of non-linear partial differential equations that has been developed in the context of the modeling of electrophysiology of human heart. \\
-    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
+    This work is basically the continuation of a two-years-long study carried out by three past course projects (\cite{bagnara}, \cite{andreotti}, \cite{marta}). In particular, the broad goal of this project is to improve the results obtained in \parencite{marta} (\citeauthor{marta}) for the Bidomain model. Indeed, we provide further analysis to go deeper in the study of stability and convergence of a \emph{Discontinuous Galerkin} discretization and to assess the reliability of this method for more realistic scenarios. As a matter of fact, this work is primarily based on these provided data and \textsc{Matlab}$^ \copyright$ codes.
     
     %% PHYSICAL PROBLEM
     \subsection{The physical problem}
@@ -212,10 +212,10 @@ citestyle=numeric,
     -\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
        \vspace{2mm}
     \end{gathered}\\
-    \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
+    \displaystyle \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
     \end{cases}
     \end{equation*}
-    \vspace{5mm}
+    \vspace{5mm} \\
     where:
     \vspace{3mm}
     \begin{equation}\label{forgamma}
@@ -236,7 +236,7 @@ citestyle=numeric,
     \item $\delta=-1$: Non Symmetric Interior Penalty method (NIP) 
     \end{itemize}
      \vspace{2mm}
-    \noindent In equation (\ref{forgamma}) $\Gamma$ is the so called stability parameter, which is defined edge-wise as:\\ $\Gamma := \alpha \frac{k^2}{h}$, where $ \alpha \in \mathbb{R}$ has to be chosen high enough for the SIP and IIP formulations.
+    \noindent In equation (\ref{forgamma}), $\Gamma$ is the so called stability parameter, which is defined edge-wise as:\\ $\Gamma := \alpha \frac{p^2}{h}$, where $ \alpha \in \mathbb{R}$ has to be chosen high enough for the SIP and IIP formulations.
     \end{problem}
 
     \subsection{Algebraic formulation}
@@ -248,7 +248,7 @@ citestyle=numeric,
     V_m^h(t)=\sum_{j=1}^{N_h} V_{m,j}(t) \phi_j=\sum_{j=1}^{N_h}(\phi_{i,j}(t)-\phi_{e,j}(t))\varphi_j.
  \end{gathered}
  \end{equation*}
- Where $\phi_{i,j}$, $\phi_{e,j}$ and $w_j \in \mathbb{R}$ are the unknown expansion coefficients $\forall$ i,j=1,...,$N_h$.
+ Where $\phi_{i,j}$, $\phi_{e,j}$ and $w_j \in \mathbb{R}$ are the unknown expansion coefficients $\forall i,j=1,\dots N_h$.
  Then, we introduce the matrices:
  \begin{equation*}
 \begin{rcases}
@@ -264,7 +264,7 @@ l=i,e, \\
 \end{equation*}
 \begin{equation*}
 \Gamma_l\vert_F = (n_F^T \, \Sigma_l \, n_F) \,\Gamma, \quad \text{with } n_F \text{ outward normal vector of F},
-\end{equation*}
+\end{equation*} \vspace{0mm} \\
 We also define:
 \begin{equation*}
 A_i \in \mathbb{R}^{N_h \times N_h} \qquad{\text{Intra-cellular stiffness matrix}},
@@ -279,7 +279,10 @@ M_{ij} = \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}}\varphi_j\varphi_i \qqua
 C(u_h)_{ij} =  \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non-linear matrix}},
 \end{equation*}
 \begin{equation*}
-\bm{F_l}=\begin{bmatrix} F_{i,l} \\ F_{e,l} \end{bmatrix}=\begin{bmatrix} \int_{\Omega} I_i^{ext}\varphi_l - \sum_{F \in \mathcal{F}_h^B} \int_F b_i\varphi_l \\ - \int_{\Omega} I_e^{ext}\varphi_l - \sum_{F \in \mathcal{F}_h^B} \int_F b_e\varphi_l \end{bmatrix}.
+F^h_{i,j}= \int_{\Omega} I_i^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_i\varphi_j  \qquad{\text{Intra-cellular forcing term}},
+\end{equation*}
+\begin{equation*}
+F^h_{e,j}= - \int_{\Omega} I_e^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_e\varphi_j \qquad{\text{Extra-cellular forcing term}},
 \end{equation*}
 \vspace{3mm} \\
 Therefore, our semi-discrete algebraic formulation is as follows: \vspace{3mm}
@@ -319,7 +322,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 \newpage
 \section{High-order Dubiner basis functions}
     \subsection{Analytical aspects}\label{analytical_aspects}
-    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^p$ space. Usually, the common choice consists in the classical hat functions from FEMs. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
+    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^p$ space. Usually, the common choice consists in the classical hat functions from FEM. It is also one of the simplest choices, for this reason our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
     How we will see soon, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
     \begin{equation*}
     \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \},
@@ -328,9 +331,9 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{equation*}
     \quad \quad \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}.
     \end{equation*}
-    Formally, if we consider the transformation from $\hat{Q}$ to $\hat{K}$ is given by:
+    Formally, if we consider the transformation from $\hat{Q}$ to $\hat{K}$ given by:
     \begin{equation}\label{transformation_formula}
-    \xi=\frac{(1+a)(1-b)}{4},  \eta=\frac{(1+b)}{2},
+    \xi=\frac{(1+a)(1-b)}{4},  \quad \eta=\frac{(1+b)}{2},
     \end{equation}
     
     \begin{figure}[h]
@@ -566,7 +569,7 @@ Two operator-splitting methods have been implemented, the first is of \emph{Godu
 w^{n+1} = (1-\epsilon \gamma \Delta t) w^n + \epsilon \Delta t V_m^n.
 \end{cases}
 \end{equation} \vspace{3mm} \\
-The equations in the system (\ref{Godunov}) can be rewritten as:
+The equations in system (\ref{Godunov}) can be rewritten as:
 \begin{equation*}
 \begin{cases}
 \left( \frac{\chi_m C_m}{\Delta t} M + A_i \right ) \phi_i^{n+1} - \frac{\chi_m C_m}{\Delta t} M \phi_e^{n+1} = F_i^{n+1} - \chi_m M w^n + \left( \frac{\chi_m C_m}{\Delta t} M- C(V_m^n)\right) V_m^n,\vspace{2mm}\\
@@ -858,7 +861,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \end{problem}
 \noindent As usual, the regularity of $f$ and $\Omega$ imply that the weak solution is the classical solution as well. For this reason, let us focus only on the weak form. In addition, observe that if $\Omega$ is bounded, then $H^1(\Omega) \subset L^2(\Omega) \subset L^1(\Omega)$, therefore the second equation is justified. The next step is the study of the well-posedness.
 \begin{lemma} \label{first_lemma}
-	The Problem \ref{reference_problem} admits a unique weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words $f$ is a zero-mean function. Moreover, if $u$ exists, it is unique and it minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$
+	The Problem \ref{reference_problem} admits a unique weak solution $u$ if and only if the compatibility condition $\int_{\Omega} f = 0$ holds, in other words if $f$ is a zero-mean function. Moreover, $u$ minimizes the Laplace energy functional $J(u) = \frac{1}{2}\int_{\Omega} |\nabla u |^2 - \int_{\Omega}fu$.
 \end{lemma} \vspace{1mm}
 \begin{proof}
 	Consider for the moment the first equation only. It is the Laplace problem with homogeneous Neumann boundary conditions. In a more general form, it is equivalent to a specific reaction-diffusion problem:
@@ -945,7 +948,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 
 \noindent It may seem a very trivial result, but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved. \\
 \begin{lemma} \label{lemma_lagrange}
-	Suppose that the assumptions on data of Problem \ref{reference_problem} are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem \ref{reference_problem_3}. Moreover, $\lambda=0$ and $u$ is unique. 
+	Suppose that the assumptions on data of Problem \ref{reference_problem} are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem \ref{reference_problem_3} and $u$ is the same solution of Problems \ref{reference_problem} and \ref{reference_problem_2}. Moreover, $\lambda=0$ and $u$ is unique. 
 \end{lemma}
 \begin{proof}
 	For what concerns existence, we can immediately realize that the solution $u$ of Problem \ref{reference_problem} solves the Problem \ref{reference_problem_3} with $\lambda=0$. Then the existence property holds because existence of Problem \ref{reference_problem} has already been proved. \\
@@ -975,7 +978,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\end{cases}
 	\end{equation*}
 	\begin{equation*}
-	\xrightarrow[]{\text{Putting together}} \int_{\Omega}|\nabla \varphi|^2 + \lambda \int_\Omega \varphi = \int_{\Omega}|\nabla \varphi|^2 = 0, \quad \forall v \in H^1(\Omega).
+	\Rightarrow \int_{\Omega}|\nabla \varphi|^2 + \lambda \int_\Omega \varphi = \int_{\Omega}|\nabla \varphi|^2 = 0, \quad \forall v \in H^1(\Omega).
 	\end{equation*}
 	Then, $\norm{\nabla \varphi}_{L^2} = 0 $ implies $\varphi$ constant a.e., but, since it has zero mean,  $\varphi = 0$ a.e.  \\
 	To conclude, if $u_1=u_2$ a.e. as just proved, the previous system (\ref{system1}) becomes:
@@ -1030,7 +1033,7 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 \end{bmatrix}
 \end{equation*}
 \vspace{3mm} \\
-\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, hence all the information is conserved. For this reason, a similar procedure might be replicated for the first coefficient imposition if the information of the first row and first column are essential. To conclude, we remind from Lemma \ref{lemma_lagrange} that $\lambda$ is an auxiliary unknown, so its value turns to be always zero. \\
+\noindent First of all, observe that symmetry is conserved. Moreover, this time no line has been deleted, hence all the information is conserved. For this reason, a similar procedure might be replicated for the first coefficient imposition if the information of the first row and first column are essential. On the other hand, this method is clearly more expensive since it requires the computation of many terms that later fill the matrix. To conclude, we remind from Lemma \ref{lemma_lagrange} that $\lambda$ is an auxiliary unknown, so its value turns out to be always zero. \\
 
 \noindent The implementation of such transformation is carried out in the \texttt{assign\_null\_average.m} script (at Section \ref{mean}).\\
 \vspace{2mm}
@@ -1044,7 +1047,7 @@ b_1 \\ b_2 \\ \dots \\ b_N \\ c
 
 
 \subsubsection{Final remarks} \label{uniqueness_results}
-\noindent As already discussed, the mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
+\noindent As already discussed, the more expensive mean-value imposition was implemented and adopted only for very ill-conditioned systems. For all other cases, the more efficient coefficient imposition worked perfectly. This is why, in our research, we chose to adopt:
 \begin{itemize}
 	\item the coefficient imposition for error analysis simulations in Section \ref{error_analysis} (as boundary conditions and forcing terms were never homogeneous)
 	\item the mean value imposition for realistic simulations in Section \ref{real_sim} (as boundary conditions and forcing terms were essentially homogeneous)
@@ -1099,14 +1102,14 @@ Considering some example problems, we provide now an experimental error analysis
 		
 	\end{tabular}
 \end{center}
-\vspace{3mm}
+\vspace{1mm}
 \noindent We choose as exact solutions:
 \begin{equation*}
 \begin{gathered}
 V_m = \sin(2 \pi x) \sin(2 \pi y) e^{-5 t}, \\
 w = \frac{\varepsilon}{\varepsilon \gamma-5} \sin(2 \pi x) \sin(2 \pi y) e^{-5 t}.
 \end{gathered}
-\end{equation*}
+\end{equation*} \vspace{0mm} \\
 \noindent From these assumptions, we compute the r.h.s., the boundary conditions and initial conditions accordingly. Moreover, we remind from Section \ref{uniqueness_results} that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ (Dubiner basis with $p=1$ as polynomial degree) is chosen as polynomials space and the semi-implicit method is chosen for the time discretization. To conclude, the element size is split in half 5 times with refinement levels from 2 to 6 for all the following plots.
 
 \subsubsection{Comparison between Dubiner and FEM basis}
@@ -1119,7 +1122,7 @@ If $p=1$ is chosen as polynomial order, the computed errors plots are shown in F
 \noindent Indeed, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two bases. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappear when potentials subtract to get $V_m$. \\
 The second behavior we see is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present in the previous case, where space errors were still too big and other causes of error negligible. \\
 We then underline that these two effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section \ref{imposition_section}. The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
-We observe, before the plateau, a quadratic convergence rate for the error measure in the energy norm and a cubic convergence rates for the error measure in the $L^2$ and $L^\infty$ norms.\\
+We observe, before the plateau, a quadratic convergence rate for the error measure in the energy norm and a cubic convergence rates for the error measure in the $L^2$ and $L^\infty$ norms.
 \paragraph{P3-D3}
 \noindent Finally, for polynomials of degree 3, we still find the expected convergence rate except for the two phenomena already discussed in Section \ref{P2-D2}. The results are shown in Fig. \ref{Vm_3}, Fig. \ref{phii_3}, Fig. \ref{phie_3} and Fig. \ref{w_3}. However, because of the third order precision, space errors are smaller and then these effects are amplified. If we do not consider them, we still get the expected orders that are third order for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$ norms.\\
 
@@ -1353,7 +1356,7 @@ In Section \ref{temporal_discretization} three methods for the time discretizati
 \subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to the Section \ref{unique}, we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. \ref{Vm-unique}, Fig. \ref{phii-unique}, Fig. \ref{phie-unique} and Fig. \ref{w-unique}.\\
-\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows the theory where the imposition method affects only the values of the two potentials. However, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). These plots, then, confirm that the two methods are consistent and, most of the times, equivalent. \\ \\
+\noindent First of all, we notice that the behavior for $V_m$ and $w$ are the same. This fact follows from the theory since the imposition method affects only the values of the two potentials. However, for what concerns $\phi_i$ and $\phi_e$, we see very similar results (even if not identical, the second method seems slightly more regular in the $L^2$ norm). These plots, then, confirm that the two methods are consistent and equivalent. \\ \\
 On the other hand, it has already been stated that some peculiar problems can be solved only using the second method. Indeed, the first method may have an overshooting effect that unbalances the solution. These problems will be considered in Section \ref{real_sim} regarding physical simulations. However, since there is no known analytical solution for these problems, we cannot make now an error analysis like the previous one.\\ \\
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section \ref{imposition_section}), we achieved both them since:
 \begin{itemize}
@@ -1566,19 +1569,19 @@ Our final goal is to exploit the strategies and tools presented in the previous 
 		Initial condition for $V_m$ ($V$) & 0 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		Initial condition for $w$ & 0 \\
+		Initial condition for $w$ ($Am^{-2}$) & 0 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$I_i^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		$I_i^{ext}$ ($Am^{-3}$) & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$I_e^{ext}$ & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
+		$I_e^{ext}$ ($Am^{-3}$) & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$b_i \text{ ($\frac{SV}{{m}^2}$)}$ & 0 \\
+		$b_i \text{ ($Am^{-2}$)}$ & 0 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		$b_e \text{ ($\frac{SV}{{m}^2}$)}$ & 0 \\
+		$b_e \text{ ($Am^{-2}$)}$ & 0 \\
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
 		$\chi_m \text{ ($m^{-1}$)}$ & $10^5$ \\
@@ -1620,19 +1623,19 @@ To conclude, we observe that the compatibility condition (equation (\ref{compati
 \end{center}
 
 \vspace{4mm}
-\noindent The first test-case data employs the values already adopted for Section \ref{error_analysis} and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. Meanwhile, the second test-case parameters is taken from \cite{mauricio}.
+\noindent The first test-case data employs the values already adopted for Section \ref{error_analysis} and taken from past projects \cite{bagnara},\cite{andreotti}, \cite{marta}. Meanwhile, the second test-case parameters are taken from \cite{mauricio}.
 
 \subsubsection{First test-case}
 For both the test-cases, we aim to show two different situations depending on the external current intensity: first, for too weak currents, the electrical activation should miss and this implies that the potentials are not capable to hold up (\emph{underflow} case). Second, if the intensity is over a certain threshold, we should see the electrical activation and the resulting diffusion (\emph{overflow} case). After several simulations, we have proved that:
 \begin{itemize}
-	\item $I = 500 \cdot 10^3 $ A as a suitable value for the \emph{underflow} case.
-	\item $I = 700 \cdot 10^3 $ A as a suitable value for the \emph{overflow} case.
+	\item $I = 500 \cdot 10^3 Am^{-3}$  is a suitable value for the \emph{underflow} case.
+	\item $I = 700 \cdot 10^3 Am^{-3}$ is a suitable value for the \emph{overflow} case.
 \end{itemize}
 
-\noindent In Fig. \ref{test1_under} and in Fig. \ref{test1_over}, we report the computed solutions for both choices of $I$ using first polynomial degree functions.
+\noindent In Fig. \ref{test1_under} and in Fig. \ref{test1_over}, we report the computed solutions for both choices of $I$ using first polynomial degree Dubiner functions.
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots for underflow case ($I=500 \cdot 10^3$ A)} \label{test1_under}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots for underflow case ($I=500 \cdot 10^3 Am^{-3}$)} \label{test1_under}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-1/002.jpg}
@@ -1662,7 +1665,7 @@ For both the test-cases, we aim to show two different situations depending on th
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots for overflow case ($I = 700 \cdot 10^3$ A)}\label{test1_over}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 1, computed snapshots for overflow case ($I = 700 \cdot 10^3 Am^{-3}$)}\label{test1_over}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc1-2/002.jpg}
@@ -1694,8 +1697,8 @@ For both the test-cases, we aim to show two different situations depending on th
 \subsubsection{Second test-case}
 For this test case, the threshold for the activation is different. We choose:
 \begin{itemize}
-	\item $I = 15000 \cdot 10^3 $ A is a suitable value for the \emph{underflow} case.
-	\item $I = 20000 \cdot 10^3 $ A is a suitable value for the \emph{overflow} case.
+	\item $I = 15000 \cdot 10^3 Am^{-3}$ as a suitable value for the \emph{underflow} case.
+	\item $I = 20000 \cdot 10^3 Am^{-3}$ as a suitable value for the \emph{overflow} case.
 \end{itemize}
 
 \noindent The results related to this test-case are reported in Fig. \ref{tc2-1} and Fig. \ref{tc2-2}.
@@ -1721,7 +1724,7 @@ The second incongruence is the missed repolarization after the activation. In ot
 
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots for underflow case ($I = 15000 \cdot 10^3$ A)} \label{tc2-1}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots for underflow case ($I = 15000 \cdot 10^3 Am^{-3}$ )} \label{tc2-1}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-1/004.jpg}
@@ -1751,7 +1754,7 @@ The second incongruence is the missed repolarization after the activation. In ot
 \restoregeometry
 \newpage
 \newgeometry{a4paper,top=1cm,bottom=2cm,left=1cm,right=1cm} 
-\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots for overflow case ($I = 20000 \cdot 10^3$ A)} \label{tc2-2}
+\begin{figure}[h] \captionsetup{size = large} \caption{Test-case 2, computed snapshots for overflow case ($I = 20000 \cdot 10^3 Am^{-3}$)} \label{tc2-2}
 	\centering
 	\begin{subfigure}{0.4\textwidth}
 		\includegraphics[width = 8cm]{./tc2-2/004.jpg}
@@ -1782,7 +1785,7 @@ The second incongruence is the missed repolarization after the activation. In ot
 \newpage
 \section{Conclusion}
 In this project we have considered a DG approach for cardiac electro-physiology. After some motivations, we have validated the proposed numerical method through a basic error analysis and a couple of simulations aimed to re-create what happens in the human heart.
-\noindent From the former we obtained excellent validations: every result was consistent with the theory.\\
+\noindent From the former we obtained excellent validations: every result was indeed consistent with the theory.\\
 \noindent We also achieved very good outcomes from the pseudo realistic simulations: they turned to be consistent with the physical phenomenon, except for the missed repolarization. We doubt that it is due to the numerical schemes, because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too coarse mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
 \noindent We hope that this last point could be a springboard for future projects aiming at improving and generalize our results.  
 \newpage
