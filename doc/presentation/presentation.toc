@@ -1,8 +1,10 @@
 \babel@toc {english}{}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Semi-discrete Discontinuous Galerkin}{6}{0}{2}
-\beamer@sectionintoc {3}{Dubiner basis implementation}{9}{0}{3}
-\beamer@sectionintoc {4}{Temporal discretization}{13}{0}{4}
-\beamer@sectionintoc {5}{Uniqueness of the potentials}{16}{0}{5}
-\beamer@sectionintoc {6}{Error analysis}{22}{0}{6}
-\beamer@sectionintoc {7}{Realistic simulations}{26}{0}{7}
+\beamer@sectionintoc {2}{Spacial discretization}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Semi-discrete Discontinuous Galerkin}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Dubiner basis implementation}{9}{0}{2}
+\beamer@sectionintoc {3}{Temporal discretization}{13}{0}{3}
+\beamer@sectionintoc {4}{Uniqueness of the potentials}{16}{0}{4}
+\beamer@sectionintoc {5}{Numerical results}{22}{0}{5}
+\beamer@subsectionintoc {5}{1}{Error analysis}{22}{0}{5}
+\beamer@subsectionintoc {5}{2}{Toward a realistic simulation}{26}{0}{5}

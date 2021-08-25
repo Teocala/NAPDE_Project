@@ -425,7 +425,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \vspace{2mm} \\
     \noindent that has already been used for Definition \ref{dubiner}. However, $a$ is not defined for $\eta=1$, i.e. for the sole point $(0,1)$ of the reference triangle. Moreover, in \cite{sherwin} it is shown that $a$ value cannot be achieved with continuity prolongation because of a second type singularity. Even so, the transformation is still effective because it can be easily shown that the evaluations of the Dubiner basis functions in $(\xi,\eta)=(0,1)$ are the same for every value of $a$ from -1 to 1. For the code implementation, we bypassed this issue with some conditional statements in which we set $a$ the conventional value -1. Another solution would be to avoid the evaluation in the exact point choosing instead a near point.\\
     
-    \noindent In general, the orthogonality property implies some good numerical qualities, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the conditional number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
+    \noindent In general, the orthogonality property implies some good numerical qualities, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the condition number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
     
     \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function has only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and viceversa, as it will be shown in Section \ref{FEM_DUB_conversion}. Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
     
@@ -1353,7 +1353,9 @@ We observe, before the plateau, a quadratic convergence rate for the error measu
 
 \subsubsection{Comparison between different time discretization methods}
 In Section \ref{temporal_discretization} three methods for the time discretization have been proposed and discussed. An error analysis comparison has been carried out and gives the graphical results shown in Fig. \ref{Vm-time}, Fig. \ref{pi-time}, Fig. \ref{pe-time} and Fig. \ref{w-time}, we adopted for every plot the Dubiner basis with first polynomial order.
-\noindent It is clear that the three methods show the same convergence rate, as expected. This is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spacial error that is strongly bigger than the temporal error. The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of convergence order. Moreover, it is noteworthy to remember that the non-linear term is treated in explicit way for all the methods and that no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
+\noindent It is clear that the three methods show the same convergence rate. This is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. \\
+Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spacial error that is strongly bigger than the temporal error. \\
+The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of convergence order. Moreover, it is noteworthy to remember that the non-linear term is treated in explicit way for all the methods and that no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
 \subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to the Section \ref{unique}, we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function in a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. \ref{Vm-unique}, Fig. \ref{phii-unique}, Fig. \ref{phie-unique} and Fig. \ref{w-unique}.\\
@@ -1362,11 +1364,11 @@ On the other hand, it has already been stated that some peculiar problems can be
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section \ref{imposition_section}), we achieved both them since:
 \begin{itemize}
 	\item Error plots demonstrate that the $\phi_i$ and $\phi_e$ converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly achieved.
-	\item Conditional numbers turn to be considerably decreased as we can see in Table \ref{tab_cond} where we compare the conditional number of $B+C_{nl}$ of the equation (\ref{SI-system}) at $t=0.0001$, applying the Dubiner basis with first polynomial degree and Semi-implicit method for the time discretization. 
+	\item Condition numbers turn out to be considerably decreased as we can see in Table \ref{tab_cond} where we compare the condition number of the l.h.s matrix of the system in equation (\ref{SI-system}). The computation (through the \textsc{Matlab} command \texttt{condest}) has been performed at the first time-step, applying the Dubiner basis with first polynomial degree and the semi-implicit method for the time discretization. 
 \end{itemize}
 \vspace{2mm}
 \begin{center}
-	\captionof{table}{Conditional number of $B+C_{nl}$ at $t=0.0001$}\label{tab_cond}
+	\captionof{table}{Condition number of $B+C_{nl}$ (equation (\ref{SI-system})) at $t=0.0001$}\label{tab_cond}
 	\begin{tabular}{|c|c|c|c|c|} 
 		\hline 
 		\rule[-4mm]{0mm}{1cm}
@@ -1384,6 +1386,9 @@ On the other hand, it has already been stated that some peculiar problems can be
 		
 	\end{tabular}
 \end{center}
+\vspace{3mm}
+\noindent It is clear that the condition numbers pass from the very high initial values ($\approx 10^{17},10^{18}$) to $\approx 10^8$ when the first strategy is adopted. Moreover, as expected, it is even better with the second strategy ($\approx 10^7$). In addition, the imposition strategies seem to stabilize the condition number when the refinement level increases. \\
+We observe that the almost constant value of the condition number follows from the theory of parabolic differential equations. In \cite{condition_number}, for instance, there can be found some bounds for the condition number independent on the element size. However, our \emph{Bidomain} problem is certainly more complicated than a standard parabolic problem and, moreover, Dirichlet boundary conditions are here taken into consideration instead of the Neumann ones. Despite this, we can surely state that our condition number results are supported by theoretical backgrounds.
 
 \newpage
 
