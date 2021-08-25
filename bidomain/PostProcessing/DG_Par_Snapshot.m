@@ -20,8 +20,6 @@ y1=femregion.domain(2,1);
 y2=femregion.domain(2,2);
 M= max(u_h);
 m= min(u_h);
-%M = 1;
-%m = 0;
 
 
 if Data.fem(2) == '1'

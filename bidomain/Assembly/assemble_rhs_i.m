@@ -32,9 +32,9 @@ nqn_1D = length(w_1D);
 
 % evaluation of shape functions on quadrature poiint
 if (Data.fem(1) == 'D')
-    [dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_2D,nodes_1D,nqn_1D,femregion.nln);
+    [dphiq, ~ , B_edge, ~ ] = evalshape_tria_dubiner(shape_basis,nodes_2D,nodes_1D,nqn_1D,femregion.nln);
 else
-    [dphiq, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
+    [dphiq, ~ , B_edge, ~ ] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
 end
 
 % definition of penalty coefficient (note that is scaled only
@@ -74,13 +74,13 @@ for ie = 1:femregion.ne
     % BJ        = Jacobian of the elemental map
     % BJinv     = Inverse Jacobian of the elemental map
     % pphys_2D = vertex coordinates in the physical domain
-    [BJ, BJinv, pphys_2D] = get_jacobian_physical_points(coords_elem, nodes_2D);
+    [BJ, ~ , pphys_2D] = get_jacobian_physical_points(coords_elem, nodes_2D);
     
     % quadrature nodes on the edges (physical coordinates)
     [pphys_1D] = get_physical_points_faces(coords_elem, nodes_1D);
     
     % compute normals to the edges
-    [normals,meshsize] = get_normals_meshsize_faces(coords_elem);
+    [~ ,meshsize] = get_normals_meshsize_faces(coords_elem);
     
     % =====================================================================
     % Compute integrals over triangles

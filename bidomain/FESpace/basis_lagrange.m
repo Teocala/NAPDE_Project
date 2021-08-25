@@ -11,8 +11,6 @@
 
 function [basis]= basis_lagrange(fem)
 
-% fprintf('Compute the shape functions: %s  elements\n', fem);
-
 switch fem
     case 'P1'
         nln=3;

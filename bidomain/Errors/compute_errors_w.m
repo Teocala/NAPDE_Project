@@ -18,6 +18,7 @@ nln=femregion.nln;
 ne=femregion.ne;
 epsilon=Dati.epsilon;
 gamma=Dati.gamma;
+
 % initialization
 E_L2=0;
 E_SEMI_H1=0;
@@ -28,7 +29,7 @@ E_inf=0;
 [shape_basis]= basis_lagrange(append("P", femregion.fem(2)));
 
 % 1D and 2D quadrature nodes and weights 
-[nodes_1D, w_1D, nodes_2D, w_2D]=quadrature(Dati.nqn);
+[nodes_1D,~  , nodes_2D, w_2D]=quadrature(Dati.nqn);
 
 % evaluation of shape functions
 [dphiq, Grad]= evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);

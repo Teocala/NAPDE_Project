@@ -75,9 +75,6 @@ Ai = Matrices.Ai;  %A_intracellulare
 Ae = Matrices.Ae; %A_extracellulare
 M = Matrices.M;
 
-%f0_i = Matrices.f_i;
-%f0_e = Matrices.f_e;
-%f0=cat(1,f0_i, f0_e);
 f0=zeros(1,length(Ai));
 
 
@@ -105,9 +102,7 @@ y=femregion.dof(:,2);
 
 w0 = eval(Data.initialw);
 
-%figure(1)
 Vm0 = eval(Data.initialcond);
-%u0_e = eval(Data.initialcond_e);
 
 if (Data.fem(1)=='D')
    Vm0 = fem_to_dubiner (Vm0, femregion,Data);
@@ -137,7 +132,6 @@ if (Data.method == 'SI')
         [C] = assemble_nonlinear(femregion,Data,Vm0);
         NONLIN = [C -C; -C C];
    
-        %r = f1 + ChiM*Cm/dt * MASS * u0 + ChiM * MASS_W *w1;
         r = f1 + ChiM*Cm/dt * MASS_W * Vm0 - ChiM * MASS_W *w1;
         
         B=ChiM*Cm/dt * MASS + (STIFFNESS + NONLIN);
@@ -148,25 +142,13 @@ if (Data.method == 'SI')
            [B, r] = assign_null_average(B,r,Data,femregion);
         end
        
-        
-%       FOR PRECONDITIONING        
-%       [L,U] = ilu(B);
-%       L=ichol(B);
-%       u1 = bicgstab(B,r,1e-5,200,L');
-%       u1 = bicgstab(B,r,1e-5,200,L,U);
-%       u1 = cgs(B,r,1e-5,200,L);
-%       u1 = cgs(B,r,1e-5,200,L,U);
-%       u1 = bicg(B,r,1e-5,200,L');
-%       u1 = bicg(B,r,1e-5,200,L,U);
-%       u1 = qmr(B,r,1e-5,200,L');
-%       u1 = qmr(B,r,1e-5,200,L,U);
         u1 = B \ r;
         
         if(Data.assign==2)
            u1=u1(1:end-1);
         end
    
-        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0))
              uh = u1(1:ll) - u1(ll+1:end);
              DG_Par_Snapshot(femregion, Data, uh,t);
         end
@@ -184,9 +166,8 @@ elseif (Data.method == 'OS')
     for t=dt:dt:T
         
         [C] = assemble_nonlinear(femregion,Data,Vm0);
-         Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+         Q  = (ChiM*Cm/dt)*M + C + (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
          R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
-         %R  = (ChiM*Cm/dt)*M*Vm0 + (ChiM)/(1+epsilon*gamma*dt)*M*w0;
     
         fi = assemble_rhs_i(femregion,neighbour,Data,t);
         fe = assemble_rhs_e(femregion,neighbour,Data,t);
@@ -211,7 +192,7 @@ elseif (Data.method == 'OS')
 
         w1 = (w0 + epsilon*dt*Vm1)/(1+epsilon*gamma*dt);
     
-        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0))
             uh = u1(1:ll) - u1(ll+1:end);
             DG_Par_Snapshot(femregion, Data, uh,t);
         end
@@ -240,7 +221,6 @@ elseif (Data.method == 'GO')
         w1 = (1 -epsilon*gamma*dt)*w0 + epsilon*dt*Vm0;
         B = MASS + [Ai, ZERO; ZERO, -Ae];
         r = -MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
-        %r = MASSW*[w0;w0] + ((Cm/dt)*MASSW - [C, ZERO; ZERO, C])*[Vm0;Vm0] + f1;
         
         if(Data.assign==1)
            [B, r] = assign_phi_i (B, r, t, Data, femregion);
@@ -254,7 +234,7 @@ elseif (Data.method == 'GO')
            u1=u1(1:end-1);
         end
     
-        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0)) %%|| (t/dt)<=20))
+        if (Data.snapshot=='Y' && (mod(round(t/dt),Data.leap)==0))
             uh = u1(1:ll) - u1(ll+1:end);
             DG_Par_Snapshot(femregion, Data, uh,t);
         end

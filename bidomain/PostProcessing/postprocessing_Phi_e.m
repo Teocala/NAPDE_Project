@@ -18,13 +18,7 @@ function [solutions]= postprocessing_Phi_e(femregion,Dati,u_h,t)
 x=femregion.dof(:,1);
 y=femregion.dof(:,2);
 
-%MODIFICA
-
-
 u_ex=eval(Dati.exact_sol_e);
-
-%sigma_ex(:,1)=eval(Dati.grad_exact_i(1) - Dati.grad_exact_e(1));
-%sigma_ex(:,2)=eval(Dati.grad_exact_i(2) - Dati.grad_exact_e(2));
 
 % plot mesh
 figure
@@ -78,7 +72,6 @@ elseif Dati.fem(2) == '3'
 end
 
 title('u_h(x,y) - EXTRACELLULAR POTENTIAL PHI_e'); xlabel('x-axis'); ylabel('y-axis');
-%axis([x1,x2,y1,y2,m,M]); colorbar;
 
 
 solutions=struct('u_h',u_h,'u_ex',u_ex);

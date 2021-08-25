@@ -1,7 +1,7 @@
 function convergence_test(TestName,nRef)
 %        CONVERGENCE TEST FOR Vm, Phi_e, Phi_i, w in norms: L2,
 %        semi-H1, H1, DG, Inf
-%              usage:   convergence_test('Test1',[2 3 4 5]) 
+%              usage:   convergence_test('Test3',[2 3 4 5]) 
 
     num_tests=length(nRef);
     err_L2 = zeros(4,num_tests);
@@ -11,7 +11,7 @@ function convergence_test(TestName,nRef)
     
     for i=1:num_tests
         fprintf('Stage %d on %d \n', i, num_tests);
-        [errors,errors_i,errors_e,errors_w,solutions,solutions_i,solutions_e,femregion,Data]= main2D(TestName,nRef(i));
+        [errors,errors_i,errors_e,errors_w,~ ,~ ,~ ,femregion,~ ]= main2D(TestName,nRef(i));
         err_L2(1,i)=errors.E_L2;
         err_H1(1,i)=errors.E_H1;
         err_DG(1,i)=errors.E_DG;
@@ -29,7 +29,6 @@ function convergence_test(TestName,nRef)
         err_DG(4,i)=errors_w.E_DG;
         err_inf(4,i)=errors_w.E_inf;
         h(i)=femregion.h;
-%         condA(i)=Data.condA;
     end
     close all
     figure()
