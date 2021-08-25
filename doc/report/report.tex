@@ -23,6 +23,7 @@
 \usepackage{float}
 \DeclareCaptionType{mycapequ}[][List of equations]
 \captionsetup[mycapequ]{labelformat=empty}
+\usepackage{diagbox}
 
 \usepackage[
 backend=biber,
@@ -475,7 +476,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 \section{Temporal discretization}\label{temporal_discretization}
 So far, we have just studied the space discretization while a temporal discretization is still needed to totally discretize the Bidomain time-dependent problem. Thus, we divide the interval (0,T] into N subintervals $(t^n,t^n+1]$ of length $\Delta t$ such that $t^n=n \Delta t \quad \forall n=0,\cdots,N-1$, we then assume our fully discretized solution as $V_m^n\approx V_m^h(t^n)$. \\
 Starting from a \emph{semi-implicit} scheme, we implemented and tested 2 further temporal strategies that we will refer to as: \emph{Godunov operator-splitting} and \emph{quasi-implicit operator-splitting}. 
-\subsection{The semi-implicit method}
+\subsection{The semi-implicit method}\label{SI-method}
 One of the most famous and used temporal scheme for a non-linear problem such as the Bidomain is certainly the \emph{Semi-Implicit} scheme \cite{acta}. The basic idea is to treat most of the terms implicitly while treating the non-linear term semi-implicitly. Since the non-linear term is cubic, the best choice is to treat only one of the $V_m$ terms implicitly, i.e.:
 \begin{equation*}
 I_{ion}^{n+1}=k(V_m^n-a)(V_m^n-1)V_m^{n+1}+w^{n+1},
@@ -533,12 +534,12 @@ C(V_m^n) & -C(V_m^n) \\ -C(V_m^n) & C(V_m^n)
 we get the system in its final form.  \\
 \begin{problem}[Semi-implicit discretized system]
 Find $\bm{\Phi^{n+1}}=[\phi_i^{n+1} \phi_e^{n+1}]^T$ and $w^{n+1}$ $\forall n=0,\cdots,N-1$ such that:
-\begin{equation*}
+\begin{equation}\label{SI-system}
 \begin{cases}
 (\frac{1}{\Delta t}+\epsilon \gamma)M w^{n+1}=\epsilon M V_m^n+\frac{M}{\Delta t} w^n, \vspace{2mm} \\
 (B+C_{nl}(V_m^n)) \bm{\Phi^{n+1}}=r^{n+1}.
 \end{cases}
-\end{equation*} 
+\end{equation} 
 \end{problem}
 
 \noindent The implementation can be found at Section \ref{SI}.
@@ -1361,8 +1362,29 @@ On the other hand, it has already been stated that some peculiar problems can be
 \noindent In conclusion, we successfully imposed the potentials uniqueness directly into the system thanks to these two strategies. For what concerns our two initial objectives (Section \ref{imposition_section}), we achieved both them since:
 \begin{itemize}
 	\item Error plots demonstrate that the $\phi_i$ and $\phi_e$ converge to the exact potentials as $V_m$ and $w$ do. Moreover, plots show that all the error orders are clearly achieved.
-	\item Conditional numbers turn to be considerably decreased. Our measures proved that they passed from $\approx 10^{17}$ to $\approx 10^{7}$ for both the strategies.
+	\item Conditional numbers turn to be considerably decreased as we can see in Table \ref{tab_cond} where we compare the conditional number of $B+C_{nl}$ of the equation (\ref{SI-system}) at $t=0.0001$, applying the Dubiner basis with first polynomial degree and Semi-implicit method for the time discretization. 
 \end{itemize}
+\vspace{2mm}
+\begin{center}
+	\captionof{table}{Conditional number of $B+C_{nl}$ at $t=0.0001$}\label{tab_cond}
+	\begin{tabular}{|c|c|c|c|c|} 
+		\hline 
+		\rule[-4mm]{0mm}{1cm}
+		\backslashbox[40mm]{Method}{nRef}& 2 & 3 & 4 & 5 \\
+		\hline 
+		\rule[-4mm]{0mm}{1cm}
+		No uniqueness imposition & $9.51 \cdot 10^{16}$ & $9.77 \cdot 10^{16}$ & $1.6 \cdot 10^{17}$ & $1.82 \cdot 10^{18}$ \\
+		\hline
+		\rule[-4mm]{0mm}{1cm}
+		Imposing the first coefficient & $1.83 \cdot 10^{8}$ & $2.87 \cdot 10^{8}$ & $3.9 \cdot 10^{8}$ & $4.91 \cdot 10^{8}$ \\
+		\hline
+		\rule[-4mm]{0mm}{1cm}
+		Imposing the zero mean & $4.07 \cdot 10^7$ & $4.30 \cdot 10^7$ & $4.08 \cdot 10^7$ & $4.02 \cdot 10^7$ \\
+		\hline
+		
+	\end{tabular}
+\end{center}
+
 \newpage
 
 
