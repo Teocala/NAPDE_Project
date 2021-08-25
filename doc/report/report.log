@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  24 AUG 2021 17:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.4.2)  25 AUG 2021 10:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1066,142 +1066,142 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./D1_Vm_1.jpg, id=145, 1521.685pt x 895.345pt>
-File: ./D1_Vm_1.jpg Graphic file (type jpg)
-<use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1140.
-(pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./P1_Vm_1.jpg, id=146, 1495.5875pt x 879.285pt>
-File: ./P1_Vm_1.jpg Graphic file (type jpg)
-<use ./P1_Vm_1.jpg>
-Package pdftex.def Info: ./P1_Vm_1.jpg  used on input line 1146.
-(pdftex.def)             Requested size: 483.69687pt x 284.3689pt.
-<./D1_Phii_1.jpg, id=147, 1494.58376pt x 883.3pt>
-File: ./D1_Phii_1.jpg Graphic file (type jpg)
-<use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1157.
-(pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
-<./P1_Phii_1.jpg, id=148, 1496.59125pt x 881.2925pt>
-File: ./P1_Phii_1.jpg Graphic file (type jpg)
-<use ./P1_Phii_1.jpg>
-Package pdftex.def Info: ./P1_Phii_1.jpg  used on input line 1163.
-(pdftex.def)             Requested size: 483.69687pt x 284.82986pt.
+<./errors/D1_Vm_1.jpg, id=145, 1927.2pt x 991.705pt>
+File: ./errors/D1_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_1.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_1.jpg  used on input line 1140.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P1_Vm_1.jpg, id=146, 1927.2pt x 991.705pt>
+File: ./errors/P1_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/P1_Vm_1.jpg>
+Package pdftex.def Info: ./errors/P1_Vm_1.jpg  used on input line 1146.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Phii_1.jpg, id=147, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_1.jpg  used on input line 1157.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P1_Phii_1.jpg, id=148, 1927.2pt x 991.705pt>
+File: ./errors/P1_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/P1_Phii_1.jpg>
+Package pdftex.def Info: ./errors/P1_Phii_1.jpg  used on input line 1163.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 [32
 
- <./D1_Vm_1.jpg> <./P1_Vm_1.jpg>] [33 <./D1_Phii_1.jpg> <./P1_Phii_1.jpg>]
-<./D1_Phie_1.jpg, id=157, 1496.59125pt x 888.31876pt>
-File: ./D1_Phie_1.jpg Graphic file (type jpg)
-<use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1175.
-(pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./P1_Phie_1.jpg, id=158, 1500.60625pt x 880.28876pt>
-File: ./P1_Phie_1.jpg Graphic file (type jpg)
-<use ./P1_Phie_1.jpg>
-Package pdftex.def Info: ./P1_Phie_1.jpg  used on input line 1181.
-(pdftex.def)             Requested size: 483.69687pt x 283.73984pt.
+ <./errors/D1_Vm_1.jpg> <./errors/P1_Vm_1.jpg>] [33 <./errors/D1_Phii_1.jpg> <.
+/errors/P1_Phii_1.jpg>]
+<./errors/D1_Phie_1.jpg, id=157, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_1.jpg  used on input line 1175.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P1_Phie_1.jpg, id=158, 1927.2pt x 991.705pt>
+File: ./errors/P1_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/P1_Phie_1.jpg>
+Package pdftex.def Info: ./errors/P1_Phie_1.jpg  used on input line 1181.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [34 <./errors/D1_Phie_1.jpg> <./errors/P1_Phie_1.jpg>]
+<./errors/D1_w_1.jpg, id=162, 1927.2pt x 991.705pt>
+File: ./errors/D1_w_1.jpg Graphic file (type jpg)
+<use ./errors/D1_w_1.jpg>
+Package pdftex.def Info: ./errors/D1_w_1.jpg  used on input line 1193.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P1_w_1.jpg, id=163, 1927.2pt x 991.705pt>
+File: ./errors/P1_w_1.jpg Graphic file (type jpg)
+<use ./errors/P1_w_1.jpg>
+Package pdftex.def Info: ./errors/P1_w_1.jpg  used on input line 1199.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [35 <./errors/D1_w_1.jpg> <./errors/P1_w_1.jpg>]
+<./errors/D2_Vm_1.jpg, id=167, 1927.2pt x 991.705pt>
+File: ./errors/D2_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/D2_Vm_1.jpg>
+Package pdftex.def Info: ./errors/D2_Vm_1.jpg  used on input line 1213.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P2_Vm_1.jpg, id=168, 1927.2pt x 991.705pt>
+File: ./errors/P2_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/P2_Vm_1.jpg>
+Package pdftex.def Info: ./errors/P2_Vm_1.jpg  used on input line 1219.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D2_Phii_1.jpg, id=169, 1927.2pt x 991.705pt>
+File: ./errors/D2_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/D2_Phii_1.jpg>
+Package pdftex.def Info: ./errors/D2_Phii_1.jpg  used on input line 1230.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P2_Phii_1.jpg, id=170, 1927.2pt x 991.705pt>
+File: ./errors/P2_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/P2_Phii_1.jpg>
+Package pdftex.def Info: ./errors/P2_Phii_1.jpg  used on input line 1236.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [36 <./errors/D2_Vm_1.jpg> <./errors/P2_Vm_1.jpg>] [37 <./errors/D2_Phii_1.jpg
+> <./errors/P2_Phii_1.jpg>]
+<./errors/D2_Phie_1.jpg, id=178, 1927.2pt x 991.705pt>
+File: ./errors/D2_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/D2_Phie_1.jpg>
+Package pdftex.def Info: ./errors/D2_Phie_1.jpg  used on input line 1248.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P2_Phie_1.jpg, id=179, 1927.2pt x 991.705pt>
+File: ./errors/P2_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/P2_Phie_1.jpg>
+Package pdftex.def Info: ./errors/P2_Phie_1.jpg  used on input line 1254.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 
-[34 <./D1_Phie_1.jpg> <./P1_Phie_1.jpg>]
-<./D1_w_1.jpg, id=162, 1527.7075pt x 866.23625pt>
-File: ./D1_w_1.jpg Graphic file (type jpg)
-<use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1193.
-(pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
-<./P1_w_1.jpg, id=163, 1501.61pt x 875.27pt>
-File: ./P1_w_1.jpg Graphic file (type jpg)
-<use ./P1_w_1.jpg>
-Package pdftex.def Info: ./P1_w_1.jpg  used on input line 1199.
-(pdftex.def)             Requested size: 483.69687pt x 281.93518pt.
- [35 <./D1_w_1.jpg> <./P1_w_1.jpg>]
-<./D2_Vm_1.jpg, id=167, 1510.64375pt x 888.31876pt>
-File: ./D2_Vm_1.jpg Graphic file (type jpg)
-<use ./D2_Vm_1.jpg>
-Package pdftex.def Info: ./D2_Vm_1.jpg  used on input line 1213.
-(pdftex.def)             Requested size: 483.69687pt x 284.43047pt.
-<./P2_Vm_1.jpg, id=168, 1521.685pt x 884.30376pt>
-File: ./P2_Vm_1.jpg Graphic file (type jpg)
-<use ./P2_Vm_1.jpg>
-Package pdftex.def Info: ./P2_Vm_1.jpg  used on input line 1219.
-(pdftex.def)             Requested size: 483.69687pt x 281.09392pt.
-<./D2_Phii_1.jpg, id=169, 1505.625pt x 883.3pt>
-File: ./D2_Phii_1.jpg Graphic file (type jpg)
-<use ./D2_Phii_1.jpg>
-Package pdftex.def Info: ./D2_Phii_1.jpg  used on input line 1230.
-(pdftex.def)             Requested size: 483.69687pt x 283.76697pt.
-<./P2_Phii_1.jpg, id=170, 1510.64375pt x 880.28876pt>
-File: ./P2_Phii_1.jpg Graphic file (type jpg)
-<use ./P2_Phii_1.jpg>
-Package pdftex.def Info: ./P2_Phii_1.jpg  used on input line 1236.
-(pdftex.def)             Requested size: 483.69687pt x 281.85934pt.
+[38 <./errors/D2_Phie_1.jpg> <./errors/P2_Phie_1.jpg>]
+<./errors/D2_w_1.jpg, id=183, 1927.2pt x 991.705pt>
+File: ./errors/D2_w_1.jpg Graphic file (type jpg)
+<use ./errors/D2_w_1.jpg>
+Package pdftex.def Info: ./errors/D2_w_1.jpg  used on input line 1266.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/P2_w_1.jpg, id=184, 1927.2pt x 991.705pt>
+File: ./errors/P2_w_1.jpg Graphic file (type jpg)
+<use ./errors/P2_w_1.jpg>
+Package pdftex.def Info: ./errors/P2_w_1.jpg  used on input line 1272.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [39 <./errors/D2_w_1.jpg> <./errors/P2_w_1.jpg>]
+<./errors/D3_Vm_1.jpg, id=188, 1854.93pt x 964.60374pt>
+File: ./errors/D3_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/D3_Vm_1.jpg>
+Package pdftex.def Info: ./errors/D3_Vm_1.jpg  used on input line 1287.
+(pdftex.def)             Requested size: 483.69687pt x 251.527pt.
+<./errors/P3_Vm_1.jpg, id=189, 1927.2pt x 991.705pt>
+File: ./errors/P3_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/P3_Vm_1.jpg>
+Package pdftex.def Info: ./errors/P3_Vm_1.jpg  used on input line 1293.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D3_Phii_1.jpg, id=190, 1854.93pt x 964.60374pt>
+File: ./errors/D3_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/D3_Phii_1.jpg>
+Package pdftex.def Info: ./errors/D3_Phii_1.jpg  used on input line 1304.
+(pdftex.def)             Requested size: 483.69687pt x 251.527pt.
+<./errors/P3_Phii_1.jpg, id=191, 1927.2pt x 991.705pt>
+File: ./errors/P3_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/P3_Phii_1.jpg>
+Package pdftex.def Info: ./errors/P3_Phii_1.jpg  used on input line 1310.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [40 <./errors/D3_Vm_1.jpg> <./errors/P3_Vm_1.jpg>]
+<./errors/D3_Phie_1.jpg, id=195, 1854.93pt x 964.60374pt>
+File: ./errors/D3_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/D3_Phie_1.jpg>
+Package pdftex.def Info: ./errors/D3_Phie_1.jpg  used on input line 1321.
+(pdftex.def)             Requested size: 483.69687pt x 251.527pt.
+<./errors/P3_Phie_1.jpg, id=196, 1927.2pt x 991.705pt>
+File: ./errors/P3_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/P3_Phie_1.jpg>
+Package pdftex.def Info: ./errors/P3_Phie_1.jpg  used on input line 1327.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 
-[36 <./D2_Vm_1.jpg> <./P2_Vm_1.jpg>] [37 <./D2_Phii_1.jpg> <./P2_Phii_1.jpg>]
-<./D2_Phie_1.jpg, id=178, 1505.625pt x 882.29625pt>
-File: ./D2_Phie_1.jpg Graphic file (type jpg)
-<use ./D2_Phie_1.jpg>
-Package pdftex.def Info: ./D2_Phie_1.jpg  used on input line 1248.
-(pdftex.def)             Requested size: 483.69687pt x 283.4445pt.
-<./P2_Phie_1.jpg, id=179, 1532.72626pt x 887.315pt>
-File: ./P2_Phie_1.jpg Graphic file (type jpg)
-<use ./P2_Phie_1.jpg>
-Package pdftex.def Info: ./P2_Phie_1.jpg  used on input line 1254.
-(pdftex.def)             Requested size: 483.69687pt x 280.00665pt.
-
-[38 <./D2_Phie_1.jpg> <./P2_Phie_1.jpg>]
-<./D2_w_1.jpg, id=183, 1507.6325pt x 866.23625pt>
-File: ./D2_w_1.jpg Graphic file (type jpg)
-<use ./D2_w_1.jpg>
-Package pdftex.def Info: ./D2_w_1.jpg  used on input line 1266.
-(pdftex.def)             Requested size: 483.69687pt x 277.91502pt.
-<./P2_w_1.jpg, id=184, 1504.62125pt x 872.25874pt>
-File: ./P2_w_1.jpg Graphic file (type jpg)
-<use ./P2_w_1.jpg>
-Package pdftex.def Info: ./P2_w_1.jpg  used on input line 1272.
-(pdftex.def)             Requested size: 483.69687pt x 280.40622pt.
- [39 <./D2_w_1.jpg> <./P2_w_1.jpg>]
-<./D3_Vm_1.jpg, id=188, 1506.62875pt x 896.34875pt>
-File: ./D3_Vm_1.jpg Graphic file (type jpg)
-<use ./D3_Vm_1.jpg>
-Package pdftex.def Info: ./D3_Vm_1.jpg  used on input line 1287.
-(pdftex.def)             Requested size: 483.69687pt x 287.7675pt.
-<./P3_Vm_1.jpg, id=189, 1518.67375pt x 882.29625pt>
-File: ./P3_Vm_1.jpg Graphic file (type jpg)
-<use ./P3_Vm_1.jpg>
-Package pdftex.def Info: ./P3_Vm_1.jpg  used on input line 1293.
-(pdftex.def)             Requested size: 483.69687pt x 281.00775pt.
-<./D3_Phii_1.jpg, id=190, 1518.67375pt x 890.32625pt>
-File: ./D3_Phii_1.jpg Graphic file (type jpg)
-<use ./D3_Phii_1.jpg>
-Package pdftex.def Info: ./D3_Phii_1.jpg  used on input line 1304.
-(pdftex.def)             Requested size: 483.69687pt x 283.56528pt.
-<./P3_Phii_1.jpg, id=191, 1520.68124pt x 894.34125pt>
-File: ./P3_Phii_1.jpg Graphic file (type jpg)
-<use ./P3_Phii_1.jpg>
-Package pdftex.def Info: ./P3_Phii_1.jpg  used on input line 1310.
-(pdftex.def)             Requested size: 483.69687pt x 284.46193pt.
-
-[40 <./D3_Vm_1.jpg> <./P3_Vm_1.jpg>]
-<./D3_Phie_1.jpg, id=195, 1505.625pt x 881.2925pt>
-File: ./D3_Phie_1.jpg Graphic file (type jpg)
-<use ./D3_Phie_1.jpg>
-Package pdftex.def Info: ./D3_Phie_1.jpg  used on input line 1321.
-(pdftex.def)             Requested size: 483.69687pt x 283.12204pt.
-<./P3_Phie_1.jpg, id=196, 1519.6775pt x 888.31876pt>
-File: ./P3_Phie_1.jpg Graphic file (type jpg)
-<use ./P3_Phie_1.jpg>
-Package pdftex.def Info: ./P3_Phie_1.jpg  used on input line 1327.
-(pdftex.def)             Requested size: 483.69687pt x 282.73613pt.
- [41 <./D3_Phii_1.jpg> <./P3_Phii_1.jpg>]
-[42 <./D3_Phie_1.jpg> <./P3_Phie_1.jpg>]
-<./D3_w_1.jpg, id=204, 1512.65125pt x 876.27374pt>
-File: ./D3_w_1.jpg Graphic file (type jpg)
-<use ./D3_w_1.jpg>
-Package pdftex.def Info: ./D3_w_1.jpg  used on input line 1339.
-(pdftex.def)             Requested size: 483.69687pt x 280.19939pt.
-<./P3_w_1.jpg, id=205, 1514.65875pt x 876.27374pt>
-File: ./P3_w_1.jpg Graphic file (type jpg)
-<use ./P3_w_1.jpg>
-Package pdftex.def Info: ./P3_w_1.jpg  used on input line 1345.
-(pdftex.def)             Requested size: 483.69687pt x 279.825pt.
- [43 <./D3_w_1.jpg> <./P3_w_1.jpg>]
+[41 <./errors/D3_Phii_1.jpg> <./errors/P3_Phii_1.jpg>] [42 <./errors/D3_Phie_1.
+jpg> <./errors/P3_Phie_1.jpg>]
+<./errors/D3_w_1.jpg, id=204, 1854.93pt x 964.60374pt>
+File: ./errors/D3_w_1.jpg Graphic file (type jpg)
+<use ./errors/D3_w_1.jpg>
+Package pdftex.def Info: ./errors/D3_w_1.jpg  used on input line 1339.
+(pdftex.def)             Requested size: 483.69687pt x 251.527pt.
+<./errors/P3_w_1.jpg, id=205, 1927.2pt x 991.705pt>
+File: ./errors/P3_w_1.jpg Graphic file (type jpg)
+<use ./errors/P3_w_1.jpg>
+Package pdftex.def Info: ./errors/P3_w_1.jpg  used on input line 1345.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [43 <./errors/D3_w_1.jpg> <./errors/P3_w_1.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 1357--1363
 
  []
@@ -1249,18 +1249,18 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-File: ./D1_Vm_1.jpg Graphic file (type jpg)
-<use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1377.
-(pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./D1_Vm_1_GO.jpg, id=212, 1511.6475pt x 883.3pt>
-File: ./D1_Vm_1_GO.jpg Graphic file (type jpg)
-<use ./D1_Vm_1_GO.jpg>
-Package pdftex.def Info: ./D1_Vm_1_GO.jpg  used on input line 1383.
-(pdftex.def)             Requested size: 483.69687pt x 282.63481pt.
+File: ./errors/D1_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_1.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_1.jpg  used on input line 1377.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Vm_1_GO.jpg, id=212, 1927.2pt x 991.705pt>
+File: ./errors/D1_Vm_1_GO.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_1_GO.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_1_GO.jpg  used on input line 1383.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 [45
 
- <./D1_Vm_1_GO.jpg>]
+ <./errors/D1_Vm_1_GO.jpg>]
 
 Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 
@@ -1296,60 +1296,61 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<./D1_Vm_1_OS.jpg, id=216, 1503.6175pt x 882.29625pt>
-File: ./D1_Vm_1_OS.jpg Graphic file (type jpg)
-<use ./D1_Vm_1_OS.jpg>
-Package pdftex.def Info: ./D1_Vm_1_OS.jpg  used on input line 1392.
-(pdftex.def)             Requested size: 483.69687pt x 283.82147pt.
-File: ./D1_Phii_1.jpg Graphic file (type jpg)
-<use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1401.
-(pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
+<./errors/D1_Vm_1_OS.jpg, id=216, 1927.2pt x 991.705pt>
+File: ./errors/D1_Vm_1_OS.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_1_OS.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_1_OS.jpg  used on input line 1392.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+File: ./errors/D1_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_1.jpg  used on input line 1401.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 [46
 
- <./D1_Vm_1_OS.jpg>]
-<./D1_Phii_1_GO.jpg, id=220, 1501.61pt x 877.2775pt>
-File: ./D1_Phii_1_GO.jpg Graphic file (type jpg)
-<use ./D1_Phii_1_GO.jpg>
-Package pdftex.def Info: ./D1_Phii_1_GO.jpg  used on input line 1409.
-(pdftex.def)             Requested size: 483.69687pt x 282.58182pt.
-<./D1_Phii_1_OS.jpg, id=221, 1502.61375pt x 883.3pt>
-File: ./D1_Phii_1_OS.jpg Graphic file (type jpg)
-<use ./D1_Phii_1_OS.jpg>
-Package pdftex.def Info: ./D1_Phii_1_OS.jpg  used on input line 1415.
-(pdftex.def)             Requested size: 483.69687pt x 284.33305pt.
- [47 <./D1_Phii_1_GO.jpg> <./D1_Phii_1_OS.jpg>]
-File: ./D1_Phie_1.jpg Graphic file (type jpg)
-<use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1425.
-(pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./D1_Phie_1_GO.jpg, id=225, 1513.655pt x 886.31125pt>
-File: ./D1_Phie_1_GO.jpg Graphic file (type jpg)
-<use ./D1_Phie_1_GO.jpg>
-Package pdftex.def Info: ./D1_Phie_1_GO.jpg  used on input line 1431.
-(pdftex.def)             Requested size: 483.69687pt x 283.21967pt.
- [48 <./D1_Phie_1_GO.jpg>]
-<./D1_Phie_1_OS.jpg, id=230, 1511.6475pt x 880.28876pt>
-File: ./D1_Phie_1_OS.jpg Graphic file (type jpg)
-<use ./D1_Phie_1_OS.jpg>
-Package pdftex.def Info: ./D1_Phie_1_OS.jpg  used on input line 1439.
-(pdftex.def)             Requested size: 483.69687pt x 281.6713pt.
-File: ./D1_w_1.jpg Graphic file (type jpg)
-<use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1448.
-(pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
- [49 <./D1_Phie_1_OS.jpg>]
-<./D1_w_1_GO.jpg, id=235, 1510.64375pt x 866.23625pt>
-File: ./D1_w_1_GO.jpg Graphic file (type jpg)
-<use ./D1_w_1_GO.jpg>
-Package pdftex.def Info: ./D1_w_1_GO.jpg  used on input line 1456.
-(pdftex.def)             Requested size: 483.69687pt x 277.35988pt.
-<./D1_w_1_OS.jpg, id=236, 1506.62875pt x 862.22125pt>
-File: ./D1_w_1_OS.jpg Graphic file (type jpg)
-<use ./D1_w_1_OS.jpg>
-Package pdftex.def Info: ./D1_w_1_OS.jpg  used on input line 1462.
-(pdftex.def)             Requested size: 483.69687pt x 276.81107pt.
- [50 <./D1_w_1_GO.jpg> <./D1_w_1_OS.jpg>]
+ <./errors/D1_Vm_1_OS.jpg>]
+<./errors/D1_Phii_1_GO.jpg, id=220, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phii_1_GO.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_1_GO.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_1_GO.jpg  used on input line 1409.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Phii_1_OS.jpg, id=221, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phii_1_OS.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_1_OS.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_1_OS.jpg  used on input line 1415.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [47 <./errors/D1_Phii_1_GO.jpg> <./errors/D1_Phii_1_OS.jpg>]
+File: ./errors/D1_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_1.jpg  used on input line 1425.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Phie_1_GO.jpg, id=225, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phie_1_GO.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_1_GO.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_1_GO.jpg  used on input line 1431.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [48 <./errors/D1_Phie_1_GO.jpg>]
+<./errors/D1_Phie_1_OS.jpg, id=230, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phie_1_OS.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_1_OS.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_1_OS.jpg  used on input line 1439.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+File: ./errors/D1_w_1.jpg Graphic file (type jpg)
+<use ./errors/D1_w_1.jpg>
+Package pdftex.def Info: ./errors/D1_w_1.jpg  used on input line 1448.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [49 <./errors/D1_Phie_1_OS.jpg>]
+<./errors/D1_w_1_GO.jpg, id=235, 1927.2pt x 991.705pt>
+File: ./errors/D1_w_1_GO.jpg Graphic file (type jpg)
+<use ./errors/D1_w_1_GO.jpg>
+Package pdftex.def Info: ./errors/D1_w_1_GO.jpg  used on input line 1456.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_w_1_OS.jpg, id=236, 1927.2pt x 991.705pt>
+File: ./errors/D1_w_1_OS.jpg Graphic file (type jpg)
+<use ./errors/D1_w_1_OS.jpg>
+Package pdftex.def Info: ./errors/D1_w_1_OS.jpg  used on input line 1462.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+
+[50 <./errors/D1_w_1_GO.jpg> <./errors/D1_w_1_OS.jpg>]
 
 Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 
@@ -1385,48 +1386,48 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-File: ./D1_Vm_1.jpg Graphic file (type jpg)
-<use ./D1_Vm_1.jpg>
-Package pdftex.def Info: ./D1_Vm_1.jpg  used on input line 1480.
-(pdftex.def)             Requested size: 483.69687pt x 284.60359pt.
-<./D1_Vm_2.jpg, id=240, 1503.6175pt x 879.285pt>
-File: ./D1_Vm_2.jpg Graphic file (type jpg)
-<use ./D1_Vm_2.jpg>
-Package pdftex.def Info: ./D1_Vm_2.jpg  used on input line 1486.
-(pdftex.def)             Requested size: 483.69687pt x 282.8528pt.
-File: ./D1_Phii_1.jpg Graphic file (type jpg)
-<use ./D1_Phii_1.jpg>
-Package pdftex.def Info: ./D1_Phii_1.jpg  used on input line 1496.
-(pdftex.def)             Requested size: 483.69687pt x 285.85608pt.
-<./D1_Phii_2.jpg, id=241, 1509.64pt x 878.28125pt>
-File: ./D1_Phii_2.jpg Graphic file (type jpg)
-<use ./D1_Phii_2.jpg>
-Package pdftex.def Info: ./D1_Phii_2.jpg  used on input line 1502.
-(pdftex.def)             Requested size: 483.69687pt x 281.40417pt.
+File: ./errors/D1_Vm_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_1.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_1.jpg  used on input line 1480.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Vm_2.jpg, id=240, 1927.2pt x 991.705pt>
+File: ./errors/D1_Vm_2.jpg Graphic file (type jpg)
+<use ./errors/D1_Vm_2.jpg>
+Package pdftex.def Info: ./errors/D1_Vm_2.jpg  used on input line 1486.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+File: ./errors/D1_Phii_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_1.jpg  used on input line 1496.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Phii_2.jpg, id=241, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phii_2.jpg Graphic file (type jpg)
+<use ./errors/D1_Phii_2.jpg>
+Package pdftex.def Info: ./errors/D1_Phii_2.jpg  used on input line 1502.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
 [51
 
 
- <./D1_Vm_2.jpg>] [52 <./D1_Phii_2.jpg>]
-File: ./D1_Phie_1.jpg Graphic file (type jpg)
-<use ./D1_Phie_1.jpg>
-Package pdftex.def Info: ./D1_Phie_1.jpg  used on input line 1514.
-(pdftex.def)             Requested size: 483.69687pt x 287.10072pt.
-<./D1_Phie_2.jpg, id=248, 1518.67375pt x 887.315pt>
-File: ./D1_Phie_2.jpg Graphic file (type jpg)
-<use ./D1_Phie_2.jpg>
-Package pdftex.def Info: ./D1_Phie_2.jpg  used on input line 1520.
-(pdftex.def)             Requested size: 483.69687pt x 282.6062pt.
- [53 <./D1_Phie_2.jpg>]
-File: ./D1_w_1.jpg Graphic file (type jpg)
-<use ./D1_w_1.jpg>
-Package pdftex.def Info: ./D1_w_1.jpg  used on input line 1532.
-(pdftex.def)             Requested size: 483.69687pt x 274.26694pt.
-<./D1_w_2.jpg, id=252, 1509.64pt x 870.25125pt>
-File: ./D1_w_2.jpg Graphic file (type jpg)
-<use ./D1_w_2.jpg>
-Package pdftex.def Info: ./D1_w_2.jpg  used on input line 1538.
-(pdftex.def)             Requested size: 483.69687pt x 278.83134pt.
- [54 <./D1_w_2.jpg>]
+ <./errors/D1_Vm_2.jpg>] [52 <./errors/D1_Phii_2.jpg>]
+File: ./errors/D1_Phie_1.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_1.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_1.jpg  used on input line 1514.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_Phie_2.jpg, id=248, 1927.2pt x 991.705pt>
+File: ./errors/D1_Phie_2.jpg Graphic file (type jpg)
+<use ./errors/D1_Phie_2.jpg>
+Package pdftex.def Info: ./errors/D1_Phie_2.jpg  used on input line 1520.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [53 <./errors/D1_Phie_2.jpg>]
+File: ./errors/D1_w_1.jpg Graphic file (type jpg)
+<use ./errors/D1_w_1.jpg>
+Package pdftex.def Info: ./errors/D1_w_1.jpg  used on input line 1532.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+<./errors/D1_w_2.jpg, id=252, 1927.2pt x 991.705pt>
+File: ./errors/D1_w_2.jpg Graphic file (type jpg)
+<use ./errors/D1_w_2.jpg>
+Package pdftex.def Info: ./errors/D1_w_2.jpg  used on input line 1538.
+(pdftex.def)             Requested size: 483.69687pt x 248.8941pt.
+ [54 <./errors/D1_w_2.jpg>]
 Overfull \hbox (12.38934pt too wide) in paragraph at lines 1551--1599
  [] 
  []
@@ -1966,8 +1967,8 @@ Package logreq Info: Writing requests to 'report.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 17817 strings out of 482843
- 298019 string characters out of 5956406
+ 17818 strings out of 482843
+ 299288 string characters out of 5956406
  977062 words of memory out of 5000000
  32851 multiletter control sequences out of 15000+600000
  570411 words of font info for 120 fonts, out of 8000000 for 9000
@@ -2015,7 +2016,7 @@ ic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m
 sbm10.pfb>
-Output written on report.pdf (70 pages, 8578349 bytes).
+Output written on report.pdf (70 pages, 7244672 bytes).
 PDF statistics:
  1131 PDF objects out of 1200 (max. 8388607)
  306 compressed objects within 4 object streams
