@@ -1113,19 +1113,17 @@ w = \frac{\varepsilon}{\varepsilon \gamma-5} \sin(2 \pi x) \sin(2 \pi y) e^{-5 t
 \end{equation*} \vspace{0mm} \\
 \noindent From these assumptions, we compute the r.h.s., the boundary conditions and initial conditions accordingly. Moreover, we remind from Section \ref{uniqueness_results} that the coefficient imposition is always chosen for the following results. When it is not explicitly declared, $D1$ (Dubiner basis with $p=1$ as polynomial degree) is chosen as polynomials space and the semi-implicit method is chosen for the time discretization. To conclude, the element size is split in half 5 times with refinement levels from 2 to 6 for all the following plots.
 
-\subsubsection{Comparison between Dubiner and FEM basis}
+\subsubsection{Comparison between Dubiner and FEM basis} \label{Dubiner_FEM_comparison}
 At first, an error analysis related to the chosen basis is shown. More precisely, we fix a polynomial order ($p=1,2 \text{ and } 3$) and we compare the errors of the Dubiner and Lagrangian hat basis functions choosing the same polynomial order for both. We expect to see similar results. On the other hand, we expect to see different error orders for different polynomials orders.
 \paragraph{P1-D1}
 If $p=1$ is chosen as polynomial order, the computed errors plots are shown in Fig. \ref{Vm_1}, Fig. \ref{phii_1}, Fig. \ref{phie_1} and Fig. \ref{w_1}. 
-\noindent It is clear that the convergence is very similar since the errors between the two kinds of basis have the same trend. Then, in this case, results are exactly as expected and show a first order for $H^1$ and $DG$ errors while a second order for $L^2$ and $L^\infty$ errors.
+\noindent Here, Dubiner and FEM errors are identical except for few differences regarding $\phi_i$ and $\phi_e$. This is not a huge inconsistency as it is simply due to the first uniqueness imposition that, contrarily to the second, has different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappear when potentials subtract to get $V_m$. For a further confirmation, in Section \ref{D1_P1_mean} the reader could find the same comparison except the adoption of the mean imposition. In this case, $D1$ and $P1$ are indeed completely equivalent. Then, our results are exactly as expected and show a first order for $V_m$ errors in $H^1$ and $DG$ norm while a second order for $V_m$ errors in $L^2$ and $L^\infty$ norm.
 \paragraph{P2-D2} \label{P2-D2}
-\noindent  For what concerns the second order polynomials, i.e. $p=2$, we observe slightly different results, see Fig. \ref{Vm_2}, Fig. \ref{phii_2}, Fig. \ref{phie_2} and Fig. \ref{w_2}.  \\
-\noindent Indeed, we notice two unexpected facts: first of all $\phi_i$ and $\phi_e$ errors trends are not identical when we adopt the two bases. However, this is not a huge inconsistency as it is simply due to the uniqueness imposition that have different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappear when potentials subtract to get $V_m$. \\
-The second behavior we see is the flatter segment that some errors trends have for small mesh sizes. This is probably due to the influence of other cause of errors, especially the time-discretization errors, when the space discretization errors become very small. This is the reason why this effect was not present in the previous case, where space errors were still too big and other causes of error negligible. \\
+\noindent  For what concerns the second order polynomials, i.e. $p=2$, we observe slightly different results (see Fig. \ref{Vm_2}, Fig. \ref{phii_2}, Fig. \ref{phie_2} and Fig. \ref{w_2}). Indeed, we see a the flatter segment that some errors trends have for small element sizes. However, this is simply due to the influence of other cause of errors (especially the time-discretization errors) when the space discretization errors become very small. This is the reason why this effect was not present in the previous case, where space errors were still too big and other causes of error negligible. Moreover, potentials difference is amplified. \\
 We then underline that these two effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section \ref{imposition_section}. The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
-We observe, before the plateau, a quadratic convergence rate for the error measure in the energy norm and a cubic convergence rates for the error measure in the $L^2$ and $L^\infty$ norms.
+We observe, before the plateau, a quadratic convergence rate for the $V_m$ error measure in the energy norm and a cubic convergence rates for the $V_m$ error measure in the $L^2$ and $L^\infty$ norms.
 \paragraph{P3-D3}
-\noindent Finally, for polynomials of degree 3, we still find the expected convergence rate except for the two phenomena already discussed in Section \ref{P2-D2}. The results are shown in Fig. \ref{Vm_3}, Fig. \ref{phii_3}, Fig. \ref{phie_3} and Fig. \ref{w_3}. However, because of the third order precision, space errors are smaller and then these effects are amplified. If we do not consider them, we still get the expected orders that are third order for $H^1$ and $DG$ errors and fourth order for $L^2$ and $L^\infty$ norms.\\
+\noindent Finally, for polynomials of degree 3, we still find the expected convergence rate except for the two phenomena already discussed in the previous two paragraphs. The results are shown in Fig. \ref{Vm_3}, Fig. \ref{phii_3}, Fig. \ref{phie_3} and Fig. \ref{w_3}. However, because of the third order precision, space errors are smaller and then these effects are amplified. If we do not consider them, we still get the expected orders that are third order for $V_m$ errors in $H^1$ and $DG$ norms and fourth order for $L^2$ and $L^\infty$ norms.\\
 
 \newpage
 \newgeometry{a4paper,top=3cm,bottom=3cm,left=2cm,right=2cm}
@@ -1816,8 +1814,94 @@ In this project we have considered a DG approach for cardiac electro-physiology.
 \noindent We also achieved very good outcomes from the pseudo realistic simulations: they turned to be consistent with the physical phenomenon, except for the missed repolarization. We doubt that it is due to the numerical schemes, because of the excellent results in the error analysis. We instead suppose it is due to the extreme simplicity of the ionic model taken into consideration. Some inconsistencies may also be caused by a too coarse mesh, something that we could not avoid to get results in a reasonable time. Further researches could then consider a mesh-adaptivity study (even if it requires very powerful computers) and/or the adoption of other ionic models.
 \noindent We hope that this last point could be a springboard for future projects aiming at improving and generalize our results.  
 \newpage
-\section{Appendix: numerical codes}
-\subsection{\texttt{dubiner\_to\_fem.m}}\label{dub_to_fem}
+
+
+
+\section{Appendix}
+\subsection{Comparison between Dubiner and FEM basis with mean value imposition} \label{D1_P1_mean}
+\subsubsection{P1-D1}
+
+
+
+\begin{figure}[H] 
+	\caption{Comparison of the trans-membrane potential ($V_m$)}
+	\label{Vm_1_mean}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width = \textwidth]{./errors/D1_Vm_2.jpg}
+			\caption{Trans-membrane potential ($V_m$) with $p=1$ Dubiner basis}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width =\textwidth]{./errors/P1_Vm_2.jpg}
+			\caption{Trans-membrane potential ($V_m$) with $p=1$ Lagrangian hat functions}
+		\end{center}
+	\end{subfigure}
+\end{figure}
+
+\noindent In Fig. \ref{Vm_1_mean}, Fig. \ref{Phii_1_mean}, Fig. \ref{Phie_1_mean} and Fig. \ref{w_1_mean} the same $D1-P1$ comparison of Section \ref{Dubiner_FEM_comparison} is displayed except for the uniqueness strategy choice. Other polynomials orders have been discarded because of higher computing time. The only aim of this section is to show that the first coefficient imposition may have different effects on the two basis while the mean value imposition behaves in the same way.
+
+
+\begin{figure}[H] 
+	\caption{Comparison of the intracellular potential ($\phi_i$)}
+	\label{Phii_1_mean}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width = \textwidth]{./errors/D1_Phii_2.jpg}
+			\caption{Intracellular potential ($\phi_i$) with $p=1$ Dubiner basis}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width =\textwidth]{./errors/P1_Phii_2.jpg}
+			\caption{Intracellular potential ($\phi_i$) with $p=1$ Lagrangian hat functions}
+		\end{center}
+	\end{subfigure}
+\end{figure}
+
+\noindent This fact follows from the theory since the first coefficient imposition has two different meaning depending on the basis: in one case it fixes the value of the solution in one specific point, in the other it fixes one Fourier coefficient. On the other hand, even if the system transformation is different, the mean value imposition works in the same way since the computed mean has always the same value in both the cases.
+
+\begin{figure}[H] 
+	\caption{Comparison of the extracellular potential ($\phi_e$)}
+	\label{Phie_1_mean}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width = \textwidth]{./errors/D1_Phie_2.jpg}
+			\caption{Extracellular potential ($\phi_e$) with $p=1$ Dubiner basis}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width =\textwidth]{./errors/P1_Phie_2.jpg}
+			\caption{Extracellular potential ($\phi_e$) with $p=1$ Lagrangian hat functions}
+		\end{center}
+	\end{subfigure}
+\end{figure}
+
+
+\begin{figure}[H] 
+	\caption{Comparison of the gating variable ($w$)}
+	\label{w_1_mean}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width = \textwidth]{./errors/D1_w_2.jpg}
+			\caption{Gating variable ($w$) with $p=1$ Dubiner basis}
+		\end{center}
+	\end{subfigure}
+	\begin{subfigure}{\textwidth}
+		\begin{center}
+			\includegraphics[width =\textwidth]{./errors/P1_w_2.jpg}
+			\caption{Gating variable ($w$) with $p=1$ Lagrangian hat functions}
+		\end{center}
+	\end{subfigure}
+\end{figure}
+
+\newpage
+
+
+\subsection{Numerical codes}
+\subsubsection{\texttt{dubiner\_to\_fem.m}}\label{dub_to_fem}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = dubiner_to_fem.m, frame=single]
 function [u0] = dubiner_to_fem (uh, femregion, Data)  
 	
@@ -1842,7 +1926,7 @@ for ie = 1:femregion.ne
 end
 \end{lstlisting} 
 
-\subsection{\texttt{fem\_to\_dubiner.m}}\label{fem_to_dub}
+\subsubsection{\texttt{fem\_to\_dubiner.m}}\label{fem_to_dub}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = fem_to_dubiner.m, frame=single]
 function [u0] = fem_to_dubiner (uh, femregion, Data)
 	
@@ -1872,7 +1956,7 @@ for ie = 1:femregion.ne
    end    
 end
 \end{lstlisting}
-\subsection{\texttt{main2D.m} (semi-implicit method)}\label{SI}
+\subsubsection{\texttt{main2D.m} (semi-implicit method)}\label{SI}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (semi-implicit), frame=single]
 MASS = [M -M; -M M];
 ZERO = sparse(length(M), length(M));
@@ -1905,7 +1989,7 @@ for t=dt:dt:T
 end
 \end{lstlisting}
 
-\subsection{\texttt{main2D.m} (Godunov operator-splitting method)}\label{GO}
+\subsubsection{\texttt{main2D.m} (Godunov operator-splitting method)}\label{GO}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (Godunov operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
 MASS = (ChiM*Cm/dt)*[M, -M; M -M];
@@ -1930,7 +2014,7 @@ for t=dt:dt:T
 end
 \end{lstlisting}
 
-\subsection{\texttt{main2D.m} (quasi-implicit operator-splitting method)}\label{OS}
+\subsubsection{\texttt{main2D.m} (quasi-implicit operator-splitting method)}\label{OS}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = main2D.m (quasi-implicit operator-splitting), frame=single]
 ZERO = sparse(ll,ll);
         
@@ -1959,7 +2043,7 @@ for t=dt:dt:T
    w0 = w1;
 end
 \end{lstlisting}
-\subsection{\texttt{assign\_phi\_i.m}}\label{assign}
+\subsubsection{\texttt{assign\_phi\_i.m}}\label{assign}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_phi_i.m, frame=single]
 function [A, b] = assign_phi_i (A, b, t, Data, femregion)
 
@@ -2009,7 +2093,7 @@ A(:,1) = zeros(Nh,1);
 A(1,:) = zeros(1,Nh);
 A(1,1) = 1;
 \end{lstlisting}
-\subsection{\texttt{assign\_null\_average.m}}\label{mean}
+\subsubsection{\texttt{assign\_null\_average.m}}\label{mean}
 \begin{lstlisting}[language=Matlab,basicstyle=\small, numbers=left, numberstyle=\tiny,  name = assign_null_average.m, frame=single]
 function [A, b] = assign_null_average (A, b, Data, femregion)
 
