@@ -483,6 +483,36 @@
       \field{pages}{550\bibrangedash 563}
       \range{pages}{14}
     \endentry
+    \entry{condition_number}{article}{}
+      \name{author}{2}{}{%
+        {{hash=0029d410aa3a4f17856f92f67e9000a0}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod}}}%
+        {{hash=80e457957d639a107067719058df9fc0}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Q.},
+           giveni={Q\bibinitperiod}}}%
+      }
+      \strng{namehash}{e24341b1d4bcd5e459356abd916565e1}
+      \strng{fullhash}{e24341b1d4bcd5e459356abd916565e1}
+      \strng{bibnamehash}{e24341b1d4bcd5e459356abd916565e1}
+      \strng{authorbibnamehash}{e24341b1d4bcd5e459356abd916565e1}
+      \strng{authornamehash}{e24341b1d4bcd5e459356abd916565e1}
+      \strng{authorfullhash}{e24341b1d4bcd5e459356abd916565e1}
+      \field{sortinit}{Z}
+      \field{sortinithash}{8f7b480688e809b50b6f6577b16f3db5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Mathematics of Computation}
+      \field{title}{Mesh dependent stability and condition number estimates for finite element approximations of parabolic problems}
+      \field{volume}{83}
+      \field{year}{2014}
+      \field{pages}{37\bibrangedash 64}
+      \range{pages}{28}
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

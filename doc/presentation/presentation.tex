@@ -1,4 +1,4 @@
-\documentclass[9pt]{beamer}
+\documentclass[8pt]{beamer}
 \mode<presentation>
 {
 	\usetheme{Warsaw}
@@ -19,12 +19,20 @@
 \setbeamerfont{caption}{size=\scriptsize}
 \setlength\abovecaptionskip{-5pt}
 
+\setbeamercolor{block title}{fg=white,bg=red!70!black}
+\setbeamercolor{block body}{fg=black,bg=white!80!gray}
+\setbeamercolor{itemize item}{fg=red!70!black}
+\setbeamercolor{local structure}{fg=red!70!black}
+
+\setbeamercolor{section number projected}{bg=red!70!black,fg=white}
+
+
 \newtheorem*{remark}{Remark}
 \newtheorem*{theor}{Theorem}
 
 \title[\color{white}{Project N°2}]{A HIGH-ORDER DISCONTINUOUS GALERKIN METHOD FOR THE BIDOMAIN PROBLEM OF CARDIAC ELECTROPHYSIOLOGY}
 \subtitle{Project N$^\circ$ 2}
-\author[]{\small{\textit{Supervisors: Christian Vergara, Paola Antonietti}}\\ \vspace{4mm} Federica Botta, Matteo Calafà}
+\author[Federica Botta \and Matteo Calafà]{\small{\textit{Supervisors: Christian Vergara, Paola Antonietti}}\\ \vspace{4mm} Federica Botta, Matteo Calafà}
 \institute[Politecnico di Milano]{\scriptsize{Course of Numerical Analysis for Partial Differential Equations}}
 \date{\tiny{A.Y. 2020/2021}}
 
@@ -42,8 +50,8 @@
 \tableofcontents
 \end{frame}
 
-\begin{frame}
 \section{Introduction}
+\begin{frame}
 \frametitle{The physical problem}
 \begin{center}
 Mechanical contraction of the human heart\\
@@ -121,8 +129,10 @@ What we did:
 \end{itemize}
 \end{frame}
 
+\section{Spacial discretization}
+
+\subsection{Semi-discrete Discontinuous Galerkin}
 \begin{frame}
-	\section{Semi-discrete Discontinuous Galerkin}
 	\frametitle{Discretization}
 	$\qquad \qquad \qquad \qquad $ \textbf{space-dependent:} Discontinuous Galerkin method\\\vspace{2mm}
 	$\qquad \qquad \qquad \qquad \nearrow$\\
@@ -147,7 +157,7 @@ What we did:
 	-\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{ \chi_m w_h v_h d\omega}=(-I_e^{ext},v_h), \qquad \forall v_h \in V_h^p,\\
 	\end{gathered}\\
 	\vspace{2mm}
-	\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
+	\displaystyle \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\pdv{w_h}{t}v_h d\omega}=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{\epsilon (V_m^h-\gamma w_h) v_h d\omega}, \qquad \forall v_h \in V_h^p,\\
 	\end{cases}
 	\end{equation*}
 \end{frame}
@@ -166,10 +176,9 @@ What we did:
 	\end{equation*}
 \end{frame}
 
-
+\subsection{Dubiner basis implementation}
 
 \begin{frame}
-\section{Dubiner basis implementation}
 \frametitle{Dubiner basis: analytical definition}
 \begin{definition}[Dubiner basis] \label{dubiner}
 	The Dubiner basis that generates the space $\mathbb{P}^p(\hat{K})$ of polynomials of degree $p$ over the reference triangle is the set of functions:
@@ -508,8 +517,10 @@ This is why we chose to adopt:
 \end{itemize}
 \end{frame}
 
+\section{Numerical results}
+\subsection{Error analysis}
+
 \begin{frame}
-\section{Error analysis}
 \frametitle{Chosen data}
 \begin{center}
 	\begin{tabular}{|c|c|} 
@@ -605,12 +616,13 @@ This is why we chose to adopt:
 	\end{columns}
 	\vspace{3mm}
 	\begin{center}
-	Moreover, conditional number passes from $\approx 10^{17}$ to $\approx 10^7$.
+	Moreover, condition number passes from $\approx 10^{17}$ to $\approx 10^7$.
 	\end{center}
 \end{frame}
 
+\subsection{Toward a realistic simulation}
+
 \begin{frame}
-\section{Realistic simulations}
 \frametitle{Chosen data}
 \begin{center}
 	\begin{tabular}{|c|c|} 
