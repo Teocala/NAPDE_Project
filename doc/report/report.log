@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.7.6)  26 AUG 2021 12:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2021.7.6)  26 AUG 2021 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1469,11 +1469,6 @@ File: ./errors/D1_w_2.jpg Graphic file (type jpg)
 Package pdftex.def Info: ./errors/D1_w_2.jpg  used on input line 1563.
 (pdftex.def)             Requested size: 483.69687pt x 273.66003pt.
  [55 <./errors/D1_w_2.jpg>]
-Overfull \hbox (12.38934pt too wide) in paragraph at lines 1576--1624
- [] 
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 1626--1627
 
  []
@@ -2096,7 +2091,7 @@ Here is how much of TeX's memory you used:
  33285 multiletter control sequences out of 15000+600000
  570098 words of font info for 119 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 44i,19n,45p,1436b,1733s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,19n,45p,1424b,1733s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcti1000.
 600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1
 000.600pk> </home/federica/.texlive2020/texmf-var/fonts/pk/ljfour/jknappen/ec/e
@@ -2138,7 +2133,7 @@ fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-
 dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (75 pages, 9711581 bytes).
+Output written on report.pdf (75 pages, 9711816 bytes).
 PDF statistics:
  1123 PDF objects out of 1200 (max. 8388607)
  314 compressed objects within 4 object streams

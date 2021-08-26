@@ -179,13 +179,13 @@ citestyle=numeric,
     	\caption{Compatibility condition}
     \end{mycapequ}
     \begin{equation} \label{compatibility}
-    \int_{\Omega} I_i^{ext} - \int_{\Omega} I_e^{ext} = -\int_{\partial \Omega} b_i - \int_{\partial \Omega} b_e
+    \int_{\Omega} I_i^{ext} - \int_{\Omega} I_e^{ext} = -\int_{\partial \Omega} b_i - \int_{\partial \Omega} b_e.
     \end{equation} \vspace{3mm} \\
     Even when it is not explicitly declared, boundary conditions and forcing terms are always chosen to satisfy equation (\ref{compatibility}). \\
     
 
     \noindent From now on, the system of equations given by Problem \ref{def1} will be the reference analytical problem for the development of the forthcoming numerical schemes.\\
-    To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}, but this is just a simplification of the Bidomain as in this case it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
+    To conclude, there exist other famous and useful models, such as the \emph{Monodomain model}, but this is just a simplification of the Bidomain as, in this case, it is assumed that $\phi_i$ and $\phi_e$ are proportional. However, thanks to its simplicity, we often tested the code starting from the Monodomain implementation of the project \cite{andreotti} instead of analyzing directly the Bidomain model reported.
 
     \subsection{State of the art}\label{past}
     As we have already introduced, our project initially aimed to continue and improve the work of a previous project \cite{marta}. \\
@@ -196,8 +196,8 @@ citestyle=numeric,
 \newpage
 
     \section{Semi-discrete Discontinuous Galerkin formulation}
-    \subsection{Discontinuous Galerkin discrete formulation}
-    Starting from the strong form given by the Problem \ref{def1}, the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
+    \subsection{Discontinuous Galerkin weak formulation}
+    Starting from the strong form given by Problem \ref{def1}, the next step is the achievement of a suitable Discontinuous Galerkin semi-discrete formulation. Full descriptions and justifications of all the terms are present in \cite{marta} . \\
     Let us introduce a triangulation $\tau_h$ over $\Omega$, where $\mathcal{F} _h=\mathcal{F} _h^I \cup \mathcal{F} _h^B$ are the set of the faces of the partition, which includes the internal ($\mathcal{F} _h^I$) and boundary ($\mathcal{F} _h^B$) faces. Let the DG space be defined as $V_h^p = \{v_h \in L^2(\Omega) : v_h|_\mathcal{K} \in \mathbb{P}^{p}(\mathcal{K})  \quad \forall \mathcal{K} \in \tau_h \}$, where $p$ is the degree of the piecewise continuous polynomial, i.e. $p \geq 1$. Moreover, we define $N_h=dim(V_h^p)<\infty$. \vspace{4mm}
     \begin{problem}[DG weak formulation]
     For any $t\in[0,T]$ find $\bm{\Phi_h}(t)=[\phi_i^h(t),\phi_e^h(t)]^T \in [V_h^p]^2$  and  $w_h(t) \in V_h^p$ such that:
@@ -221,8 +221,8 @@ citestyle=numeric,
     \vspace{3mm}
     \begin{equation}\label{forgamma}
     \begin{aligned}
-    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_l^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [\![v_h]\!] d\sigma}+\\
-    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [\![\phi_l^h]\!]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [\![\phi_l^h]\!] \cdot [\![v_h]\!] d\sigma} \qquad l=i,e,\\
+    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_l^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\!\{\Sigma_l \nabla_h \phi_l^h \}\!\} \cdot [\![v_h]\!] d\sigma}+\\
+    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\!\{\Sigma_l \nabla_h v_h\}\!\} \cdot [\![\phi_l^h]\!]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [\![\phi_l^h]\!] \cdot [\![v_h]\!] d\sigma} \qquad l=i,e,\\
     \newline
     \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
     \newline
@@ -253,9 +253,9 @@ citestyle=numeric,
  Then, we introduce the matrices:
  \begin{equation*}
 \begin{rcases}
-(V_l)_{ij} &= \int_{\Omega}\nabla_h\varphi_j \cdot \Sigma_l \nabla_h \varphi_i,
-\\ (I_l^T)_{ij} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \{\{\Sigma_l \nabla_h\varphi_j\}\} \cdot [\![\varphi_i]\!],
-\\ (I_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} [\![\varphi_j]\!] \cdot \{\{\Sigma_l \nabla_h \varphi_i\}\},
+(V_l)_{ij} &= \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}}\nabla_h\varphi_j \cdot \Sigma_l \nabla_h \varphi_i,
+\\ (I_l^T)_{ij} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \{\!\{\Sigma_l \nabla_h\varphi_j\}\!\} \cdot [\![\varphi_i]\!],
+\\ (I_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} [\![\varphi_j]\!] \cdot \{\!\{\Sigma_l \nabla_h \varphi_i\}\!\},
 \\(S_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \Gamma_l[\![\varphi_j]\!] \cdot [\![\varphi_i]\!],
 \end{rcases}
 \begin{gathered}
@@ -280,10 +280,10 @@ M_{ij} = \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}}\varphi_j\varphi_i \qqua
 C(u_h)_{ij} =  \sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} \chi_m k(u_h-1)(u_h-a)\varphi_j\varphi_i \qquad{\text{Non-linear matrix}},
 \end{equation*}
 \begin{equation*}
-F^h_{i,j}= \int_{\Omega} I_i^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_i\varphi_j  \qquad{\text{Intra-cellular forcing term}},
+F^h_{i,j}= \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}} I_i^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_i\varphi_j  \qquad{\text{Intra-cellular forcing term}},
 \end{equation*}
 \begin{equation*}
-F^h_{e,j}= - \int_{\Omega} I_e^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_e\varphi_j \qquad{\text{Extra-cellular forcing term}},
+F^h_{e,j}= - \sum_{\mathcal{K} \in \tau_h}\int_{\mathcal{K}} I_e^{ext}\varphi_j + \sum_{F \in \mathcal{F}_h^B} \int_F b_e\varphi_j \qquad{\text{Extra-cellular forcing term}},
 \end{equation*}
 \vspace{3mm} \\
 Therefore, our semi-discrete algebraic formulation is as follows: \vspace{3mm}
@@ -323,14 +323,14 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 \newpage
 \section{High-order Dubiner basis functions}
     \subsection{Analytical aspects}\label{analytical_aspects}
-    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^p$ space. Usually, the common choice consists in the classical hat functions from FEM. It is also one of the simplest choices, for this reason, our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner basis}"\cite{dubiner}, which is well suited to high-order approximations. \\
+    So far, we have described a general semi-discrete discontinuous formulation without examining which basis to use to generate the $V_h^p$ space. Usually, the common choice consists in the classical hat functions from FEM. It is also one of the simplest choices, for this reason, our provided code was initially implemented with this basis. However, the very novelty of this study is the adoption of a new kind of basis, completely different from the previous and commonly known as "\emph{Dubiner basis}" \cite{dubiner}, which is well suited to high-order approximations. \\
     How we will see soon, the peculiarity of this family of functions is that it consists of orthogonal polynomials defined on the reference triangle
     \begin{equation*}
-    \hat{K}=\{ (\xi, \eta) : \xi, \eta \ge 0,	\xi+\eta \le 1 \},
+    \hat{K}=\{ (\xi, \eta) : \, \xi, \eta \ge 0, \,	\xi+\eta \le 1 \},
     \end{equation*}
     and not on the reference square
     \begin{equation*}
-    \quad \quad \hat{Q}=\{ (a, b) : -1 \le a \le 1, -1 \le b \le 1 \}.
+    \quad \quad \hat{Q}=\{ (a, b) : \, -1 \le a \le 1, \, -1 \le b \le 1 \}.
     \end{equation*}
     Formally, if we consider the transformation from $\hat{Q}$ to $\hat{K}$ given by:
     \begin{equation}\label{transformation_formula}
@@ -345,7 +345,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \end{center}
     \end{figure}
     
-    \noindent The Dubiner basis is the transformation of a suitable basis initially defined on the reference square. This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$, as described in the following definition. \\
+    \noindent The Dubiner basis corresponds to a suitable basis initially defined on the reference square that is later transformed on the reference triangle using equation (\ref{transformation_formula}). This initial basis is simply obtained with a two dimensional modified tensor product of the Jacobi polynomials on the interval $(-1,1)$, as described in the following definition. \\
 
     \begin{definition}[Jacobi polynomials]\label{jacobi}
     The Jacobi polynomials of coefficients $\alpha,\beta \in \mathbb{R}$ evaluated in $z\in (-1,1)$ are:
@@ -375,7 +375,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{prop}\label{prop1}
     $\{J_i^{\alpha,\beta}, \, i=0,1,2 \dots\}$ is orthogonal with respect to the Jacobi weight $w(x)=(1-x)^\alpha(1+x)^\beta$, i.e.:
     \begin{equation*}
-    \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta}(x) J_q^{\alpha,\beta}(x)dx}=\frac{2}{2m+1} \delta_{mq} \qquad \forall i,j,m,q \geq 0.
+    \int_{-1}^{1}{(1-x)^\alpha(1+x)^\beta J_m^{\alpha,\beta}(x) J_q^{\alpha,\beta}(x) \, dx}=\frac{2}{2m+1} \delta_{mq} \qquad \forall i,j,m,q \geq 0.
     \end{equation*}
     \end{prop}
     
@@ -395,7 +395,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{equation*}
     c_{ij} := \sqrt{\frac{2(2i+1)(i+j+1)}{4^i}}
     \end{equation*}
-    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial defined in Def. \ref{jacobi}.
+    and $J_i^{\alpha,\beta}(\cdot)$ is the i-th Jacobi polynomial of Def. \ref{jacobi}.
     \end{definition}
     
     \vspace{5mm}
@@ -403,7 +403,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     \begin{prop}\label{l2_ortho}
     The Dubiner basis is orthonormal in $L^2(\hat{K})$ $\forall p \geq 0$:
     \begin{equation*}
-    \int_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) d\xi d\eta}=\delta_{im}\delta_{jq} \qquad \forall i,j,m,q \geq 0.
+    \int_{\hat{K}}{\phi_{ij}(\xi,\eta)\phi_{mq}(\xi,\eta) \, d\xi \, d\eta}=\delta_{im}\delta_{jq} \qquad \forall i,j,m,q \geq 0.
     \end{equation*}
     \end{prop}
     \vspace{4mm}
@@ -427,7 +427,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \noindent In general, the orthogonality property implies some good numerical qualities, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the condition number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
     
-    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function have only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the continuous functions to the discretized functions and vice versa, as it will be shown in Section \ref{FEM_DUB_conversion}. Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation Dirichlet boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
+    \noindent On the other hand, there are also some difficulties arising when one chooses to abandon the familiar FEM basis. First of all, the coefficients of a discretized function have only \emph{modal} meaning and they no more represent the \emph{nodal} values of the function itself. This fact needs some extra work when one needs to switch from the original functions to the discretized functions and vice versa, as it will be shown in Section \ref{FEM_DUB_conversion}. Secondly, one can notice that these functions are not "boundary conditions friendly". What we mean is that, if compared to FEM basis, they have no particular properties on the boundary to let easily impose homogeneous boundary conditions. Thus, they should be again transformed, this time in a \emph{boundary adapted} form. We address to \cite{napde} for a short description of this procedure. Fortunately, we do not need to set this transformation as in the discontinuous formulation boundary conditions are imposed only weakly. It means that the boundary conditions' choice does not imply the choice of the vectorial space as in continuous Galerkin methods. The discretized space is always the same, only some terms in the weak formulation have in case of need to be changed. For this reason, the match of Discontinuous Galerkin and Dubiner basis results to be particularly successful. \\
     
     \noindent To conclude, we refer to \cite{sherwin} for the transformation and the definition of the Dubiner basis with tetrahedra, i.e. in dimension $n=3$.
     
@@ -439,7 +439,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     
     \noindent More interesting are instead the scripts \texttt{dubiner\_to\_fem.m} and \texttt{fem\_to\_dubiner.m}, used to convert the Dubiner modal coefficients of the vector solution to the nodal values of the approximated function and vice versa. For this reason, they deserve some further explanations.
 \subsection{Switch from the modal expansion coefficients to the Lagrangian ones} \label{FEM_DUB_conversion}
-One of the many advantages of the FEM basis is that there exists a bijection between the basis functions and some particular spacial points in such a way that the evaluation of a basis function in one of these points is equal to 1 only if that point is the one associated to the function and 0 otherwise, i.e.:
+One of the many advantages of the FEM basis is that there exists a bijection between the basis functions and some particular spatial points in such a way that the evaluation of a basis function in one of these points is equal to 1 only if that point is the one associated to the function and 0 otherwise, i.e.:
 	\begin{equation} \label{ref1}
 	\psi_i(x_j)=\delta_{ij}.
 	\end{equation}
@@ -449,7 +449,7 @@ One of the many advantages of the FEM basis is that there exists a bijection bet
 	\noindent Consider an element $\mathcal{K}\in \tau_h$ and $\{\psi_{i}\}_{i=1}^{p}$,$\{\varphi_{j}\}_{j=1}^{q}$ as, respectively, the set of FEM functions and the set of Dubiner functions with support in $\mathcal{K}$. In addition, consider $\{\hat{u}_i\}_{i=1}^p$,$\{\tilde{u}_j\}_{j=1}^q$ as, respectively, the FEM and Dubiner coefficients of a function $u_h$.
 	
 	\subsubsection{From Dubiner basis to FEM basis}
-	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the Property \ref{ref1}, i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th degree-of-freedom point, then: 
+	\noindent Let us start from the transformation to the FEM coefficients. We now exploit the property in equation (\ref{ref1}), i.e. the coefficient $\hat{u}_i$ is nothing else but the evaluation of $u_h$ on the i-th degree-of-freedom point, then: 
 	\begin{equation} \label{ref3}
 	\hat{u}_i = \sum_{j=1}^q \tilde{u}_j\varphi_j(x_i), \qquad i=1, \dots p
 	\end{equation}
@@ -804,14 +804,14 @@ For simplicity, we choose $l=1$. Then, $u_1^n$ has the meaning of:
 
 \begin{equation*}
 A=\begin{bmatrix}
-a_{11} & a_{12} & \dots & a_{1N} \\ 
-a_{21} & a_{22} & \dots & a_{2N} \\ 
-a_{31} &a_{32} & \dots & a_{3N} \\
+a_{11} & a_{12} & \dots & a_{1N_h} \\ 
+a_{21} & a_{22} & \dots & a_{2N_h} \\ 
+a_{31} &a_{32} & \dots & a_{3N_h} \\
 \dots & \dots & \dots & \dots \\
-a_{N1}  & a_{N2} & \dots & a_{NN}
+a_{N_h1}  & a_{N_h2} & \dots & a_{N_hN_h}
 \end{bmatrix} \quad \quad
 b=\begin{bmatrix}
-b_1 \\ b_2 \\ b_3 \\ \dots \\ b_N
+b_1 \\ b_2 \\ b_3 \\ \dots \\ b_{N_h}
 \end{bmatrix}
 \end{equation*}
 
@@ -820,13 +820,13 @@ to:
 \begin{equation*}
 \quad \quad  \quad \, \tilde{A}=\begin{bmatrix}
 1 & 0 & \dots & 0 \\ 
-0 & a_{22} & \dots & a_{2N} \\ 
-0 &a_{32} & \dots & a_{3N} \\
+0 & a_{22} & \dots & a_{2N_h} \\ 
+0 &a_{32} & \dots & a_{3N_h} \\
 \dots & \dots & \dots & \dots \\
-0  & a_{N2} & \dots & a_{NN}
+0  & a_{N_h2} & \dots & a_{N_hN_h}
 \end{bmatrix} \quad \quad
 \tilde{b}=\begin{bmatrix}
-c \\ b_2 -a_{21}c \\ b_3-a_{31}c \\ \dots \\ b_N-a_{N1}c
+c \\ b_2 -a_{21}c \\ b_3-a_{31}c \\ \dots \\ b_{N_h}-a_{N_h1}c
 \end{bmatrix}
 \end{equation*}
 \vspace{4mm} \\
@@ -834,7 +834,7 @@ c \\ b_2 -a_{21}c \\ b_3-a_{31}c \\ \dots \\ b_N-a_{N1}c
 The very advantage of this procedure is the conservation of $A$ symmetry. As we have previously anticipated, we discarded the nodal value strategy because, using Dubiner basis, we would have lost this crucial property. \\
 Moreover, the value $c$ can be freely chosen, for instance from the exact solution (when error analysis needs to be executed) or a conventional fixed value as zero. \\ 
 
-\noindent On the other hand, there are two main disadvantages. First of all, the system's first line information has been deleted during this procedure. However, if the mesh is composed of many elements, this information is not essential and the solution behavior is practically the same as this information was provided. \\
+\noindent On the other hand, there are two main disadvantages. First of all, the system's first line information has been deleted during this procedure. However, if the mesh is composed of many elements, this information is not essential and the solution behavior is practically the same as this information were provided. \\
 Secondly, if the initial system is hugely ill-conditioned or even non-solvable (determinant could approximate the machine epsilon when we have homogeneous boundary conditions and/or no forcing terms), this imposition may have an overshooting effect that unbalances the solution. For these problems, a global imposition has to be adopted and this is the reason why we implemented the more complicated mean value imposition strategy.\\
 
 \noindent The coefficient imposition procedure has been implemented in the script \texttt{assign\_phi\_i.m} (Section \ref{assign}) that takes the $c$ value from the exact solution.\\
@@ -869,15 +869,15 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 	\begin{equation*}
 	\begin{cases}
 	-\Delta{u} + \alpha u =f, & \text{in } \Omega,\\
-	\nabla u \cdot n = 0, & \text{on } \partial \Omega, \\
+	\nabla u \cdot n = g, & \text{on } \partial \Omega, \\
 	\end{cases}
 	\end{equation*}
 	\begin{center}
-		with $\alpha = 0$.
+		with $\alpha = 0, \, g=0$.
 	\end{center}
      We have already discussed that $\alpha=0$ is an eigenvalue of the Laplace operator with Neumann boundary conditions and its eigenspace is composed of all and only constant terms. From Theorem 7.1.14 in \cite{gazzola}, we can state that, since $\alpha$ belongs to the spectrum and $f\in L^2(\Omega)$, the existence of the weak solution holds if and only if the compatibility condition:
      \begin{equation*}
-     \int_{\Omega}f = \int_{\partial \Omega} g = \int_{\partial_\Omega} 0 = 0 
+     \int_{\Omega}f = - \int_{\partial \Omega} g = \int_{\partial_\Omega} 0 = 0,
      \end{equation*}
      holds. Then we solved the point about existence of the weak solution. \\
      
@@ -949,7 +949,7 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 
 \noindent It may seem a very trivial result, but actually it will be the very essence of our mean-value imposition strategy. First of all, let us check that existence and uniqueness properties have been conserved. \\
 \begin{lemma} \label{lemma_lagrange}
-	Suppose that the assumptions on data of Problem \ref{reference_problem} are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem \ref{reference_problem_3} and $u$ is the same solution of Problems \ref{reference_problem} and \ref{reference_problem_2}. Moreover, $\lambda=0$ and $u$ is unique. 
+	Suppose that the assumptions on data of Problem \ref{reference_problem} are satisfied. Then there exists a couple solution $(u,\lambda)$ to Problem \ref{reference_problem_3} and $u$ is the same solution of Problems \ref{reference_problem} and \ref{reference_problem_2}. Moreover, $\lambda=0$ and $u$ is the unique solution of Problem \ref{reference_problem_3}. 
 \end{lemma}
 \begin{proof}
 	For what concerns existence, we can immediately realize that the solution $u$ of Problem \ref{reference_problem} solves the Problem \ref{reference_problem_3} with $\lambda=0$. Then the existence property holds because existence of Problem \ref{reference_problem} has already been proved. \\
@@ -1009,13 +1009,13 @@ Secondly, if the initial system is hugely ill-conditioned or even non-solvable (
 \noindent Reminding that $\lambda=u_{N_h+1}$, the previous problem consists in the system transformation from: \\
 \begin{equation*}
 A=\begin{bmatrix}
-a_{11} & a_{12} & \dots & a_{1N} \\ 
-a_{21} & a_{22} & \dots & a_{2N} \\ 
+a_{11} & a_{12} & \dots & a_{1N_h} \\ 
+a_{21} & a_{22} & \dots & a_{2N_h} \\ 
 \dots & \dots & \dots & \dots \\
-a_{N1}  & a_{N2} & \dots & a_{NN}
+a_{N_h1}  & a_{N_h2} & \dots & a_{N_hN_h}
 \end{bmatrix} \quad \quad
 b=\begin{bmatrix}
-b_1 \\ b_2 \\ \dots \\ b_N
+b_1 \\ b_2 \\ \dots \\ b_{N_h}
 \end{bmatrix}
 \end{equation*}
 
@@ -1023,14 +1023,14 @@ b_1 \\ b_2 \\ \dots \\ b_N
 
 \begin{equation*}
 \quad \quad  \quad \, \tilde{A}=\begin{bmatrix}
-a_{11} & a_{12} & \dots & a_{1N} & d_1\\ 
-a_{21} & a_{22} & \dots & a_{2N} & d_2 \\ 
+a_{11} & a_{12} & \dots & a_{1N_h} & d_1\\ 
+a_{21} & a_{22} & \dots & a_{2N_h} & d_2 \\ 
 \dots & \dots & \dots & \dots & \dots \\
-a_{N1}  & a_{N2} & \dots & a_{NN} & d_N \\
-d_1 & d_2 & \dots & d_N & 0
+a_{N_h1}  & a_{N_h2} & \dots & a_{N_hN_h} & d_{N_h} \\
+d_1 & d_2 & \dots & d_{N_h} & 0
 \end{bmatrix} \quad \quad
 \tilde{b}=\begin{bmatrix}
-b_1 \\ b_2 \\ \dots \\ b_N \\ c
+b_1 \\ b_2 \\ \dots \\ b_{N_h} \\ c
 \end{bmatrix}
 \end{equation*}
 \vspace{3mm} \\
@@ -1353,7 +1353,7 @@ We observe, before the plateau, a quadratic convergence rate for the $V_m$ error
 In Section \ref{temporal_discretization} three methods for the time discretization have been proposed and discussed. An error analysis comparison has been carried out and gives the graphical results shown in Fig. \ref{Vm-time}, Fig. \ref{pi-time}, Fig. \ref{pe-time} and Fig. \ref{w-time}. We adopted for every plot the Dubiner basis with first polynomial order.
 \noindent It is clear that the three methods show the same convergence rate and this is expected since the time discretization method choice should not influence the space error order. Moreover, this error analysis confirms they are all consistent and work in the same way. \\
 Unfortunately, we could not have a time discretization error analysis (that would have been much more interesting) because of the presence of the spatial error that is strongly bigger than the temporal error. \\
-The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of convergence order. Moreover, it is noteworthy to remember that the non-linear term is treated in an explicit way for all the methods and that no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
+The main difference between the three is the explicit/implicit choice for the different terms that, in general, gives different results only in terms of stability and not of convergence order. Moreover, it is noteworthy to remember that the non-linear term is treated in a semi-implicit way for all the methods and that no temporal strategy is completely implicit. For this reason, it may be that the three methods have very similar behavior under the stability aspect too.
 \subsubsection{Comparison between methods for uniqueness of $\phi_i$ and $\phi_e$}
 Referring to Section \ref{unique}, we have presented and explained two different methods to impose uniqueness of the cellular potentials.
 The simplest one, adopted for the previous error analysis, imposes the value of the function at a specific point. On the other hand, the second imposes the mean value at zero. The comparison is displayed in Fig. \ref{Vm-unique}, Fig. \ref{phii-unique}, Fig. \ref{phie-unique} and Fig. \ref{w-unique}.\\
@@ -1386,7 +1386,7 @@ On the other hand, it has already been stated that some peculiar problems can be
 \end{center}
 \vspace{3mm}
 \noindent It is clear that the condition numbers pass from the very high initial values ($\approx 10^{17},10^{18}$) to $\approx 10^8$ when the first strategy is adopted. Moreover, as expected, it is even better with the second strategy ($\approx 10^7$). In addition, the imposition strategies seem to stabilize the condition number when the refinement level increases. \\
-We observe that the almost constant value of the condition number follows from the theory of parabolic differential equations. In \cite{condition_number}, for instance, there can be found some bounds for the condition number independent of the element size. However, our \emph{Bidomain} problem is certainly more complicated than a standard parabolic problem and, moreover, Dirichlet boundary conditions are here taken into consideration instead of the Neumann ones. Despite this, we can surely state that our condition number results are supported by theoretical backgrounds.
+We observe that the almost constant value of the condition number follows from the theory of parabolic differential equations. In \cite{condition_number}, for instance, there can be found some bounds for the condition number independent of the element size. However, our \emph{Bidomain} problem is certainly more complicated than a standard parabolic problem and, moreover, Dirichlet boundary conditions are there taken into consideration instead of the Neumann ones. Despite this, we can surely state that our condition number results are supported by theoretical backgrounds.
 
 \newpage
 
@@ -1594,7 +1594,7 @@ Our final goal is to exploit the strategies and tools presented in the previous 
 		Initial condition for $V_m$ ($V$) & 0 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
-		Initial condition for $w$ ($Am^{-2}$) & 0 \\
+		Initial condition for $w$ & 0 \\
 		\hline
 		\rule[-4mm]{0mm}{1cm}
 		$I_i^{ext}$ ($Am^{-3}$) & $I \cdot 10^3 \, \chi_{[0.001,0.002]}(t) \, \chi_{[0.0045,0.0055]}(x) \, \chi_{[0.0045,0.0055]}(y)$ \\
@@ -1742,7 +1742,7 @@ As expected, we can distinguish two different phenomena in both the test-cases:
 	\item The direction of propagation (shape in test-case 2 is more symmetric).
 \end{itemize}
  
-\noindent Most of these features were expected and successfully reflect the physical phenomenon. Indeed, a certain current intensity is needed to fully activate the myocytes. Otherwise, cells go soon back to their rest potential. Moreover, the stretched shape of the activated region is consistent with the anisotropy of the diffusion tensor and it physically shows the difference of conductivity between the tangential and normal direction of the fibers.\\
+\noindent Most of these features were expected and successfully reflect the physical phenomenon. Indeed, a certain current intensity is needed to fully activate the myocytes. Otherwise, cells go soon back to their rest potential. Moreover, the stretched shape of the activated region is consistent with the anisotropy of the diffusion tensors and it physically shows the difference of conductivity between the tangential and normal direction of the fibers.\\
 
 \noindent On the other hand, if we look at the potential cycle shown in Fig. \ref{potential_cycle}, we notice some unexpected mismatches. First of all, the rest and activation values should be $-0.09V$ and $0.02V$ and not $0V$ and $1V$. However, it is probably due to the simplicity of the \emph{FitzHugh-Nagumo} model that we adopted. Just from the analytical formulation is clear that $V_m=0$ is an equilibrium value and not $V_m=-0.09$, a refinement to the model is needed to get these more realistic values. \\
 The second incongruence is the missed repolarization after the activation. In other words, the potential keeps the same value and it does not decrease back to 0 even after several time-steps. We think it is in part due to (again) the simplicity of the \emph{FitzHugh-Nagumo} model, fact that is already observed in \cite{colli_franzone_parallel}. Here, it is indeed stated that \emph{FitzHugh-Nagumo} model is not able to truly approximate the physical phenomenon, in particular for the \emph{plateau} and \emph{repolarization} phases.
@@ -2023,7 +2023,7 @@ ZERO = sparse(ll,ll);
 for t=dt:dt:T
         
    [C] = assemble_nonlinear(femregion,Data,Vm0);
-   Q  = (ChiM*Cm/dt)*M + C - (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
+   Q  = (ChiM*Cm/dt)*M + C + (epsilon*ChiM*dt)/(1+epsilon*gamma*dt)*M;
    R  = (ChiM*Cm/dt)*M*Vm0 - (ChiM)/(1+epsilon*gamma*dt)*M*w0;
     
    fi = assemble_rhs_i(femregion,neighbour,Data,t);
