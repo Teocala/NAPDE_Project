@@ -1,6 +1,6 @@
 \babel@toc {english}{}
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
-\beamer@sectionintoc {2}{Spacial discretization}{6}{0}{2}
+\beamer@sectionintoc {2}{Space discretization}{6}{0}{2}
 \beamer@subsectionintoc {2}{1}{Semi-discrete Discontinuous Galerkin}{6}{0}{2}
 \beamer@subsectionintoc {2}{2}{Dubiner basis implementation}{9}{0}{2}
 \beamer@sectionintoc {3}{Temporal discretization}{13}{0}{3}
