@@ -1,7 +1,11 @@
 function convergence_test(TestName,nRef)
-%        CONVERGENCE TEST FOR Vm, Phi_e, Phi_i, w in norms: L2,
-%        semi-H1, H1, DG, Inf
-%              usage:   convergence_test('Test3',[2 3 4 5]) 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Function for the convergence test
+% of the uknowns Vm, Phi_i, Phi_e and w
+%
+% Federica Botta, Matteo Calafà
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
     num_tests=length(nRef);
     err_L2 = zeros(4,num_tests);
