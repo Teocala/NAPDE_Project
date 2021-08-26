@@ -144,7 +144,7 @@ citestyle=numeric,
     
     \vspace{4mm}
     \noindent Actually, this system is not complete since it misses boundary and initial conditions and a suitable model for $I_{ion}$. Initial conditions and Neumann boundary conditions for $\phi_i$ and $\phi_e$ are then imposed. For the definition of $I_{ion}$, instead, a \emph{reduced ionic model} is chosen, in particular the \emph{FitzHugh-Nagumo model}. Summing up:\newpage
-        \begin{problem}\label{def1}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]
+        \begin{problem}[Bidomain + FitzHugh-Nagumo model with Neumann boundary conditions]\label{def1}
       	Find $\phi_i$ and $\phi_e$ such that:
     	\begin{equation*}
     	\begin{cases}
@@ -221,8 +221,8 @@ citestyle=numeric,
     \vspace{3mm}
     \begin{equation}\label{forgamma}
     \begin{aligned}
-    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_k^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [[v_h]] d\sigma}+\\
-    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [[\phi_l^h]]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [[\phi_l^h]] \cdot [[v_h]] d\sigma} \qquad l=i,e,\\
+    \bullet& \quad a_l(\phi_l^h,v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}}{(\Sigma_l \nabla_h \phi_l^h) \cdot \nabla_h v_h d\omega}-\sum_{F \in \mathcal{F}_h^I} \int_F { \{\{\Sigma_l \nabla_h \phi_l^h \}\} \cdot [\![v_h]\!] d\sigma}+\\
+    &-\delta \sum_{F \in \mathcal{F}_h^I} \int_F{ \{\{\Sigma_l \nabla_h v_h\}\} \cdot [\![\phi_l^h]\!]d\sigma}+\sum_{F \in \mathcal{F}_h^I}\int_F {\Gamma [\![\phi_l^h]\!] \cdot [\![v_h]\!] d\sigma} \qquad l=i,e,\\
     \newline
     \bullet& \quad (I_i^{ext},v_h)=\sum_{\mathcal{K} \in \tau_h} \int_{\mathcal{K}} {I_i^{ext} v_h d\omega}+\int_{\partial \Omega}{b_i v_h d\sigma},\\
     \newline
@@ -246,17 +246,17 @@ citestyle=numeric,
     \begin{gathered}
     \bm{\Phi_h}(t) = \begin{bmatrix} \phi_i^h(t) \\ \phi_e^h(t) \end{bmatrix} = \begin {bmatrix}\sum_{j=1}^{N_h} \phi_{i,j}(t)\varphi_j \\ \sum_{j=1}^{N_h} \phi_{e,j}(t)\varphi_j \end{bmatrix},\\
     w_h(t) = \sum_{j=1}^{N_h}w_j(t)\varphi_j,\\
-    V_m^h(t)=\sum_{j=1}^{N_h} V_{m,j}(t) \phi_j=\sum_{j=1}^{N_h}(\phi_{i,j}(t)-\phi_{e,j}(t))\varphi_j.
+    V_m^h(t)=\sum_{j=1}^{N_h} V_{m,j}(t) \varphi_j=\sum_{j=1}^{N_h}(\phi_{i,j}(t)-\phi_{e,j}(t))\varphi_j.
  \end{gathered}
  \end{equation*}
  Where $\phi_{i,j}$, $\phi_{e,j}$ and $w_j \in \mathbb{R}$ are the unknown expansion coefficients $\forall i,j=1,\dots N_h$.
  Then, we introduce the matrices:
  \begin{equation*}
 \begin{rcases}
-(V_l)_{ij} &= \int_{\Omega}\nabla\varphi_j \cdot \Sigma_l \nabla \varphi_i,
-\\ (I_l^T)_{ij} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \{\{\Sigma_l \nabla\varphi_j\}\} \cdot [[\varphi_i]],
-\\ (I_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} [[\varphi_j]] \cdot \{\{\Sigma_l \nabla \varphi_i\}\},
-\\(S_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \Gamma_l[[\varphi_j]] \cdot [[\varphi_i]],
+(V_l)_{ij} &= \int_{\Omega}\nabla_h\varphi_j \cdot \Sigma_l \nabla_h \varphi_i,
+\\ (I_l^T)_{ij} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \{\{\Sigma_l \nabla_h\varphi_j\}\} \cdot [\![\varphi_i]\!],
+\\ (I_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} [\![\varphi_j]\!] \cdot \{\{\Sigma_l \nabla_h \varphi_i\}\},
+\\(S_l)_{i,j} &= \sum_{F \in \mathcal{F}_h^I} \int_{F} \Gamma_l[\![\varphi_j]\!] \cdot [\![\varphi_i]\!],
 \end{rcases}
 \begin{gathered}
 \quad A_l = (V_l -I_l^T - \theta I_l + S_l)\\
@@ -316,7 +316,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
 	   	\begin{bmatrix} F_i^h \\ F_e^h\end{bmatrix},
 	   	\end{gathered}\\
 	   	\vspace{3mm} 
-	   \dot{w}_h(t)=\epsilon (V_m^h(t)-\gamma w_h(t)).
+	  M \dot{w}_h(t)= \epsilon M (V_m^h(t)-\gamma w_h(t)).
 \end{cases}
 \end{equation*}
 \end{problem}
@@ -423,7 +423,7 @@ M \dot{w}_h(t)=\epsilon M (V_m^h(t)-\gamma w_h(t)),
     a = \frac{2\xi}{1-\eta}-1 \quad \quad b = 2\eta-1,
     \end{equation*}
     \vspace{2mm} \\
-    \noindent that has already been used for Definition \ref{dubiner}. However, $a$ is not defined for $\eta=1$, i.e. for the sole point $(0,1)$ of the reference triangle. Moreover, in \cite{sherwin} it is shown that $a$ value cannot be achieved with continuity prolongation because of a second type singularity. Even so, the transformation is still effective because it can be easily shown that the evaluations of the Dubiner basis functions in $(\xi,\eta)=(0,1)$ are the same for every value of $a$ from -1 to 1. For the code implementation, we bypassed this issue with some conditional statements in which we set $a$ the conventional value -1. Another solution would be to avoid the evaluation in the exact point choosing instead a near point.\\
+    \noindent that has already been used for Definition \ref{dubiner}. However, $a$ is not defined for $\eta=1$, i.e. for the sole point $(0,1)$ of the reference triangle. Moreover, in \cite{sherwin} it is shown that $a$ value cannot be achieved with continuity prolongation because of the second type singularity. Even so, the transformation is still effective because it can be easily shown that the evaluations of the Dubiner basis functions in $(\xi,\eta)=(0,1)$ are the same for every value of $a$ from -1 to 1. For the code implementation, we bypassed this issue with some conditional statements in which we set $a$ the conventional value -1. Another solution would be to avoid the evaluation in the exact point choosing instead a near point.\\
     
     \noindent In general, the orthogonality property implies some good numerical qualities, not only the diagonalization of the mass matrix. For instance, in \cite{antonietti} interesting bounds for the condition number have been proved. For this reason, we opted for this choice aiming to improve the previous results, at least from the space discretization side. \\
     
@@ -646,7 +646,7 @@ the equations in system (\ref{Quasi}) can be written as:
 \vspace{3mm}
 \begin{equation}
 \begin{gathered}
-\chi_m C_m M \frac{	\phi_i^{n+1}-\phi_e^{n+1}-V_m^{n}}{\Delta t} + \cdot C(V_m^n) (\phi_i^{n+1}-\phi_e^{n+1}) +\\ 
+\chi_m C_m M \frac{	\phi_i^{n+1}-\phi_e^{n+1}-V_m^{n}}{\Delta t} + C(V_m^n) (\phi_i^{n+1}-\phi_e^{n+1}) +\\ 
 + \chi_m M \left(\frac{w^n + \epsilon \Delta t (\phi_i^{n+1}-\phi_e^{n+1})}{1+\epsilon \gamma \Delta t}   \right)
 - A_e \phi_e ^{n+1} = -F_e^{n+1}, \\ \\
 \Rightarrow \quad Q_n \phi_i^{n+1} - (Q_n+A_e) \phi_e^{n+1} =R_n - F_e^{n+1},
@@ -1117,7 +1117,7 @@ w = \frac{\varepsilon}{\varepsilon \gamma-5} \sin(2 \pi x) \sin(2 \pi y) e^{-5 t
 At first, an error analysis related to the chosen basis is shown. More precisely, we fix a polynomial order ($p=1,2 \text{ and } 3$) and we compare the errors of the Dubiner and Lagrangian hat basis functions choosing the same polynomial order for both. We expect to see similar results. On the other hand, we expect to see different error orders for different polynomials orders.
 \paragraph{P1-D1}
 If $p=1$ is chosen as polynomial order, the computed errors plots are shown in Fig. \ref{Vm_1}, Fig. \ref{phii_1}, Fig. \ref{phie_1} and Fig. \ref{w_1}. 
-\noindent Here, Dubiner and FEM errors are identical except for few differences regarding $\phi_i$ and $\phi_e$. This is not a huge inconsistency as it is simply due to the first uniqueness imposition that, contrarily to the second, has different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappear when potentials subtract to get $V_m$. For a further confirmation, in Section \ref{D1_P1_mean} the reader could find the same comparison except the adoption of the mean imposition. In this case, $D1$ and $P1$ are indeed completely equivalent. Then, our results are exactly as expected and show a first order for $V_m$ errors in $H^1$ and $DG$ norm while a second order for $V_m$ errors in $L^2$ and $L^\infty$ norm.
+\noindent Here, Dubiner and FEM errors are identical except for few differences regarding $\phi_i$ and $\phi_e$. This is not a huge inconsistency as it is simply due to the first uniqueness imposition that, contrarily to the second, has different effects for Dubiner and FEM basis. Indeed, the differences are visible only in the $L^2$ and $L^\infty$ errors and, moreover, these differences disappear when potentials subtract to get $V_m$. For a further confirmation, in Section \ref{D1_P1_mean} the reader could find the same comparison except the adoption of the mean imposition. In this case, $D1$ and $P1$ are indeed completely equivalent. Then, our results are exactly as expected and show a first order for $V_m$ errors in $H^1$ and $DG$ norm while a second order for $V_m$ errors in $L^2$ and $L^\infty$ norms.
 \paragraph{P2-D2} \label{P2-D2}
 \noindent  For what concerns the second order polynomials, i.e. $p=2$, we observe slightly different results (see Fig. \ref{Vm_2}, Fig. \ref{phii_2}, Fig. \ref{phie_2} and Fig. \ref{w_2}). Indeed, we see a the flatter segment that some errors trends have for small element sizes. However, this is simply due to the influence of other cause of errors (especially the time-discretization errors) when the space discretization errors become very small. This is the reason why this effect was not present in the previous case, where space errors were still too big and other causes of error negligible. Moreover, potentials difference is amplified. \\
 We then underline that these two effects are not due to the Dubiner discretization implementation itself. The first difference is due to the coefficient imposition that can be improved with a mean value imposition as seen in Section \ref{imposition_section}. The second fact is due to time discretization errors that can be reduced if we simply reduce the time-step. Moreover, if this happens, it means that space discrezitation errors are very small (in general, a positive fact). This is why we neglect these effects for the error order estimations and we can state that Dubiner method goodness keeps intact. \\
@@ -1840,8 +1840,9 @@ In this project we have considered a DG approach for cardiac electro-physiology.
 	\end{subfigure}
 \end{figure}
 
-\noindent In Fig. \ref{Vm_1_mean}, Fig. \ref{Phii_1_mean}, Fig. \ref{Phie_1_mean} and Fig. \ref{w_1_mean} the same $D1-P1$ comparison of Section \ref{Dubiner_FEM_comparison} is displayed except for the uniqueness strategy choice. Other polynomials orders have been discarded because of higher computing time. The only aim of this section is to show that the first coefficient imposition may have different effects on the two basis while the mean value imposition behaves in the same way.
+\newgeometry{a4paper,top=3cm,bottom=4cm,left=3.2cm,right=3.2cm}
 
+\noindent In Fig. \ref{Vm_1_mean}, Fig. \ref{Phii_1_mean}, Fig. \ref{Phie_1_mean} and Fig. \ref{w_1_mean} the same $D1-P1$ comparison of Section \ref{Dubiner_FEM_comparison} is displayed except for the uniqueness strategy choice, in this case, indeed, we are adopting the imposition of the mean value. Other polynomials orders have been discarded because of the higher computing time. The only aim of this section is to show that the first coefficient imposition may have different effects on the two basis, while the mean value imposition behaves in the same way.
 
 \begin{figure}[H] 
 	\caption{Comparison of the intracellular potential ($\phi_i$)}
@@ -1860,7 +1861,6 @@ In this project we have considered a DG approach for cardiac electro-physiology.
 	\end{subfigure}
 \end{figure}
 
-\noindent This fact follows from the theory since the first coefficient imposition has two different meaning depending on the basis: in one case it fixes the value of the solution in one specific point, in the other it fixes one Fourier coefficient. On the other hand, even if the system transformation is different, the mean value imposition works in the same way since the computed mean has always the same value in both the cases.
 
 \begin{figure}[H] 
 	\caption{Comparison of the extracellular potential ($\phi_e$)}
@@ -1897,6 +1897,8 @@ In this project we have considered a DG approach for cardiac electro-physiology.
 	\end{subfigure}
 \end{figure}
 
+\noindent This fact follows from the theory, since the first coefficient imposition has two different meaning depending on the basis: in one case it fixes the value of the solution in one specific point, in the other it fixes one Fourier coefficient. On the other hand, the mean value imposition works in the same way, even if the system transformation is different, since the computed mean has always the same value in both the cases.
+\restoregeometry
 \newpage
 
 

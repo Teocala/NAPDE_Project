@@ -59,7 +59,7 @@ dof=[];
 
 for ie=1:ne
     index_el=nedge*(ie-1).*ones(1,nedge) + [1:1:nedge];
-    [BJ, BJinv, temp] = get_jacobian_physical_points(region.coords_element(index_el, :), dof_hat);
+    [~ , ~ , temp] = get_jacobian_physical_points(region.coords_element(index_el, :), dof_hat);
     dof=[dof; temp];
 end
 

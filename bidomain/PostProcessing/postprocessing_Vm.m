@@ -18,13 +18,8 @@ function [solutions]= postprocessing_Vm(femregion,Dati,u_h,t)
 x=femregion.dof(:,1);
 y=femregion.dof(:,2);
 
-%MODIFICA
-
-
 u_ex=eval(Dati.exact_sol_Vm);
 
-%sigma_ex(:,1)=eval(Dati.grad_exact_i(1) - Dati.grad_exact_e(1));
-%sigma_ex(:,2)=eval(Dati.grad_exact_i(2) - Dati.grad_exact_e(2));
 
 % plot mesh
 figure
@@ -44,11 +39,6 @@ x1=femregion.domain(1,1);
 x2=femregion.domain(1,2);
 y1=femregion.domain(2,1);
 y2=femregion.domain(2,2);
-%M=max(u_h);
-%m=min(u_h);
-%if (abs(m-M) < 0.1)
-%    M=m+1;
-%end
 
 m=min(u_h);
 M=max(u_h);

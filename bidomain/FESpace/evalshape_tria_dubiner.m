@@ -29,13 +29,13 @@ for j=0:(deg)
             dphiq(1,:,s)=cij.*(2.^i).*((1-eta).^i).*pi.*pj;
             
             % gradient of function basis 
-            if (i==0 & j==0)
+            if (i==0 && j==0)
                 Grad(:,1,s)=zeros(nqn_2D,1);
                 Grad(:,2,s)=zeros(nqn_2D,1);
-            elseif (i==0 & j~=0)
+            elseif (i==0 && j~=0)
                 Grad(:,1,s)=zeros(nqn_2D,1);
                 Grad(:,2,s)=cij.*(j+2).*eval_jacobi_polynomial(j-1,2,1,b);
-            elseif (i~=0 & j==0)
+            elseif (i~=0 && j==0)
                 Grad(:,1,s)=cij.*2.^i.*(1-eta).^(i-1).*(i+1).*eval_jacobi_polynomial(i-1,1,1,a);
                 Grad(:,2,s)=cij.*2.^i.*(-i.*(1-eta).^(i-1).*pi +csi.*(1-eta).^(i-2).*(i+1).*eval_jacobi_polynomial(i-1,1,1,a));
             else
@@ -82,13 +82,13 @@ for j=0:(deg)
                 B_edge(s,:,edge)=cij.*2.^i.*(1-eta).^i.*pi.*pj;
                 
                 % gradient of the function basis 
-                if (i==0 & j==0)
+                if (i==0 && j==0)
                     G_edge(:,1,s,edge)=zeros(nqn,1);
                     G_edge(:,2,s,edge)=zeros(nqn,1);
-                elseif (i==0 & j~=0)
+                elseif (i==0 && j~=0)
                     G_edge(:,1,s,edge)=zeros(nqn,1);
                     G_edge(:,2,s,edge)=cij.*(j+2).*eval_jacobi_polynomial(j-1,2,1,b);
-                elseif (i~=0 & j==0)
+                elseif (i~=0 && j==0)
                     G_edge(:,1,s,edge)=cij.*2.^i.*(1-eta).^(i-1).*(i+1).*eval_jacobi_polynomial(i-1,1,1,a);
                     G_edge(:,2,s,edge)=cij.*2.^i.*(-i.*(1-eta).^(i-1).*pi +csi.*(1-eta).^(i-2).*(i+1).*eval_jacobi_polynomial(i-1,1,1,a));
                 else
