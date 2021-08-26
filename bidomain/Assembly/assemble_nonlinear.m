@@ -31,9 +31,9 @@ nqn_1D = length(w_1D);
 
 % evaluation of shape functions on quadrature poiint
 if (Data.fem(1) == 'D')
-    [dphiq, Grad, B_edge, G_edge] = evalshape_tria_dubiner(shape_basis,nodes_2D,nodes_1D,nqn_1D,femregion.nln);
+    [dphiq, ~, ~, ~] = evalshape_tria_dubiner(shape_basis,nodes_2D,nodes_1D,nqn_1D,femregion.nln);
 else
-    [dphiq, Grad, B_edge, G_edge] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
+    [dphiq, ~, ~, ~] = evalshape(shape_basis,nodes_2D,nodes_1D,femregion.nln);
 end
 
 C=sparse(femregion.ndof,femregion.ndof); %int_omega((u-a)(u-1)u*vdx)
