@@ -1,9 +1,0 @@
-\BOOKMARK [2][]{Outline0.1}{Introduction}{}% 1
-\BOOKMARK [2][]{Outline0.2}{Space discretization}{}% 2
-\BOOKMARK [3][]{Outline0.2.1.6}{Semi-discrete Discontinuous Galerkin}{Outline0.2}% 3
-\BOOKMARK [3][]{Outline0.2.2.9}{Dubiner basis implementation}{Outline0.2}% 4
-\BOOKMARK [2][]{Outline0.3}{Temporal discretization}{}% 5
-\BOOKMARK [2][]{Outline0.4}{Uniqueness of the potentials}{}% 6
-\BOOKMARK [2][]{Outline0.5}{Numerical results}{}% 7
-\BOOKMARK [3][]{Outline0.5.1.22}{Error analysis}{Outline0.5}% 8
-\BOOKMARK [3][]{Outline0.5.2.26}{Toward a realistic simulation}{Outline0.5}% 9
